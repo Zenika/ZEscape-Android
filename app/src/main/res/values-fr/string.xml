@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature1_count">Comptage: %d</string>
+    <string name="feature1_goToNext">Suivant</string>
+    <string name="feature1_increment">Incrémenter</string>
+    <string name="feature1_noCount">Comptage: -</string>
+</resources>

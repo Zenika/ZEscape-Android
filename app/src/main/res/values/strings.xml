@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name" translatable="false">ZEscape</string>
+    <string name="feature1_count">Count: %d</string>
+    <string name="feature1_goToNext">Go to next</string>
+    <string name="feature1_increment">Increment</string>
+    <string name="feature1_noCount">Count: -</string>
+</resources>
