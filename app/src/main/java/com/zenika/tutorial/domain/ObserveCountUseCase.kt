@@ -1,4 +1,4 @@
-package com.zenika.feature1.domain
+package com.zenika.tutorial.domain
 
 import com.zenika.data.repository.CountRepository
 import kotlinx.coroutines.flow.Flow
