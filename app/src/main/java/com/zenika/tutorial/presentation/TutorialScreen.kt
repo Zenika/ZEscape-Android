@@ -29,7 +29,8 @@ import com.zenika.utils.ZEscapeThemePreview
 fun TutorialScreen(
     modifier: Modifier,
     viewModel: TutorialViewModel,
-    openMiniGame: () -> Unit
+    openMiniGame: () -> Unit,
+    getMap: () -> Unit
 ) {
     Scaffold(modifier = modifier, contentWindowInsets = WindowInsets.navigationBars, topBar = {
         Box(
@@ -56,7 +57,8 @@ fun TutorialScreen(
                 Code()
                 TreasureChest(
                     viewModel,
-                    openMiniGame
+                    openMiniGame,
+                    getMap
                 )
             }
         }
@@ -67,8 +69,12 @@ fun TutorialScreen(
 @Composable
 fun TutorialScreenPreview() {
     ZEscapeThemePreview {
-        TutorialScreen(Modifier.fillMaxSize(),
+        TutorialScreen(
+            Modifier
+                .fillMaxSize(),
             viewModel = TutorialViewModel(),
-            openMiniGame = {})
+            openMiniGame = {},
+            getMap = {}
+        )
     }
 }

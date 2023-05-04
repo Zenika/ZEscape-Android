@@ -9,8 +9,9 @@ import androidx.navigation.compose.dialog
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.zenika.tutorial.presentation.component.EndMap
 import com.zenika.tutorial.presentation.component.GameDialog
-import com.zenika.tutorial.presentation.component.TreasureMap
+import com.zenika.tutorial.presentation.component.WelcomeMap
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -20,11 +21,10 @@ fun TutorialRoute(
     val navController = rememberAnimatedNavController()
     AnimatedNavHost(
         navController = navController,
-        startDestination = "map"
+        startDestination = "welcomeMap"
     ) {
-        composable("map") {
-            TreasureMap(
-                Modifier.fillMaxSize(),
+        composable("welcomeMap") {
+            WelcomeMap(
                 goToTutorial = {
                     navController.navigate("tutorial")
                 }
@@ -36,6 +36,10 @@ fun TutorialRoute(
                 viewModel,
                 openMiniGame = {
                     navController.navigate("minigame")
+                },
+                getMap = {
+                    viewModel.updateMapState()
+                    navController.navigate("endMap")
                 }
             )
         }
@@ -45,6 +49,12 @@ fun TutorialRoute(
                 onDismissRequest = { navController.popBackStack() }
             )
         }
+        composable("endMap") {
+            EndMap(
+                finishGame = {
+                    navController.navigate("tutorial")
+                }
+            )
+        }
     }
-
 }

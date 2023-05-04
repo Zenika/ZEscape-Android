@@ -153,8 +153,7 @@ fun onColorClick(
     if (!isGood) {
         onDismissRequest()
         viewModel.initColorsSequence()
-    }
-    if (colors.size >= 4) {
+    } else if (colors.size >= 4) {
         onDismissRequest()
         viewModel.initColorsSequence()
         viewModel.updateChestState()
