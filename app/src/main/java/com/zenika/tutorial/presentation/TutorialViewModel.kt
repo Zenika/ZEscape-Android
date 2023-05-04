@@ -39,6 +39,14 @@ class TutorialViewModel @Inject constructor() : ViewModel() {
             initialValue = false
         )
 
+    private var _collectedMap = MutableStateFlow(false)
+    val collectedMap: StateFlow<Boolean> = _collectedMap
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+            initialValue = false
+        )
+
     private val colorsResult: List<String> = listOf("blue", "green", "red", "yellow")
 
     fun initColorsSequence() {
@@ -63,6 +71,14 @@ class TutorialViewModel @Inject constructor() : ViewModel() {
     fun updateChestState() {
         viewModelScope.launch {
             _chestState.update { state ->
+                !state
+            }
+        }
+    }
+
+    fun updateMapState() {
+        viewModelScope.launch {
+            _collectedMap.update { state ->
                 !state
             }
         }

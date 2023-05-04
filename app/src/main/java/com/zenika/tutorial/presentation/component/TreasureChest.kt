@@ -18,14 +18,23 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun TreasureChest(
     viewModel: TutorialViewModel,
-    openMiniGame: () -> Unit
+    openMiniGame: () -> Unit,
+    getMap: () -> Unit
 ) {
     val chestState by viewModel.chestState.collectAsState()
-    val chest = if (chestState) {
-        R.mipmap.open_chest
+    val collectedMap by viewModel.collectedMap.collectAsState()
+
+    if (!chestState) {
+        Chest(R.mipmap.closed_chest, openMiniGame)
+    } else if (!collectedMap) {
+        Chest(R.mipmap.map_chest, getMap)
     } else {
-        R.mipmap.closed_chest
+        Chest(R.mipmap.open_chest) {}
     }
+}
+
+@Composable
+private fun Chest(chest: Int, actionOnClick: () -> Unit) {
     Image(
         painter = painterResource(
             id = chest
@@ -35,7 +44,7 @@ fun TreasureChest(
         modifier = Modifier
             .padding(start = 0.dp, top = 400.dp, end = 0.dp, bottom = 0.dp)
             .clickable {
-                openMiniGame()
+                actionOnClick()
             }
     )
 }
@@ -46,7 +55,8 @@ fun TreasureChestPreview() {
     ZEscapeThemePreview {
         TreasureChest(
             viewModel = TutorialViewModel(),
-            openMiniGame = {}
+            openMiniGame = {},
+            getMap = {}
         )
     }
 }
