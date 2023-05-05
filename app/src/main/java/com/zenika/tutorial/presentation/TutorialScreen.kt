@@ -2,7 +2,6 @@ package com.zenika.tutorial.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -47,20 +46,15 @@ fun TutorialScreen(
                 .paint(
                     painterResource(id = R.mipmap.sea_background),
                     contentScale = ContentScale.FillHeight
-                )
+                ),
+            contentAlignment = Alignment.Center
         ) {
-            Column(
-                Modifier
-                    .align(Alignment.Center),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Code()
-                TreasureChest(
-                    viewModel,
-                    openMiniGame,
-                    getMap
-                )
-            }
+            Code()
+            TreasureChest(
+                viewModel,
+                openMiniGame,
+                getMap
+            )
         }
     }
 }
