@@ -20,10 +20,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.zenika.R
 import com.zenika.tutorial.presentation.TutorialViewModel
+import com.zenika.ui.theme.BlueSymbol
+import com.zenika.ui.theme.GreenSymbol
+import com.zenika.ui.theme.RedSymbol
+import com.zenika.ui.theme.YellowSymbol
+import com.zenika.ui.theme.colorCirclePadding
+import com.zenika.ui.theme.dialogPadding
+import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -41,7 +50,7 @@ fun GameDialog(
             onDismissRequest,
             Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(screenPadding)
                 .background(
                     MaterialTheme.colorScheme.background,
                     MaterialTheme.shapes.extraLarge
@@ -59,7 +68,8 @@ private fun MiniGameContent(
     val colors by viewModel.colorsSequence.collectAsState()
     val size by viewModel.sequenceSize.collectAsState()
     Column(
-        modifier,
+        modifier
+            .padding(dialogPadding),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Stage(size)
@@ -67,36 +77,36 @@ private fun MiniGameContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentSize(Alignment.Center)
-                .padding(8.dp),
+                .padding(colorCirclePadding),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             ColorButton(
-                symbol = "#",
-                color = Color.Green,
+                symbol = stringResource(id = R.string.sharp),
+                color = GreenSymbol,
                 colorName = "green",
                 colors = colors,
                 viewModel = viewModel,
                 onDismissRequest = onDismissRequest
             )
             ColorButton(
-                symbol = "&",
-                color = Color.Yellow,
+                symbol = stringResource(id = R.string.ampersand),
+                color = YellowSymbol,
                 colorName = "yellow",
                 colors = colors,
                 viewModel = viewModel,
                 onDismissRequest = onDismissRequest
             )
             ColorButton(
-                symbol = "%",
-                color = Color.Red,
+                symbol = stringResource(id = R.string.percent),
+                color = RedSymbol,
                 colorName = "red",
                 colors = colors,
                 viewModel = viewModel,
                 onDismissRequest = onDismissRequest
             )
             ColorButton(
-                symbol = "@",
-                color = Color.Blue,
+                symbol = stringResource(id = R.string.at),
+                color = BlueSymbol,
                 colorName = "blue",
                 colors = colors,
                 viewModel = viewModel,
