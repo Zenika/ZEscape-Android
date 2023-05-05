@@ -8,22 +8,41 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import com.zenika.R
+import com.zenika.tutorial.presentation.MapViewModel
+import com.zenika.ui.theme.mapPadding
 import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun WelcomeMap(
-    goToTutorial: () -> Unit
+    viewModel: MapViewModel,
+    openInstruction: () -> Unit
 ) {
+    val firstMapVisible by viewModel.welcomeMap1Visible.collectAsState()
+    val secondMapVisible by viewModel.welcomeMap2Visible.collectAsState()
+
+    if (firstMapVisible) {
+        MapContent(R.string.welcome_map) { viewModel.hideWelcomeFirstMap() }
+    } else if (secondMapVisible) {
+        MapContent(R.string.welcome_map2) { viewModel.hideWelcomeSecondMap() }
+    } else {
+        MapContent(R.string.welcome_map3) { openInstruction() }
+    }
+}
+
+@Composable
+private fun MapContent(textId: Int, onClick: () -> Unit) {
     Box(
         Modifier
             .fillMaxSize()
@@ -41,14 +60,19 @@ fun WelcomeMap(
             contentScale = ContentScale.Fit,
             modifier = Modifier
                 .fillMaxSize()
-                .clickable { goToTutorial() }
+                .clickable { onClick() }
         )
         Text(
-            text = stringResource(id = R.string.welcome_map),
+            text = stringResource(id = textId),
             modifier = Modifier
                 .align(Center)
-                .padding(top = 60.dp, start = 70.dp, end = 70.dp),
+                .padding(
+                    top = mapPadding,
+                    start = mapPadding,
+                    end = mapPadding
+                ),
             textAlign = TextAlign.Center,
+            color = Color.Black,
             style = MaterialTheme.typography.bodyLarge
         )
     }
@@ -59,7 +83,8 @@ fun WelcomeMap(
 fun WelcomeMapPreview() {
     ZEscapeThemePreview {
         WelcomeMap(
-            goToTutorial = {}
+            viewModel = MapViewModel(),
+            openInstruction = {}
         )
     }
 }

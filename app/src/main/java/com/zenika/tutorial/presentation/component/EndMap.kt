@@ -8,23 +8,38 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import com.zenika.R
-import com.zenika.tutorial.presentation.TutorialViewModel
+import com.zenika.tutorial.presentation.MapViewModel
+import com.zenika.ui.theme.mapPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun EndMap(
+    viewModel: MapViewModel,
     finishGame: () -> Unit
 ) {
+    val mapVisible by viewModel.endMapVisible.collectAsState()
+
+    if (mapVisible) {
+        MapContent(R.string.end_map) { viewModel.hideEndMap() }
+    } else {
+        MapContent(R.string.end_map2) { finishGame() }
+    }
+}
+
+@Composable
+private fun MapContent(textId: Int, onClick: () -> Unit) {
     Box(
         Modifier
             .fillMaxSize()
@@ -42,14 +57,19 @@ fun EndMap(
             contentScale = ContentScale.Fit,
             modifier = Modifier
                 .fillMaxSize()
-                .clickable { finishGame() }
+                .clickable { onClick() }
         )
         Text(
-            text = stringResource(id = R.string.end_map),
+            text = stringResource(id = textId),
             modifier = Modifier
                 .align(Alignment.Center)
-                .padding(top = 60.dp, start = 70.dp, end = 70.dp),
+                .padding(
+                    top = mapPadding,
+                    start = mapPadding,
+                    end = mapPadding
+                ),
             textAlign = TextAlign.Center,
+            color = Color.Black,
             style = MaterialTheme.typography.bodyLarge
         )
     }
@@ -59,9 +79,9 @@ fun EndMap(
 @Composable
 fun EndMapPreview() {
     ZEscapeThemePreview {
-        GameDialog(
-            viewModel = TutorialViewModel(),
-            onDismissRequest = {}
+        EndMap(
+            viewModel = MapViewModel(),
+            finishGame = {}
         )
     }
 }
