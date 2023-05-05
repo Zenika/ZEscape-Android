@@ -34,7 +34,7 @@ fun TreasureChest(
 }
 
 @Composable
-private fun Chest(chest: Int, actionOnClick: () -> Unit) {
+private fun Chest(chest: Int, onClick: () -> Unit) {
     Image(
         painter = painterResource(
             id = chest
@@ -44,7 +44,7 @@ private fun Chest(chest: Int, actionOnClick: () -> Unit) {
         modifier = Modifier
             .padding(start = 0.dp, top = 400.dp, end = 0.dp, bottom = 0.dp)
             .clickable {
-                actionOnClick()
+                onClick()
             }
     )
 }
