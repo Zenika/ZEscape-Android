@@ -11,6 +11,7 @@ import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.zenika.tutorial.presentation.component.EndMap
 import com.zenika.tutorial.presentation.component.GameDialog
+import com.zenika.tutorial.presentation.component.InstructionDialog
 import com.zenika.tutorial.presentation.component.WelcomeMap
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -18,6 +19,7 @@ import com.zenika.tutorial.presentation.component.WelcomeMap
 fun TutorialRoute(
 ) {
     val viewModel = hiltViewModel<TutorialViewModel>()
+    val mapViewModel = hiltViewModel<MapViewModel>()
     val navController = rememberAnimatedNavController()
     AnimatedNavHost(
         navController = navController,
@@ -25,17 +27,26 @@ fun TutorialRoute(
     ) {
         composable("welcomeMap") {
             WelcomeMap(
-                goToTutorial = {
-                    navController.navigate("tutorial")
+                mapViewModel,
+                openInstruction = {
+                    navController.navigate("tutorialScreen")
+                    navController.navigate("instructionDialog")
                 }
             )
         }
-        composable("tutorial") {
+        dialog("instructionDialog") {
+            InstructionDialog(
+                onDismissRequest = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable("tutorialScreen") {
             TutorialScreen(
                 Modifier.fillMaxSize(),
                 viewModel,
                 openMiniGame = {
-                    navController.navigate("minigame")
+                    navController.navigate("miniGame")
                 },
                 getMap = {
                     viewModel.updateMapState()
@@ -43,16 +54,19 @@ fun TutorialRoute(
                 }
             )
         }
-        dialog("minigame") {
+        dialog("miniGame") {
             GameDialog(
                 viewModel,
-                onDismissRequest = { navController.popBackStack() }
+                onDismissRequest = {
+                    navController.popBackStack()
+                }
             )
         }
         composable("endMap") {
             EndMap(
+                mapViewModel,
                 finishGame = {
-                    navController.navigate("tutorial")
+                    navController.navigate("tutorialScreen")
                 }
             )
         }
