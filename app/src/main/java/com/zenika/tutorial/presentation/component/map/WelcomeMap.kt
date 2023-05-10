@@ -1,4 +1,4 @@
-package com.zenika.tutorial.presentation.component
+package com.zenika.tutorial.presentation.component.map
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
@@ -18,28 +18,35 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.zenika.R
-import com.zenika.tutorial.presentation.MapViewModel
+import com.zenika.tutorial.domain.MapViewModel
 import com.zenika.ui.theme.mapPadding
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun EndMap(
-    viewModel: MapViewModel,
-    finishGame: () -> Unit
+fun WelcomeMap(
+    viewModel: MapViewModel = hiltViewModel(),
+    openInstruction: () -> Unit
 ) {
-    val mapVisible by viewModel.endMapVisible.collectAsState()
+    val firstMapVisible by viewModel.welcomeMap1Visible.collectAsState()
+    val secondMapVisible by viewModel.welcomeMap2Visible.collectAsState()
 
-    if (mapVisible) {
-        MapContent(R.string.end_map) { viewModel.hideEndMap() }
+    if (firstMapVisible) {
+        MapContent(R.string.welcome_map) { viewModel.hideWelcomeFirstMap() }
+    } else if (secondMapVisible) {
+        MapContent(R.string.welcome_map2) { viewModel.hideWelcomeSecondMap() }
     } else {
-        MapContent(R.string.end_map2) { finishGame() }
+        MapContent(R.string.welcome_map3) { openInstruction() }
     }
 }
 
 @Composable
-private fun MapContent(textId: Int, onClick: () -> Unit) {
+private fun MapContent(
+    textId: Int,
+    onClick: () -> Unit
+) {
     Box(
         Modifier
             .fillMaxSize()
@@ -62,7 +69,7 @@ private fun MapContent(textId: Int, onClick: () -> Unit) {
         Text(
             text = stringResource(id = textId),
             modifier = Modifier
-                .align(Alignment.Center)
+                .align(Center)
                 .padding(
                     top = mapPadding,
                     start = mapPadding,
@@ -75,13 +82,13 @@ private fun MapContent(textId: Int, onClick: () -> Unit) {
     }
 }
 
-@ScreenPreview
+@ComposablePreview
 @Composable
-fun EndMapPreview() {
+fun WelcomeMapPreview() {
     ZEscapeThemePreview {
-        EndMap(
+        WelcomeMap(
             viewModel = MapViewModel(),
-            finishGame = {}
+            openInstruction = {}
         )
     }
 }

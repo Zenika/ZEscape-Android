@@ -24,21 +24,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.zenika.R
-import com.zenika.tutorial.presentation.TutorialViewModel
+import com.zenika.tutorial.domain.GameViewModel
 import com.zenika.ui.theme.BlueSymbol
 import com.zenika.ui.theme.GreenSymbol
 import com.zenika.ui.theme.RedSymbol
 import com.zenika.ui.theme.YellowSymbol
-import com.zenika.ui.theme.colorCirclePadding
 import com.zenika.ui.theme.dialogPadding
+import com.zenika.ui.theme.itemDialogPadding
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun GameDialog(
-    viewModel: TutorialViewModel,
+    viewModel: GameViewModel = hiltViewModel(),
     onDismissRequest: () -> Unit
 ) {
     Dialog(
@@ -52,7 +53,7 @@ fun GameDialog(
                 .fillMaxWidth()
                 .padding(screenPadding)
                 .background(
-                    MaterialTheme.colorScheme.background,
+                    MaterialTheme.colorScheme.primaryContainer,
                     MaterialTheme.shapes.extraLarge
                 )
         )
@@ -61,7 +62,7 @@ fun GameDialog(
 
 @Composable
 private fun MiniGameContent(
-    viewModel: TutorialViewModel,
+    viewModel: GameViewModel,
     onDismissRequest: () -> Unit,
     modifier: Modifier
 ) {
@@ -77,7 +78,7 @@ private fun MiniGameContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentSize(Alignment.Center)
-                .padding(colorCirclePadding),
+                .padding(itemDialogPadding),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             ColorButton(
@@ -130,7 +131,7 @@ private fun ColorButton(
     color: Color,
     colorName: String,
     colors: List<String>,
-    viewModel: TutorialViewModel,
+    viewModel: GameViewModel,
     onDismissRequest: () -> Unit
 ) {
     Box(
@@ -155,7 +156,7 @@ private fun ColorButton(
 fun onColorClick(
     color: String,
     colors: List<String>,
-    viewModel: TutorialViewModel,
+    viewModel: GameViewModel,
     onDismissRequest: () -> Unit
 ) {
     viewModel.addColor(color)
@@ -175,7 +176,7 @@ fun onColorClick(
 fun GameDialogPreview() {
     ZEscapeThemePreview {
         GameDialog(
-            viewModel = TutorialViewModel(),
+            viewModel = GameViewModel(),
             onDismissRequest = {}
         )
     }

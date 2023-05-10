@@ -11,13 +11,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
-import com.zenika.tutorial.presentation.TutorialViewModel
+import com.zenika.tutorial.domain.GameViewModel
 import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun TreasureChest(
-    viewModel: TutorialViewModel,
+    viewModel: GameViewModel,
     openMiniGame: () -> Unit,
     getMap: () -> Unit
 ) {
@@ -34,7 +34,10 @@ fun TreasureChest(
 }
 
 @Composable
-private fun Chest(chest: Int, onClick: () -> Unit) {
+private fun Chest(
+    chest: Int,
+    onClick: () -> Unit
+) {
     Image(
         painter = painterResource(
             id = chest
@@ -54,7 +57,7 @@ private fun Chest(chest: Int, onClick: () -> Unit) {
 fun TreasureChestPreview() {
     ZEscapeThemePreview {
         TreasureChest(
-            viewModel = TutorialViewModel(),
+            viewModel = GameViewModel(),
             openMiniGame = {},
             getMap = {}
         )

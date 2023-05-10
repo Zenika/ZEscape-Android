@@ -1,6 +1,5 @@
-package com.zenika.tutorial.presentation
+package com.zenika.tutorial.domain
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,9 +12,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TutorialViewModel @Inject constructor() : ViewModel() {
+class GameViewModel @Inject constructor() : ViewModel() {
 
-    private val _colorsSequence = MutableStateFlow(mutableListOf<String>())
+    private var _colorsSequence = MutableStateFlow(mutableListOf<String>())
     val colorsSequence: StateFlow<List<String>> = _colorsSequence
         .stateIn(
             scope = viewModelScope,
@@ -65,7 +64,6 @@ class TutorialViewModel @Inject constructor() : ViewModel() {
             _sequenceSize.update { size ->
                 size + 1 }
         }
-        Log.d("sequence", _colorsSequence.value.toString())
     }
 
     fun updateChestState() {
