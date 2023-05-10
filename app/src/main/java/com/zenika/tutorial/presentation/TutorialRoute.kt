@@ -4,22 +4,28 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.dialog
+import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.zenika.tutorial.presentation.component.EndMap
+import com.zenika.R
+import com.zenika.tutorial.domain.InventoryViewModel
+import com.zenika.tutorial.domain.GameViewModel
 import com.zenika.tutorial.presentation.component.GameDialog
 import com.zenika.tutorial.presentation.component.InstructionDialog
-import com.zenika.tutorial.presentation.component.WelcomeMap
+import com.zenika.tutorial.presentation.component.inventory.InventoryDialog
+import com.zenika.tutorial.presentation.component.inventory.ItemDialog
+import com.zenika.tutorial.presentation.component.map.EndMap
+import com.zenika.tutorial.presentation.component.map.WelcomeMap
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun TutorialRoute(
 ) {
-    val viewModel = hiltViewModel<TutorialViewModel>()
-    val mapViewModel = hiltViewModel<MapViewModel>()
+    val gameViewModel = GameViewModel()
+    val inventoryViewModel = InventoryViewModel()
     val navController = rememberAnimatedNavController()
     AnimatedNavHost(
         navController = navController,
@@ -27,7 +33,6 @@ fun TutorialRoute(
     ) {
         composable("welcomeMap") {
             WelcomeMap(
-                mapViewModel,
                 openInstruction = {
                     navController.navigate("tutorialScreen")
                     navController.navigate("instructionDialog")
@@ -44,27 +49,55 @@ fun TutorialRoute(
         composable("tutorialScreen") {
             TutorialScreen(
                 Modifier.fillMaxSize(),
-                viewModel,
+                viewModel = gameViewModel,
                 openMiniGame = {
                     navController.navigate("miniGame")
                 },
+                openInventory = {
+                    navController.navigate("inventory")
+                },
                 getMap = {
-                    viewModel.updateMapState()
-                    navController.navigate("endMap")
+                    gameViewModel.updateMapState()
+                    inventoryViewModel.addItem("map", R.mipmap.rolled_map)
                 }
             )
         }
         dialog("miniGame") {
             GameDialog(
-                viewModel,
+                gameViewModel,
                 onDismissRequest = {
                     navController.popBackStack()
                 }
             )
         }
+        dialog("inventory") {
+            InventoryDialog(
+                inventoryViewModel,
+                onDismissRequest = {
+                    navController.popBackStack()
+                },
+                showItem = { item ->
+                    navController.navigate("item/$item")
+                }
+            )
+        }
+        dialog(
+            "item/{item}",
+            arguments = listOf(navArgument("item") {
+                type = NavType.IntType
+            })
+        ) {
+            ItemDialog(
+                onDismissRequest = {
+                    navController.popBackStack()
+                },
+                openEndMap = {
+                    navController.navigate("endMap")
+                }
+            )
+        }
         composable("endMap") {
             EndMap(
-                mapViewModel,
                 finishGame = {
                     navController.navigate("tutorialScreen")
                 }
