@@ -31,7 +31,7 @@ fun InstructionDialog(
                 .fillMaxWidth()
                 .padding(screenPadding)
                 .background(
-                    MaterialTheme.colorScheme.background.copy(alpha = 0.7F),
+                    MaterialTheme.colorScheme.primaryContainer,
                     MaterialTheme.shapes.extraLarge
                 )
         )
