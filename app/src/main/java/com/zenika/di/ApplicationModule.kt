@@ -3,7 +3,7 @@ package com.zenika.di
 import android.content.Context
 import androidx.room.Room
 import com.zenika.data.ZDatabase
-import com.zenika.data.dao.CountDao
+import com.zenika.data.dao.ItemDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,9 +29,9 @@ object ApplicationModule {
     }
 
     @Provides
-    fun provideCountDao(
+    fun provideItemDao(
         database: ZDatabase
-    ): CountDao {
-        return database.countDao
+    ): ItemDao {
+        return database.itemDao
     }
 }

@@ -1,4 +1,4 @@
-package com.zenika.tutorial.domain
+package com.zenika.tutorial.presentation.mini_game
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,16 +6,19 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class GameViewModel @Inject constructor() : ViewModel() {
+class MiniGameViewModel @Inject constructor() : ViewModel() {
 
-    private var _colorsSequence = MutableStateFlow(mutableListOf<String>())
-    val colorsSequence: StateFlow<List<String>> = _colorsSequence
+    private var _colorsSequence = MutableStateFlow(
+        mutableListOf<String>()
+    )
+    val colorsSequence: StateFlow<List<String>> = _colorsSequence.asStateFlow()
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
@@ -30,27 +33,11 @@ class GameViewModel @Inject constructor() : ViewModel() {
             initialValue = 0
         )
 
-    private var _chestState = MutableStateFlow(false)
-    val chestState: StateFlow<Boolean> = _chestState
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = false
-        )
-
-    private var _collectedMap = MutableStateFlow(false)
-    val collectedMap: StateFlow<Boolean> = _collectedMap
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = false
-        )
-
     private val colorsResult: List<String> = listOf("blue", "green", "red", "yellow")
 
     fun initColorsSequence() {
         viewModelScope.launch {
-            _colorsSequence.update { listOf<String>().toMutableList() }
+            _colorsSequence.update { mutableListOf() }
             _sequenceSize.update { 0 }
         }
     }
@@ -62,28 +49,13 @@ class GameViewModel @Inject constructor() : ViewModel() {
                 sequence
             }
             _sequenceSize.update { size ->
-                size + 1 }
-        }
-    }
-
-    fun updateChestState() {
-        viewModelScope.launch {
-            _chestState.update { state ->
-                !state
-            }
-        }
-    }
-
-    fun updateMapState() {
-        viewModelScope.launch {
-            _collectedMap.update { state ->
-                !state
+                size + 1
             }
         }
     }
 
     fun checkSequence(): Boolean {
         return _colorsSequence.value[_colorsSequence.value.size - 1] ==
-            colorsResult[_colorsSequence.value.size - 1]
+                colorsResult[_colorsSequence.value.size - 1]
     }
 }

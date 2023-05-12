@@ -5,7 +5,8 @@ import androidx.compose.runtime.Composable
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.zenika.tutorial.presentation.TutorialRoute
+import com.zenika.qrcode_scan.presentation.QrCodeScanScreen
+import com.zenika.tutorial.presentation.Tutorial
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -15,8 +16,13 @@ fun ZEscape() {
         navController = navController,
         startDestination = "tutorial"
     ) {
+        composable("qrCodeScan") {
+            QrCodeScanScreen(
+                goToTutorial = { navController.navigate("tutorial") }
+            )
+        }
         composable("tutorial") {
-            TutorialRoute()
+            Tutorial()
         }
     }
 }

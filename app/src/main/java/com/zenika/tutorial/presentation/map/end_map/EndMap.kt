@@ -1,4 +1,4 @@
-package com.zenika.tutorial.presentation.component.map
+package com.zenika.tutorial.presentation.component.welcome_map
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment.Companion.Center
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
@@ -18,32 +16,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.zenika.R
-import com.zenika.tutorial.domain.MapViewModel
 import com.zenika.ui.theme.mapPadding
-import com.zenika.utils.ComposablePreview
+import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun WelcomeMap(
-    viewModel: MapViewModel = hiltViewModel(),
-    openInstruction: () -> Unit
-) {
-    val firstMapVisible by viewModel.welcomeMap1Visible.collectAsState()
-    val secondMapVisible by viewModel.welcomeMap2Visible.collectAsState()
-
-    if (firstMapVisible) {
-        MapContent(R.string.welcome_map) { viewModel.hideWelcomeFirstMap() }
-    } else if (secondMapVisible) {
-        MapContent(R.string.welcome_map2) { viewModel.hideWelcomeSecondMap() }
-    } else {
-        MapContent(R.string.welcome_map3) { openInstruction() }
-    }
-}
-
-@Composable
-private fun MapContent(
+fun EndMap(
     textId: Int,
     onClick: () -> Unit
 ) {
@@ -69,7 +48,7 @@ private fun MapContent(
         Text(
             text = stringResource(id = textId),
             modifier = Modifier
-                .align(Center)
+                .align(Alignment.Center)
                 .padding(
                     top = mapPadding,
                     start = mapPadding,
@@ -82,13 +61,13 @@ private fun MapContent(
     }
 }
 
-@ComposablePreview
+@ScreenPreview
 @Composable
-fun WelcomeMapPreview() {
+fun EndMapPreview() {
     ZEscapeThemePreview {
-        WelcomeMap(
-            viewModel = MapViewModel(),
-            openInstruction = {}
+        EndMap(
+            textId = R.string.end_map,
+            onClick = {}
         )
     }
 }

@@ -1,4 +1,4 @@
-package com.zenika.tutorial.domain
+package com.zenika.tutorial.presentation.item
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

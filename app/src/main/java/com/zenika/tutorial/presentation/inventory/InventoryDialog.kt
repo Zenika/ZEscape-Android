@@ -1,6 +1,5 @@
-package com.zenika.tutorial.presentation.component.inventory
+package com.zenika.tutorial.presentation.inventory
 
-import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -8,7 +7,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
@@ -19,8 +17,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,8 +25,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.zenika.tutorial.domain.InventoryViewModel
+import com.zenika.R
+import com.zenika.data.model.ItemDto
 import com.zenika.ui.theme.InventoryBoxColor
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.ui.theme.itemDialogPadding
@@ -39,51 +35,32 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun InventoryDialog(
-    viewModel: InventoryViewModel = hiltViewModel(),
-    onDismissRequest: () -> Unit,
-    showItem: (Int) -> Unit
+    modifier: Modifier,
+    items: List<ItemDto>,
+    showItem: (Int) -> Unit,
+    onDismissRequest: () -> Unit
 ) {
     Dialog(
         onDismissRequest = onDismissRequest,
         properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
     ) {
-        InventoryContent(
-            viewModel,
-            Modifier
-                .fillMaxWidth()
-                .background(
-                    MaterialTheme.colorScheme.primaryContainer,
-                    MaterialTheme.shapes.extraLarge
-                ),
-            showItem
-        )
-    }
-}
-
-@Composable
-private fun InventoryContent(
-    viewModel: InventoryViewModel,
-    modifier: Modifier,
-    showItem: (Int) -> Unit
-) {
-    val items by viewModel.inventoryItems.collectAsState()
-    Log.d("items", items.toString())
-    Column(
-        modifier
-            .padding(dialogPadding),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Inventaire",
-            style = MaterialTheme.typography.headlineMedium
-        )
-        LazyVerticalGrid(
-            columns = GridCells.Adaptive(minSize = 100.dp)
+        Column(
+            modifier
+                .padding(dialogPadding),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            items(
-                items.values.toList()
-            ) { item ->
-                InventoryBox(item = item, showItem = showItem)
+            Text(
+                text = "Inventaire",
+                style = MaterialTheme.typography.headlineMedium
+            )
+            LazyVerticalGrid(
+                columns = GridCells.Adaptive(minSize = 100.dp)
+            ) {
+                items(
+                    items
+                ) { item ->
+                    InventoryBox(item = item.resource, showItem = showItem)
+                }
             }
         }
     }
@@ -118,10 +95,11 @@ private fun InventoryBox(
 @Composable
 fun InventoryDialogPreview() {
     ZEscapeThemePreview {
-        InventoryContent(
-            viewModel = InventoryViewModel(),
+        InventoryDialog(
             Modifier,
-            showItem = {}
+            items = listOf(ItemDto("paper", R.mipmap.paper)),
+            showItem = {},
+            onDismissRequest = {}
         )
     }
 }

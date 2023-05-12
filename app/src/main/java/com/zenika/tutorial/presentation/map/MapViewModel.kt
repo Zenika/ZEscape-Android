@@ -1,4 +1,4 @@
-package com.zenika.tutorial.domain
+package com.zenika.tutorial.presentation.map
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -2,29 +2,29 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0f2ddfb12fcf4b407cdf70d985772e2c",
+    "identityHash": "4865b774f4caa1ae6ccce69502bb8763",
     "entities": [
       {
-        "tableName": "CountDto",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `value` INTEGER NOT NULL)",
+        "tableName": "ItemDto",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `resource` INTEGER NOT NULL, PRIMARY KEY(`name`))",
         "fields": [
           {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "value",
-            "columnName": "value",
+            "fieldPath": "resource",
+            "columnName": "resource",
             "affinity": "INTEGER",
             "notNull": true
           }
         ],
         "primaryKey": {
-          "autoGenerate": true,
+          "autoGenerate": false,
           "columnNames": [
-            "id"
+            "name"
           ]
         },
         "indices": [],
@@ -34,7 +34,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0f2ddfb12fcf4b407cdf70d985772e2c')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4865b774f4caa1ae6ccce69502bb8763')"
     ]
   }
 }

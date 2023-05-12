@@ -1,4 +1,4 @@
-package com.zenika.tutorial.presentation.component.inventory
+package com.zenika.tutorial.presentation.main.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -30,7 +30,7 @@ fun Inventory(
 
 @ComposablePreview
 @Composable
-fun TreasureChestPreview() {
+fun InventoryPreview() {
     ZEscapeThemePreview {
         Inventory(
             openInventory = {}
