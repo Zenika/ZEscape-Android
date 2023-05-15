@@ -10,12 +10,19 @@ import com.zenika.R
 fun ItemRoute(
     viewModel: ItemViewModel = hiltViewModel(),
     onDismissRequest: () -> Unit,
-    openEndMap: () -> Unit
+    openWelcomeParchment: () -> Unit,
+    openEndParchment: () -> Unit
 ) {
     val item by viewModel.item.collectAsState()
-    if (item == R.mipmap.rolled_map) {
-        openEndMap()
-    } else {
-        ItemDialog(item, onDismissRequest)
+    when (item) {
+        R.mipmap.parchment -> {
+            openWelcomeParchment()
+        }
+        R.mipmap.rolled_map -> {
+            openEndParchment()
+        }
+        else -> {
+            ItemDialog(item, onDismissRequest)
+        }
     }
 }

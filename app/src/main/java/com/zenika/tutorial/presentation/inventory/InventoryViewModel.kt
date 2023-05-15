@@ -22,6 +22,10 @@ class InventoryViewModel @Inject constructor(
         MutableStateFlow(
             listOf(
                 ItemDto(
+                    "parchment",
+                    R.mipmap.parchment
+                ),
+                ItemDto(
                     "paper",
                     R.mipmap.paper
                 )

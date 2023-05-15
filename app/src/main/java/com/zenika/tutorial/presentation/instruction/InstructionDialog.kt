@@ -27,7 +27,7 @@ fun InstructionDialog(
         Text(
             text = stringResource(id = R.string.instruction),
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.bodyLarge
         )
     }
 }

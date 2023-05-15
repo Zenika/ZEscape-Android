@@ -4,16 +4,16 @@
     <string name="sharp" translatable="false">#</string>
     <string name="ampersand" translatable="false">&amp;</string>
     <string name="percent" translatable="false">%</string>
-    <string name="welcome_map" translatable="false">
+    <string name="welcome_parchment" translatable="false">
         Cher voyageur,\nChère voyageuse,\n
         Si vous êtes tombé(e) sur cette lettre, ce n\'est pas par hasard…\n
         Vous avez été choisi(e) pour m\'aider dans ma quête.
     </string>
-    <string name="welcome_map2" translatable="false">
+    <string name="welcome_parchment2" translatable="false">
         Il y a fort longtemps, j\'ai perdu un trésor contenant une mystérieuse carte,
         et je souhaite la retrouver.
     </string>
-    <string name="welcome_map3" translatable="false">
+    <string name="welcome_parchment3" translatable="false">
         Êtes-vous prêt(e) à m\'accompagner dans cette aventure ?\n
         À bientôt, je l\'espère…\n\n
         Capitaine J. Zparrow
@@ -24,11 +24,11 @@
         de l\'ouvrir afin de récupérer la fameuse carte que recherche le Capitaine.\n\n
         Bonne chance !
     </string>
-    <string name="end_map" translatable="false">
+    <string name="end_parchment" translatable="false">
         Toute personne en possession de cette carte est destinée à réaliser une aventure périlleuse…
         \nLes missions qui vous attendent ne sont pas sans danger…
     </string>
-    <string name="end_map2" translatable="false">
+    <string name="end_parchment2" translatable="false">
         Vous sentirez-vous capable de les accomplir ?\n\n
         Professeur Z
     </string>

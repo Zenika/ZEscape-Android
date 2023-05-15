@@ -8,13 +8,13 @@ import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.zenika.tutorial.presentation.component.welcome_map.EndMapRoute
+import com.zenika.tutorial.presentation.component.welcome_map.EndParchmentRoute
 import com.zenika.tutorial.presentation.instruction.InstructionRoute
 import com.zenika.tutorial.presentation.inventory.InventoryRoute
 import com.zenika.tutorial.presentation.item.ItemRoute
 import com.zenika.tutorial.presentation.main.MainRoute
-import com.zenika.tutorial.presentation.map.welcome_map.WelcomeMapRoute
 import com.zenika.tutorial.presentation.mini_game.MiniGameRoute
+import com.zenika.tutorial.presentation.parchment.welcome_parchment.WelcomeParchmentRoute
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -23,10 +23,10 @@ fun Tutorial(
     val navController = rememberAnimatedNavController()
     AnimatedNavHost(
         navController = navController,
-        startDestination = "welcomeMapRoute"
+        startDestination = "welcomeParchmentRoute"
     ) {
-        composable("welcomeMapRoute") {
-            WelcomeMapRoute(
+        composable("welcomeParchmentRoute") {
+            WelcomeParchmentRoute(
                 openInstruction = {
                     navController.navigate("mainRoute")
                     navController.navigate("instructionRoute")
@@ -77,13 +77,16 @@ fun Tutorial(
                 onDismissRequest = {
                     navController.popBackStack()
                 },
-                openEndMap = {
-                    navController.navigate("endMapRoute")
+                openWelcomeParchment = {
+                    navController.navigate("welcomeParchmentRoute")
+                },
+                openEndParchment = {
+                    navController.navigate("endParchmentRoute")
                 }
             )
         }
-        composable("endMapRoute") {
-            EndMapRoute(
+        composable("endParchmentRoute") {
+            EndParchmentRoute(
                 finishGame = {
                     navController.navigate("mainRoute")
                 }

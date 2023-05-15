@@ -14,9 +14,9 @@ fun ZEscape() {
     val navController = rememberAnimatedNavController()
     AnimatedNavHost(
         navController = navController,
-        startDestination = "tutorial"
+        startDestination = "qrCodeScanner"
     ) {
-        composable("qrCodeScan") {
+        composable("qrCodeScanner") {
             QrCodeScanScreen(
                 goToTutorial = { navController.navigate("tutorial") }
             )
