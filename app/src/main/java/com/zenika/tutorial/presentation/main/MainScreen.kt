@@ -1,4 +1,4 @@
-package com.zenika.tutorial.presentation
+package com.zenika.tutorial.presentation.main
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
@@ -13,18 +13,18 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.zenika.R
-import com.zenika.tutorial.domain.GameViewModel
-import com.zenika.tutorial.presentation.component.TreasureChest
-import com.zenika.tutorial.presentation.component.inventory.Inventory
+import com.zenika.tutorial.presentation.main.component.TreasureChest
+import com.zenika.tutorial.presentation.main.component.Inventory
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TutorialScreen(
+fun MainScreen(
     modifier: Modifier,
-    viewModel: GameViewModel,
+    chestState: Boolean,
+    collectedMap: Boolean,
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
     getMap: () -> Unit
@@ -47,7 +47,8 @@ fun TutorialScreen(
             contentAlignment = Alignment.Center
         ) {
             TreasureChest(
-                viewModel,
+                chestState,
+                collectedMap,
                 openMiniGame,
                 getMap
             )
@@ -68,10 +69,11 @@ fun TutorialScreen(
 @Composable
 fun TutorialScreenPreview() {
     ZEscapeThemePreview {
-        TutorialScreen(
+        MainScreen(
             Modifier
                 .fillMaxSize(),
-            viewModel = GameViewModel(),
+            chestState = true,
+            collectedMap = false,
             openMiniGame = {},
             openInventory = {},
             getMap = {}

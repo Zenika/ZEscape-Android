@@ -1,29 +1,24 @@
-package com.zenika.tutorial.presentation.component
+package com.zenika.tutorial.presentation.main.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
-import com.zenika.tutorial.domain.GameViewModel
 import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun TreasureChest(
-    viewModel: GameViewModel,
+    chestState: Boolean,
+    collectedMap: Boolean,
     openMiniGame: () -> Unit,
     getMap: () -> Unit
 ) {
-    val chestState by viewModel.chestState.collectAsState()
-    val collectedMap by viewModel.collectedMap.collectAsState()
-
     if (!chestState) {
         Chest(R.mipmap.closed_chest, openMiniGame)
     } else if (!collectedMap) {
@@ -57,7 +52,8 @@ private fun Chest(
 fun TreasureChestPreview() {
     ZEscapeThemePreview {
         TreasureChest(
-            viewModel = GameViewModel(),
+            chestState = true,
+            collectedMap = false,
             openMiniGame = {},
             getMap = {}
         )
