@@ -19,7 +19,7 @@ val Typography = Typography(
     bodyMedium = TextStyle(
         fontFamily = FontFamily(Font(R.font.note_this)),
         fontWeight = FontWeight.SemiBold,
-        fontSize = 24.sp,
+        fontSize = 20.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.5.sp,
     )
