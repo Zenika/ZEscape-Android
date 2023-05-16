@@ -1,6 +1,5 @@
 package com.zenika.qrcode_scan.presentation
 
-
 import android.Manifest
 import android.content.pm.PackageManager
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -31,14 +30,12 @@ import androidx.core.content.ContextCompat
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
-
 @Composable
 fun QrCodeScanScreen(
     goToTutorial: () -> Unit
 ) {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
-
 
     var code by remember {
         mutableStateOf("")
@@ -63,7 +60,6 @@ fun QrCodeScanScreen(
     LaunchedEffect(key1 = true) {
         launcher.launch(Manifest.permission.CAMERA)
     }
-
 
     Column(
         modifier = Modifier
@@ -104,12 +100,12 @@ fun QrCodeScanScreen(
                 modifier = Modifier.fillMaxSize()
             )
         }
+
         if (code == "http://fr.wikipedia.org/") {
             goToTutorial()
         }
     }
 }
-
 
 @ScreenPreview
 @Composable
@@ -120,5 +116,4 @@ fun QrCodeScanScreenPreview() {
         )
     }
 }
-
 

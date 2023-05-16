@@ -1,6 +1,5 @@
 package com.zenika.qrcode_scan.presentation
 
-
 import android.graphics.ImageFormat
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -10,11 +9,9 @@ import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
 import java.nio.ByteBuffer
 
-
 class QrCodeAnalyzer(
     private val onQrCodeScanned: (String) -> Unit
 ): ImageAnalysis.Analyzer {
-
 
     @RequiresApi(Build.VERSION_CODES.M)
     private val supportedImageFormats = listOf(
@@ -22,7 +19,6 @@ class QrCodeAnalyzer(
         ImageFormat.YUV_422_888,
         ImageFormat.YUV_444_888,
     )
-
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun analyze(image: ImageProxy) {
@@ -57,7 +53,6 @@ class QrCodeAnalyzer(
             }
         }
     }
-
 
     private fun ByteBuffer.toByteArray(): ByteArray {
         rewind()
