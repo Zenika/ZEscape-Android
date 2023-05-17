@@ -2,6 +2,7 @@ package com.zenika.tutorial.presentation.parchment.welcome_parchment
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,10 +10,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
@@ -28,12 +31,16 @@ import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.mapPadding
 import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun WelcomeParchment(
     openInstruction: () -> Unit
 ) {
+    val pagerState = rememberPagerState()
+    val coroutineScope = rememberCoroutineScope()
+
     val text = listOf(
         R.string.welcome_parchment, R.string.welcome_parchment2, R.string.welcome_parchment3
     )
@@ -46,7 +53,10 @@ fun WelcomeParchment(
                 contentScale = ContentScale.FillHeight
             )
     ) {
-        HorizontalPager(pageCount = 3) { page ->
+        HorizontalPager(
+            pageCount = 3,
+            state = pagerState
+        ) { page ->
             Image(
                 painter = painterResource(
                     id = R.mipmap.parchment
@@ -81,7 +91,13 @@ fun WelcomeParchment(
                         ),
                         contentDescription = "Arrow to swipe",
                         contentScale = ContentScale.Fit,
-                        modifier = Modifier.size(70.dp)
+                        modifier = Modifier
+                            .size(70.dp)
+                            .clickable {
+                                coroutineScope.launch {
+                                    pagerState.scrollToPage(page + 1)
+                                }
+                            }
                     )
                 } else {
                     Text(
