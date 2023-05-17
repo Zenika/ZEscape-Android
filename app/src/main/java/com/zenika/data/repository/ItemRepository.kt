@@ -1,5 +1,6 @@
 package com.zenika.data.repository
 
+import com.zenika.R
 import com.zenika.data.dao.ItemDao
 import com.zenika.data.model.ItemDto
 import kotlinx.coroutines.flow.Flow
@@ -13,5 +14,12 @@ class ItemRepository @Inject constructor(
     suspend fun addItem(itemName: String, itemRes: Int) {
         val item = ItemDto(itemName, itemRes)
         dao.upsertItem(item)
+    }
+
+    suspend fun initInventory() {
+        val parchment = ItemDto("parchment", R.mipmap.parchment)
+        dao.upsertItem(parchment)
+        val paper = ItemDto("paper", R.mipmap.paper)
+        dao.upsertItem(paper)
     }
 }
