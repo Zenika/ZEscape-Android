@@ -13,6 +13,6 @@ val Pink40 = Color(0xFF7D5260)
 val BlueSymbol = Color(0xFF2196F3)
 val GreenSymbol = Color(0xFF4CAF50)
 val RedSymbol = Color(0xFFF44336)
-val YellowSymbol = Color(0xFFFFC107)
+val PurpleSymbol = Color(0xFF9727B0)
 
 val InventoryBoxColor = Color(0xFFA57D4C)

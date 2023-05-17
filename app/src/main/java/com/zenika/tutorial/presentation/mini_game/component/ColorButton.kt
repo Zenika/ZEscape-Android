@@ -21,12 +21,7 @@ fun ColorButton(
     symbol: String,
     color: Color,
     colorName: String,
-    colors: List<String>,
-    addColor: (String) -> Unit,
-    checkSequence: () -> Boolean,
-    initColorsSequence: () -> Unit,
-    updateChestState: () -> Unit,
-    onDismissRequest: () -> Unit
+    addColor: (String) -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -35,40 +30,14 @@ fun ColorButton(
             .background(color)
             .wrapContentSize(Alignment.Center)
             .clickable {
-                onColorClick(
-                    color = colorName,
-                    colors = colors,
-                    addColor = addColor,
-                    checkSequence = checkSequence,
-                    initColorsSequence = initColorsSequence,
-                    updateChestState = updateChestState,
-                    onDismissRequest = onDismissRequest
-                )
+                addColor(colorName)
             }
     ) {
         Text(text = symbol)
     }
 }
 
-fun onColorClick(
-    color: String,
-    colors: List<String>,
-    addColor: (String) -> Unit,
-    checkSequence: () -> Boolean,
-    initColorsSequence: () -> Unit,
-    updateChestState: () -> Unit,
-    onDismissRequest: () -> Unit
-) {
-    addColor(color)
-    if (!checkSequence()) {
-        onDismissRequest()
-        initColorsSequence()
-    } else if (colors.size >= 4) {
-        onDismissRequest()
-        initColorsSequence()
-        updateChestState()
-    }
-}
+
 
 @ScreenPreview
 @Composable
@@ -78,12 +47,7 @@ fun ColorButtonPreview() {
             symbol = "@",
             color = Color.Blue,
             colorName = "blue",
-            colors = listOf("blue"),
-            addColor = {},
-            checkSequence = { false },
-            initColorsSequence = {},
-            updateChestState = {},
-            onDismissRequest = {}
+            addColor = {}
         )
     }
 }
