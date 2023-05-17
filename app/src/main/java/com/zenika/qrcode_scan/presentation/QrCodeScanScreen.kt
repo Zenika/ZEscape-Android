@@ -101,7 +101,7 @@ fun QrCodeScanScreen(
             )
         }
 
-        if (code == "http://fr.wikipedia.org/") {
+        if (code == "trigger-001") {
             goToTutorial()
         }
     }
