@@ -29,22 +29,35 @@ fun InventoryBox(
     item: Int,
     showItem: (Int) -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .size(100.dp)
-            .padding(itemDialogPadding)
-            .clip(shape = RoundedCornerShape(25))
-            .border(border = BorderStroke(2.dp, Color.Black), shape = RoundedCornerShape(25))
-            .background(InventoryBoxColor)
-            .clickable { showItem(item) }
-            .wrapContentSize(Alignment.Center)
-            .padding(dialogPadding)
-    ) {
-        Image(
-            painter = painterResource(
-                id = item
-            ),
-            contentDescription = "Item in inventory"
+    if (item != 0) {
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .padding(itemDialogPadding)
+                .clip(shape = RoundedCornerShape(25))
+                .border(border = BorderStroke(2.dp, Color.Black), shape = RoundedCornerShape(25))
+                .background(InventoryBoxColor)
+                .clickable { showItem(item) }
+                .wrapContentSize(Alignment.Center)
+                .padding(dialogPadding)
+        ) {
+            Image(
+                painter = painterResource(
+                    id = item
+                ),
+                contentDescription = "Item in inventory"
+            )
+        }
+    } else {
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .padding(itemDialogPadding)
+                .clip(shape = RoundedCornerShape(25))
+                .border(border = BorderStroke(2.dp, Color.Black), shape = RoundedCornerShape(25))
+                .background(InventoryBoxColor)
+                .wrapContentSize(Alignment.Center)
+                .padding(dialogPadding)
         )
     }
 }

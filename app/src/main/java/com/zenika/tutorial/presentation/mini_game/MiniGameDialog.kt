@@ -18,8 +18,8 @@ import com.zenika.tutorial.presentation.mini_game.component.ColorButton
 import com.zenika.tutorial.presentation.mini_game.component.Stage
 import com.zenika.ui.theme.BlueSymbol
 import com.zenika.ui.theme.GreenSymbol
+import com.zenika.ui.theme.PurpleSymbol
 import com.zenika.ui.theme.RedSymbol
-import com.zenika.ui.theme.YellowSymbol
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.ui.theme.itemDialogPadding
 import com.zenika.ui.theme.screenPadding
@@ -29,13 +29,8 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun MiniGameDialog(
     modifier: Modifier,
-    colors: List<String>,
     size: Int,
-    addColor: (String) -> Unit,
-    checkSequence: () -> Boolean,
-    initColorsSequence: () -> Unit,
-    updateChestState: () -> Unit,
-    onDismissRequest: () -> Unit
+    addColor: (String) -> Unit
 
 ) {
     Column(
@@ -55,45 +50,25 @@ fun MiniGameDialog(
                 symbol = stringResource(id = R.string.sharp),
                 color = GreenSymbol,
                 colorName = "green",
-                colors = colors,
-                addColor = addColor,
-                checkSequence = checkSequence,
-                initColorsSequence = initColorsSequence,
-                updateChestState = updateChestState,
-                onDismissRequest = onDismissRequest
+                addColor = addColor
             )
             ColorButton(
                 symbol = stringResource(id = R.string.ampersand),
-                color = YellowSymbol,
-                colorName = "yellow",
-                colors = colors,
-                addColor = addColor,
-                checkSequence = checkSequence,
-                initColorsSequence = initColorsSequence,
-                updateChestState = updateChestState,
-                onDismissRequest = onDismissRequest
+                color = PurpleSymbol,
+                colorName = "purple",
+                addColor = addColor
             )
             ColorButton(
                 symbol = stringResource(id = R.string.percent),
                 color = RedSymbol,
                 colorName = "red",
-                colors = colors,
-                addColor = addColor,
-                checkSequence = checkSequence,
-                initColorsSequence = initColorsSequence,
-                updateChestState = updateChestState,
-                onDismissRequest = onDismissRequest
+                addColor = addColor
             )
             ColorButton(
                 symbol = stringResource(id = R.string.at),
                 color = BlueSymbol,
                 colorName = "blue",
-                colors = colors,
-                addColor = addColor,
-                checkSequence = checkSequence,
-                initColorsSequence = initColorsSequence,
-                updateChestState = updateChestState,
-                onDismissRequest = onDismissRequest
+                addColor = addColor
             )
         }
     }
@@ -111,13 +86,8 @@ fun MiniGameDialogPreview() {
                     MaterialTheme.colorScheme.primaryContainer,
                     MaterialTheme.shapes.extraLarge
                 ),
-            colors = listOf("blue"),
             size = 2,
-            addColor = {},
-            checkSequence = { false },
-            initColorsSequence = {},
-            updateChestState = {},
-            onDismissRequest = {}
+            addColor = {}
         )
     }
 }
