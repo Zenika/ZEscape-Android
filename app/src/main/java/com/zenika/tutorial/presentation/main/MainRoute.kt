@@ -6,19 +6,21 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.zenika.tutorial.SharedViewModel
 
 @Composable
 fun MainRoute(
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
+    sharedViewModel: SharedViewModel = viewModel(),
     mainViewModel: MainViewModel = hiltViewModel()
 ) {
-    val chestState by mainViewModel.chestState.collectAsState()
-    val collectedMap by mainViewModel.collectedMap.collectAsState()
+    val gameState by sharedViewModel.gameState.collectAsState()
+
     MainScreen(
         Modifier.fillMaxSize(),
-        chestState,
-        collectedMap,
+        gameState,
         openMiniGame,
         openInventory,
         mainViewModel::updateMapState

@@ -13,8 +13,9 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.zenika.R
-import com.zenika.tutorial.presentation.main.component.TreasureChest
+import com.zenika.data.state.GameState
 import com.zenika.tutorial.presentation.main.component.Inventory
+import com.zenika.tutorial.presentation.main.component.TreasureChest
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -23,11 +24,10 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun MainScreen(
     modifier: Modifier,
-    chestState: Boolean,
-    collectedMap: Boolean,
+    gameState: GameState,
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
-    getMap: () -> Unit
+    updateMapState: () -> Unit
 ) {
     Scaffold(modifier = modifier,
         topBar = {
@@ -47,10 +47,9 @@ fun MainScreen(
             contentAlignment = Alignment.Center
         ) {
             TreasureChest(
-                chestState,
-                collectedMap,
+                gameState,
                 openMiniGame,
-                getMap
+                updateMapState
             )
         }
         Box(
@@ -72,11 +71,10 @@ fun TutorialScreenPreview() {
         MainScreen(
             Modifier
                 .fillMaxSize(),
-            chestState = true,
-            collectedMap = false,
+            gameState = GameState(chestState = false, mapState = false),
             openMiniGame = {},
             openInventory = {},
-            getMap = {}
+            updateMapState = {}
         )
     }
 }

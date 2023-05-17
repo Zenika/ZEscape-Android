@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.zenika.data.ZDatabase
 import com.zenika.data.dao.ItemDao
+import com.zenika.tutorial.SharedViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,5 +34,11 @@ object ApplicationModule {
         database: ZDatabase
     ): ItemDao {
         return database.itemDao
+    }
+
+    @Provides
+    @Singleton
+    fun provideSharedViewModel(): SharedViewModel {
+        return SharedViewModel()
     }
 }
