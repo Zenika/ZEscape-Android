@@ -9,19 +9,19 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
-import com.zenika.data.state.GameState
 import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun TreasureChest(
-    gameState: GameState,
+    chestOpened: Boolean,
+    mapCollected: Boolean,
     openMiniGame: () -> Unit,
     updateMapState: () -> Unit
 ) {
-    if (!gameState.chestState) {
+    if (!chestOpened) {
         Chest(R.mipmap.closed_chest, openMiniGame)
-    } else if (!gameState.mapState) {
+    } else if (!mapCollected) {
         Chest(R.mipmap.map_chest, updateMapState)
     } else {
         Chest(R.mipmap.open_chest) {}
@@ -52,7 +52,8 @@ private fun Chest(
 fun TreasureChestPreview() {
     ZEscapeThemePreview {
         TreasureChest(
-            gameState = GameState(chestState = false, mapState = false),
+            chestOpened = false,
+            mapCollected = false,
             openMiniGame = {},
             updateMapState = {}
         )

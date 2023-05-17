@@ -1,26 +1,31 @@
 package com.zenika.tutorial.presentation.main
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.zenika.tutorial.SharedViewModel
+import com.zenika.data.state.GameState
 
 @Composable
 fun MainRoute(
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
-    sharedViewModel: SharedViewModel = viewModel(),
-    mainViewModel: MainViewModel = hiltViewModel()
+    mainViewModel: MainViewModel = hiltViewModel(),
+    gameState: GameState = GameState()
 ) {
-    val gameState by sharedViewModel.gameState.collectAsState()
+    val chestOpened by gameState.chestOpened.collectAsState()
+    val mapCollected by gameState.mapCollected.collectAsState()
+
+    Log.d("chest state", chestOpened.toString())
+    Log.d("map state", mapCollected.toString())
 
     MainScreen(
         Modifier.fillMaxSize(),
-        gameState,
+        chestOpened,
+        mapCollected,
         openMiniGame,
         openInventory,
         mainViewModel::updateMapState

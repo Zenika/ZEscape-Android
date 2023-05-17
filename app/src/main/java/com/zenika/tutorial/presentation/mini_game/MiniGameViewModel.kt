@@ -1,9 +1,8 @@
 package com.zenika.tutorial.presentation.mini_game
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zenika.tutorial.SharedViewModel
+import com.zenika.data.state.GameState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,13 +17,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MiniGameViewModel @Inject constructor(
-    private val sharedViewModel: SharedViewModel
+    private val gameState: GameState
 ): ViewModel() {
-
     private val _events = MutableSharedFlow<MiniGameEvent>()
     val events = _events.asSharedFlow()
 
-    private var _colorsSequence = MutableStateFlow(
+    private val _colorsSequence = MutableStateFlow(
         listOf<String>()
     )
 
@@ -48,9 +46,8 @@ class MiniGameViewModel @Inject constructor(
             } else if (sequenceSize.value >= 3) {
                 _events.emit(MiniGameEvent.DISMISS)
                 initColorsSequence()
-                sharedViewModel.updateChestState()
+                updateChestState()
             }
-            Log.d("sequence", _colorsSequence.value.toString())
         }
     }
 
@@ -63,6 +60,10 @@ class MiniGameViewModel @Inject constructor(
     private fun checkSequence(): Boolean {
         return _colorsSequence.value[_colorsSequence.value.size - 1] ==
                 colorsResult[_colorsSequence.value.size - 1]
+    }
+
+    private fun updateChestState() {
+        gameState.openChest()
     }
 }
 

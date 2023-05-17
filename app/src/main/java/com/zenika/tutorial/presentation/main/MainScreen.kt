@@ -13,7 +13,6 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.zenika.R
-import com.zenika.data.state.GameState
 import com.zenika.tutorial.presentation.main.component.Inventory
 import com.zenika.tutorial.presentation.main.component.TreasureChest
 import com.zenika.utils.ScreenPreview
@@ -24,7 +23,8 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun MainScreen(
     modifier: Modifier,
-    gameState: GameState,
+    chestOpened: Boolean,
+    mapCollected: Boolean,
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
     updateMapState: () -> Unit
@@ -47,7 +47,8 @@ fun MainScreen(
             contentAlignment = Alignment.Center
         ) {
             TreasureChest(
-                gameState,
+                chestOpened,
+                mapCollected,
                 openMiniGame,
                 updateMapState
             )
@@ -71,7 +72,8 @@ fun TutorialScreenPreview() {
         MainScreen(
             Modifier
                 .fillMaxSize(),
-            gameState = GameState(chestState = false, mapState = false),
+            chestOpened = false,
+            mapCollected = false,
             openMiniGame = {},
             openInventory = {},
             updateMapState = {}
