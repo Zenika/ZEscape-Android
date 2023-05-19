@@ -41,7 +41,8 @@ fun EndParchment(
     val coroutineScope = rememberCoroutineScope()
 
     val text = listOf(
-        R.string.end_parchment, R.string.end_parchment2
+        R.string.end_parchment,
+        R.string.end_parchment2
     )
     Box(
         Modifier
@@ -53,7 +54,7 @@ fun EndParchment(
             )
     ) {
         HorizontalPager(
-            pageCount = 3,
+            pageCount = 2,
             state = pagerState
         ) { page ->
             Image(
