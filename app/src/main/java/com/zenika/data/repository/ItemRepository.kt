@@ -17,6 +17,7 @@ class ItemRepository @Inject constructor(
     }
 
     suspend fun initInventory() {
+        dao.deleteAll()
         val parchment = ItemDto("parchment", R.mipmap.parchment)
         dao.upsertItem(parchment)
         val paper = ItemDto("paper", R.mipmap.paper)
