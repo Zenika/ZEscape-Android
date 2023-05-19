@@ -17,6 +17,9 @@ class MainViewModel @Inject constructor(
     private val initInventoryUseCase: InitInventoryUseCase,
     private val gameState: GameState
 ) : ViewModel() {
+    val chestOpened = gameState.chestOpened
+    val mapCollected = gameState.mapCollected
+
     fun updateMapState() {
         addItem("map", R.mipmap.rolled_map)
         gameState.collectMap()
