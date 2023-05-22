@@ -1,7 +1,6 @@
 package com.zenika.tutorial.presentation.instruction
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -10,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import com.zenika.R
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.ui.theme.screenPadding
@@ -18,14 +19,21 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun InstructionDialog(
-    modifier: Modifier
+    onDismissRequest: () -> Unit
 ) {
-    Column(
-        modifier
-            .padding(dialogPadding)
+    Dialog(
+        onDismissRequest = onDismissRequest,
+        properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
     ) {
-        Text(
-            text = stringResource(id = R.string.instruction),
+        Text(text = stringResource(id = R.string.instruction),
+            Modifier
+                .fillMaxWidth()
+                .padding(screenPadding)
+                .background(
+                    MaterialTheme.colorScheme.primaryContainer,
+                    MaterialTheme.shapes.extraLarge
+                )
+                .padding(dialogPadding),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodyLarge
         )
@@ -37,13 +45,7 @@ fun InstructionDialog(
 fun InstructionDialogPreview() {
     ZEscapeThemePreview {
         InstructionDialog(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(screenPadding)
-                .background(
-                    MaterialTheme.colorScheme.primaryContainer,
-                    MaterialTheme.shapes.extraLarge
-                )
+            onDismissRequest = {}
         )
     }
 }
