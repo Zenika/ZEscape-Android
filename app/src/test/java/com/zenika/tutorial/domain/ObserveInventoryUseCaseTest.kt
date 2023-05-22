@@ -29,7 +29,7 @@ internal class ObserveInventoryUseCaseTest {
     @DisplayName("Should get first item")
     fun shouldObserveFirstItemInventory() = runTest {
         // Given
-        coEvery { itemRepository.getItems() } returns flowOf(listOf(ItemDto("test", 0)))
+        coEvery { itemRepository.observeItems() } returns flowOf(listOf(ItemDto("test", 0)))
 
         // When
         val inventoryFlow = observeInventory()
@@ -42,7 +42,7 @@ internal class ObserveInventoryUseCaseTest {
     @DisplayName("Should observe list of 10 items")
     fun shouldObserveInventory() = runTest {
         // Given
-        coEvery { itemRepository.getItems() } returns flowOf(listOf(ItemDto("test", 0)))
+        coEvery { itemRepository.observeItems() } returns flowOf(listOf(ItemDto("test", 0)))
 
         // When
         val inventoryFlow = observeInventory()

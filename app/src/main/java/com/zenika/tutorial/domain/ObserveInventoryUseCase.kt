@@ -10,7 +10,7 @@ import javax.inject.Inject
 class ObserveInventoryUseCase @Inject constructor(
     private val itemRepository: ItemRepository
 ) {
-    operator fun invoke() = itemRepository.getItems()
+    operator fun invoke() = itemRepository.observeItems()
         .map { items -> items.toInventory() }
         .flowOn(Dispatchers.Default)
 }
