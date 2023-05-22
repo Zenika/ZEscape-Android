@@ -57,7 +57,7 @@ fun QrCodeScanScreen(
             hasCamPermission = granted
         }
     )
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(Unit) {
         launcher.launch(Manifest.permission.CAMERA)
     }
 
@@ -101,8 +101,10 @@ fun QrCodeScanScreen(
             )
         }
 
-        if (code == "trigger-001") {
-            goToTutorial()
+        LaunchedEffect(code) {
+            if (code == "trigger-001") {
+                goToTutorial()
+            }
         }
     }
 }
