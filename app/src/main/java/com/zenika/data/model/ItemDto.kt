@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class ItemDto(
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey
     val name: String,
     @ColumnInfo("resource")
     val resource: Int
