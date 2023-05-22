@@ -1,13 +1,13 @@
 package com.zenika.tutorial.presentation
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.runtime.Composable
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.dialog
+import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
-import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.zenika.tutorial.presentation.instruction.InstructionRoute
 import com.zenika.tutorial.presentation.inventory.InventoryRoute
 import com.zenika.tutorial.presentation.item.ItemRoute
@@ -17,12 +17,12 @@ import com.zenika.tutorial.presentation.parchment.end_parchment.EndParchmentRout
 import com.zenika.tutorial.presentation.parchment.welcome_parchment.WelcomeParchmentRoute
 
 @OptIn(ExperimentalAnimationApi::class)
-@Composable
-fun Tutorial(
+fun NavGraphBuilder.tutorialNavigation(
+    route: String,
+    navController: NavHostController
 ) {
-    val navController = rememberAnimatedNavController()
-    AnimatedNavHost(
-        navController = navController,
+    navigation(
+        route = route,
         startDestination = "welcomeParchmentRoute"
     ) {
         composable("welcomeParchmentRoute") {
@@ -94,3 +94,4 @@ fun Tutorial(
         }
     }
 }
+

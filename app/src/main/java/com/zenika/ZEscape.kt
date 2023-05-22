@@ -6,7 +6,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.zenika.qrcode_scan.presentation.QrCodeScanScreen
-import com.zenika.tutorial.presentation.Tutorial
+import com.zenika.tutorial.presentation.tutorialNavigation
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -21,8 +21,9 @@ fun ZEscape() {
                 goToTutorial = { navController.navigate("tutorial") }
             )
         }
-        composable("tutorial") {
-            Tutorial()
-        }
+        tutorialNavigation(
+            route="tutorial",
+            navController = navController
+        )
     }
 }
