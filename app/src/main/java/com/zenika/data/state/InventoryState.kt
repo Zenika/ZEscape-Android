@@ -2,9 +2,7 @@ package com.zenika.data.state
 
 import com.zenika.R
 import com.zenika.data.model.ItemDto
-import javax.inject.Singleton
 
-@Singleton
 class InventoryState(
     val items: List<ItemDto>
 ) {
