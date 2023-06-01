@@ -8,6 +8,9 @@ import com.zenika.data.repository.ItemRepository
 import com.zenika.data.state.GameState
 import com.zenika.tutorial.domain.InitInventoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,8 +20,15 @@ class MainViewModel @Inject constructor(
     private val initInventoryUseCase: InitInventoryUseCase,
     private val gameState: GameState
 ) : ViewModel() {
-    val chestOpened = gameState.chestOpened
-    val mapCollected = gameState.mapCollected
+    val state =
+        combine(gameState.chestOpened, gameState.mapCollected) { chestOpened, mapCollected ->
+            GameUIState(chestOpened, mapCollected)
+        }
+            .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+            initialValue = GameUIState(chestOpened = false, mapCollected = false)
+        )
 
     fun updateMapState() {
         addItem("map", R.mipmap.rolled_map)
@@ -38,3 +48,8 @@ class MainViewModel @Inject constructor(
         }
     }
 }
+
+class GameUIState(
+    val chestOpened: Boolean,
+    val mapCollected: Boolean
+) {}

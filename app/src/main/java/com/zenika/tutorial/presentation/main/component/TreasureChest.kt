@@ -9,19 +9,19 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
+import com.zenika.tutorial.presentation.main.GameUIState
 import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun TreasureChest(
-    chestOpened: Boolean,
-    mapCollected: Boolean,
+    gameUIState: GameUIState,
     openMiniGame: () -> Unit,
     updateMapState: () -> Unit
 ) {
-    if (!chestOpened) {
+    if (!gameUIState.chestOpened) {
         Chest(R.mipmap.closed_chest, openMiniGame)
-    } else if (!mapCollected) {
+    } else if (!gameUIState.mapCollected) {
         Chest(R.mipmap.map_chest, updateMapState)
     } else {
         Chest(R.mipmap.open_chest) {}
@@ -30,21 +30,23 @@ fun TreasureChest(
 
 @Composable
 private fun Chest(
-    chest: Int,
-    onClick: () -> Unit
+    chest: Int, onClick: () -> Unit
 ) {
-    Image(
-        painter = painterResource(
-            id = chest
-        ),
+    Image(painter = painterResource(
+        id = chest
+    ),
         contentDescription = "Treasure chest",
         contentScale = ContentScale.Fit,
         modifier = Modifier
-            .padding(start = 0.dp, top = 400.dp, end = 0.dp, bottom = 0.dp)
+            .padding(
+                start = 0.dp,
+                top = 400.dp,
+                end = 0.dp,
+                bottom = 0.dp
+            )
             .clickable {
                 onClick()
-            }
-    )
+            })
 }
 
 @ComposablePreview
@@ -52,10 +54,11 @@ private fun Chest(
 fun TreasureChestPreview() {
     ZEscapeThemePreview {
         TreasureChest(
-            chestOpened = false,
-            mapCollected = false,
+            gameUIState = GameUIState(
+                chestOpened = false,
+                mapCollected = false
+            ),
             openMiniGame = {},
-            updateMapState = {}
-        )
+            updateMapState = {})
     }
 }

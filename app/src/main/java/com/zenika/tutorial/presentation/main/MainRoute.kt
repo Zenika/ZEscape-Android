@@ -13,13 +13,11 @@ fun MainRoute(
     openInventory: () -> Unit,
     mainViewModel: MainViewModel = hiltViewModel()
 ) {
-    val chestOpened by mainViewModel.chestOpened.collectAsState()
-    val mapCollected by mainViewModel.mapCollected.collectAsState()
+    val gameUIState by mainViewModel.state.collectAsState()
 
     MainScreen(
         Modifier.fillMaxSize(),
-        chestOpened,
-        mapCollected,
+        gameUIState,
         openMiniGame,
         openInventory,
         mainViewModel::updateMapState
