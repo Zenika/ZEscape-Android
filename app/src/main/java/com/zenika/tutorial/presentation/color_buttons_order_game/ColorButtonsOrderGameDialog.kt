@@ -1,4 +1,4 @@
-package com.zenika.tutorial.presentation.mini_game
+package com.zenika.tutorial.presentation.color_buttons_order_game
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
-import com.zenika.tutorial.presentation.mini_game.component.ColorButton
-import com.zenika.tutorial.presentation.mini_game.component.Stage
+import com.zenika.tutorial.presentation.color_buttons_order_game.component.ColorButton
+import com.zenika.tutorial.presentation.color_buttons_order_game.component.Stage
 import com.zenika.ui.theme.BlueSymbol
 import com.zenika.ui.theme.GreenSymbol
 import com.zenika.ui.theme.PurpleSymbol
@@ -27,7 +27,7 @@ import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun MiniGameDialog(
+fun ColorButtonsOrderGameDialog(
     modifier: Modifier,
     size: Int,
     addColor: (String) -> Unit
@@ -76,9 +76,9 @@ fun MiniGameDialog(
 
 @ScreenPreview
 @Composable
-fun MiniGameDialogPreview() {
+fun ColorButtonsOrderGameDialogPreview() {
     ZEscapeThemePreview {
-        MiniGameDialog(
+        ColorButtonsOrderGameDialog(
             Modifier
                 .fillMaxWidth()
                 .padding(screenPadding)

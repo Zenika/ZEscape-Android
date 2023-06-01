@@ -13,7 +13,8 @@ import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun Inventory(
+fun InventoryBag(
+    modifier: Modifier,
     openInventory: () -> Unit
 ) {
     Image(
@@ -22,17 +23,18 @@ fun Inventory(
         ),
         contentDescription = "Inventory",
         contentScale = ContentScale.Fit,
-        modifier = Modifier
+        modifier = modifier
             .padding(screenPadding)
-            .clickable { openInventory() }
+            .clickable { openInventory() },
     )
 }
 
 @ComposablePreview
 @Composable
-fun InventoryPreview() {
+fun InventoryBagPreview() {
     ZEscapeThemePreview {
-        Inventory(
+        InventoryBag(
+            modifier = Modifier,
             openInventory = {}
         )
     }

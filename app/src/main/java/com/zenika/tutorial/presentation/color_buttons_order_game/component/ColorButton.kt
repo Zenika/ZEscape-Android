@@ -1,4 +1,4 @@
-package com.zenika.tutorial.presentation.mini_game.component
+package com.zenika.tutorial.presentation.color_buttons_order_game.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

@@ -1,4 +1,4 @@
-package com.zenika.tutorial.presentation.mini_game
+package com.zenika.tutorial.presentation.color_buttons_order_game
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MiniGameViewModel @Inject constructor(
+class ColorButtonsOrderGameViewModel @Inject constructor(
     private val gameState: GameState
 ): ViewModel() {
     private val _events = MutableSharedFlow<MiniGameEvent>()

@@ -1,4 +1,4 @@
-package com.zenika.tutorial.presentation.mini_game
+package com.zenika.tutorial.presentation.color_buttons_order_game
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,9 +13,9 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun MiniGameRoute(
+fun ColorButtonsOrderGameRoute(
     onDismissRequest: () -> Unit,
-    gameViewModel: MiniGameViewModel = hiltViewModel()
+    gameViewModel: ColorButtonsOrderGameViewModel = hiltViewModel()
 ) {
     val size by gameViewModel.sequenceSize.collectAsState()
 
@@ -31,7 +31,7 @@ fun MiniGameRoute(
         onDismissRequest = onDismissRequest,
         properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
     ) {
-        MiniGameDialog(
+        ColorButtonsOrderGameDialog(
             Modifier
                 .fillMaxWidth()
                 .background(
