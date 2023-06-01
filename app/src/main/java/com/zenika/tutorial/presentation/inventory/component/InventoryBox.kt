@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
@@ -29,18 +30,18 @@ fun InventoryBox(
     item: Int,
     showItem: (Int) -> Unit
 ) {
-    if (item != 0) {
-        Box(
-            modifier = Modifier
-                .size(100.dp)
-                .padding(itemDialogPadding)
-                .clip(shape = RoundedCornerShape(25))
-                .border(border = BorderStroke(2.dp, Color.Black), shape = RoundedCornerShape(25))
-                .background(InventoryBoxColor)
-                .clickable { showItem(item) }
-                .wrapContentSize(Alignment.Center)
-                .padding(dialogPadding)
-        ) {
+    Box(
+        modifier = Modifier
+            .size(100.dp)
+            .padding(itemDialogPadding)
+            .clip(shape = RoundedCornerShape(25))
+            .border(border = BorderStroke(2.dp, Color.Black), shape = RoundedCornerShape(25))
+            .background(InventoryBoxColor)
+            .clickable(enabled = item != 0) { showItem(item) }
+            .wrapContentSize(Alignment.Center)
+            .padding(dialogPadding)
+    ) {
+        if (item != 0) {
             Image(
                 painter = painterResource(
                     id = item
@@ -48,17 +49,6 @@ fun InventoryBox(
                 contentDescription = "Item in inventory"
             )
         }
-    } else {
-        Box(
-            modifier = Modifier
-                .size(100.dp)
-                .padding(itemDialogPadding)
-                .clip(shape = RoundedCornerShape(25))
-                .border(border = BorderStroke(2.dp, Color.Black), shape = RoundedCornerShape(25))
-                .background(InventoryBoxColor)
-                .wrapContentSize(Alignment.Center)
-                .padding(dialogPadding)
-        )
     }
 }
 
@@ -66,9 +56,15 @@ fun InventoryBox(
 @Composable
 fun InventoryBoxPreview() {
     ZEscapeThemePreview {
-        InventoryBox(
-            item = R.mipmap.parchment,
-            showItem = {}
-        )
+        Row {
+            InventoryBox(
+                item = R.mipmap.parchment,
+                showItem = {}
+            )
+            InventoryBox(
+                item = 0,
+                showItem = {}
+            )
+        }
     }
 }

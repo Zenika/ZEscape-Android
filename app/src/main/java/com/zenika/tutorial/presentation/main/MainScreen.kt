@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -13,7 +14,7 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.zenika.R
-import com.zenika.tutorial.presentation.main.component.Inventory
+import com.zenika.tutorial.presentation.main.component.InventoryBag
 import com.zenika.tutorial.presentation.main.component.TreasureChest
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
@@ -23,8 +24,7 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun MainScreen(
     modifier: Modifier,
-    chestOpened: Boolean,
-    mapCollected: Boolean,
+    gameUIState: GameUIState,
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
     updateMapState: () -> Unit
@@ -36,10 +36,11 @@ fun MainScreen(
                     .fillMaxWidth()
             )
         }
-    ) {
+    ) { paddingValues ->
         Box(
             Modifier
                 .fillMaxSize()
+                .padding(paddingValues)
                 .paint(
                     painterResource(id = R.mipmap.sea_background),
                     contentScale = ContentScale.FillHeight
@@ -47,18 +48,13 @@ fun MainScreen(
             contentAlignment = Alignment.Center
         ) {
             TreasureChest(
-                chestOpened,
-                mapCollected,
+                gameUIState,
                 openMiniGame,
                 updateMapState
             )
-        }
-        Box(
-            Modifier
-                .fillMaxSize(),
-            contentAlignment = Alignment.BottomEnd
-        ) {
-            Inventory(
+            InventoryBag(
+                Modifier
+                    .align(Alignment.BottomEnd),
                 openInventory
             )
         }
@@ -72,8 +68,10 @@ fun TutorialScreenPreview() {
         MainScreen(
             Modifier
                 .fillMaxSize(),
-            chestOpened = false,
-            mapCollected = false,
+            gameUIState = GameUIState(
+                chestOpened = false,
+                mapCollected = false
+            ),
             openMiniGame = {},
             openInventory = {},
             updateMapState = {}
