@@ -8,11 +8,11 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.composable
+import com.zenika.tutorial.presentation.color_buttons_order_game.ColorButtonsOrderGameRoute
 import com.zenika.tutorial.presentation.instruction.InstructionRoute
 import com.zenika.tutorial.presentation.inventory.InventoryRoute
 import com.zenika.tutorial.presentation.item.ItemRoute
 import com.zenika.tutorial.presentation.main.MainRoute
-import com.zenika.tutorial.presentation.color_buttons_order_game.ColorButtonsOrderGameRoute
 import com.zenika.tutorial.presentation.parchment.end_parchment.EndParchmentRoute
 import com.zenika.tutorial.presentation.parchment.welcome_parchment.WelcomeParchmentRoute
 
@@ -39,7 +39,9 @@ fun NavGraphBuilder.tutorialNavigation(
             WelcomeParchmentRoute(
                 openInstruction = {
                     navController.popBackStack()
-                    navController.navigate(ROUTE_MAIN)
+                    navController.navigate(ROUTE_MAIN) {
+                        popUpTo(ROUTE_INTRO) { inclusive = true }
+                    }
                     navController.navigate(ROUTE_INSTRUCTION)
                 }
             )

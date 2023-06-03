@@ -20,6 +20,6 @@ fun MainRoute(
         gameUIState,
         openMiniGame,
         openInventory,
-        mainViewModel::updateMapState
+        mainViewModel::collectMap
     )
 }

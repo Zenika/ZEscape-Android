@@ -25,21 +25,21 @@ class MainViewModel @Inject constructor(
             GameUIState(chestOpened, mapCollected)
         }
             .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = GameUIState(chestOpened = false, mapCollected = false)
-        )
-
-    fun updateMapState() {
-        addItem("map", R.mipmap.rolled_map)
-        gameState.collectMap()
-    }
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+                initialValue = GameUIState(chestOpened = false, mapCollected = false)
+            )
 
     init {
         Log.d("init inventory", "ok")
         viewModelScope.launch {
             initInventoryUseCase()
         }
+    }
+
+    fun collectMap() {
+        addItem("map", R.mipmap.rolled_map)
+        gameState.collectMap()
     }
 
     private fun addItem(itemName: String, itemRes: Int) {
@@ -52,4 +52,4 @@ class MainViewModel @Inject constructor(
 class GameUIState(
     val chestOpened: Boolean,
     val mapCollected: Boolean
-) {}
+)

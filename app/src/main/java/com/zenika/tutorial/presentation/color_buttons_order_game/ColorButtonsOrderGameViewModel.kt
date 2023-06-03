@@ -53,7 +53,7 @@ class ColorButtonsOrderGameViewModel @Inject constructor(
 
     private fun initColorsSequence() {
         viewModelScope.launch {
-            _colorsSequence.update { mutableListOf() }
+            _colorsSequence.update { listOf() }
         }
     }
 

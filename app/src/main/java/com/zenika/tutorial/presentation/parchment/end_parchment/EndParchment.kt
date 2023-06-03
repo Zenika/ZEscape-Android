@@ -58,10 +58,8 @@ fun EndParchment(
             state = pagerState
         ) { page ->
             Image(
-                painter = painterResource(
-                    id = R.mipmap.parchment
-                ),
-                contentDescription = "Treasure Map with a mysterious message",
+                painter = painterResource(R.mipmap.parchment),
+                contentDescription = null,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .fillMaxSize()
@@ -73,24 +71,31 @@ fun EndParchment(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                if (page == 0) {
-                    Text(
-                        text = stringResource(id = text[page]),
-                        modifier = Modifier
-                            .padding(
-                                top = mapPadding,
-                                start = mapPadding,
-                                end = mapPadding
-                            ),
-                        textAlign = TextAlign.Center,
-                        color = Color.Black,
-                        style = MaterialTheme.typography.bodyLarge
-                    )
+                Text(
+                    text = stringResource(id = text[page]),
+                    modifier = Modifier.padding(
+                        top = mapPadding,
+                        start = mapPadding,
+                        end = mapPadding
+                    ),
+                    textAlign = TextAlign.Center,
+                    color = Color.Black,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+                if (page == text.size - 1) {
+                    Button(
+                        modifier = Modifier.padding(top = buttonPadding),
+                        onClick = finishGame
+                    ) {
+                        Text(
+                            text = stringResource(R.string.score),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                } else {
                     Image(
-                        painter = painterResource(
-                            id = R.mipmap.arrow
-                        ),
-                        contentDescription = "Arrow to swipe",
+                        painter = painterResource(R.mipmap.arrow),
+                        contentDescription = stringResource(R.string.arrow_next),
                         contentScale = ContentScale.Fit,
                         modifier = Modifier
                             .size(70.dp)
@@ -100,25 +105,6 @@ fun EndParchment(
                                 }
                             }
                     )
-                } else {
-                    Text(
-                        text = stringResource(id = text[page]),
-                        modifier = Modifier.padding(
-                            top = mapPadding,
-                            start = mapPadding,
-                            end = mapPadding,
-                            bottom = buttonPadding
-                        ),
-                        textAlign = TextAlign.Center,
-                        color = Color.Black,
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                    Button(onClick = finishGame) {
-                        Text(
-                            text = "Score",
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
                 }
             }
         }

@@ -27,15 +27,11 @@ fun MainScreen(
     gameUIState: GameUIState,
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
-    updateMapState: () -> Unit
+    collectMap: () -> Unit
 ) {
-    Scaffold(modifier = modifier,
-        topBar = {
-            Box(
-                Modifier
-                    .fillMaxWidth()
-            )
-        }
+    Scaffold(
+        modifier = modifier,
+        topBar = { Box(Modifier.fillMaxWidth()) }
     ) { paddingValues ->
         Box(
             Modifier
@@ -50,7 +46,7 @@ fun MainScreen(
             TreasureChest(
                 gameUIState,
                 openMiniGame,
-                updateMapState
+                collectMap
             )
             InventoryBag(
                 Modifier
@@ -74,7 +70,7 @@ fun TutorialScreenPreview() {
             ),
             openMiniGame = {},
             openInventory = {},
-            updateMapState = {}
+            collectMap = {}
         )
     }
 }

@@ -35,7 +35,7 @@ internal class ObserveInventoryUseCaseTest {
         val inventoryFlow = observeInventory()
 
         // Then
-        assertEquals(inventoryFlow.first().first(), ItemDto("test", 0), "Item should be test")
+        assertEquals(ItemDto("test", 0), inventoryFlow.first().first(), "Item should be test")
     }
 
     @Test
@@ -49,7 +49,7 @@ internal class ObserveInventoryUseCaseTest {
 
         // Then
         assertEquals(
-            inventoryFlow.first(), listOf(
+            listOf(
                 ItemDto("test", 0),
                 ItemDto("", 0),
                 ItemDto("", 0),
@@ -60,7 +60,9 @@ internal class ObserveInventoryUseCaseTest {
                 ItemDto("", 0),
                 ItemDto("", 0),
                 ItemDto("", 0)
-            ), "Inventory should have 10 items"
+            ),
+            inventoryFlow.first(),
+            "Inventory should have 10 items"
         )
     }
 

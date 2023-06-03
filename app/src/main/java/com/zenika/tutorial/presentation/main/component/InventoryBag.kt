@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.zenika.R
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ComposablePreview
@@ -18,10 +19,8 @@ fun InventoryBag(
     openInventory: () -> Unit
 ) {
     Image(
-        painter = painterResource(
-            id = R.mipmap.inventory
-        ),
-        contentDescription = "Inventory",
+        painter = painterResource(R.mipmap.inventory),
+        contentDescription = stringResource(R.string.inventory_bag),
         contentScale = ContentScale.Fit,
         modifier = modifier
             .padding(screenPadding)
