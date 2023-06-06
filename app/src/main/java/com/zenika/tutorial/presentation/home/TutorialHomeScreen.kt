@@ -25,6 +25,7 @@ import com.zenika.R
 import com.zenika.presentation.component.ReturnButton
 import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.screenPadding
+import com.zenika.ui.theme.tutorialBodyLarge
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -74,7 +75,7 @@ fun TutorialHomeScreen(
             Text(
                 text = stringResource(R.string.tutorial_home_text),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyLarge
+                style = tutorialBodyLarge
             )
             Button(onClick = goToScan) {
                 Text(

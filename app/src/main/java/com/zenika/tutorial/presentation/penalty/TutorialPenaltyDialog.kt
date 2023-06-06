@@ -7,6 +7,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.zenika.R
 import com.zenika.tutorial.presentation.component.TutorialDialog
+import com.zenika.ui.theme.tutorialBodyMedium
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -27,7 +28,7 @@ fun TutorialPenaltyDialog(
         Text(
             text = text,
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.bodyLarge,
+            style = tutorialBodyMedium,
             color = MaterialTheme.colorScheme.onErrorContainer
         )
     }

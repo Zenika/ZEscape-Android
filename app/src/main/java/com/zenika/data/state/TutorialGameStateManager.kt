@@ -8,7 +8,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GameStateManager @Inject constructor() {
+class TutorialGameStateManager @Inject constructor() {
 
     private val _state = MutableStateFlow(TutorialGameState())
     val state = _state.asStateFlow()

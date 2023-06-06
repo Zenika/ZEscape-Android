@@ -21,7 +21,11 @@ import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
+<<<<<<<< HEAD:app/src/main/java/com/zenika/tutorial/presentation/score/TutorialScore.kt
 fun TutorialScore(
+========
+fun ScoreScreen(
+>>>>>>>> bb486a7 (Update Components name):app/src/main/java/com/zenika/tutorial/presentation/score/ScoreScreen.kt
     goToHome: () -> Unit,
     statistics: Statistics
 ) {
@@ -42,7 +46,7 @@ fun TutorialScore(
                 )
                 Timer(
                     statistics.elapsedTime,
-                    Modifier.padding(4.dp)
+                    Modifier.padding(start = 4.dp)
                 )
             }
             Text(
@@ -67,7 +71,11 @@ fun TutorialScore(
 @Composable
 private fun TutorialScorePreview() {
     ZEscapeThemePreview {
+<<<<<<<< HEAD:app/src/main/java/com/zenika/tutorial/presentation/score/TutorialScore.kt
         TutorialScore(
+========
+        ScoreScreen(
+>>>>>>>> bb486a7 (Update Components name):app/src/main/java/com/zenika/tutorial/presentation/score/ScoreScreen.kt
             goToHome = {},
             statistics = Statistics(
                 penalty = 0,

@@ -61,11 +61,20 @@
     <string name="instruction_adventure">Oh non… Il semblerait que vous ayez atterri dans un mystérieux endroit…
         Il est possible qu\'un bug informatique vous ait amené(e) dans une dimension parallèle.\n
         Menez l\'enquête et essayez d\'en sortir le plus rapidement possible</string>
+    <string name="world_map">Carte du monde</string>
+    <string name="add_agency">Ajouter une agence</string>
+    <string name="portal_message">Ce portail est sûrement notre porte de sortie… Malheureusement, il est verrouillé…</string>
     <string name="computer_image">Ordinateur portable sur un bureau avec un post-it où il est écrit de scanner un QR Code</string>
     <string name="home_text">Entrez dans une nouvelle aventure immersive, et laissez-vous guider dans une enquête surprenante…\n
                         Jouez en solo ou en coopération depuis un seul téléphone
     </string>
     <string name="desk">Bureau</string>
     <string name="scan">Scan</string>
+    <string name="close_treasure_chest">Coffre au trésor fermé</string>
+    <string name="open_map_treasure_chest">Coffre au trésor ouvert avec une carte</string>
+    <string name="open_treasure_chest">Coffre au trésor ouvert</string>
+    <string name="agency_validation">Voulez-vous ajouter l\'agence de %1$s à la carte ?</string>
+    <string name="agency_add">Ajout d\'une agence</string>
+    <string name="cancel">Annuler</string>
+    <string name="confirm">Confirmer</string>
 </resources>
-

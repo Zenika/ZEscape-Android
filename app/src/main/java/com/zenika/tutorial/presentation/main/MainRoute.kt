@@ -10,6 +10,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun MainRoute(
+    goToSettings: () -> Unit,
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
     showHint: () -> Unit,
@@ -24,6 +25,7 @@ fun MainRoute(
     MainScreen(
         Modifier.fillMaxSize(),
         mainUiState,
+        goToSettings,
         openMiniGame,
         openInventory,
         showHint,

@@ -37,6 +37,7 @@ import com.zenika.utils.ZEscapeThemePreview
 fun MainScreen(
     modifier: Modifier,
     mainUiState: MainUiState,
+    goToSettings: () -> Unit,
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
     showHint: () -> Unit,
@@ -63,7 +64,7 @@ fun MainScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = goToSettings) {
                         Icon(Icons.Filled.Settings, stringResource(R.string.settings))
                     }
                 },
@@ -126,6 +127,7 @@ private fun TutorialScreenPreview() {
                 newItem = false,
                 remainingTime = 60
             ),
+            goToSettings = {},
             openMiniGame = {},
             openInventory = {},
             showHint = {},

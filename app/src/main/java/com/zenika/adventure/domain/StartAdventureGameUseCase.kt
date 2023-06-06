@@ -1,13 +1,13 @@
 package com.zenika.adventure.domain
 
 import com.zenika.data.dao.ItemDao
-import com.zenika.data.state.GameStateManager
+import com.zenika.data.state.AdventureGameStateManager
 import com.zenika.data.timer.TimerServiceManager
 import javax.inject.Inject
 
 class StartAdventureGameUseCase @Inject constructor(
     private val itemDao: ItemDao,
-    private val gameStateManager: GameStateManager,
+    private val gameStateManager: AdventureGameStateManager,
     private val timerServiceManager: TimerServiceManager
 ) {
     suspend operator fun invoke() {

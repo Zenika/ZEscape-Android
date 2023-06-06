@@ -9,7 +9,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 @Composable
 fun PortalRoute(
     goToSettings: () -> Unit,
-    viewModel: PortalViewModel = hiltViewModel()
+    accessToPortal: () -> Unit,
+    openWorldMap: () -> Unit,
+    viewModel: PortalViewModel = hiltViewModel(),
 ) {
     val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
 
@@ -19,7 +21,9 @@ fun PortalRoute(
 
     PortalScreen(
         remainingTime,
-        goToSettings
+        goToSettings,
+        accessToPortal,
+        openWorldMap
     )
 }
 

@@ -73,6 +73,9 @@ fun NavGraphBuilder.tutorialNavigation(
         }
         composable(ROUTE_MAIN) {
             MainRoute(
+                goToSettings = {
+                    navController.navigate(ROUTE_SETTINGS)
+                },
                 openMiniGame = {
                     navController.navigate(ROUTE_MINI_GAME)
                 },
@@ -170,7 +173,18 @@ fun NavGraphBuilder.tutorialNavigation(
             TutorialScoreRoute(
                 goBackToHome = {
                     navController.popBackStack(
-                        route = ROUTE_HOME,
+                        route = ROUTE_HOME_TUTORIAL,
+                        inclusive = true
+                    )
+                }
+            )
+        }
+        composable(ROUTE_SETTINGS) {
+            SettingsRoute(
+                goBack = { navController.popBackStack() },
+                backToHome = {
+                    navController.popBackStack(
+                        route = ROUTE_HOME_TUTORIAL,
                         inclusive = true
                     )
                 }
