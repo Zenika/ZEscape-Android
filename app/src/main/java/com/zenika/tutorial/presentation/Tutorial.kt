@@ -8,7 +8,7 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.composable
-import com.zenika.qrcode_scan.QrCodeScanScreen
+import com.zenika.qrcode_scan.QrCodeScanRoute
 import com.zenika.tutorial.presentation.color_buttons_order_game.ColorButtonsOrderGameRoute
 import com.zenika.tutorial.presentation.hint.HintRoute
 import com.zenika.tutorial.presentation.home.HomeScreen
@@ -49,8 +49,9 @@ fun NavGraphBuilder.tutorialNavigation(
             )
         }
         composable(ROUTE_QRCODE_SCAN) {
-            QrCodeScanScreen(
-                goToTutorial = { navController.navigate(ROUTE_INTRO) }
+            QrCodeScanRoute(
+                backToHome = { navController.popBackStack() },
+                goToNextScreen = { navController.navigate(ROUTE_INTRO) }
             )
         }
         composable(ROUTE_INTRO) {
@@ -169,7 +170,7 @@ fun NavGraphBuilder.tutorialNavigation(
                 goToHome = {
                     navController.popBackStack(
                         route = ROUTE_HOME,
-                        inclusive = false
+                        inclusive = true
                     )
                 }
             )

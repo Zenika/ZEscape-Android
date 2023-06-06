@@ -1,6 +1,5 @@
-package com.zenika.tutorial.presentation.home
+package com.zenika.home
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,31 +15,31 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.paint
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import com.zenika.R
+import com.zenika.ui.theme.ZEscapeTheme
 import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.screenPadding
-import com.zenika.utils.ScreenPreview
-import com.zenika.utils.ZEscapeThemePreview
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    goToScan: () -> Unit
+    goToTutorial: () -> Unit,
+    goToAdventure: () -> Unit,
+    initInventoryTutorial: () -> Unit,
+    initInventoryAdventure: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(id = R.string.home),
+                        text = stringResource(id = R.string.app_name),
                         Modifier
-                            .fillMaxWidth()
+                            .fillMaxWidth(),
+                        textAlign = TextAlign.Center
                     )
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
@@ -51,14 +50,10 @@ fun HomeScreen(
         }
     ) { paddingValues ->
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .paint(
-                    painterResource(id = R.mipmap.background1),
-                    contentScale = ContentScale.FillHeight,
-                    alpha = 0.4F
-                ),
+                .padding(paddingValues),
             verticalArrangement = Arrangement.spacedBy(
                 buttonPadding,
                 alignment = Alignment.CenterVertically
@@ -66,14 +61,26 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(id = R.string.tutorial_home_text),
+                text = stringResource(id = R.string.home_text),
                 modifier = Modifier.padding(screenPadding),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyLarge
             )
-            Button(onClick = goToScan) {
+            Button(onClick = {
+                goToTutorial()
+                initInventoryTutorial()
+            }) {
                 Text(
-                    text = "Scan",
+                    text = stringResource(R.string.tutorial),
+                    style = MaterialTheme.typography.headlineLarge
+                )
+            }
+            Button(onClick = {
+                goToAdventure()
+                initInventoryAdventure()
+            }) {
+                Text(
+                    text = stringResource(R.string.adventure),
                     style = MaterialTheme.typography.headlineSmall
                 )
             }
@@ -81,12 +88,17 @@ fun HomeScreen(
     }
 }
 
-@ScreenPreview
+
+
+@Preview
 @Composable
 fun HomeScreenPreview() {
-    ZEscapeThemePreview {
+    ZEscapeTheme {
         HomeScreen(
-            goToScan = {}
+            goToTutorial = {},
+            goToAdventure = {},
+            initInventoryTutorial = {},
+            initInventoryAdventure = {}
         )
     }
 }

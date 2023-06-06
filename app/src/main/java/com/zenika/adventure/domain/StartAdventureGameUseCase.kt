@@ -1,4 +1,4 @@
-package com.zenika.tutorial.domain
+package com.zenika.adventure.domain
 
 import com.zenika.R
 import com.zenika.data.dao.ItemDao
@@ -7,7 +7,7 @@ import com.zenika.data.state.GameStateManager
 import com.zenika.data.timer.TimerServiceManager
 import javax.inject.Inject
 
-class StartGameUseCase @Inject constructor(
+class StartAdventureGameUseCase @Inject constructor(
     private val itemDao: ItemDao,
     private val gameStateManager: GameStateManager,
     private val timerServiceManager: TimerServiceManager

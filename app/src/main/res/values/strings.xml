@@ -55,5 +55,15 @@
     <string name="close">Fermer</string>
     <string name="clue_icon">Indice</string>
     <string name="settings_icon">Paramètres</string>
+    <string name="connexion">Se connecter</string>
+    <string name="retour">Retour</string>
+    <string name="stop_game">Quitter</string>
+    <string name="instruction_adventure">Oh non… Il semblerait que vous ayez atterri dans un mystérieux endroit…
+        Il est possible qu\'un bug informatique vous ait amené(e) dans une dimension parallèle.\n
+        Menez l\'enquête et essayez d\'en sortir le plus rapidement possible</string>
+    <string name="computer_image">Ordinateur portable sur un bureau avec un post-it où il est écrit de scanner un QR Code</string>
+    <string name="home_text">Entrez dans une nouvelle aventure immersive, et laissez-vous guider dans une enquête surprenante…\n
+                        Jouez en solo ou en coopération depuis un seul téléphone
+    </string>
 </resources>
 
