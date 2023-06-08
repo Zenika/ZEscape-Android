@@ -1,4 +1,4 @@
-package com.zenika.qrcode_scan.presentation
+package com.zenika.qrcode_scan
 
 import android.graphics.ImageFormat
 import android.os.Build

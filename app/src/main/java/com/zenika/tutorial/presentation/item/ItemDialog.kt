@@ -5,6 +5,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.zenika.R
 import com.zenika.tutorial.presentation.item.component.Item
+import com.zenika.tutorial.presentation.item.component.WelcomeParchmentItem
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -17,7 +18,14 @@ fun ItemDialog(
         onDismissRequest = onDismissRequest,
         properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
     ) {
-        Item(item)
+        when (item) {
+            R.mipmap.parchment -> {
+                WelcomeParchmentItem(onDismissRequest)
+            }
+            else -> {
+                Item(item)
+            }
+        }
     }
 }
 
@@ -26,7 +34,7 @@ fun ItemDialog(
 fun ItemDialogPreview() {
     ZEscapeThemePreview {
         ItemDialog(
-            item = R.mipmap.paper,
+            item = R.mipmap.parchment,
             onDismissRequest = {}
         )
     }

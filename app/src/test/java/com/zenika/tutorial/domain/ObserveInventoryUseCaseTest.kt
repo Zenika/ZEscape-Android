@@ -35,14 +35,22 @@ internal class ObserveInventoryUseCaseTest {
         val inventoryFlow = observeInventory()
 
         // Then
-        assertEquals(ItemDto("test", 0), inventoryFlow.first().first(), "Item should be test")
+        assertEquals(
+            ItemDto("test", 0),
+            inventoryFlow.first().first(),
+            "Item should be test"
+        )
     }
 
     @Test
     @DisplayName("Should observe list of 10 items")
     fun shouldObserveInventory() = runTest {
         // Given
-        coEvery { itemRepository.observeItems() } returns flowOf(listOf(ItemDto("test", 0)))
+        coEvery { itemRepository.observeItems() } returns flowOf(
+            listOf(
+                ItemDto("test", 0)
+            )
+        )
 
         // When
         val inventoryFlow = observeInventory()

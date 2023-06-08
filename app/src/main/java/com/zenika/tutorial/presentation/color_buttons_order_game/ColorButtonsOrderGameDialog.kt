@@ -13,6 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import com.zenika.R
 import com.zenika.tutorial.presentation.color_buttons_order_game.component.ColorButton
 import com.zenika.tutorial.presentation.color_buttons_order_game.component.Stage
@@ -28,48 +30,59 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun ColorButtonsOrderGameDialog(
-    modifier: Modifier,
     size: Int,
-    addColor: (String) -> Unit
-
+    onDismissRequest: () -> Unit,
+    onColorClick: (String) -> Unit
 ) {
-    Column(
-        modifier
-            .padding(dialogPadding),
-        horizontalAlignment = Alignment.CenterHorizontally
+    Dialog(
+        onDismissRequest = onDismissRequest,
+        properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
     ) {
-        Stage(size)
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentSize(Alignment.Center)
-                .padding(itemDialogPadding),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        Column(
+            Modifier
+            .fillMaxWidth()
+            .padding(screenPadding)
+            .background(
+                MaterialTheme.colorScheme.primaryContainer,
+                MaterialTheme.shapes.extraLarge
+            )
+            .padding(dialogPadding),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ColorButton(
-                symbol = stringResource(id = R.string.sharp),
-                color = GreenSymbol,
-                colorName = "green",
-                addColor = addColor
-            )
-            ColorButton(
-                symbol = stringResource(id = R.string.ampersand),
-                color = PurpleSymbol,
-                colorName = "purple",
-                addColor = addColor
-            )
-            ColorButton(
-                symbol = stringResource(id = R.string.percent),
-                color = RedSymbol,
-                colorName = "red",
-                addColor = addColor
-            )
-            ColorButton(
-                symbol = stringResource(id = R.string.at),
-                color = BlueSymbol,
-                colorName = "blue",
-                addColor = addColor
-            )
+            Stage(size)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(screenPadding)
+                    .wrapContentSize(Alignment.Center)
+                    .padding(itemDialogPadding),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                ColorButton(
+                    symbol = stringResource(id = R.string.sharp),
+                    color = GreenSymbol,
+                    colorName = "green",
+                    onColorClick = onColorClick
+                )
+                ColorButton(
+                    symbol = stringResource(id = R.string.ampersand),
+                    color = PurpleSymbol,
+                    colorName = "purple",
+                    onColorClick = onColorClick
+                )
+                ColorButton(
+                    symbol = stringResource(id = R.string.percent),
+                    color = RedSymbol,
+                    colorName = "red",
+                    onColorClick = onColorClick
+                )
+                ColorButton(
+                    symbol = stringResource(id = R.string.at),
+                    color = BlueSymbol,
+                    colorName = "blue",
+                    onColorClick = onColorClick
+                )
+            }
         }
     }
 }
@@ -79,15 +92,9 @@ fun ColorButtonsOrderGameDialog(
 fun ColorButtonsOrderGameDialogPreview() {
     ZEscapeThemePreview {
         ColorButtonsOrderGameDialog(
-            Modifier
-                .fillMaxWidth()
-                .padding(screenPadding)
-                .background(
-                    MaterialTheme.colorScheme.primaryContainer,
-                    MaterialTheme.shapes.extraLarge
-                ),
             size = 2,
-            addColor = {}
+            onDismissRequest = {},
+            onColorClick = {}
         )
     }
 }

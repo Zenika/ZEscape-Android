@@ -21,7 +21,7 @@ fun ColorButton(
     symbol: String,
     color: Color,
     colorName: String,
-    addColor: (String) -> Unit
+    onColorClick: (String) -> Unit
 ) {
     Text(
         text = symbol,
@@ -30,7 +30,7 @@ fun ColorButton(
             .clip(CircleShape)
             .background(color)
             .wrapContentSize(Alignment.Center)
-            .clickable(role = Role.Button) { addColor(colorName) }
+            .clickable(role = Role.Button) { onColorClick(colorName) }
     )
 }
 
@@ -43,7 +43,7 @@ fun ColorButtonPreview() {
             symbol = "@",
             color = Color.Blue,
             colorName = "blue",
-            addColor = {}
+            onColorClick = {}
         )
     }
 }

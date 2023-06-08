@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun EndParchmentRoute(
-    finishGame: () -> Unit
+    goToScore: () -> Unit
 ) {
-    EndParchment(finishGame)
+    EndParchment(goToScore)
 }

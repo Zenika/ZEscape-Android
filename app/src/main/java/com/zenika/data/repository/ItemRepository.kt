@@ -14,4 +14,9 @@ class ItemRepository @Inject constructor(
         val item = ItemDto(itemName, itemRes)
         dao.upsertItem(item)
     }
+
+    suspend fun deleteItem(itemName: String, itemRes: Int) {
+        val item = ItemDto(itemName, itemRes)
+        dao.deleteItem(item)
+    }
 }

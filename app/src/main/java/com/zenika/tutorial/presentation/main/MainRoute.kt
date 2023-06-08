@@ -11,15 +11,20 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun MainRoute(
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
-    mainViewModel: MainViewModel = hiltViewModel()
+    showClue: () -> Unit,
+    viewModel: MainViewModel = hiltViewModel()
 ) {
-    val gameUIState by mainViewModel.state.collectAsState()
+    val gameUIState by viewModel.state.collectAsState()
 
     MainScreen(
         Modifier.fillMaxSize(),
         gameUIState,
         openMiniGame,
         openInventory,
-        mainViewModel::collectMap
+        showClue,
+        viewModel::collectKey,
+        viewModel::collectMap,
+        viewModel::removeNewItemBadge,
+        viewModel::incrementClueCount
     )
 }

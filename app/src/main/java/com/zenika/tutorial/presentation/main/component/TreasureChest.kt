@@ -53,7 +53,10 @@ fun TreasureChestPreview() {
         TreasureChest(
             gameUIState = GameUIState(
                 chestOpened = false,
-                mapCollected = false
+                mapCollected = false,
+                keyCollected = false,
+                newItem = false,
+                remainingTimer = 60
             ),
             openMiniGame = {},
             collectMap = {})

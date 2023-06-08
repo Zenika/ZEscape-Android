@@ -1,11 +1,12 @@
 package com.zenika.tutorial.presentation.main
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.R
 import com.zenika.data.repository.ItemRepository
 import com.zenika.data.state.GameState
+import com.zenika.data.timer.TimerServiceManager
+import com.zenika.tutorial.domain.InitCluesUseCase
 import com.zenika.tutorial.domain.InitInventoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -18,23 +19,44 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val itemRepository: ItemRepository,
     private val initInventoryUseCase: InitInventoryUseCase,
-    private val gameState: GameState
+    private val initCluesUseCase: InitCluesUseCase,
+    private val gameState: GameState,
+    timerServiceManager: TimerServiceManager
 ) : ViewModel() {
     val state =
-        combine(gameState.chestOpened, gameState.mapCollected) { chestOpened, mapCollected ->
-            GameUIState(chestOpened, mapCollected)
+        combine(
+            gameState.chestOpened,
+            gameState.mapCollected,
+            gameState.keyCollected,
+            gameState.newItem,
+            timerServiceManager.remaining
+        ) { chestOpened, mapCollected, keyCollected, newItem, remainingTimer ->
+            GameUIState(chestOpened, mapCollected, keyCollected, newItem, remainingTimer)
         }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-                initialValue = GameUIState(chestOpened = false, mapCollected = false)
+                initialValue = GameUIState(
+                    chestOpened = false,
+                    mapCollected = false,
+                    keyCollected = false,
+                    newItem = false,
+                    remainingTimer = 3600000
+                )
             )
 
     init {
-        Log.d("init inventory", "ok")
         viewModelScope.launch {
             initInventoryUseCase()
+            initCluesUseCase()
         }
+        gameState.initGame()
+        timerServiceManager.startTimer()
+    }
+
+    fun collectKey() {
+        addItem("key", R.mipmap.key)
+        gameState.collectKey()
     }
 
     fun collectMap() {
@@ -42,14 +64,25 @@ class MainViewModel @Inject constructor(
         gameState.collectMap()
     }
 
+    fun removeNewItemBadge() {
+        gameState.removeNewItemBadge()
+    }
+
     private fun addItem(itemName: String, itemRes: Int) {
         viewModelScope.launch {
             itemRepository.addItem(itemName, itemRes)
         }
     }
+
+    fun incrementClueCount() {
+        gameState.incrementClueCount()
+    }
 }
 
 class GameUIState(
     val chestOpened: Boolean,
-    val mapCollected: Boolean
+    val mapCollected: Boolean,
+    val keyCollected: Boolean,
+    val newItem: Boolean,
+    val remainingTimer: Int
 )
