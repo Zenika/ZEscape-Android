@@ -44,7 +44,7 @@ fun MainScreen(
     removeNewItemBadge: () -> Unit,
     incrementClueCount: () -> Unit
 ) {
-        Scaffold(modifier = modifier,
+    Scaffold(modifier = modifier,
         topBar = {
             TopAppBar(
                 title = {
@@ -85,7 +85,8 @@ fun MainScreen(
             contentAlignment = Alignment.Center
         ) {
             TreasureChest(
-                gameUIState,
+                gameUIState.chestOpened,
+                gameUIState.mapCollected,
                 openMiniGame,
                 collectMap
             )
@@ -96,17 +97,14 @@ fun MainScreen(
                 openInventory,
                 removeNewItemBadge
             )
-        }
-        if (!gameUIState.keyCollected) {
-            Box(
-                Modifier
-                    .fillMaxSize()
-                    .padding(screenPadding),
-                contentAlignment = Alignment.BottomStart
-            ) {
+            if (!gameUIState.keyCollected) {
                 Key(
-                    collectKey
-                )
+                    collectKey,
+                    Modifier
+                        .padding(screenPadding)
+                        .align(Alignment.BottomStart),
+
+                    )
             }
         }
     }

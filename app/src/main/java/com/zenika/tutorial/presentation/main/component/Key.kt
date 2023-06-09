@@ -15,7 +15,8 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun Key(
-    collectKey: () -> Unit
+    collectKey: () -> Unit,
+    modifier: Modifier
 ) {
     Image(
         painter = painterResource(
@@ -23,8 +24,7 @@ fun Key(
         ),
         contentDescription = stringResource(id = R.string.key_image),
         contentScale = ContentScale.Fit,
-        modifier = Modifier
-            .padding(screenPadding)
+        modifier = modifier
             .clickable { collectKey() }
     )
 }
@@ -34,7 +34,9 @@ fun Key(
 fun KeyPreview() {
     ZEscapeThemePreview {
         Key(
-            collectKey = {}
+            collectKey = {},
+            modifier = Modifier
+                .padding(screenPadding)
         )
     }
 }
