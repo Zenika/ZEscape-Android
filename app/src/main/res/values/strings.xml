@@ -49,7 +49,7 @@
     <string name="parchment_image">Parchemin avec un intriguant message</string>
     <string name="parchment_image_score">Parchemin avec le score de la partie</string>
     <string name="arrow_image">Flèche qui permet de passer à la page suivante</string>
-    <string name="inventorybag_image">Sacoche d\'inventaire</string>
+    <string name="inventory_bag_image">Sacoche d\'inventaire</string>
     <string name="key_image">Clé</string>
     <string name="start_button">C\'est parti !</string>
     <string name="close">Fermer</string>
