@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.zenika.R
 
 @Composable
 fun ClueRoute(
@@ -12,10 +13,15 @@ fun ClueRoute(
 ) {
     val clue by viewModel.currentClue.collectAsState()
 
-    clue?.let {
+    if (clue != null) {
         ClueDialog(
-            it,
-        onDismissRequest
-    )
+            clue!!,
+            onDismissRequest
+        )
+    } else {
+        ClueDialog(
+            R.string.noClue,
+            onDismissRequest
+        )
     }
 }
