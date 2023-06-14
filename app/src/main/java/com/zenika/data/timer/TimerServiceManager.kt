@@ -37,10 +37,6 @@ class TimerServiceManager @Inject constructor(
         context.registerReceiver(timerReceiver, IntentFilter(ACTION_TIMER))
     }
 
-    fun getTimer(): Int {
-        return remaining.value
-    }
-
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     fun stopTimer() {
         val intent = Intent(context, TimerService::class.java)
