@@ -1,4 +1,4 @@
-package com.zenika.tutorial.presentation.clue
+package com.zenika.tutorial.presentation.hint
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,14 +11,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.zenika.data.TutorialHint
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun ClueDialog(
-    clue: Int,
+fun HintDialog(
+    hint: TutorialHint,
     onDismissRequest: () -> Unit
 ) {
     Dialog(
@@ -26,7 +27,7 @@ fun ClueDialog(
         properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
     ) {
         Text(
-            text = stringResource(id = clue),
+            text = stringResource(id = hint.text),
             Modifier
                 .fillMaxWidth()
                 .padding(screenPadding)
@@ -45,8 +46,9 @@ fun ClueDialog(
 @Composable
 fun ClueDialogPreview() {
     ZEscapeThemePreview {
-        ClueDialog(
-            clue = 0
-        ) {}
+        HintDialog(
+            hint = TutorialHint.NO_HINT,
+            onDismissRequest = {}
+        )
     }
 }

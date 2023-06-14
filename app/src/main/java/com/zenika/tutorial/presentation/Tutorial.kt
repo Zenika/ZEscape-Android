@@ -9,8 +9,8 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.composable
 import com.zenika.qrcode_scan.QrCodeScanScreen
-import com.zenika.tutorial.presentation.clue.ClueRoute
 import com.zenika.tutorial.presentation.color_buttons_order_game.ColorButtonsOrderGameRoute
+import com.zenika.tutorial.presentation.hint.HintRoute
 import com.zenika.tutorial.presentation.home.HomeScreen
 import com.zenika.tutorial.presentation.instruction.InstructionRoute
 import com.zenika.tutorial.presentation.inventory.InventoryRoute
@@ -30,7 +30,7 @@ private const val ROUTE_INTRO = "introTutorial"
 private const val ROUTE_MAIN = "mainRouteTutorial"
 private const val ROUTE_MINI_GAME = "miniGameRouteTutorial"
 private const val ROUTE_SCORE = "scoreRouteTutorial"
-private const val ROUTE_CLUE = "clueRouteTutorial"
+private const val ROUTE_HINT = "hintRouteTutorial"
 private const val ROUTE_PATTERN_ITEM = "itemRouteTutorial/{item}"
 private const val ROUTE_PATTERN_PENALTY = "penaltyRouteTutorial/{penalty}"
 
@@ -78,7 +78,7 @@ fun NavGraphBuilder.tutorialNavigation(
                     navController.navigate(ROUTE_INVENTORY)
                 },
                 showClue = {
-                    navController.navigate(ROUTE_CLUE)
+                    navController.navigate(ROUTE_HINT)
                 }
             )
         }
@@ -97,8 +97,8 @@ fun NavGraphBuilder.tutorialNavigation(
                 }
             )
         }
-        dialog(ROUTE_CLUE) {
-            ClueRoute(
+        dialog(ROUTE_HINT) {
+            HintRoute(
                 onDismissRequest = {
                     navController.popBackStack()
                 }

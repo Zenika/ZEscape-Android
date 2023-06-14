@@ -1,5 +1,6 @@
 package com.zenika.data.state
 
+import com.zenika.data.TutorialHint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -20,20 +21,14 @@ class GameState @Inject constructor() {
     private val _penaltyCount = MutableStateFlow(0)
     val penaltyCount = _penaltyCount.asStateFlow()
 
-    private val _clueCount = MutableStateFlow(0)
-    val clueCount = _clueCount.asStateFlow()
-
-    private val _finalTimer = MutableStateFlow(0)
-    val finalTimer = _finalTimer.asStateFlow()
+    private val _hintCount = MutableStateFlow(0)
+    val hintCount = _hintCount.asStateFlow()
 
     private val _newItem = MutableStateFlow(false)
     val newItem = _newItem.asStateFlow()
 
-    private val _currentClue = MutableStateFlow("paperClue")
-    val currentClue = _currentClue.asStateFlow()
-
-    private val _clues = mapOf<String, Int>()
-    var clues = _clues
+    private val _currentHint = MutableStateFlow(TutorialHint.CAPTAIN_CHEST)
+    val currentHint = _currentHint.asStateFlow()
 
     fun initGame() {
         _chestOpened.update { false }
@@ -41,13 +36,13 @@ class GameState @Inject constructor() {
         _mapCollected.update { false }
         _newItem.update { false }
         _penaltyCount.update { 0 }
-        _clueCount.update { 0 }
-        _currentClue.update { "paperClue" }
+        _hintCount.update { 0 }
+        _currentHint.update { TutorialHint.CAPTAIN_CHEST }
     }
 
     fun openChest() {
         _chestOpened.update { true }
-        _currentClue.update { "parchmentClue" }
+        _currentHint.update { TutorialHint.END_GAME }
     }
 
     fun collectKey() {
@@ -58,6 +53,7 @@ class GameState @Inject constructor() {
     fun collectMap() {
         _mapCollected.update { true }
         _newItem.update { true }
+        _currentHint.update { TutorialHint.END_GAME }
     }
 
     fun removeNewItemBadge() {
@@ -69,10 +65,6 @@ class GameState @Inject constructor() {
     }
 
     fun incrementClueCount() {
-        _clueCount.update { it + 1 }
-    }
-
-    fun updateFinalTimer(timer: Int) {
-        _finalTimer.update { timer }
+        _hintCount.update { it + 1 }
     }
 }
