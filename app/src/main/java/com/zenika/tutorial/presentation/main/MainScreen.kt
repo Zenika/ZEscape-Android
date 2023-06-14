@@ -3,6 +3,7 @@ package com.zenika.tutorial.presentation.main
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -22,9 +23,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.zenika.R
+import com.zenika.tutorial.domain.GameUIState
 import com.zenika.tutorial.presentation.main.component.InventoryBag
 import com.zenika.tutorial.presentation.main.component.Key
-import com.zenika.tutorial.presentation.main.component.Timer
+import com.zenika.tutorial.presentation.component.Timer
 import com.zenika.tutorial.presentation.main.component.TreasureChest
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
@@ -49,7 +51,8 @@ fun MainScreen(
             TopAppBar(
                 title = {
                     Timer(
-                        gameUIState.remainingTimer
+                        gameUIState.remainingTime,
+                        Modifier.fillMaxWidth()
                     )
                 },
                 navigationIcon = {
@@ -122,7 +125,7 @@ fun TutorialScreenPreview() {
                 mapCollected = false,
                 keyCollected = false,
                 newItem = false,
-                remainingTimer = 60
+                remainingTime = 60
             ),
             openMiniGame = {},
             openInventory = {},
