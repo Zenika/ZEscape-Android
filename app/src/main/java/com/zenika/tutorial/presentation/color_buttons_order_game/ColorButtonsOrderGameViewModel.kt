@@ -2,8 +2,8 @@ package com.zenika.tutorial.presentation.color_buttons_order_game
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zenika.data.state.GameState
 import com.zenika.tutorial.domain.ApplyPenaltyUseCase
+import com.zenika.tutorial.domain.UpdateGameStateUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ColorButtonsOrderGameViewModel @Inject constructor(
-    private val gameState: GameState,
+    private val updateGameStateUseCase: UpdateGameStateUseCase,
     private val applyPenaltyUseCase: ApplyPenaltyUseCase
 ) : ViewModel() {
     private val _events = MutableSharedFlow<MiniGameEvent>()
@@ -49,7 +49,7 @@ class ColorButtonsOrderGameViewModel @Inject constructor(
             } else if (sequenceSize.value >= 3) {
                 _events.emit(MiniGameEvent.DISMISS)
                 initColorsSequence()
-                updateChestState()
+                updateGameStateUseCase.openChest()
             }
         }
     }
@@ -68,10 +68,6 @@ class ColorButtonsOrderGameViewModel @Inject constructor(
     private suspend fun applyPenalty() {
         applyPenaltyUseCase()
         _events.emit(MiniGameEvent.PENALTY)
-    }
-
-    private fun updateChestState() {
-        gameState.openChest()
     }
 }
 
