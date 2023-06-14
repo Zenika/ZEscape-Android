@@ -36,11 +36,11 @@
     <string name="returnToHome">Quitter</string>
     <string name="score">Score</string>
     <string name="penalty">Pénalité(s) : %1$s</string>
-    <string name="clue">Indice(s) : %1$s</string>
-    <string name="time">Temps : %1$s</string>
-    <string name="noClue">Pas d\'indice disponible</string>
-    <string name="paperClue">Le message du Capitaine présent dans votre inventaire devrait vous aider à ouvrir ce coffre</string>
-    <string name="parchmentClue">Consultez la carte du Capitaine, elle pourrait vous être utile…</string>
+    <string name="hint">Indice(s) : %1$s</string>
+    <string name="time">Temps : </string>
+    <string name="no_hint">Pas d\'indice disponible</string>
+    <string name="captain_chest_hint">Le message du Capitaine présent dans votre inventaire devrait vous aider à ouvrir ce coffre</string>
+    <string name="end_game_hint">Consultez la carte du Capitaine, elle pourrait vous être utile…</string>
     <string name="home">Accueil</string>
     <string name="computerOn">Allumer</string>
     <string name="treasure_chest">Coffre au trésor</string>
