@@ -23,10 +23,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.zenika.R
-import com.zenika.tutorial.domain.GameUIState
+import com.zenika.tutorial.presentation.component.Timer
 import com.zenika.tutorial.presentation.main.component.InventoryBag
 import com.zenika.tutorial.presentation.main.component.Key
-import com.zenika.tutorial.presentation.component.Timer
 import com.zenika.tutorial.presentation.main.component.TreasureChest
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
@@ -37,7 +36,7 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun MainScreen(
     modifier: Modifier,
-    gameUIState: GameUIState,
+    mainUiState: MainUiState,
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
     showClue: () -> Unit,
@@ -51,7 +50,7 @@ fun MainScreen(
             TopAppBar(
                 title = {
                     Timer(
-                        gameUIState.remainingTime,
+                        mainUiState.remainingTime,
                         Modifier.fillMaxWidth()
                     )
                 },
@@ -88,19 +87,19 @@ fun MainScreen(
             contentAlignment = Alignment.Center
         ) {
             TreasureChest(
-                gameUIState.chestOpened,
-                gameUIState.mapCollected,
+                mainUiState.chestOpened,
+                mainUiState.mapCollected,
                 openMiniGame,
                 collectMap
             )
             InventoryBag(
                 Modifier
                     .align(Alignment.BottomEnd),
-                gameUIState.newItem,
+                mainUiState.newItem,
                 openInventory,
                 removeNewItemBadge
             )
-            if (!gameUIState.keyCollected) {
+            if (!mainUiState.keyCollected) {
                 Key(
                     collectKey,
                     Modifier
@@ -120,7 +119,7 @@ fun TutorialScreenPreview() {
         MainScreen(
             Modifier
                 .fillMaxSize(),
-            gameUIState = GameUIState(
+            mainUiState = MainUiState(
                 chestOpened = false,
                 mapCollected = false,
                 keyCollected = false,

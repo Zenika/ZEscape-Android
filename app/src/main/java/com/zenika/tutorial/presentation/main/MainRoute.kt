@@ -15,7 +15,7 @@ fun MainRoute(
     showClue: () -> Unit,
     viewModel: MainViewModel = hiltViewModel()
 ) {
-    val gameUIState by viewModel.state.collectAsState()
+    val mainUiState by viewModel.state.collectAsState()
 
     BackHandler {
         // Player cannot leave the tutorial while it is running.
@@ -23,7 +23,7 @@ fun MainRoute(
 
     MainScreen(
         Modifier.fillMaxSize(),
-        gameUIState,
+        mainUiState,
         openMiniGame,
         openInventory,
         showClue,
