@@ -1,7 +1,6 @@
 package com.zenika.tutorial.presentation.home
 
 import android.annotation.SuppressLint
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,8 +21,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Devices.PIXEL_4_XL
-import androidx.compose.ui.tooling.preview.Preview
 import com.zenika.R
 import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.screenPadding
@@ -85,10 +82,6 @@ fun HomeScreen(
 }
 
 @ScreenPreview
-@Preview(
-    device = PIXEL_4_XL, name = "Big smartphone",
-    uiMode = UI_MODE_NIGHT_YES
-)
 @Composable
 fun HomeScreenPreview() {
     ZEscapeThemePreview {
