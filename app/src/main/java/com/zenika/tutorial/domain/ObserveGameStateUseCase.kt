@@ -1,26 +1,10 @@
 package com.zenika.tutorial.domain
 
-import com.zenika.data.state.GameState
-import kotlinx.coroutines.flow.combine
+import com.zenika.data.state.GameStateManager
 import javax.inject.Inject
 
-class ObserveMainGameStateUseCase @Inject constructor(
-    private val gameState: GameState
+class ObserveTutorialStateUseCase @Inject constructor(
+    private val gameStateManager: GameStateManager
 ) {
-    operator fun invoke() =
-        combine(
-            gameState.chestOpened,
-            gameState.mapCollected,
-            gameState.keyCollected,
-            gameState.newItem
-        ) { chestOpened, mapCollected, keyCollected, newItem ->
-            MainGameState(chestOpened, mapCollected, keyCollected, newItem)
-        }
+    operator fun invoke() = gameStateManager.state
 }
-
-class MainGameState(
-    val chestOpened: Boolean,
-    val mapCollected: Boolean,
-    val keyCollected: Boolean,
-    val newItem: Boolean
-)

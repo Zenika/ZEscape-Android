@@ -1,28 +1,28 @@
 package com.zenika.tutorial.domain
 
-import com.zenika.data.state.GameState
+import com.zenika.data.state.GameStateManager
 import javax.inject.Inject
 
 class UpdateGameStateUseCase @Inject constructor(
-    private val gameState: GameState
+    private val gameStateManager: GameStateManager
 ) {
     fun openChest() {
-        gameState.openChest()
+        gameStateManager.openChest()
     }
 
     fun collectKey() {
-        gameState.collectKey()
+        gameStateManager.collectKey()
     }
 
     fun collectMap() {
-        gameState.collectMap()
+        gameStateManager.collectMap()
     }
 
     fun removeNewItemBadge() {
-        gameState.removeNewItemBadge()
+        gameStateManager.removeNewItemBadge()
     }
 
     fun incrementClueCount() {
-        gameState.incrementClueCount()
+        gameStateManager.incrementClueCount()
     }
 }

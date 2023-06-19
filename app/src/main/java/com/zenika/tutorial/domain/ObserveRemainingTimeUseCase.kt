@@ -1,6 +1,6 @@
 package com.zenika.tutorial.domain
 
-import com.zenika.data.state.GameState
+import com.zenika.data.state.GameStateManager
 import com.zenika.data.timer.TimerServiceManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
@@ -11,14 +11,14 @@ private const val PENALTY_IN_MS = 60_000
 
 class ObserveRemainingTimeUseCase @Inject constructor(
     private val timerServiceManager: TimerServiceManager,
-    private val gameState: GameState
+    private val gameStateManager: GameStateManager
 ) {
     operator fun invoke(): Flow<Int> {
         return combine(
             timerServiceManager.elapsed,
-            gameState.penaltyCount
-        ) { elapsedMs, penaltyCount ->
-            TOTAL_TIME_MS - elapsedMs - (penaltyCount * PENALTY_IN_MS)
+            gameStateManager.state
+        ) { elapsedMs, tutorialGameState ->
+            TOTAL_TIME_MS - elapsedMs - (tutorialGameState.penaltyCount * PENALTY_IN_MS)
         }
     }
 }

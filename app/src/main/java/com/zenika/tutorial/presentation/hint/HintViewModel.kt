@@ -1,6 +1,7 @@
 package com.zenika.tutorial.presentation.hint
 
 import androidx.lifecycle.ViewModel
+import com.zenika.data.TutorialHint
 import com.zenika.tutorial.domain.GetCurrentHintUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -9,5 +10,5 @@ import javax.inject.Inject
 class HintViewModel @Inject constructor(
     getCurrentHintUseCase: GetCurrentHintUseCase
 ) : ViewModel() {
-    val currentHint = getCurrentHintUseCase()
+    val currentHint: TutorialHint = getCurrentHintUseCase()
 }

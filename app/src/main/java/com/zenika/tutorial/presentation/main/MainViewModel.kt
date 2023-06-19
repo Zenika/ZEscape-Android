@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.R
 import com.zenika.data.repository.ItemRepository
-import com.zenika.tutorial.domain.ObserveMainGameStateUseCase
+import com.zenika.tutorial.domain.ObserveTutorialStateUseCase
 import com.zenika.tutorial.domain.ObserveRemainingTimeUseCase
 import com.zenika.tutorial.domain.StartGameUseCase
 import com.zenika.tutorial.domain.UpdateGameStateUseCase
@@ -21,11 +21,11 @@ class MainViewModel @Inject constructor(
     private val itemRepository: ItemRepository,
     private val startGame: StartGameUseCase,
     private val updateGameState: UpdateGameStateUseCase,
-    observeGameState: ObserveMainGameStateUseCase,
+    observeTutorialState: ObserveTutorialStateUseCase,
     observeRemainingTime: ObserveRemainingTimeUseCase
 ) : ViewModel() {
     val state: StateFlow<MainUiState> = combine(
-        observeGameState(), observeRemainingTime()
+        observeTutorialState(), observeRemainingTime()
     ) { gameState, remainingTime ->
         MainUiState(
             gameState.chestOpened,
