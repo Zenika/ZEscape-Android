@@ -35,7 +35,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun EndParchment(
-    finishGame: () -> Unit
+    goToScore: () -> Unit
 ) {
     val pagerState = rememberPagerState()
     val coroutineScope = rememberCoroutineScope()
@@ -49,7 +49,7 @@ fun EndParchment(
             .fillMaxSize()
             .padding()
             .paint(
-                painterResource(id = R.mipmap.sea_background),
+                painterResource(id = R.mipmap.background1),
                 contentScale = ContentScale.FillHeight
             )
     ) {
@@ -59,7 +59,7 @@ fun EndParchment(
         ) { page ->
             Image(
                 painter = painterResource(R.mipmap.parchment),
-                contentDescription = null,
+                contentDescription = stringResource(id = R.string.parchment_image),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .fillMaxSize()
@@ -85,7 +85,7 @@ fun EndParchment(
                 if (page == text.size - 1) {
                     Button(
                         modifier = Modifier.padding(top = buttonPadding),
-                        onClick = finishGame
+                        onClick = goToScore
                     ) {
                         Text(
                             text = stringResource(R.string.score),
@@ -95,13 +95,13 @@ fun EndParchment(
                 } else {
                     Image(
                         painter = painterResource(R.mipmap.arrow),
-                        contentDescription = stringResource(R.string.arrow_next),
+                        contentDescription = stringResource(R.string.arrow_image),
                         contentScale = ContentScale.Fit,
                         modifier = Modifier
                             .size(70.dp)
                             .clickable {
                                 coroutineScope.launch {
-                                    pagerState.scrollToPage(1)
+                                    pagerState.animateScrollToPage(1)
                                 }
                             }
                     )
@@ -116,7 +116,7 @@ fun EndParchment(
 fun EndParchmentPreview() {
     ZEscapeThemePreview {
         EndParchment(
-            finishGame = {}
+            goToScore = {}
         )
     }
 }

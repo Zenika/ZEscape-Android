@@ -1,5 +1,6 @@
 package com.zenika.tutorial.presentation.main
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -11,15 +12,24 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun MainRoute(
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
-    mainViewModel: MainViewModel = hiltViewModel()
+    showClue: () -> Unit,
+    viewModel: MainViewModel = hiltViewModel()
 ) {
-    val gameUIState by mainViewModel.state.collectAsState()
+    val mainUiState by viewModel.state.collectAsState()
+
+    BackHandler {
+        // Player cannot leave the tutorial while it is running.
+    }
 
     MainScreen(
         Modifier.fillMaxSize(),
-        gameUIState,
+        mainUiState,
         openMiniGame,
         openInventory,
-        mainViewModel::collectMap
+        showClue,
+        viewModel::collectKey,
+        viewModel::collectMap,
+        viewModel::removeNewItemBadge,
+        viewModel::incrementClueCount
     )
 }

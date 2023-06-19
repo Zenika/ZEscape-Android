@@ -1,14 +1,16 @@
 package com.zenika.tutorial.presentation.main
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.R
 import com.zenika.data.repository.ItemRepository
-import com.zenika.data.state.GameState
-import com.zenika.tutorial.domain.InitInventoryUseCase
+import com.zenika.tutorial.domain.ObserveTutorialStateUseCase
+import com.zenika.tutorial.domain.ObserveRemainingTimeUseCase
+import com.zenika.tutorial.domain.StartGameUseCase
+import com.zenika.tutorial.domain.UpdateGameStateUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -17,39 +19,68 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val itemRepository: ItemRepository,
-    private val initInventoryUseCase: InitInventoryUseCase,
-    private val gameState: GameState
+    private val startGame: StartGameUseCase,
+    private val updateGameState: UpdateGameStateUseCase,
+    observeTutorialState: ObserveTutorialStateUseCase,
+    observeRemainingTime: ObserveRemainingTimeUseCase
 ) : ViewModel() {
-    val state =
-        combine(gameState.chestOpened, gameState.mapCollected) { chestOpened, mapCollected ->
-            GameUIState(chestOpened, mapCollected)
-        }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-                initialValue = GameUIState(chestOpened = false, mapCollected = false)
+    val state: StateFlow<MainUiState> = combine(
+        observeTutorialState(), observeRemainingTime()
+    ) { gameState, remainingTime ->
+        MainUiState(
+            gameState.chestOpened,
+            gameState.mapCollected,
+            gameState.keyCollected,
+            gameState.newItem,
+            remainingTime
+        )
+    }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+            initialValue = MainUiState(
+                chestOpened = false,
+                mapCollected = false,
+                keyCollected = false,
+                newItem = false,
+                remainingTime = 3_600_600
             )
+        )
 
     init {
-        Log.d("init inventory", "ok")
         viewModelScope.launch {
-            initInventoryUseCase()
+            startGame()
+        }
+    }
+
+    fun collectKey() {
+        viewModelScope.launch {
+            itemRepository.addItem("key", R.mipmap.key)
+            updateGameState.collectKey()
         }
     }
 
     fun collectMap() {
-        addItem("map", R.mipmap.rolled_map)
-        gameState.collectMap()
+        viewModelScope.launch {
+            itemRepository.addItem("map", R.mipmap.rolled_map)
+            updateGameState.collectMap()
+        }
     }
 
-    private fun addItem(itemName: String, itemRes: Int) {
-        viewModelScope.launch {
-            itemRepository.addItem(itemName, itemRes)
-        }
+    fun removeNewItemBadge() {
+        updateGameState.removeNewItemBadge()
+    }
+
+    fun incrementClueCount() {
+        updateGameState.incrementClueCount()
     }
 }
 
-class GameUIState(
+class MainUiState(
     val chestOpened: Boolean,
-    val mapCollected: Boolean
+    val mapCollected: Boolean,
+    val keyCollected: Boolean,
+    val newItem: Boolean,
+    val remainingTime: Int
 )
+

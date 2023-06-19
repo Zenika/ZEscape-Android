@@ -5,17 +5,29 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.zenika.R
+import com.zenika.tutorial.presentation.component.Timer
 import com.zenika.tutorial.presentation.main.component.InventoryBag
+import com.zenika.tutorial.presentation.main.component.Key
 import com.zenika.tutorial.presentation.main.component.TreasureChest
+import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -24,35 +36,78 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun MainScreen(
     modifier: Modifier,
-    gameUIState: GameUIState,
+    mainUiState: MainUiState,
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
-    collectMap: () -> Unit
+    showClue: () -> Unit,
+    collectKey: () -> Unit,
+    collectMap: () -> Unit,
+    removeNewItemBadge: () -> Unit,
+    incrementClueCount: () -> Unit
 ) {
-    Scaffold(
-        modifier = modifier,
-        topBar = { Box(Modifier.fillMaxWidth()) }
+    Scaffold(modifier = modifier,
+        topBar = {
+            TopAppBar(
+                title = {
+                    Timer(
+                        mainUiState.remainingTime,
+                        Modifier.fillMaxWidth()
+                    )
+                },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        showClue()
+                        incrementClueCount()
+                    }) {
+                        Icon(Icons.Filled.Search, stringResource(R.string.clue_icon))
+                    }
+                },
+                actions = {
+                    IconButton(onClick = {}) {
+                        Icon(Icons.Filled.Settings, stringResource(R.string.settings_icon))
+                    }
+                },
+                colors = TopAppBarDefaults.smallTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                    actionIconContentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            )
+        }
     ) { paddingValues ->
         Box(
             Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .paint(
-                    painterResource(id = R.mipmap.sea_background),
+                    painterResource(id = R.mipmap.background1),
                     contentScale = ContentScale.FillHeight
                 ),
             contentAlignment = Alignment.Center
         ) {
             TreasureChest(
-                gameUIState,
+                mainUiState.chestOpened,
+                mainUiState.mapCollected,
                 openMiniGame,
                 collectMap
             )
             InventoryBag(
                 Modifier
                     .align(Alignment.BottomEnd),
-                openInventory
+                mainUiState.newItem,
+                openInventory,
+                removeNewItemBadge
             )
+            if (!mainUiState.keyCollected) {
+                Key(
+                    collectKey,
+                    Modifier
+                        .padding(screenPadding)
+                        .align(Alignment.BottomStart),
+
+                    )
+            }
         }
     }
 }
@@ -64,13 +119,20 @@ fun TutorialScreenPreview() {
         MainScreen(
             Modifier
                 .fillMaxSize(),
-            gameUIState = GameUIState(
+            mainUiState = MainUiState(
                 chestOpened = false,
-                mapCollected = false
+                mapCollected = false,
+                keyCollected = false,
+                newItem = false,
+                remainingTime = 60
             ),
             openMiniGame = {},
             openInventory = {},
-            collectMap = {}
+            showClue = {},
+            collectKey = {},
+            collectMap = {},
+            removeNewItemBadge = {},
+            incrementClueCount = {}
         )
     }
 }

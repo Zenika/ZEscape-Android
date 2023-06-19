@@ -13,8 +13,8 @@ import com.zenika.ui.theme.ZEscapeTheme
 @Target(
     AnnotationTarget.FUNCTION
 )
-@Preview(device = Devices.NEXUS_5, name = "Small smartphone")
-@Preview(device = Devices.PIXEL_4_XL, name = "Big smartphone")
+@Preview(device = Devices.NEXUS_5, name = "Light Small smartphone", uiMode = UI_MODE_NIGHT_NO)
+@Preview(device = Devices.PIXEL_4_XL, name = "Dark Big smartphone", uiMode = UI_MODE_NIGHT_YES)
 annotation class ScreenPreview
 
 @MustBeDocumented

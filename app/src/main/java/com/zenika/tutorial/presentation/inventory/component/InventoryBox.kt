@@ -11,15 +11,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
-import com.zenika.ui.theme.InventoryBoxColor
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.ui.theme.itemDialogPadding
 import com.zenika.utils.ScreenPreview
@@ -36,7 +37,7 @@ fun InventoryBox(
             .padding(itemDialogPadding)
             .clip(shape = RoundedCornerShape(25))
             .border(border = BorderStroke(2.dp, Color.Black), shape = RoundedCornerShape(25))
-            .background(InventoryBoxColor)
+            .background(MaterialTheme.colorScheme.primary)
             .clickable(enabled = item != 0) { showItem(item) }
             .wrapContentSize(Alignment.Center)
             .padding(dialogPadding)
@@ -46,7 +47,7 @@ fun InventoryBox(
                 painter = painterResource(
                     id = item
                 ),
-                contentDescription = "Item in inventory"
+                contentDescription = stringResource(id = R.string.item_image)
             )
         }
     }

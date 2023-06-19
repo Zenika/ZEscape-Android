@@ -8,15 +8,16 @@ import com.zenika.R
 
 @Composable
 fun ItemRoute(
-    viewModel: ItemViewModel = hiltViewModel(),
     onDismissRequest: () -> Unit,
-    openWelcomeParchment: () -> Unit,
-    openEndParchment: () -> Unit
+    openEndParchment: () -> Unit,
+    openPenalty: (String) -> Unit,
+    viewModel: ItemViewModel = hiltViewModel()
 ) {
     val item by viewModel.item.collectAsState()
+
     when (item) {
-        R.mipmap.parchment -> {
-            openWelcomeParchment()
+        R.mipmap.key -> {
+            openPenalty("key")
         }
         R.mipmap.rolled_map -> {
             openEndParchment()

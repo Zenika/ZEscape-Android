@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.mapPadding
+import com.zenika.ui.theme.topMapPadding
 import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 import kotlinx.coroutines.launch
@@ -49,7 +50,7 @@ fun WelcomeParchment(
             .fillMaxSize()
             .padding()
             .paint(
-                painterResource(id = R.mipmap.sea_background),
+                painterResource(id = R.mipmap.background1),
                 contentScale = ContentScale.FillHeight
             )
     ) {
@@ -61,7 +62,7 @@ fun WelcomeParchment(
                 painter = painterResource(
                     id = R.mipmap.parchment
                 ),
-                contentDescription = "Treasure Map with a mysterious message",
+                contentDescription = stringResource(id = R.string.parchment_image),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .fillMaxSize()
@@ -77,7 +78,7 @@ fun WelcomeParchment(
                     Text(
                         text = stringResource(id = text[page]),
                         modifier = Modifier.padding(
-                            top = mapPadding,
+                            top = topMapPadding,
                             start = mapPadding,
                             end = mapPadding
                         ),
@@ -89,13 +90,13 @@ fun WelcomeParchment(
                         painter = painterResource(
                             id = R.mipmap.arrow
                         ),
-                        contentDescription = "Arrow to swipe",
+                        contentDescription = stringResource(id = R.string.arrow_image),
                         contentScale = ContentScale.Fit,
                         modifier = Modifier
                             .size(70.dp)
                             .clickable {
                                 coroutineScope.launch {
-                                    pagerState.scrollToPage(page + 1)
+                                    pagerState.animateScrollToPage(page + 1)
                                 }
                             }
                     )
@@ -114,7 +115,7 @@ fun WelcomeParchment(
                     )
                     Button(onClick = openInstruction) {
                         Text(
-                            text = "C'est parti !",
+                            text = stringResource(id = R.string.start_button),
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }
@@ -128,6 +129,8 @@ fun WelcomeParchment(
 @Composable
 fun WelcomeParchmentPreview() {
     ZEscapeThemePreview {
-        WelcomeParchment(openInstruction = {})
+        WelcomeParchment(
+            openInstruction = {}
+        )
     }
 }

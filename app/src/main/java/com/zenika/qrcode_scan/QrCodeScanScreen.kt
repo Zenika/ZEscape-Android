@@ -1,4 +1,4 @@
-package com.zenika.qrcode_scan.presentation
+package com.zenika.qrcode_scan
 
 import android.Manifest
 import android.content.pm.PackageManager

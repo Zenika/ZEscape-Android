@@ -1,39 +1,59 @@
 <resources>
-    <string name="ampersand">&amp;</string>
     <string name="app_name">ZEscape</string>
-    <string name="at">\@</string>
-    <string name="inventory_bag">Inventory bag</string>
-    <string name="percent">%</string>
-    <string name="sharp">#</string>
-    <string name="score">Score</string>
-    <string name="treasure_chest">Treasure chest</string>
-    <string name="arrow_next">Suivant</string>
-    <string name="welcome_parchment">
-        Cher voyageur,\nChère voyageuse,\n
-        Si vous êtes tombé(e) sur cette lettre, ce n\'est pas par hasard…\n
-        Vous avez été choisi(e) pour m\'aider dans ma quête.
+    <string name="tutorial">Tutoriel</string>
+    <string name="adventure">Aventure</string>
+    <string name="tutorial_home_text">Entrez dans le tutoriel en scannant le QR Code</string>
+    <string name="adventure_home_text">Après avoir passé des mois à rechercher l\'entreprise parfaite
+        où exercer votre métier, c\'est le grand jour… Vous faites votre entrée chez Zenika !\n
+        Vous venez de recevoir votre nouvel ordinateur de travail, allumez-le pour commencer votre journée.
     </string>
+    <string name="at">\@</string>
+    <string name="sharp">#</string>
+    <string name="ampersand">&amp;</string>
+    <string name="percent">%</string>
+    <string name="welcome_parchment">Cher voyageur,\nChère voyageuse,\n
+        Si vous êtes tombé(e) sur cette lettre, ce n\'est pas par hasard…\n
+        Vous avez été choisi(e) pour m\'aider dans ma quête.</string>
     <string name="welcome_parchment2">
         Il y a fort longtemps, j\'ai perdu un trésor contenant une mystérieuse carte,
-        et je souhaite la retrouver.
-    </string>
+        et je souhaite la retrouver.</string>
     <string name="welcome_parchment3">
         Êtes-vous prêt(e) à m\'accompagner dans cette aventure ?\n
-        À bientôt, je l\'espère…\n\n
-        Capitaine J. Zparrow
-    </string>
+        À bientôt, je l\'espère…\n\nCapitaine J. Zparrow</string>
     <string name="instruction">
         Après quelques heures de recherche, vous tombez nez-à-nez avec le trésor
         du Capitaine Zparrow. Malheureusement, le coffre est verrouillé… Trouvez le moyen
         de l\'ouvrir afin de récupérer la fameuse carte que recherche le Capitaine.\n\n
-        Bonne chance !
-    </string>
+        Bonne chance !</string>
     <string name="end_parchment">
         Toute personne en possession de cette carte est destinée à réaliser une aventure périlleuse…
         \nLes missions qui vous attendent ne sont pas sans danger…
     </string>
-    <string name="end_parchment2">
-        Vous sentirez-vous capable de les accomplir ?\n\n
-        Professeur Z
-    </string>
+    <string name="end_parchment2">Vous sentirez-vous capable de les accomplir ?\n\nProfesseur Z</string>
+    <string name="penalty_key">Pénalité\n
+        Bien tenté… Mais la clé rouillée s\'est cassée dans la serrure…</string>
+    <string name="penalty_game">Pénalité\nCe n\'est pas le bon code…</string>
+    <string name="returnToHome">Quitter</string>
+    <string name="score">Score</string>
+    <string name="penalty">Pénalité(s) : %1$s</string>
+    <string name="hint">Indice(s) : %1$s</string>
+    <string name="time">Temps : </string>
+    <string name="no_hint">Pas d\'indice disponible</string>
+    <string name="captain_chest_hint">Le message du Capitaine présent dans votre inventaire devrait vous aider à ouvrir ce coffre</string>
+    <string name="end_game_hint">Consultez la carte du Capitaine, elle pourrait vous être utile…</string>
+    <string name="home">Accueil</string>
+    <string name="computerOn">Allumer</string>
+    <string name="treasure_chest">Coffre au trésor</string>
+    <string name="inventory">Inventaire</string>
+    <string name="item_image">Objet dans un emplacement</string>
+    <string name="parchment_image">Parchemin avec un intriguant message</string>
+    <string name="parchment_image_score">Parchemin avec le score de la partie</string>
+    <string name="arrow_image">Flèche qui permet de passer à la page suivante</string>
+    <string name="inventory_bag_image">Sacoche d\'inventaire</string>
+    <string name="key_image">Clé</string>
+    <string name="start_button">C\'est parti !</string>
+    <string name="close">Fermer</string>
+    <string name="clue_icon">Indice</string>
+    <string name="settings_icon">Paramètres</string>
 </resources>
+

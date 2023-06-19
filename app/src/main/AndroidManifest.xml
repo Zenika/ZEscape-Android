@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZEscape"
         tools:targetApi="31">
+        <service
+            android:name=".data.timer.TimerService"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -28,5 +31,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

@@ -16,15 +16,28 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun InventoryBag(
     modifier: Modifier,
-    openInventory: () -> Unit
+    newItem: Boolean,
+    openInventory: () -> Unit,
+    removeNewItemBadge: () -> Unit
 ) {
+    val imageRes = if (newItem) {
+        R.mipmap.inventory_with_badge
+    } else {
+        R.mipmap.inventory
+    }
+
     Image(
-        painter = painterResource(R.mipmap.inventory),
-        contentDescription = stringResource(R.string.inventory_bag),
+        painter = painterResource(
+            id = imageRes
+        ),
+        contentDescription = stringResource(id = R.string.inventory_bag_image),
         contentScale = ContentScale.Fit,
         modifier = modifier
             .padding(screenPadding)
-            .clickable { openInventory() },
+            .clickable {
+                openInventory()
+                removeNewItemBadge()
+            },
     )
 }
 
@@ -34,7 +47,22 @@ fun InventoryBagPreview() {
     ZEscapeThemePreview {
         InventoryBag(
             modifier = Modifier,
-            openInventory = {}
+            newItem = false,
+            openInventory = {},
+            removeNewItemBadge = {}
+        )
+    }
+}
+
+@ComposablePreview
+@Composable
+fun InventoryBagWithBadgePreview() {
+    ZEscapeThemePreview {
+        InventoryBag(
+            modifier = Modifier,
+            newItem = true,
+            openInventory = {},
+            removeNewItemBadge = {}
         )
     }
 }

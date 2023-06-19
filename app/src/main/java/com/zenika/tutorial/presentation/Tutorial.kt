@@ -8,23 +8,31 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.composable
+import com.zenika.qrcode_scan.QrCodeScanScreen
 import com.zenika.tutorial.presentation.color_buttons_order_game.ColorButtonsOrderGameRoute
+import com.zenika.tutorial.presentation.hint.HintRoute
+import com.zenika.tutorial.presentation.home.HomeScreen
 import com.zenika.tutorial.presentation.instruction.InstructionRoute
 import com.zenika.tutorial.presentation.inventory.InventoryRoute
 import com.zenika.tutorial.presentation.item.ItemRoute
 import com.zenika.tutorial.presentation.main.MainRoute
 import com.zenika.tutorial.presentation.parchment.end_parchment.EndParchmentRoute
 import com.zenika.tutorial.presentation.parchment.welcome_parchment.WelcomeParchmentRoute
+import com.zenika.tutorial.presentation.penalty.PenaltyRoute
+import com.zenika.tutorial.presentation.score.ScoreRoute
 
-private const val ROUTE_END_PARCHMENT = "endParchmentRoute"
-private const val ROUTE_INSTRUCTION = "instructionRoute"
-private const val ROUTE_INVENTORY = "inventoryRoute"
-private const val ROUTE_INTRO = "intro"
-private const val ROUTE_MAIN = "mainRoute"
-private const val ROUTE_MINI_GAME = "miniGameRoute"
-private const val ROUTE_WELCOME_PARCHMENT = "welcomeParchmentRoute"
-
-private const val ROUTE_PATTERN_ITEM = "itemRoute/{item}"
+private const val ROUTE_HOME = "homeScreenTutorial"
+private const val ROUTE_QRCODE_SCAN = "qrCodeScanTutorial"
+private const val ROUTE_END_PARCHMENT = "endParchmentRouteTutorial"
+private const val ROUTE_INSTRUCTION = "instructionRouteTutorial"
+private const val ROUTE_INVENTORY = "inventoryRouteTutorial"
+private const val ROUTE_INTRO = "introTutorial"
+private const val ROUTE_MAIN = "mainRouteTutorial"
+private const val ROUTE_MINI_GAME = "miniGameRouteTutorial"
+private const val ROUTE_SCORE = "scoreRouteTutorial"
+private const val ROUTE_HINT = "hintRouteTutorial"
+private const val ROUTE_PATTERN_ITEM = "itemRouteTutorial/{item}"
+private const val ROUTE_PATTERN_PENALTY = "penaltyRouteTutorial/{penalty}"
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.tutorialNavigation(
@@ -33,15 +41,23 @@ fun NavGraphBuilder.tutorialNavigation(
 ) {
     navigation(
         route = route,
-        startDestination = ROUTE_INTRO
+        startDestination = ROUTE_HOME
     ) {
+        composable(ROUTE_HOME) {
+            HomeScreen(
+                goToScan = { navController.navigate(ROUTE_QRCODE_SCAN) }
+            )
+        }
+        composable(ROUTE_QRCODE_SCAN) {
+            QrCodeScanScreen(
+                goToTutorial = { navController.navigate(ROUTE_INTRO) }
+            )
+        }
         composable(ROUTE_INTRO) {
             WelcomeParchmentRoute(
                 openInstruction = {
                     navController.popBackStack()
-                    navController.navigate(ROUTE_MAIN) {
-                        popUpTo(ROUTE_INTRO) { inclusive = true }
-                    }
+                    navController.navigate(ROUTE_MAIN)
                     navController.navigate(ROUTE_INSTRUCTION)
                 }
             )
@@ -60,11 +76,29 @@ fun NavGraphBuilder.tutorialNavigation(
                 },
                 openInventory = {
                     navController.navigate(ROUTE_INVENTORY)
+                },
+                showClue = {
+                    navController.navigate(ROUTE_HINT)
                 }
             )
         }
         dialog(ROUTE_MINI_GAME) {
             ColorButtonsOrderGameRoute(
+                onDismissRequest = {
+                    navController.popBackStack()
+                },
+                openPenalty = { game ->
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            game
+                        )
+                    )
+                }
+            )
+        }
+        dialog(ROUTE_HINT) {
+            HintRoute(
                 onDismissRequest = {
                     navController.popBackStack()
                 }
@@ -76,14 +110,12 @@ fun NavGraphBuilder.tutorialNavigation(
                     navController.popBackStack()
                 },
                 showItem = { item ->
-                    navController.navigate(ROUTE_PATTERN_ITEM.replace("{item}", item.toString()))
-                }
-            )
-        }
-        composable(ROUTE_WELCOME_PARCHMENT) {
-            WelcomeParchmentRoute(
-                openInstruction = {
-                    navController.popBackStack(route = ROUTE_MAIN, inclusive = false)
+                    navController.navigate(
+                        ROUTE_PATTERN_ITEM.replace(
+                            "{item}",
+                            item.toString()
+                        )
+                    )
                 }
             )
         }
@@ -97,21 +129,50 @@ fun NavGraphBuilder.tutorialNavigation(
                 onDismissRequest = {
                     navController.popBackStack()
                 },
-                openWelcomeParchment = {
-                    navController.navigate(ROUTE_WELCOME_PARCHMENT)
-                },
                 openEndParchment = {
                     navController.navigate(ROUTE_END_PARCHMENT)
+                },
+                openPenalty = { item ->
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            item
+                        )
+                    )
                 }
             )
         }
         composable(ROUTE_END_PARCHMENT) {
             EndParchmentRoute(
-                finishGame = {
-                    navController.popBackStack()
+                goToScore = {
+                    navController.navigate(ROUTE_SCORE)
+                }
+            )
+        }
+        dialog(
+            ROUTE_PATTERN_PENALTY,
+            arguments = listOf(navArgument("penalty") {
+                type = NavType.StringType
+            })
+        ) {
+            PenaltyRoute(
+                onDismissRequest = {
+                    navController.popBackStack(
+                        route = ROUTE_MAIN,
+                        inclusive = false
+                    )
+                }
+            )
+        }
+        composable(ROUTE_SCORE) {
+            ScoreRoute(
+                goToHome = {
+                    navController.popBackStack(
+                        route = ROUTE_HOME,
+                        inclusive = false
+                    )
                 }
             )
         }
     }
 }
-
