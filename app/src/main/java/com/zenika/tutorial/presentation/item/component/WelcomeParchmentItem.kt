@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -21,7 +22,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -30,9 +34,11 @@ import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.mapPadding
+import com.zenika.ui.theme.screenPadding
 import com.zenika.ui.theme.topMapPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -46,79 +52,92 @@ fun WelcomeParchmentItem(
     val text = listOf(
         R.string.welcome_parchment, R.string.welcome_parchment2, R.string.welcome_parchment3
     )
-    HorizontalPager(
-        pageCount = text.size,
-        state = pagerState
-    ) { page ->
-        Image(
-            painter = painterResource(
-                id = R.mipmap.parchment
-            ),
-            contentDescription = stringResource(id = R.string.parchment_image),
-            contentScale = ContentScale.Fit,
-            modifier = Modifier
-                .fillMaxSize()
-        )
-        Box(
-            Modifier
-                .fillMaxSize()
-                .padding(top = topMapPadding),
-            contentAlignment = Alignment.TopCenter
-        ) {
-            IconButton(onClick = onDismissRequest) {
-                Icon(
-                    imageVector = Icons.Filled.Close,
-                    contentDescription = stringResource(R.string.close),
-                    modifier = Modifier
-                        .fillMaxSize()
-                )
-            }
+    Box(Modifier.fillMaxSize()) {
+        HorizontalPager(
+            pageCount = text.size,
+            state = pagerState,
+            modifier = Modifier.fillMaxSize()
+        ) { page ->
+            PageContent(page, text, coroutineScope, pagerState)
         }
-        Column(
-            modifier = Modifier,
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+
+        IconButton(
+            onClick = onDismissRequest,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(screenPadding)
         ) {
-            if (page <= 1) {
-                Text(
-                    text = stringResource(id = text[page]),
-                    modifier = Modifier.padding(
-                        top = topMapPadding,
-                        start = mapPadding,
-                        end = mapPadding
-                    ),
-                    textAlign = TextAlign.Center,
-                    color = Color.Black,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-                Image(
-                    painter = painterResource(
-                        id = R.mipmap.arrow
-                    ),
-                    contentDescription = stringResource(id = R.string.arrow_image),
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier
-                        .size(50.dp)
-                        .clickable {
-                            coroutineScope.launch {
-                                pagerState.scrollToPage(page + 1)
-                            }
+            Icon(
+                imageVector = Icons.Filled.Close,
+                tint = Color.LightGray,
+                contentDescription = stringResource(R.string.close),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .drawBehind {
+                        drawCircle(Color.LightGray, style = Stroke(6f))
+                    }
+            )
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun PageContent(
+    page: Int,
+    text: List<Int>,
+    coroutineScope: CoroutineScope,
+    pagerState: PagerState
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .paint(
+                painterResource(R.mipmap.parchment),
+                contentScale = ContentScale.Fit
+            ),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        if (page <= 1) {
+            Text(
+                text = stringResource(id = text[page]),
+                modifier = Modifier.padding(
+                    top = topMapPadding,
+                    start = mapPadding,
+                    end = mapPadding
+                ),
+                textAlign = TextAlign.Center,
+                color = Color.Black,
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Image(
+                painter = painterResource(
+                    id = R.mipmap.arrow
+                ),
+                contentDescription = stringResource(id = R.string.arrow_image),
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(50.dp)
+                    .clickable {
+                        coroutineScope.launch {
+                            pagerState.animateScrollToPage(page + 1)
                         }
-                )
-            } else {
-                Text(
-                    text = stringResource(id = text[page]),
-                    modifier = Modifier.padding(
-                        top = mapPadding,
-                        start = mapPadding,
-                        end = mapPadding,
-                        bottom = buttonPadding
-                    ),
-                    textAlign = TextAlign.Center,
-                    color = Color.Black,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-            }
+                    }
+            )
+        } else {
+            Text(
+                text = stringResource(id = text[page]),
+                modifier = Modifier.padding(
+                    top = mapPadding,
+                    start = mapPadding,
+                    end = mapPadding,
+                    bottom = buttonPadding
+                ),
+                textAlign = TextAlign.Center,
+                color = Color.Black,
+                style = MaterialTheme.typography.bodyMedium
+            )
         }
     }
 }

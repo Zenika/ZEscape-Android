@@ -96,7 +96,7 @@ fun WelcomeParchment(
                             .size(70.dp)
                             .clickable {
                                 coroutineScope.launch {
-                                    pagerState.scrollToPage(page + 1)
+                                    pagerState.animateScrollToPage(page + 1)
                                 }
                             }
                     )

@@ -101,7 +101,7 @@ fun EndParchment(
                             .size(70.dp)
                             .clickable {
                                 coroutineScope.launch {
-                                    pagerState.scrollToPage(1)
+                                    pagerState.animateScrollToPage(1)
                                 }
                             }
                     )
