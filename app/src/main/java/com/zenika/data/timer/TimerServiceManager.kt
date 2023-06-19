@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import com.zenika.data.state.GameState
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,17 +15,14 @@ import javax.inject.Singleton
 @Singleton
 class TimerServiceManager @Inject constructor(
     @ApplicationContext
-    private val context: Context,
-    gameState: GameState
+    private val context: Context
 ) {
-    private val _remaining = MutableStateFlow(-1)
-    val remaining = _remaining.asStateFlow()
-
-    private val penalty = gameState.penaltyCount
+    private val _elapsed = MutableStateFlow(-1)
+    val elapsed = _elapsed.asStateFlow()
 
     private val timerReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            _remaining.update { intent.getIntExtra(PARAM_REMAINING, -2) - (60000 * penalty.value) }
+            _elapsed.update { intent.getIntExtra(PARAM_ELAPSED, -2) }
         }
     }
 

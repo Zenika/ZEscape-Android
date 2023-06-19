@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
-import com.zenika.tutorial.domain.StatisticsUIState
+import com.zenika.tutorial.domain.Statistics
 import com.zenika.tutorial.presentation.component.Parchment
 import com.zenika.tutorial.presentation.component.Timer
 import com.zenika.ui.theme.textListSpacing
@@ -23,7 +23,7 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun Score(
     goToHome: () -> Unit,
-    statistics: StatisticsUIState
+    statistics: Statistics
 ) {
     Parchment {
         Column(
@@ -41,7 +41,7 @@ fun Score(
                     text = stringResource(R.string.time)
                 )
                 Timer(
-                    statistics.finalTimer,
+                    statistics.elapsedTime,
                     Modifier.padding(4.dp)
                 )
             }
@@ -69,10 +69,10 @@ fun ScorePreview() {
     ZEscapeThemePreview {
         Score(
             goToHome = {},
-            statistics = StatisticsUIState(
+            statistics = Statistics(
                 penalty = 0,
                 hint = 0,
-                finalTimer = 3600000
+                elapsedTime = 3600000
             )
         )
     }

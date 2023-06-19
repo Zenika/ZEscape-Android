@@ -1,5 +1,6 @@
 package com.zenika.tutorial.presentation.main
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -15,6 +16,10 @@ fun MainRoute(
     viewModel: MainViewModel = hiltViewModel()
 ) {
     val gameUIState by viewModel.state.collectAsState()
+
+    BackHandler {
+        // Player cannot leave the tutorial while it is running.
+    }
 
     MainScreen(
         Modifier.fillMaxSize(),
