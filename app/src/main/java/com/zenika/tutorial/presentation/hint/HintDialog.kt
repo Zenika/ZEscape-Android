@@ -28,7 +28,7 @@ fun HintDialog(
 
 @ScreenPreview
 @Composable
-fun ClueDialogPreview() {
+fun HintDialogPreview() {
     ZEscapeThemePreview {
         HintDialog(
             hint = TutorialHint.NO_HINT,
