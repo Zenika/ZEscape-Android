@@ -21,7 +21,7 @@ fun InventoryBag(
     removeNewItemBadge: () -> Unit
 ) {
     val imageRes = if (newItem) {
-        R.mipmap.newitem
+        R.mipmap.inventory_with_badge
     } else {
         R.mipmap.inventory
     }
@@ -44,6 +44,19 @@ fun InventoryBag(
 @ComposablePreview
 @Composable
 fun InventoryBagPreview() {
+    ZEscapeThemePreview {
+        InventoryBag(
+            modifier = Modifier,
+            newItem = false,
+            openInventory = {},
+            removeNewItemBadge = {}
+        )
+    }
+}
+
+@ComposablePreview
+@Composable
+fun InventoryBagWithBadgePreview() {
     ZEscapeThemePreview {
         InventoryBag(
             modifier = Modifier,
