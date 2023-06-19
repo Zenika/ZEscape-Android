@@ -1,7 +1,5 @@
 package com.zenika.tutorial.presentation.inventory
 
-import androidx.compose.foundation.background
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -17,11 +15,7 @@ fun InventoryRoute(
     val items by viewModel.inventoryItems.collectAsStateWithLifecycle()
 
     InventoryDialog(
-        Modifier
-            .background(
-                MaterialTheme.colorScheme.primaryContainer,
-                MaterialTheme.shapes.extraLarge
-            ),
+        Modifier,
         items,
         showItem,
         onDismissRequest
