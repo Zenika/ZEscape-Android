@@ -37,13 +37,14 @@ import com.zenika.utils.ZEscapeThemePreview
 fun MainScreen(
     modifier: Modifier,
     mainUiState: MainUiState,
+    goToSettings: () -> Unit,
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
-    showClue: () -> Unit,
+    showHint: () -> Unit,
     collectKey: () -> Unit,
     collectMap: () -> Unit,
     removeNewItemBadge: () -> Unit,
-    incrementClueCount: () -> Unit
+    incrementHintCount: () -> Unit
 ) {
     Scaffold(modifier = modifier,
         topBar = {
@@ -56,14 +57,16 @@ fun MainScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = {
-                        showClue()
-                        incrementClueCount()
+                        showHint()
+                        incrementHintCount()
                     }) {
                         Icon(Icons.Filled.Search, stringResource(R.string.clue_icon))
                     }
                 },
                 actions = {
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = {
+                        goToSettings()
+                    }) {
                         Icon(Icons.Filled.Settings, stringResource(R.string.settings_icon))
                     }
                 },
@@ -126,13 +129,14 @@ fun TutorialScreenPreview() {
                 newItem = false,
                 remainingTime = 60
             ),
+            goToSettings = {},
             openMiniGame = {},
             openInventory = {},
-            showClue = {},
+            showHint = {},
             collectKey = {},
             collectMap = {},
             removeNewItemBadge = {},
-            incrementClueCount = {}
+            incrementHintCount = {}
         )
     }
 }
