@@ -6,7 +6,6 @@ import com.zenika.R
 import com.zenika.data.repository.ItemRepository
 import com.zenika.tutorial.domain.ObserveRemainingTimeUseCase
 import com.zenika.tutorial.domain.ObserveTutorialStateUseCase
-import com.zenika.tutorial.domain.StartTutorialGameUseCase
 import com.zenika.tutorial.domain.UpdateGameStateUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,7 +18,6 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val itemRepository: ItemRepository,
-    private val startGame: StartTutorialGameUseCase,
     private val updateGameState: UpdateGameStateUseCase,
     observeTutorialState: ObserveTutorialStateUseCase,
     observeRemainingTime: ObserveRemainingTimeUseCase
@@ -47,12 +45,6 @@ class MainViewModel @Inject constructor(
             )
         )
 
-    init {
-        viewModelScope.launch {
-            startGame()
-        }
-    }
-
     fun collectKey() {
         viewModelScope.launch {
             itemRepository.addItem("key", R.mipmap.key)
@@ -71,7 +63,7 @@ class MainViewModel @Inject constructor(
         updateGameState.removeNewItemBadge()
     }
 
-    fun incrementClueCount() {
+    fun incrementHintCount() {
         updateGameState.incrementHintCount()
     }
 }
