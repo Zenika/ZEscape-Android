@@ -37,7 +37,7 @@
     <string name="score">Score</string>
     <string name="penalty">Pénalité(s) : %1$s</string>
     <string name="hint">Indice(s) : %1$s</string>
-    <string name="time">Temps : </string>
+    <string name="time">Temps : %1$s</string>
     <string name="no_hint">Pas d\'indice disponible</string>
     <string name="captain_chest_hint">Le message du Capitaine présent dans votre inventaire devrait vous aider à ouvrir ce coffre</string>
     <string name="end_game_hint">Consultez la carte du Capitaine, elle pourrait vous être utile…</string>
@@ -61,9 +61,12 @@
     <string name="instruction_adventure">Oh non… Il semblerait que vous ayez atterri dans un mystérieux endroit…
         Il est possible qu\'un bug informatique vous ait amené(e) dans une dimension parallèle.\n
         Menez l\'enquête et essayez d\'en sortir le plus rapidement possible</string>
+    <string name="world_map">Carte du monde</string>
+    <string name="add_agency">Ajouter une agence</string>
+    <string name="portal_message">Ce portail est sûrement notre porte de sortie… Malheureusement, il est verrouillé…</string>
     <string name="computer_image">Ordinateur portable sur un bureau avec un post-it où il est écrit de scanner un QR Code</string>
     <string name="home_text">Entrez dans une nouvelle aventure immersive, et laissez-vous guider dans une enquête surprenante…\n
                         Jouez en solo ou en coopération depuis un seul téléphone
     </string>
+    <string name="scan">Scan</string>
 </resources>
-
