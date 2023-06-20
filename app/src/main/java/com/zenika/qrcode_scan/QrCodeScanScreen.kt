@@ -44,9 +44,10 @@ import com.zenika.utils.ZEscapeThemePreview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QrCodeScanScreen(
-    backToHome: () -> Unit,
+    backToPreviousScreen: () -> Unit,
     goToNextScreen: () -> Unit
-) {    val context = LocalContext.current
+) {
+    val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
 
     var code by remember {
@@ -84,7 +85,7 @@ fun QrCodeScanScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = backToHome) {
+                    IconButton(onClick = backToPreviousScreen) {
                         Icon(Icons.Filled.ArrowBack, "backIcon")
                     }
                 },
@@ -150,7 +151,7 @@ fun QrCodeScanScreen(
 fun QrCodeScanScreenPreview() {
     ZEscapeThemePreview {
         QrCodeScanScreen(
-            backToHome = {},
+            backToPreviousScreen = {},
             goToNextScreen = {}
         )
     }

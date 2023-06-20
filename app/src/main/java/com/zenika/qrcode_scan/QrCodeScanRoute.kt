@@ -6,11 +6,11 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun QrCodeScanRoute(
-    backToHome: () -> Unit,
+    backToPreviousScreen: () -> Unit,
     goToNextScreen: () -> Unit
 ) {
     QrCodeScanScreen(
-        backToHome,
+        backToPreviousScreen,
         goToNextScreen
     )
 }
@@ -20,7 +20,7 @@ fun QrCodeScanRoute(
 fun QrCodeScanRoutePreview() {
     ZEscapeThemePreview {
         QrCodeScanRoute(
-            backToHome = {},
+            backToPreviousScreen = {},
             goToNextScreen = {}
         )
     }
