@@ -69,4 +69,7 @@
                         Jouez en solo ou en coopération depuis un seul téléphone
     </string>
     <string name="scan">Scan</string>
+    <string name="close_treasure_chest">Coffre au trésor fermé</string>
+    <string name="open_map_treasure_chest">Coffre au trésor ouvert avec une carte</string>
+    <string name="open_treasure_chest">Coffre au trésor ouvert</string>
 </resources>
