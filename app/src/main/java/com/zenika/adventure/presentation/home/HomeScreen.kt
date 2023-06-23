@@ -20,12 +20,10 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.paint
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.zenika.R
+import com.zenika.ui.theme.adventureBodyMedium
 import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
@@ -59,7 +57,8 @@ fun HomeScreen(
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         }
@@ -67,12 +66,7 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .paint(
-                    painterResource(id = R.mipmap.background1),
-                    contentScale = ContentScale.FillHeight,
-                    alpha = 0.4F
-                ),
+                .padding(paddingValues),
             verticalArrangement = Arrangement.spacedBy(
                 buttonPadding,
                 alignment = Alignment.CenterVertically
@@ -83,7 +77,7 @@ fun HomeScreen(
                 text = stringResource(id = R.string.adventure_home_text),
                 modifier = Modifier.padding(screenPadding),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyLarge
+                style = adventureBodyMedium
             )
             Button(onClick = goToAdventure) {
                 Text(

@@ -28,6 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.zenika.R
 import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.screenPadding
+import com.zenika.ui.theme.tutorialBodyLarge
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -59,7 +60,8 @@ fun HomeScreen(
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         }
@@ -83,7 +85,7 @@ fun HomeScreen(
                 text = stringResource(id = R.string.tutorial_home_text),
                 modifier = Modifier.padding(screenPadding),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyLarge
+                style = tutorialBodyLarge
             )
             Button(onClick = goToScan) {
                 Text(

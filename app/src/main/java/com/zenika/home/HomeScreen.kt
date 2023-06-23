@@ -64,7 +64,7 @@ fun HomeScreen(
                 text = stringResource(id = R.string.home_text),
                 modifier = Modifier.padding(screenPadding),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.headlineMedium
             )
             Button(onClick = {
                 goToTutorial()
@@ -72,7 +72,7 @@ fun HomeScreen(
             }) {
                 Text(
                     text = stringResource(R.string.tutorial),
-                    style = MaterialTheme.typography.headlineLarge
+                    style = MaterialTheme.typography.headlineMedium
                 )
             }
             Button(onClick = {

@@ -28,13 +28,14 @@ import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.mapPadding
+import com.zenika.ui.theme.tutorialBodyMedium
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun EndParchment(
+fun EndParchmentScreen(
     goToScore: () -> Unit
 ) {
     val pagerState = rememberPagerState()
@@ -80,7 +81,7 @@ fun EndParchment(
                     ),
                     textAlign = TextAlign.Center,
                     color = Color.Black,
-                    style = MaterialTheme.typography.bodyLarge
+                    style = tutorialBodyMedium
                 )
                 if (page == text.size - 1) {
                     Button(
@@ -115,7 +116,7 @@ fun EndParchment(
 @Composable
 fun EndParchmentPreview() {
     ZEscapeThemePreview {
-        EndParchment(
+        EndParchmentScreen(
             goToScore = {}
         )
     }
