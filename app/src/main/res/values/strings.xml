@@ -37,7 +37,7 @@
     <string name="score">Score</string>
     <string name="penalty">Pénalité(s) : %1$s</string>
     <string name="hint">Indice(s) : %1$s</string>
-    <string name="time">Temps : %1$s</string>
+    <string name="time">Temps : </string>
     <string name="no_hint">Pas d\'indice disponible</string>
     <string name="captain_chest_hint">Le message du Capitaine présent dans votre inventaire devrait vous aider à ouvrir ce coffre</string>
     <string name="end_game_hint">Consultez la carte du Capitaine, elle pourrait vous être utile…</string>
@@ -72,4 +72,8 @@
     <string name="close_treasure_chest">Coffre au trésor fermé</string>
     <string name="open_map_treasure_chest">Coffre au trésor ouvert avec une carte</string>
     <string name="open_treasure_chest">Coffre au trésor ouvert</string>
+    <string name="agency_validation">Voulez-vous ajouter l\'agence de %1$s à la carte ?</string>
+    <string name="agency_add">Ajout d\'une agence</string>
+    <string name="cancel">Annuler</string>
+    <string name="confirm">Confirmer</string>
 </resources>

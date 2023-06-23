@@ -121,6 +121,9 @@ fun NavGraphBuilder.adventureNavigation(
             AgencyValidationRoute(
                 onDismissRequest = {
                     navController.popBackStack()
+                },
+                goBackToWorldMap = {
+                    navController.navigate(ROUTE_WORLD_MAP)
                 }
             )
         }
