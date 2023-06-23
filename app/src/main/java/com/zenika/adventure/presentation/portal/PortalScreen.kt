@@ -14,7 +14,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -23,11 +22,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.adventure.presentation.component.ContinentsMap
 import com.zenika.adventure.presentation.component.InventoryBag
+import com.zenika.adventure.presentation.component.Timer
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
@@ -40,24 +39,12 @@ fun PortalScreen(
     accessToPortal: () -> Unit,
     openWorldMap: () -> Unit
 ) {
-    val minutes = remainingTime / 60000
-    val seconds = remainingTime / 1000 % 60
-    val secondsString = if (seconds in 0..9) {
-        "0$seconds"
-    } else {
-        seconds.toString()
-    }
-
-    val timer = "$minutes:$secondsString"
-
     Scaffold(topBar = {
         TopAppBar(
             title = {
-                Text(
-                    text = timer,
-                    Modifier
-                        .fillMaxWidth(),
-                    textAlign = TextAlign.Center
+                Timer(
+                    remainingTime,
+                    Modifier.fillMaxWidth()
                 )
             },
             navigationIcon = {
@@ -101,7 +88,7 @@ fun PortalScreen(
                 modifier = Modifier
                     .size(100.dp)
                     .align(Alignment.BottomEnd)
-                    .clickable { openWorldMap() }
+                    .clickable { }
                     .padding(screenPadding)
             )
         }
