@@ -6,5 +6,5 @@ import androidx.compose.runtime.Composable
 fun WelcomeParchmentRoute(
     openInstruction: () -> Unit
 ) {
-    WelcomeParchment(openInstruction)
+    WelcomeParchmentScreen(openInstruction)
 }

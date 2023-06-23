@@ -21,7 +21,7 @@ import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun Score(
+fun ScoreScreen(
     goToHome: () -> Unit,
     statistics: Statistics
 ) {
@@ -42,7 +42,7 @@ fun Score(
                 )
                 Timer(
                     statistics.elapsedTime,
-                    Modifier.padding(4.dp)
+                    Modifier.padding(start = 4.dp)
                 )
             }
             Text(
@@ -67,7 +67,7 @@ fun Score(
 @Composable
 fun ScorePreview() {
     ZEscapeThemePreview {
-        Score(
+        ScoreScreen(
             goToHome = {},
             statistics = Statistics(
                 penalty = 0,

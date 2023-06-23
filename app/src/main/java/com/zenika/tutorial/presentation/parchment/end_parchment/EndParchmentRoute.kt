@@ -6,5 +6,5 @@ import androidx.compose.runtime.Composable
 fun EndParchmentRoute(
     goToScore: () -> Unit
 ) {
-    EndParchment(goToScore)
+    EndParchmentScreen(goToScore)
 }

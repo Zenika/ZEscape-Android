@@ -30,13 +30,14 @@ import com.zenika.R
 import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.mapPadding
 import com.zenika.ui.theme.topMapPadding
+import com.zenika.ui.theme.tutorialBodyMedium
 import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun WelcomeParchment(
+fun WelcomeParchmentScreen(
     openInstruction: () -> Unit
 ) {
     val pagerState = rememberPagerState()
@@ -84,7 +85,7 @@ fun WelcomeParchment(
                         ),
                         textAlign = TextAlign.Center,
                         color = Color.Black,
-                        style = MaterialTheme.typography.bodyLarge
+                        style = tutorialBodyMedium
                     )
                     Image(
                         painter = painterResource(
@@ -111,7 +112,7 @@ fun WelcomeParchment(
                         ),
                         textAlign = TextAlign.Center,
                         color = Color.Black,
-                        style = MaterialTheme.typography.bodyLarge
+                        style = tutorialBodyMedium
                     )
                     Button(onClick = openInstruction) {
                         Text(
@@ -129,7 +130,7 @@ fun WelcomeParchment(
 @Composable
 fun WelcomeParchmentPreview() {
     ZEscapeThemePreview {
-        WelcomeParchment(
+        WelcomeParchmentScreen(
             openInstruction = {}
         )
     }

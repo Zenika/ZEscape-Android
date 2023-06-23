@@ -14,7 +14,7 @@ class WelcomeParchmentTest {
     @Test
     fun clickFirstArrow_slideToNextPage() {
         composeRule.setContent {
-            WelcomeParchment(
+            WelcomeParchmentScreen(
                 openInstruction = {}
             )
         }

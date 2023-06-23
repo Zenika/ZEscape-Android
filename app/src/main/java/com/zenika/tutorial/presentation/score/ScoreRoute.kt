@@ -10,7 +10,7 @@ fun ScoreRoute(
 ) {
     val statistics = viewModel.statistics
 
-    Score(
+    ScoreScreen(
         goToHome,
         statistics
     )
