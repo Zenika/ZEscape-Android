@@ -76,4 +76,6 @@
     <string name="agency_add">Ajout d\'une agence</string>
     <string name="cancel">Annuler</string>
     <string name="confirm">Confirmer</string>
+    <string name="instruction_singapore">Vous voilà arrivé(e) devant l\'agence Zenika de Singapour. Malheureusement, la porte d\'entrée est fermée. Essayez de l\'ouvrir pour tenter de récupérer la clé à l\'intérieur.</string>
+    <string name="instruction_singapore_agency">Vous avez réussi à entrer dans l\'agence mais attention, elle semble sécurisée par un système de lasers. Tentez de les désactiver pour atteindre la clé</string>
 </resources>
