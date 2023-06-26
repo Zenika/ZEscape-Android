@@ -1,6 +1,5 @@
 package com.zenika.adventure.presentation.world_map
 
-import android.util.Log
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -29,6 +28,7 @@ import com.zenika.utils.ScreenPreview
 fun WorldMapDialog(
     onDismissRequest: () -> Unit,
     openTextRecognition: () -> Unit,
+    openOnOffGame: () -> Unit,
     agencies: Set<Agency>
 ) {
     Dialog(
@@ -49,19 +49,19 @@ fun WorldMapDialog(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(top = 12.dp, end = 20.dp)
-                            .clickable { Log.d("city", Agency.CASABLANCA.name) }
+                            .clickable(onClick = { })
                     ) {
-                        drawCircle(Color.Red, radius = 10.dp.toPx())
+                        drawCircle(Color.Red, radius = 16.dp.toPx())
                     }
                 }
                 if (agencies.contains(Agency.PARIS)) {
                     Canvas(
                         modifier = Modifier
                             .align(Alignment.Center)
-                            .padding(bottom = 40.dp)
-                            .clickable { Log.d("city", Agency.PARIS.name) }
+                            .padding(bottom = 60.dp)
+                            .clickable(onClick = { })
                     ) {
-                        drawCircle(Color.Red, radius = 10.dp.toPx())
+                        drawCircle(Color.Red, radius = 16.dp.toPx())
                     }
                 }
                 if (agencies.contains(Agency.SINGAPOUR)) {
@@ -69,9 +69,9 @@ fun WorldMapDialog(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(start = 160.dp, top = 20.dp)
-                            .clickable { Log.d("city", Agency.SINGAPOUR.name) }
+                            .clickable(onClick = openOnOffGame)
                     ) {
-                        drawCircle(Color.Red, radius = 10.dp.toPx())
+                        drawCircle(Color.Red, radius = 16.dp.toPx())
                     }
                 }
                 if (agencies.contains(Agency.MONTREAL)) {
@@ -79,9 +79,9 @@ fun WorldMapDialog(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(end = 160.dp, bottom = 80.dp)
-                            .clickable { Log.d("city", Agency.MONTREAL.name) }
+                            .clickable(onClick = { })
                     ) {
-                        drawCircle(Color.Red, radius = 10.dp.toPx())
+                        drawCircle(Color.Red, radius = 16.dp.toPx())
                     }
                 }
             }
@@ -100,7 +100,8 @@ fun WorldMapDialogPreview() {
         WorldMapDialog(
             onDismissRequest = {},
             openTextRecognition = {},
-            agencies = mutableSetOf(Agency.MONTREAL)
+            openOnOffGame = {},
+            agencies = mutableSetOf(Agency.MONTREAL, Agency.CASABLANCA, Agency.PARIS)
         )
     }
 }
