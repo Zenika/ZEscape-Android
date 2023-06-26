@@ -15,6 +15,10 @@ import com.zenika.adventure.presentation.home.HomeRoute
 import com.zenika.adventure.presentation.instruction.InstructionRoute
 import com.zenika.adventure.presentation.portal.PortalRoute
 import com.zenika.adventure.presentation.portal_message.PortalMessageRoute
+import com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyDialog
+import com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyRoute
+import com.zenika.adventure.presentation.singapore.instruction.InstructionSingaporeRoute
+import com.zenika.adventure.presentation.singapore.on_off_game.OnOffRoute
 import com.zenika.adventure.presentation.world_map.WorldMapRoute
 import com.zenika.qrcode_scan.QrCodeScanRoute
 import com.zenika.settings.SettingsRoute
@@ -29,6 +33,11 @@ private const val ROUTE_SETTINGS_ADVENTURE = "settingsRouteAdventure"
 private const val ROUTE_WORLD_MAP = "worldMapRouteAdventure"
 private const val ROUTE_AGENCY_RECOGNITION = "agencyRecognitionRouteAdventure"
 private const val ROUTE_PATTERN_AGENCY_VALIDATION = "agencyValidationRouteAdventure{agency}"
+private const val ROUTE_INSTRUCTION_SINGAPORE = "instructionSingaporeRouteAdventure"
+private const val ROUTE_ON_OFF_GAME = "onOffGameRouteAdventure"
+private const val ROUTE_AGENCY_SINGAPORE = "agencySingaporeRouteAdventure"
+private const val ROUTE_AGENCY_SINGAPORE_DIALOG = "agencySingaporeDialogRouteAdventure"
+private const val ROUTE_LASER_GAME = "laserGameRouteAdventure"
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.adventureNavigation(
@@ -94,6 +103,10 @@ fun NavGraphBuilder.adventureNavigation(
                 },
                 openTextRecognition = {
                     navController.navigate(ROUTE_AGENCY_RECOGNITION)
+                },
+                openOnOffGame = {
+                    navController.navigate(ROUTE_ON_OFF_GAME)
+                    navController.navigate(ROUTE_INSTRUCTION_SINGAPORE)
                 }
             )
         }
@@ -126,6 +139,38 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.navigate(ROUTE_WORLD_MAP)
                 }
             )
+        }
+        dialog(ROUTE_INSTRUCTION_SINGAPORE) {
+            InstructionSingaporeRoute(
+                onDismissRequest = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(ROUTE_ON_OFF_GAME) {
+            OnOffRoute(
+                winGame = {
+                    navController.navigate(ROUTE_AGENCY_SINGAPORE)
+                    navController.navigate(ROUTE_AGENCY_SINGAPORE_DIALOG)
+                },
+                goToSettings = { navController.navigate(ROUTE_SETTINGS_ADVENTURE) }
+            )
+        }
+        composable(ROUTE_AGENCY_SINGAPORE) {
+            SingaporeAgencyRoute(
+                goToSettings = { navController.navigate(ROUTE_SETTINGS_ADVENTURE) },
+                openLaserGame = { navController.navigate(ROUTE_LASER_GAME) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) }
+            )
+        }
+        dialog(ROUTE_AGENCY_SINGAPORE_DIALOG) {
+            SingaporeAgencyDialog(
+                onDismissRequest = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(ROUTE_LASER_GAME) {
         }
     }
 }
