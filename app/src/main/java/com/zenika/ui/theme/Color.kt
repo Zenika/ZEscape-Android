@@ -14,3 +14,6 @@ val BlueSymbol = Color(0xFF2196F3)
 val GreenSymbol = Color(0xFF4CAF50)
 val RedSymbol = Color(0xFFF44336)
 val PurpleSymbol = Color(0xFF9727B0)
+
+val FalseButton = Color(0xFFCC3E34)
+val TrueButton = Color(0xFF78B432)
