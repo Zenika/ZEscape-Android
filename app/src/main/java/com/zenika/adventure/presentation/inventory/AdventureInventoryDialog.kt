@@ -1,8 +1,5 @@
 package com.zenika.adventure.presentation.inventory
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,14 +14,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
 import com.zenika.R
+import com.zenika.adventure.presentation.component.AdventureDialog
 import com.zenika.adventure.presentation.inventory.component.AdventureInventoryBox
 import com.zenika.data.model.ItemDto
 import com.zenika.data.state.InventoryState
 import com.zenika.ui.theme.dialogPadding
-import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -35,9 +30,8 @@ fun AdventureInventoryDialog(
     showItem: (Int) -> Unit,
     onDismissRequest: () -> Unit
 ) {
-    Dialog(
-        onDismissRequest = onDismissRequest,
-        properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
+    AdventureDialog(
+        onDismissRequest = onDismissRequest
     ) {
         Box(
             modifier = Modifier
