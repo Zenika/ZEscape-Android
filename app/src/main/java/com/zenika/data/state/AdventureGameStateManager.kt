@@ -24,4 +24,28 @@ class AdventureGameStateManager @Inject constructor() {
             )
         }
     }
+
+    fun collectSingaporeKey() {
+        _state.update {
+            it.copy(
+                collectSingaporeKey = true
+            )
+        }
+    }
+
+    fun collectHook() {
+        _state.update {
+            it.copy(
+                collectHook = true
+            )
+        }
+    }
+
+    fun collectSword() {
+        _state.update {
+            it.copy(
+                collectSword = true
+            )
+        }
+    }
 }
