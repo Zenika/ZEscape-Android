@@ -99,9 +99,7 @@ fun NavGraphBuilder.adventureNavigation(
         }
         dialog(ROUTE_INVENTORY) {
             AdventureInventoryRoute(
-                onDismissRequest = {
-                    navController.popBackStack()
-                },
+                onDismissRequest = { navController.popBackStack() },
                 showItem = { item ->
                     navController.navigate(
                         ROUTE_PATTERN_ITEM.replace(
@@ -127,6 +125,10 @@ fun NavGraphBuilder.adventureNavigation(
                 onDismissRequest = { navController.popBackStack() },
                 openTextRecognition = { navController.navigate(ROUTE_AGENCY_RECOGNITION) },
                 goToSingaporeAgency = {
+                    navController.navigate(ROUTE_ON_OFF_GAME)
+                    navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
+                },
+                openOnOffGame = {
                     navController.navigate(ROUTE_ON_OFF_GAME)
                     navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
                 }
