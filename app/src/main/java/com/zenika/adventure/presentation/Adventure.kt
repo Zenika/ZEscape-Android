@@ -37,7 +37,6 @@ private const val ROUTE_INSTRUCTION_SINGAPORE = "instructionSingaporeRouteAdvent
 private const val ROUTE_ON_OFF_GAME = "onOffGameRouteAdventure"
 private const val ROUTE_AGENCY_SINGAPORE = "agencySingaporeRouteAdventure"
 private const val ROUTE_AGENCY_SINGAPORE_DIALOG = "agencySingaporeDialogRouteAdventure"
-private const val ROUTE_LASER_GAME = "laserGameRouteAdventure"
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.adventureNavigation(
@@ -159,7 +158,6 @@ fun NavGraphBuilder.adventureNavigation(
         composable(ROUTE_AGENCY_SINGAPORE) {
             SingaporeAgencyRoute(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS_ADVENTURE) },
-                openLaserGame = { navController.navigate(ROUTE_LASER_GAME) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) }
             )
         }
@@ -169,8 +167,6 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.popBackStack()
                 }
             )
-        }
-        composable(ROUTE_LASER_GAME) {
         }
     }
 }
