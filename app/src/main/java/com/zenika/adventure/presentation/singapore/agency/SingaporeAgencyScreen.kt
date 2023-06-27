@@ -21,6 +21,8 @@ import com.zenika.adventure.presentation.component.ScaffoldScreen
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.size
 
 @Composable
 fun SingaporeAgencyScreen(
