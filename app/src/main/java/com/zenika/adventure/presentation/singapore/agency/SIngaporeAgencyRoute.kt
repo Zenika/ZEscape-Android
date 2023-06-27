@@ -9,6 +9,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun SingaporeAgencyRoute(
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
+    openInventory: () -> Unit,
     viewModel: SingaporeAgencyViewModel = hiltViewModel(),
 ) {
     val remainingTime by viewModel.remainingTime.collectAsState()
@@ -16,7 +17,8 @@ fun SingaporeAgencyRoute(
     SingaporeAgencyScreen(
         remainingTime,
         goToSettings,
-        openWorldMap
+        openWorldMap,
+        openInventory
     )
 }
 

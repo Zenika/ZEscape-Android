@@ -10,6 +10,7 @@ fun PortalRoute(
     goToSettings: () -> Unit,
     accessToPortal: () -> Unit,
     openWorldMap: () -> Unit,
+    openInventory: () -> Unit,
     viewModel: PortalViewModel = hiltViewModel(),
 ) {
     val remainingTime by viewModel.remainingTime.collectAsState()
@@ -18,7 +19,8 @@ fun PortalRoute(
         remainingTime,
         goToSettings,
         accessToPortal,
-        openWorldMap
+        openWorldMap,
+        openInventory
     )
 }
 

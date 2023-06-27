@@ -13,6 +13,8 @@ import com.zenika.adventure.presentation.agency_validation.AgencyValidationRoute
 import com.zenika.adventure.presentation.computer.ComputerRoute
 import com.zenika.adventure.presentation.home.HomeRoute
 import com.zenika.adventure.presentation.instruction.InstructionRoute
+import com.zenika.adventure.presentation.inventory.InventoryRoute
+import com.zenika.adventure.presentation.item.ItemRoute
 import com.zenika.adventure.presentation.portal.PortalRoute
 import com.zenika.adventure.presentation.portal_message.PortalMessageRoute
 import com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyDialog
@@ -30,6 +32,8 @@ private const val ROUTE_PORTAL = "portalRouteAdventure"
 private const val ROUTE_PORTAL_MESSAGE = "portalMessageRouteAdventure"
 private const val ROUTE_INSTRUCTION_ADVENTURE = "instructionRouteAdventure"
 private const val ROUTE_SETTINGS_ADVENTURE = "settingsRouteAdventure"
+private const val ROUTE_INVENTORY_ADVENTURE = "inventoryRouteAdventure"
+private const val ROUTE_PATTERN_ITEM = "itemRouteAdventure/{item}"
 private const val ROUTE_WORLD_MAP = "worldMapRouteAdventure"
 private const val ROUTE_AGENCY_RECOGNITION = "agencyRecognitionRouteAdventure"
 private const val ROUTE_PATTERN_AGENCY_VALIDATION = "agencyValidationRouteAdventure{agency}"
@@ -79,7 +83,8 @@ fun NavGraphBuilder.adventureNavigation(
             PortalRoute(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS_ADVENTURE) },
                 accessToPortal = { navController.navigate(ROUTE_PORTAL_MESSAGE) },
-                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) }
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY_ADVENTURE) },
             )
         }
         dialog(ROUTE_PORTAL_MESSAGE) {
@@ -93,6 +98,33 @@ fun NavGraphBuilder.adventureNavigation(
             SettingsRoute(
                 backToPreviousScreen = { navController.popBackStack() },
                 backToHome = { navController.popBackStack(ROUTE_HOME_ADVENTURE, inclusive = true) }
+            )
+        }
+        dialog(ROUTE_INVENTORY_ADVENTURE) {
+            InventoryRoute(
+                onDismissRequest = {
+                    navController.popBackStack()
+                },
+                showItem = { item ->
+                    navController.navigate(
+                        ROUTE_PATTERN_ITEM.replace(
+                            "{item}",
+                            item.toString()
+                        )
+                    )
+                }
+            )
+        }
+        dialog(
+            ROUTE_PATTERN_ITEM,
+            arguments = listOf(navArgument("item") {
+                type = NavType.IntType
+            })
+        ) {
+            ItemRoute(
+                onDismissRequest = {
+                    navController.popBackStack()
+                }
             )
         }
         dialog(ROUTE_WORLD_MAP) {
@@ -158,7 +190,8 @@ fun NavGraphBuilder.adventureNavigation(
         composable(ROUTE_AGENCY_SINGAPORE) {
             SingaporeAgencyRoute(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS_ADVENTURE) },
-                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) }
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY_ADVENTURE) },
             )
         }
         dialog(ROUTE_AGENCY_SINGAPORE_DIALOG) {

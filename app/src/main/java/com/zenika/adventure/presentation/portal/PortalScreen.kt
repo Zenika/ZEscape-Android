@@ -11,13 +11,15 @@ fun PortalScreen(
     remainingTime: Int,
     goToSettings: () -> Unit,
     accessToPortal: () -> Unit,
-    openWorldMap: () -> Unit
-) {
+    openWorldMap: () -> Unit,
+    openInventory: () -> Unit,
+    ) {
     ScaffoldScreen(
         remainingTime = remainingTime,
         goToSettings = goToSettings,
         onClick = accessToPortal,
         openWorldMap = openWorldMap,
+        openInventory = openInventory,
         background = R.mipmap.background_neon
     )
 }
@@ -30,7 +32,8 @@ fun PortalScreenPreview() {
             remainingTime = 60,
             goToSettings = {},
             accessToPortal = {},
-            openWorldMap = {}
+            openWorldMap = {},
+            openInventory = {}
         )
     }
 }

@@ -32,6 +32,7 @@ fun ScaffoldScreen(
     goToSettings: () -> Unit,
     onClick: () -> Unit,
     openWorldMap: () -> Unit,
+    openInventory: () -> Unit,
     background: Int
 ) {
     Scaffold(
@@ -84,7 +85,7 @@ fun ScaffoldScreen(
                 modifier = Modifier
                     .size(100.dp)
                     .align(Alignment.BottomEnd)
-                    .clickable { }
+                    .clickable { openInventory() }
                     .padding(screenPadding)
             )
         }
