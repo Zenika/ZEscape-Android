@@ -8,7 +8,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun SingaporeAgencyRoute(
     goToSettings: () -> Unit,
-    openLaserGame: () -> Unit,
     openWorldMap: () -> Unit,
     viewModel: SingaporeAgencyViewModel = hiltViewModel(),
 ) {
@@ -17,7 +16,6 @@ fun SingaporeAgencyRoute(
     SingaporeAgencyScreen(
         remainingTime,
         goToSettings,
-        openLaserGame,
         openWorldMap
     )
 }

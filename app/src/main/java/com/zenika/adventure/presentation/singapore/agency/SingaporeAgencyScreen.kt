@@ -10,13 +10,12 @@ import com.zenika.utils.ZEscapeThemePreview
 fun SingaporeAgencyScreen(
     remainingTime: Int,
     goToSettings: () -> Unit,
-    openLaserGame: () -> Unit,
     openWorldMap: () -> Unit
 ) {
     ScaffoldScreen(
         remainingTime = remainingTime,
         goToSettings = goToSettings,
-        onClick = openLaserGame,
+        onClick = {},
         openWorldMap = openWorldMap,
         background = R.mipmap.singapore_agency
     )
@@ -29,7 +28,6 @@ fun SingaporeAgencyScreenPreview() {
         SingaporeAgencyScreen(
             remainingTime = 60,
             goToSettings = {},
-            openLaserGame = {},
             openWorldMap = {}
         )
     }
