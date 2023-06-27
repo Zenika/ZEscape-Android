@@ -9,7 +9,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 fun SingaporeAgencyRoute(
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
-    openInventory: () -> Unit,
     viewModel: SingaporeAgencyViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
