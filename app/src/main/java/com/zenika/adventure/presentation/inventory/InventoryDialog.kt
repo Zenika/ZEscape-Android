@@ -15,10 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
+import com.zenika.adventure.presentation.component.AdventureDialog
+import com.zenika.adventure.presentation.inventory.component.InventoryBox
 import com.zenika.data.model.ItemDto
 import com.zenika.data.state.InventoryState
-import com.zenika.tutorial.presentation.component.TutorialDialog
-import com.zenika.adventure.presentation.inventory.component.InventoryBox
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
@@ -30,7 +30,7 @@ fun InventoryDialog(
     showItem: (Int) -> Unit,
     onDismissRequest: () -> Unit
 ) {
-    TutorialDialog(
+    AdventureDialog(
         onDismissRequest = onDismissRequest
     ) {
         Column(
@@ -65,10 +65,10 @@ fun InventoryDialogPreview() {
             Modifier,
             items = InventoryState(
                 listOf(
-                    ItemDto("paper", R.mipmap.paper),
-                    ItemDto("paper", R.mipmap.paper),
-                    ItemDto("paper", R.mipmap.paper),
-                    ItemDto("paper", R.mipmap.paper),
+                    ItemDto("hook", R.mipmap.hook),
+                    ItemDto("singaporeKey", R.mipmap.singapore_key),
+                    ItemDto("sword", R.mipmap.sword),
+                    ItemDto("", 0),
                     ItemDto("", 0),
                     ItemDto("", 0),
                     ItemDto("", 0),
