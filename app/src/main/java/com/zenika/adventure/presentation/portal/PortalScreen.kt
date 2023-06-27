@@ -18,8 +18,9 @@ fun PortalScreen(
     remainingTime: Int,
     goToSettings: () -> Unit,
     accessToPortal: () -> Unit,
-    openWorldMap: () -> Unit
-) {
+    openWorldMap: () -> Unit,
+    openInventory: () -> Unit,
+    ) {
     ScaffoldScreen(
         modifier = Modifier.clickable { accessToPortal() },
         remainingTime = remainingTime,
@@ -36,7 +37,7 @@ fun PortalScreen(
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
-                .clickable { }
+                .clickable { openInventory() }
         )
     }
 }
@@ -49,7 +50,8 @@ private fun PortalScreenPreview() {
             remainingTime = 60,
             goToSettings = {},
             accessToPortal = {},
-            openWorldMap = {}
+            openWorldMap = {},
+            openInventory = {}
         )
     }
 }

@@ -11,6 +11,7 @@ fun PortalRoute(
     goToSettings: () -> Unit,
     accessToPortal: () -> Unit,
     openWorldMap: () -> Unit,
+    openInventory: () -> Unit,
     viewModel: PortalViewModel = hiltViewModel(),
 ) {
     BackHandler {
@@ -23,7 +24,8 @@ fun PortalRoute(
         remainingTime,
         goToSettings,
         accessToPortal,
-        openWorldMap
+        openWorldMap,
+        openInventory
     )
 }
 
