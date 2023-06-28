@@ -8,15 +8,22 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun PortalRoute(
     goToSettings: () -> Unit,
-    accessToPortal: () -> Unit,
+    accessToClosePortal: () -> Unit,
+    accessToOpenPortal: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     viewModel: PortalViewModel = hiltViewModel(),
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsState()
+    val state by viewModel.state.collectAsState()
+
+    val accessToPortal = if (state.collectSingaporeKey) {
+        accessToOpenPortal
+    } else {
+        accessToClosePortal
+    }
 
     PortalScreen(
-        remainingTime,
+        state.remainingTime,
         goToSettings,
         accessToPortal,
         openWorldMap,
