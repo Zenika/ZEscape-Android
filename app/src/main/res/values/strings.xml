@@ -81,4 +81,6 @@
     <string name="green_balloon">Ballon vert avec épée accrochée au bout</string>
     <string name="red_balloon">Ballon rouge avec crochet accroché au bout</string>
     <string name="blue_balloon">Ballon bleu avec clé accrochée au bout</string>
+    <string name="final_text">Vous avez réussi à sortir de cet ordinateur, félicitations ! Vous êtes maintenant prêt(e) à reprendre votre journée de travail, en espérant que cela ne se reproduise pas…</string>
+    <string name="goBackToPortal">Retour au portail</string>
 </resources>

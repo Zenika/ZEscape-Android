@@ -63,7 +63,7 @@ fun ComputerScreen(
         {
             Image(
                 painter = painterResource(
-                    id = R.mipmap.computer
+                    id = R.mipmap.postit_computer
                 ),
                 contentDescription = stringResource(R.string.computer_image),
                 modifier = Modifier.fillMaxSize(),
