@@ -16,16 +16,12 @@ fun PortalRoute(
 ) {
     val state by viewModel.state.collectAsState()
 
-    val accessToPortal = if (state.collectSingaporeKey) {
-        accessToOpenPortal
-    } else {
-        accessToClosePortal
-    }
-
     PortalScreen(
-        state.remainingTime,
+        state,
         goToSettings,
-        accessToPortal,
+        accessToClosePortal,
+        accessToOpenPortal,
+        viewModel::finishGame,
         openWorldMap,
         openInventory
     )

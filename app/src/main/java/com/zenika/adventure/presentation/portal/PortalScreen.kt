@@ -17,14 +17,25 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun PortalScreen(
-    remainingTime: Int,
+    state: PortalUiState,
     goToSettings: () -> Unit,
-    accessToPortal: () -> Unit,
+    accessToClosePortal: () -> Unit,
+    accessToOpenPortal: () -> Unit,
+    finishGame: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
 ) {
+    val accessToPortal = if (state.collectSingaporeKey) {
+        {
+            accessToOpenPortal()
+            finishGame()
+        }
+    } else {
+        accessToClosePortal
+    }
+
     ScaffoldScreen(
-        remainingTime = remainingTime,
+        remainingTime = state.remainingTime,
         goToSettings = goToSettings,
         onClick = accessToPortal,
         background = R.mipmap.background_neon
@@ -51,9 +62,14 @@ fun PortalScreen(
 fun PortalScreenPreview() {
     ZEscapeThemePreview {
         PortalScreen(
-            remainingTime = 60,
+            state = PortalUiState(
+                collectSingaporeKey = false,
+                remainingTime = 3600
+            ),
             goToSettings = {},
-            accessToPortal = {},
+            accessToClosePortal = {},
+            accessToOpenPortal = {},
+            finishGame = {},
             openWorldMap = {},
             openInventory = {}
         )

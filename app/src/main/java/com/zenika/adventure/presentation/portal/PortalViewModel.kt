@@ -2,6 +2,7 @@ package com.zenika.adventure.presentation.portal
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zenika.adventure.domain.FinishGameUseCase
 import com.zenika.adventure.domain.GetAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class PortalViewModel @Inject constructor(
     observeRemainingTime: ObserveRemainingTimeUseCase,
-    observeAdventureState: GetAdventureStateUseCase
+    observeAdventureState: GetAdventureStateUseCase,
+    private val finishGameUseCase: FinishGameUseCase
 ) : ViewModel() {
     val state: StateFlow<PortalUiState> = combine(
         observeAdventureState(), observeRemainingTime()
@@ -32,6 +34,10 @@ class PortalViewModel @Inject constructor(
                 remainingTime = 3_600_600
             )
         )
+
+    fun finishGame() {
+        finishGameUseCase()
+    }
 }
 
 class PortalUiState(
