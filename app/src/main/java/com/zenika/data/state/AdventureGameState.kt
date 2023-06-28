@@ -5,6 +5,7 @@ import com.zenika.data.TutorialHint
 
 data class AdventureGameState(
     val agencies: Set<Agency> = setOf(),
+    val singaporeAgencyOpen: Boolean = false,
     val collectSingaporeKey: Boolean = false,
     val collectSword: Boolean = false,
     val collectHook: Boolean = false,

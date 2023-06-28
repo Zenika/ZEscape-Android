@@ -11,15 +11,25 @@ import com.zenika.ui.theme.ZEscapeTheme
 fun WorldMapRoute(
     onDismissRequest: () -> Unit,
     openTextRecognition: () -> Unit,
-    viewModel: WorldMapViewModel = hiltViewModel(),
-    openOnOffGame: () -> Unit
+    goBackToPortal: () -> Unit,
+    goInsideSingaporeAgency: () -> Unit,
+    openOnOffGame: () -> Unit,
+    viewModel: WorldMapViewModel = hiltViewModel()
 ) {
     val agencies by viewModel.agencies.collectAsState()
+    val agenciesState by viewModel.agenciesState.collectAsState()
+
+    val goToSingaporeAgency = if (agenciesState) {
+        goInsideSingaporeAgency
+    } else {
+        openOnOffGame
+    }
 
     WorldMapDialog(
         onDismissRequest,
         openTextRecognition,
-        openOnOffGame,
+        goBackToPortal,
+        goToSingaporeAgency,
         agencies
     )
 }
@@ -31,8 +41,9 @@ fun WorldMapRoutePreview() {
         WorldMapRoute(
             onDismissRequest = {},
             openTextRecognition = {},
-            openOnOffGame = {
-            }
+            goBackToPortal = {},
+            goInsideSingaporeAgency = {},
+            openOnOffGame = {}
         )
     }
 }

@@ -28,7 +28,8 @@ import com.zenika.utils.ScreenPreview
 fun WorldMapDialog(
     onDismissRequest: () -> Unit,
     openTextRecognition: () -> Unit,
-    openOnOffGame: () -> Unit,
+    goBackToPortal: () -> Unit,
+    goToSingaporeAgency: () -> Unit,
     agencies: Set<Agency>
 ) {
     Dialog(
@@ -69,7 +70,7 @@ fun WorldMapDialog(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(start = 160.dp, top = 20.dp)
-                            .clickable(onClick = openOnOffGame)
+                            .clickable(onClick = goToSingaporeAgency)
                     ) {
                         drawCircle(Color.Red, radius = 16.dp.toPx())
                     }
@@ -88,6 +89,9 @@ fun WorldMapDialog(
             Button(onClick = openTextRecognition) {
                 Text(text = stringResource(R.string.add_agency))
             }
+            Button(onClick = goBackToPortal) {
+                Text(text = stringResource(R.string.goBackToPortal))
+            }
         }
     }
 }
@@ -100,7 +104,8 @@ fun WorldMapDialogPreview() {
         WorldMapDialog(
             onDismissRequest = {},
             openTextRecognition = {},
-            openOnOffGame = {},
+            goBackToPortal = {},
+            goToSingaporeAgency = {},
             agencies = mutableSetOf(Agency.MONTREAL, Agency.CASABLANCA, Agency.PARIS)
         )
     }
