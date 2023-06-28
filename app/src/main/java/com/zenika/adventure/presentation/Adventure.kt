@@ -19,6 +19,7 @@ import com.zenika.adventure.presentation.inventory.InventoryRoute
 import com.zenika.adventure.presentation.item.ItemRoute
 import com.zenika.adventure.presentation.portal.PortalRoute
 import com.zenika.adventure.presentation.portal_message.PortalMessageRoute
+import com.zenika.adventure.presentation.score.ScoreRoute
 import com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyDialog
 import com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyRoute
 import com.zenika.adventure.presentation.singapore.instruction.InstructionSingaporeRoute
@@ -45,6 +46,7 @@ private const val ROUTE_SINGAPORE_AGENCY = "singaporeAgencyRouteAdventure"
 private const val ROUTE_SINGAPORE_AGENCY_MESSAGE = "singaporeAgencyMessageRouteAdventure"
 private const val ROUTE_FINAL = "finalRouteAdventure"
 private const val ROUTE_FINAL_MESSAGE = "finalMessageRouteAdventure"
+private const val ROUTE_SCORE_ADVENTURE = "scoreRouteAdventure"
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.adventureNavigation(
@@ -193,11 +195,23 @@ fun NavGraphBuilder.adventureNavigation(
         }
 
         composable(ROUTE_FINAL) {
-            FinalRoute()
+            FinalRoute(
+                goToScore = { navController.navigate(ROUTE_SCORE_ADVENTURE) }
+            )
         }
         dialog(ROUTE_FINAL_MESSAGE) {
             FinalDialog(
                 onDismissRequest = { navController.popBackStack() }
+            )
+        }
+        composable(ROUTE_SCORE_ADVENTURE) {
+            ScoreRoute(
+                goToHome = {
+                    navController.popBackStack(
+                        route = ROUTE_HOME_ADVENTURE,
+                        inclusive = true
+                    )
+                }
             )
         }
     }
