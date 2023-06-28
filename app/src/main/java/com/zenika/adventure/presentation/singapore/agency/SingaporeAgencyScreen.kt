@@ -89,8 +89,8 @@ fun SingaporeAgencyScreen(
             exit = fadeOut()
         ) {
             Image(
-                painter = painterResource(id = R.mipmap.blue_balloon),
-                contentDescription = stringResource(R.string.blue_balloon)
+                painter = painterResource(id = R.mipmap.orange_balloon),
+                contentDescription = stringResource(R.string.orange_balloon)
             )
         }
         ContinentsMap(
