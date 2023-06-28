@@ -6,7 +6,7 @@ import com.zenika.R
 import com.zenika.adventure.domain.CollectHookUseCase
 import com.zenika.adventure.domain.CollectSingaporeKeyUseCase
 import com.zenika.adventure.domain.CollectSwordUseCase
-import com.zenika.adventure.domain.ObserveAdventureStateUseCase
+import com.zenika.adventure.domain.GetAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import com.zenika.data.repository.ItemRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,7 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SingaporeAgencyViewModel @Inject constructor(
     private val itemRepository: ItemRepository,
-    observeAdventureState: ObserveAdventureStateUseCase,
+    observeAdventureState: GetAdventureStateUseCase,
     observeRemainingTime: ObserveRemainingTimeUseCase,
     private val collectSingaporeKey: CollectSingaporeKeyUseCase,
     private val collectSwordItem: CollectSwordUseCase,

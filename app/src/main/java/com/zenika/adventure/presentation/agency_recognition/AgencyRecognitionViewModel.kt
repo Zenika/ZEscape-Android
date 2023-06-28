@@ -2,7 +2,7 @@ package com.zenika.adventure.presentation.agency_recognition
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zenika.adventure.domain.ObserveAgenciesUseCase
+import com.zenika.adventure.domain.GetAgenciesUseCase
 import com.zenika.data.Agency
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AgencyRecognitionViewModel @Inject constructor(
-    observeAgencies: ObserveAgenciesUseCase
+    observeAgencies: GetAgenciesUseCase
 ) : ViewModel() {
     val agencies: StateFlow<Set<Agency>> = observeAgencies().map { state -> state.agencies }
         .stateIn(
