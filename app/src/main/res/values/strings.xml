@@ -65,6 +65,7 @@
     <string name="add_agency">Ajouter une agence</string>
     <string name="portal_message">Ce portail est sûrement notre porte de sortie… Malheureusement, il est verrouillé…</string>
     <string name="computer_image">Ordinateur portable sur un bureau avec un post-it où il est écrit de scanner un QR Code</string>
+    <string name="computer_final_image">Ordinateur portable sur un bureau</string>
     <string name="home_text">Entrez dans une nouvelle aventure immersive, et laissez-vous guider dans une enquête surprenante…\n
                         Jouez en solo ou en coopération depuis un seul téléphone
     </string>
