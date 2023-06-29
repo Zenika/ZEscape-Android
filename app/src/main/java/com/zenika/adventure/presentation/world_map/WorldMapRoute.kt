@@ -12,6 +12,7 @@ fun WorldMapRoute(
     goBackToPortal: () -> Unit,
     goInsideSingaporeAgency: () -> Unit,
     openOnOffGame: () -> Unit,
+    goToCasablanca: () -> Unit,
     viewModel: WorldMapViewModel = hiltViewModel()
 ) {
     val agencies by viewModel.agencies.collectAsStateWithLifecycle()
@@ -28,6 +29,7 @@ fun WorldMapRoute(
         openTextRecognition,
         goBackToPortal,
         goToSingaporeAgency,
+        goToCasablanca,
         agencies
     )
 }

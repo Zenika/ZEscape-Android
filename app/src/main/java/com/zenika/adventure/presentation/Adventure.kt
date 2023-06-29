@@ -10,6 +10,10 @@ import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.composable
 import com.zenika.adventure.presentation.agency_recognition.AgencyRecognitionRoute
 import com.zenika.adventure.presentation.agency_validation.AgencyValidationRoute
+import com.zenika.adventure.presentation.casablanca.agency.CasablancaAgencyDialog
+import com.zenika.adventure.presentation.casablanca.agency.CasablancaAgencyRoute
+import com.zenika.adventure.presentation.casablanca.instruction.InstructionCasablancaRoute
+import com.zenika.adventure.presentation.casablanca.outside.CasablancaOutsideRoute
 import com.zenika.adventure.presentation.computer.ComputerRoute
 import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
@@ -45,6 +49,10 @@ private const val ROUTE_SINGAPORE_AGENCY = "adventureSingaporeAgency"
 private const val ROUTE_SINGAPORE_AGENCY_DIALOG = "adventureSingaporeAgencyDialog"
 private const val ROUTE_SCORE = "adventureScore"
 private const val ROUTE_SCORE_DIALOG = "adventureScoreDialog"
+private const val ROUTE_CASABLANCA_INSTRUCTION = "adventureCasablancaInstruction"
+private const val ROUTE_CASABLANCA_OUTSIDE = "adventureCasablancaOutside"
+private const val ROUTE_CASABLANCA_AGENCY = "adventureCasablancaAgency"
+private const val ROUTE_CASABLANCA_AGENCY_DIALOG = "adventureCasablancaAgencyDialog"
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.adventureNavigation(
@@ -140,6 +148,10 @@ fun NavGraphBuilder.adventureNavigation(
                 openOnOffGame = {
                     navController.navigate(ROUTE_ON_OFF_GAME)
                     navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
+                },
+                goToCasablanca = {
+                    navController.navigate(ROUTE_CASABLANCA_OUTSIDE)
+                    navController.navigate(ROUTE_CASABLANCA_INSTRUCTION)
                 }
             )
         }
@@ -215,6 +227,36 @@ fun NavGraphBuilder.adventureNavigation(
         }
         dialog(ROUTE_SCORE_DIALOG) {
             AdventureScoreDialog(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
+        dialog(ROUTE_CASABLANCA_INSTRUCTION) {
+            InstructionCasablancaRoute(
+                onDismissRequest = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(ROUTE_CASABLANCA_OUTSIDE) {
+            CasablancaOutsideRoute(
+                goToSettings = { navController.navigate(ROUTE_SETTINGS_ADVENTURE) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY_ADVENTURE) },
+                enterInAgency = {
+                    navController.navigate(ROUTE_CASABLANCA_AGENCY)
+                    navController.navigate(ROUTE_CASABLANCA_AGENCY_DIALOG)
+                }
+            )
+        }
+        composable(ROUTE_CASABLANCA_AGENCY) {
+            CasablancaAgencyRoute(
+                goToSettings = { navController.navigate(ROUTE_SETTINGS_ADVENTURE) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY_ADVENTURE) },
+            )
+        }
+        dialog(ROUTE_CASABLANCA_AGENCY_DIALOG) {
+            CasablancaAgencyDialog(
                 onDismissRequest = { navController.popBackStack() }
             )
         }
