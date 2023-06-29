@@ -78,11 +78,10 @@
     <string name="red_balloon">Ballon rouge avec crochet accroché au bout</string>
     <string name="orange_balloon">Ballon orange avec clé accrochée au bout</string>
     <string name="scan">Scan</string>
-    <string name="close_treasure_chest">Coffre au trésor fermé</string>
-    <string name="open_map_treasure_chest">Coffre au trésor ouvert avec une carte</string>
-    <string name="open_treasure_chest">Coffre au trésor ouvert</string>
     <string name="check">validation</string>
     <string name="desk">Bureau</string>
     <string name="goBackToPortal">Retour au portail</string>
     <string name="final_text">Vous avez réussi à sortir de cet ordinateur, félicitations ! Vous êtes maintenant prêt(e) à reprendre votre journée de travail, en espérant que cela ne se reproduise pas…</string>
+    <string name="instruction_casablanca">Vous êtes arrivé(e) à Casablanca mais il fait nuit, l\'agence est fermée… Comment allez-vous pouvoir entrer ?</string>
+    <string name="instruction_casablanca_agency">Par chance, une fenêtre est entre-ouverte et vous réussissez à entrer. Par contre, il fait drôlement sombre…</string>
 </resources>
