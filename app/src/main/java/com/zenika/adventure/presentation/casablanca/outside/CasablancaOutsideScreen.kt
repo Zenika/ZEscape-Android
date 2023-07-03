@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.zenika.R
@@ -28,10 +29,10 @@ fun CasablancaOutsideScreen(
     enterInAgency: () -> Unit
 ) {
     val buttonsText = listOf(
-        "Forcer la porte d'entrée",
-        "Sonner à l'interphone",
-        "Passer par la fenêtre",
-        "Dormir à l'hôtel"
+        R.string.force_door,
+        R.string.ring_intercom,
+        R.string.go_through_window,
+        R.string.sleep_hotel
     )
 
     ScaffoldScreen(
@@ -53,10 +54,12 @@ fun CasablancaOutsideScreen(
             items(
                 buttonsText.size
             ) { item ->
-                Button(onClick = enterInAgency,
-                    modifier = Modifier.height(80.dp)) {
+                Button(
+                    onClick = { if (buttonsText[item] == R.string.go_through_window) enterInAgency() },
+                    modifier = Modifier.height(80.dp)
+                ) {
                     Text(
-                        text = buttonsText[item],
+                        text = stringResource(id = buttonsText[item]),
                         textAlign = TextAlign.Center
                     )
                 }
