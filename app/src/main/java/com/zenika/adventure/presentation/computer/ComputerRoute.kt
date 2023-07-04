@@ -6,11 +6,11 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun ComputerRoute(
-    backToPreviousScreen: () -> Unit,
+    goBack: () -> Unit,
     goToScan: () -> Unit
 ) {
     ComputerScreen(
-        backToPreviousScreen,
+        goBack,
         goToScan
     )
 }
@@ -20,7 +20,7 @@ fun ComputerRoute(
 fun ComputerRoutePreview() {
     ZEscapeThemePreview {
         ComputerRoute(
-            backToPreviousScreen = {},
+            goBack = {},
             goToScan = {}
         )
     }

@@ -19,15 +19,15 @@ class StartTutorialGameUseCase @Inject constructor(
     }
 
     private suspend fun initInventory() {
-        deleteAll()
-        upsertInitialItems()
+        deleteAllItemsFromInventory()
+        addInitialItemsToInventory()
     }
 
-    private suspend fun deleteAll() {
+    private suspend fun deleteAllItemsFromInventory() {
         itemDao.deleteAll()
     }
 
-    private suspend fun upsertInitialItems() {
+    private suspend fun addInitialItemsToInventory() {
         val parchment = ItemDto("parchment", R.mipmap.parchment)
         itemDao.upsertItem(parchment)
         val paper = ItemDto("paper", R.mipmap.paper)

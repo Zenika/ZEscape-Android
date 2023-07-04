@@ -113,7 +113,7 @@ fun EndParchment(
 
 @ScreenPreview
 @Composable
-fun EndParchmentPreview() {
+private fun EndParchmentPreview() {
     ZEscapeThemePreview {
         EndParchment(
             goToScore = {}

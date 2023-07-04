@@ -35,8 +35,8 @@
     <string name="penalty_game">Pénalité\nCe n\'est pas le bon code…</string>
     <string name="returnToHome">Quitter</string>
     <string name="score">Score</string>
-    <string name="penalty">Pénalité(s) : %1$s</string>
-    <string name="hint">Indice(s) : %1$s</string>
+    <string name="penalty_count">Pénalité(s) : %1$s</string>
+    <string name="hint_count">Indice(s) : %1$s</string>
     <string name="time">Temps : </string>
     <string name="no_hint">Pas d\'indice disponible</string>
     <string name="captain_chest_hint">Le message du Capitaine présent dans votre inventaire devrait vous aider à ouvrir ce coffre</string>
@@ -53,8 +53,8 @@
     <string name="key_image">Clé</string>
     <string name="start_button">C\'est parti !</string>
     <string name="close">Fermer</string>
-    <string name="clue_icon">Indice</string>
-    <string name="settings_icon">Paramètres</string>
+    <string name="hint">Indice</string>
+    <string name="settings">Paramètres</string>
     <string name="connexion">Se connecter</string>
     <string name="retour">Retour</string>
     <string name="stop_game">Quitter</string>
@@ -65,5 +65,7 @@
     <string name="home_text">Entrez dans une nouvelle aventure immersive, et laissez-vous guider dans une enquête surprenante…\n
                         Jouez en solo ou en coopération depuis un seul téléphone
     </string>
+    <string name="desk">Bureau</string>
+    <string name="scan">Scan</string>
 </resources>
 

@@ -48,7 +48,7 @@ private fun Chest(
 
 @ComposablePreview
 @Composable
-fun TreasureChestPreview() {
+private fun TreasureChestPreview() {
     ZEscapeThemePreview {
         TreasureChest(
             chestOpened = false,

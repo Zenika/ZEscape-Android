@@ -6,10 +6,10 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.zenika.adventure.presentation.adventureNavigation
-import com.zenika.home.HomeRoute
+import com.zenika.presentation.home.HomeRoute
 import com.zenika.tutorial.presentation.tutorialNavigation
 
-const val ROUTE_HOME = "home"
+private const val ROUTE_HOME = "home"
 private const val ROUTE_ADVENTURE = "adventure"
 private const val ROUTE_TUTORIAL = "tutorial"
 

@@ -127,7 +127,7 @@ fun WelcomeParchment(
 
 @ComposablePreview
 @Composable
-fun WelcomeParchmentPreview() {
+private fun WelcomeParchmentPreview() {
     ZEscapeThemePreview {
         WelcomeParchment(
             openInstruction = {}

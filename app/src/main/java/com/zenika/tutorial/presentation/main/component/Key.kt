@@ -31,7 +31,7 @@ fun Key(
 
 @ComposablePreview
 @Composable
-fun KeyPreview() {
+private fun KeyPreview() {
     ZEscapeThemePreview {
         Key(
             collectKey = {},

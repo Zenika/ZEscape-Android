@@ -6,20 +6,19 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.navigation
 import com.google.accompanist.navigation.animation.composable
-import com.zenika.ROUTE_HOME
 import com.zenika.adventure.presentation.computer.ComputerRoute
-import com.zenika.adventure.presentation.home.HomeScreen
-import com.zenika.adventure.presentation.instruction.InstructionRoute
+import com.zenika.adventure.presentation.home.AdventureHomeRoute
+import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
 import com.zenika.adventure.presentation.portal.PortalRoute
-import com.zenika.qrcode_scan.QrCodeScanRoute
-import com.zenika.settings.SettingsRoute
+import com.zenika.presentation.qrcode_scan.QrCodeScanRoute
+import com.zenika.presentation.settings.SettingsRoute
 
-private const val ROUTE_HOME_ADVENTURE = "homeAdventure"
-private const val ROUTE_COMPUTER = "computerRouteAdventure"
-private const val ROUTE_QRCODE_SCAN_ADVENTURE = "qrCodeScanAdventure"
-private const val ROUTE_PORTAL = "portalRouteAdventure"
-private const val ROUTE_INSTRUCTION_ADVENTURE = "instructionRouteAdventure"
-private const val ROUTE_SETTINGS_ADVENTURE = "settingsRouteAdventure"
+private const val ROUTE_HOME = "adventureHome"
+private const val ROUTE_COMPUTER = "adventureComputer"
+private const val ROUTE_QRCODE_SCAN = "adventureQrCodeScan"
+private const val ROUTE_PORTAL = "adventurePortal"
+private const val ROUTE_INSTRUCTION = "adventureInstruction"
+private const val ROUTE_SETTINGS = "adventureSettings"
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.adventureNavigation(
@@ -28,31 +27,32 @@ fun NavGraphBuilder.adventureNavigation(
 ) {
     navigation(
         route = route,
-        startDestination = ROUTE_HOME_ADVENTURE
+        startDestination = ROUTE_HOME
     ) {
-        composable(ROUTE_HOME_ADVENTURE) {
-            HomeScreen(
-                backToHome = { navController.popBackStack() },
+        composable(ROUTE_HOME) {
+            AdventureHomeRoute(
+                goBack = { navController.popBackStack() },
                 goToAdventure = { navController.navigate(ROUTE_COMPUTER) }
             )
         }
         composable(ROUTE_COMPUTER) {
             ComputerRoute(
-                backToPreviousScreen = { navController.popBackStack() },
-                goToScan = { navController.navigate(ROUTE_QRCODE_SCAN_ADVENTURE) }
+                goBack = { navController.popBackStack() },
+                goToScan = { navController.navigate(ROUTE_QRCODE_SCAN) }
             )
         }
-        composable(ROUTE_QRCODE_SCAN_ADVENTURE) {
+        composable(ROUTE_QRCODE_SCAN) {
             QrCodeScanRoute(
-                backToHome = { navController.popBackStack() },
+                goBack = { navController.popBackStack() },
                 goToNextScreen = {
+                    navController.popBackStack(ROUTE_HOME, inclusive = false)
                     navController.navigate(ROUTE_PORTAL)
-                    navController.navigate(ROUTE_INSTRUCTION_ADVENTURE)
+                    navController.navigate(ROUTE_INSTRUCTION)
                 }
             )
         }
-        dialog(ROUTE_INSTRUCTION_ADVENTURE) {
-            InstructionRoute(
+        dialog(ROUTE_INSTRUCTION) {
+            AdventureInstructionRoute(
                 onDismissRequest = {
                     navController.popBackStack()
                 }
@@ -60,13 +60,13 @@ fun NavGraphBuilder.adventureNavigation(
         }
         composable(ROUTE_PORTAL) {
             PortalRoute(
-                goToSettings = { navController.navigate(ROUTE_SETTINGS_ADVENTURE) }
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) }
             )
         }
-        composable(ROUTE_SETTINGS_ADVENTURE) {
+        composable(ROUTE_SETTINGS) {
             SettingsRoute(
-                backToPreviousScreen = { navController.popBackStack() },
-                backToHome = { navController.navigate(ROUTE_HOME) }
+                goBack = { navController.popBackStack() },
+                goBackToHome = { navController.popBackStack(ROUTE_HOME, inclusive = true) }
             )
         }
     }

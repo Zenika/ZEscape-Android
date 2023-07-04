@@ -76,7 +76,7 @@ fun ColorButtonsOrderGameDialog(
 
 @ScreenPreview
 @Composable
-fun ColorButtonsOrderGameDialogPreview() {
+private fun ColorButtonsOrderGameDialogPreview() {
     ZEscapeThemePreview {
         ColorButtonsOrderGameDialog(
             size = 2,

@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -21,8 +20,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.zenika.R
+import com.zenika.presentation.component.SettingsButton
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -54,13 +55,11 @@ fun PortalScreen(
             },
             navigationIcon = {
                 IconButton(onClick = {}) {
-                    Icon(Icons.Filled.Search, "clueIcon")
+                    Icon(Icons.Filled.Search, stringResource(id = R.string.hint))
                 }
             },
             actions = {
-                IconButton(onClick = goToSettings) {
-                    Icon(Icons.Filled.Settings, "settingsIcon")
-                }
+                SettingsButton(goToSettings)
             },
             colors = TopAppBarDefaults.smallTopAppBarColors(
                 containerColor = MaterialTheme.colorScheme.primary,
@@ -87,7 +86,7 @@ fun PortalScreen(
 
 @ScreenPreview
 @Composable
-fun PortalScreenPreview() {
+private fun PortalScreenPreview() {
     ZEscapeThemePreview {
         PortalScreen(
             remainingTime = 60,

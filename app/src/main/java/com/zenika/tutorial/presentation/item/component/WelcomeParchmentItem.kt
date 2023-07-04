@@ -144,7 +144,7 @@ private fun PageContent(
 
 @ScreenPreview
 @Composable
-fun WelcomeParchmentItemPreview() {
+private fun WelcomeParchmentItemPreview() {
     ZEscapeThemePreview {
         WelcomeParchmentItem(
             onDismissRequest = {}

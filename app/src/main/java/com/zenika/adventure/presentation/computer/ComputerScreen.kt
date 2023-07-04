@@ -5,12 +5,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -23,13 +19,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.zenika.R
+import com.zenika.presentation.component.ReturnButton
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ComputerScreen(
-    backToPreviousScreen: () -> Unit,
+    goBack: () -> Unit,
     goToScan: () -> Unit
 ) {
     Scaffold(
@@ -37,15 +34,13 @@ fun ComputerScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(id = R.string.retour),
+                        text = stringResource(R.string.desk),
                         Modifier
                             .fillMaxWidth()
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = backToPreviousScreen) {
-                        Icon(Icons.Filled.ArrowBack, "backIcon")
-                    }
+                    ReturnButton(goBack)
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
@@ -69,10 +64,15 @@ fun ComputerScreen(
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.FillHeight
             )
-            Button(onClick = goToScan,
+            Button(
+                onClick = goToScan,
                 modifier = Modifier
-                    .align(Alignment.Center)) {
-                Text(text = stringResource(R.string.connexion))
+                    .align(Alignment.Center)
+            ) {
+                Text(
+                    text = stringResource(R.string.connexion),
+                    style = MaterialTheme.typography.headlineSmall
+                )
             }
         }
     }
@@ -80,10 +80,10 @@ fun ComputerScreen(
 
 @ScreenPreview
 @Composable
-fun ComputerScreenPreview() {
+private fun ComputerScreenPreview() {
     ZEscapeThemePreview {
         ComputerScreen(
-            backToPreviousScreen = {},
+            goBack = {},
             goToScan = {}
         )
     }

@@ -1,16 +1,21 @@
 package com.zenika.adventure.presentation.portal
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun PortalRoute(
-    viewModel: PortalViewModel = hiltViewModel(),
-    goToSettings: () -> Unit
+    goToSettings: () -> Unit,
+    viewModel: PortalViewModel = hiltViewModel()
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsState()
+    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
+
+    BackHandler {
+        // Player cannot leave the adventure while it is running.
+    }
 
     PortalScreen(
         remainingTime,
