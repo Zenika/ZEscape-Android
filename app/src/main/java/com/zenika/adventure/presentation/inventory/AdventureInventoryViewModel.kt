@@ -2,8 +2,8 @@ package com.zenika.adventure.presentation.inventory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zenika.data.state.InventoryState
 import com.zenika.adventure.domain.ObserveInventoryUseCase
+import com.zenika.data.state.InventoryState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

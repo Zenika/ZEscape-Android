@@ -1,9 +1,9 @@
 package com.zenika.adventure.presentation.casablanca.outside
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun CasablancaOutsideRoute(
@@ -13,7 +13,7 @@ fun CasablancaOutsideRoute(
     enterInAgency: () -> Unit,
     viewModel: CasablancaOutsideViewModel = hiltViewModel(),
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsState()
+    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
 
     CasablancaOutsideScreen(
         remainingTime,

@@ -43,7 +43,7 @@ private fun TutorialPenaltyDialogPreview() {
     ZEscapeThemePreview {
         TutorialPenaltyDialog(
             onDismissRequest = {},
-            penalty = "key"
+            penalty = "null"
         )
     }
 }

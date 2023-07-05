@@ -1,9 +1,10 @@
 package com.zenika.adventure.presentation.casablanca.outside
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Button
@@ -15,8 +16,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.zenika.R
+import com.zenika.adventure.presentation.component.AdventureInventoryBag
+import com.zenika.adventure.presentation.component.ContinentsMap
 import com.zenika.adventure.presentation.component.ScaffoldScreen
-import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -38,16 +40,12 @@ fun CasablancaOutsideScreen(
     ScaffoldScreen(
         remainingTime = remainingTime,
         goToSettings = goToSettings,
-        onClick = enterInAgency,
-        openWorldMap = openWorldMap,
-        openInventory = openInventory,
         background = R.mipmap.casablanca_outside
     ) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = Modifier
-                .fillMaxSize()
-                .padding(screenPadding),
+                .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
             horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally)
         ) {
@@ -65,12 +63,24 @@ fun CasablancaOutsideScreen(
                 }
             }
         }
+        ContinentsMap(
+            modifier = Modifier
+                .size(80.dp)
+                .align(Alignment.BottomStart)
+                .clickable { openWorldMap() }
+        )
+        AdventureInventoryBag(
+            modifier = Modifier
+                .size(80.dp)
+                .align(Alignment.BottomEnd)
+                .clickable { openInventory() }
+        )
     }
 }
 
 @ScreenPreview
 @Composable
-fun CasablancaOutsideScreenPreview() {
+private fun CasablancaOutsideScreenPreview() {
     ZEscapeThemePreview {
         CasablancaOutsideScreen(
             remainingTime = 60,

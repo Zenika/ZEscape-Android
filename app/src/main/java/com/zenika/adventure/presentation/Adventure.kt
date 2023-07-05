@@ -232,16 +232,14 @@ fun NavGraphBuilder.adventureNavigation(
         }
         dialog(ROUTE_CASABLANCA_INSTRUCTION) {
             InstructionCasablancaRoute(
-                onDismissRequest = {
-                    navController.popBackStack()
-                }
+                onDismissRequest = { navController.popBackStack() }
             )
         }
         composable(ROUTE_CASABLANCA_OUTSIDE) {
             CasablancaOutsideRoute(
-                goToSettings = { navController.navigate(ROUTE_SETTINGS_ADVENTURE) },
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
-                openInventory = { navController.navigate(ROUTE_INVENTORY_ADVENTURE) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) },
                 enterInAgency = {
                     navController.navigate(ROUTE_CASABLANCA_AGENCY)
                     navController.navigate(ROUTE_CASABLANCA_AGENCY_DIALOG)
@@ -250,9 +248,9 @@ fun NavGraphBuilder.adventureNavigation(
         }
         composable(ROUTE_CASABLANCA_AGENCY) {
             CasablancaAgencyRoute(
-                goToSettings = { navController.navigate(ROUTE_SETTINGS_ADVENTURE) },
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
-                openInventory = { navController.navigate(ROUTE_INVENTORY_ADVENTURE) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) }
             )
         }
         dialog(ROUTE_CASABLANCA_AGENCY_DIALOG) {

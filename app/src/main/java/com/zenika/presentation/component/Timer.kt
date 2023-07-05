@@ -9,7 +9,7 @@ import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun Timer(
+fun TutorialTimer(
     timer: Int,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified
@@ -36,8 +36,12 @@ private fun timerConverter(timer: Int): String {
 
 @ComposablePreview
 @Composable
+<<<<<<<< HEAD:app/src/main/java/com/zenika/presentation/component/Timer.kt
 private fun TimerPreview() {
+========
+private fun TutorialTimerPreview() {
+>>>>>>>> 419cbb9 (Fix from review):app/src/main/java/com/zenika/tutorial/presentation/component/TutorialTimer.kt
     ZEscapeThemePreview {
-        Timer(13 * 60_000 + 47_000, Modifier)
+        TutorialTimer(13 * 60_000 + 47_000, Modifier)
     }
 }

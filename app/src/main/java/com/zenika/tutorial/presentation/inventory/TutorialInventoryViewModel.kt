@@ -15,7 +15,6 @@ import javax.inject.Inject
 class TutorialInventoryViewModel @Inject constructor(
     observeInventory: ObserveInventoryUseCase
 ) : ViewModel() {
-
     val inventoryItems: StateFlow<InventoryState> = observeInventory()
         .map { items -> InventoryState(items) }
         .stateIn(

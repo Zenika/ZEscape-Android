@@ -10,19 +10,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
 import com.zenika.R
+import com.zenika.adventure.presentation.component.AdventureDialog
 import com.zenika.ui.theme.adventureBodyMedium
-import com.zenika.ui.theme.dialogPadding
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun CasablancaAgencyDialog(onDismissRequest: () -> Unit) {
-    Dialog(
-        onDismissRequest = onDismissRequest,
-        properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
+    AdventureDialog(
+        onDismissRequest = onDismissRequest
     ) {
         Text(
             text = stringResource(R.string.instruction_casablanca_agency),
@@ -32,8 +29,7 @@ fun CasablancaAgencyDialog(onDismissRequest: () -> Unit) {
                 .background(
                     MaterialTheme.colorScheme.primaryContainer,
                     MaterialTheme.shapes.extraLarge
-                )
-                .padding(dialogPadding),
+                ),
             textAlign = TextAlign.Center,
             style = adventureBodyMedium
         )
@@ -42,7 +38,7 @@ fun CasablancaAgencyDialog(onDismissRequest: () -> Unit) {
 
 @Preview
 @Composable
-fun CasablancaAgencyDialogPreview() {
+private fun CasablancaAgencyDialogPreview() {
     ZEscapeThemePreview {
         CasablancaAgencyDialog(
             onDismissRequest = {}

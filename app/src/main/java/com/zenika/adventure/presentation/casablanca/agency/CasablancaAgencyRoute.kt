@@ -1,9 +1,9 @@
 package com.zenika.adventure.presentation.casablanca.agency
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun CasablancaAgencyRoute(
@@ -12,7 +12,7 @@ fun CasablancaAgencyRoute(
     openInventory: () -> Unit,
     viewModel: CasablancaAgencyViewModel = hiltViewModel(),
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsState()
+    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
 
     CasablancaAgencyScreen(
         remainingTime,
