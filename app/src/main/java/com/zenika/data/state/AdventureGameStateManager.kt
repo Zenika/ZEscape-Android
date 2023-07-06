@@ -56,4 +56,12 @@ class AdventureGameStateManager @Inject constructor() {
             )
         }
     }
+
+    fun applyPenalty() {
+        _state.update {
+            it.copy(
+                penaltyCount = it.penaltyCount + 1
+            )
+        }
+    }
 }
