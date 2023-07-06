@@ -1,5 +1,6 @@
 package com.zenika.adventure.presentation.inventory.component
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -29,6 +30,7 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun AdventureInventoryBox(
+    @DrawableRes
     item: Int,
     showItem: (Int) -> Unit,
     modifier: Modifier = Modifier,

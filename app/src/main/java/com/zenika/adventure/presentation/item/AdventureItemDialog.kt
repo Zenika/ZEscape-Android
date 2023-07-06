@@ -1,5 +1,6 @@
 package com.zenika.adventure.presentation.item
 
+import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
 import com.zenika.R
 import com.zenika.adventure.presentation.component.AdventureDialog
@@ -9,6 +10,7 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun AdventureItemDialog(
+    @DrawableRes
     item: Int,
     onDismissRequest: () -> Unit
 ) {
