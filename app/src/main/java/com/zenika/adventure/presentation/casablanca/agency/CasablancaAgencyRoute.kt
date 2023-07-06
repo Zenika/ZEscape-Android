@@ -10,7 +10,8 @@ fun CasablancaAgencyRoute(
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
-    viewModel: CasablancaAgencyViewModel = hiltViewModel(),
+    openAgencyMap: () -> Unit,
+    viewModel: CasablancaAgencyViewModel = hiltViewModel()
 ) {
     val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
 
@@ -18,7 +19,8 @@ fun CasablancaAgencyRoute(
         remainingTime,
         goToSettings,
         openWorldMap,
-        openInventory
+        openInventory,
+        openAgencyMap
     )
 }
 
