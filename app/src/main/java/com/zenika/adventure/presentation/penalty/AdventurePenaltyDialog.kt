@@ -1,0 +1,61 @@
+package com.zenika.adventure.presentation.penalty
+
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import com.zenika.R
+import com.zenika.adventure.presentation.component.AdventureDialog
+import com.zenika.ui.theme.adventureBodyMedium
+import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ZEscapeThemePreview
+
+@Composable
+fun AdventurePenaltyDialog(
+    onDismissRequest: () -> Unit,
+    goBackToSingaporeAgency: () -> Unit,
+    penalty: String
+) {
+    val penaltyRes = when (penalty) {
+        "hook" -> R.string.penalty_hook
+        "sword" -> R.string.penalty_sword
+        "door" -> R.string.penalty_force_door
+        "hotel" -> R.string.penalty_sleep_hotel
+        "intercom" -> R.string.penalty_ring_intercom
+        else -> R.string.penalty
+    }
+
+    val onDismiss = if (penalty == "hook" || penalty == "sword") {
+        goBackToSingaporeAgency
+    } else {
+        onDismissRequest
+    }
+
+    AdventureDialog(
+        onDismissRequest = onDismiss,
+        backgroundColor = MaterialTheme.colorScheme.errorContainer
+    ) {
+        Text(
+            text = stringResource(penaltyRes),
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            style = adventureBodyMedium,
+            color = MaterialTheme.colorScheme.onErrorContainer
+        )
+    }
+}
+
+@ScreenPreview
+@Composable
+private fun AdventurePenaltyDialogPreview() {
+    ZEscapeThemePreview {
+        AdventurePenaltyDialog(
+            onDismissRequest = {},
+            goBackToSingaporeAgency = {},
+            penalty = "null"
+        )
+    }
+}

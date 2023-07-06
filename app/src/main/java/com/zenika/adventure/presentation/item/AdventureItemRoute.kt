@@ -10,11 +10,14 @@ import com.zenika.adventure.presentation.item.component.KeyDialog
 @Composable
 fun AdventureItemRoute(
     onDismissRequest: () -> Unit,
+    openPenalty: (String) -> Unit,
     viewModel: AdventureItemViewModel = hiltViewModel()
 ) {
     val item by viewModel.item.collectAsStateWithLifecycle()
 
     when (val itemRes = item) {
+        R.mipmap.hook -> openPenalty("hook")
+        R.mipmap.sword -> openPenalty("sword")
         R.mipmap.singapore_key -> KeyDialog(onDismissRequest)
         null -> Unit
         else -> AdventureItemDialog(itemRes, onDismissRequest)

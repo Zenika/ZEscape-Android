@@ -33,6 +33,7 @@
     <string name="returnToHome">Quitter</string>
     <string name="score">Score</string>
     <string name="penalty_count">Pénalité(s) : %1$d</string>
+    <string name="penalty">Pénalité</string>
     <string name="hint_count">Indice(s) : %1$d</string>
     <string name="time">Temps : </string>
     <string name="no_hint">Pas d\'indice disponible</string>
@@ -90,6 +91,16 @@
     <string name="ring_intercom">Sonner à interphone</string>
     <string name="go_through_window">Passer par la fenêtre</string>
     <string name="sleep_hotel">Dormir à l\'hôtel</string>
+    <string name="penalty_hook">Pénalité\n
+        Que pensez-vous faire avec un crochet pareil ?</string>
+    <string name="penalty_sword">Pénalité\n
+        Ce n\'est pas l\'heure de se battre…</string>
+    <string name="penalty_force_door">Pénalité\n
+        Vous n\'allez quand même pas détériorer cette belle agence</string>
+    <string name="penalty_sleep_hotel">Pénalité\n
+        Ce n\'est pas le moment de se reposer !</string>
+    <string name="penalty_ring_intercom">Pénalité\n
+        Pas sûr que quelqu\'un vous ouvre à cette heure-ci…</string>
     <string name="casablanca_outside_text">Bienvenue devant l\'agence de Casablanca, que souhaitez-vous faire ?</string>
     <string name="key">Cette clé nous aidera sûrement à sortir de cette dimension…</string>
     <string name="debug">Debug</string>

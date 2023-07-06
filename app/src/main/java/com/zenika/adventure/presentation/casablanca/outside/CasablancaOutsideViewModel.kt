@@ -2,16 +2,21 @@ package com.zenika.adventure.presentation.casablanca.outside
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zenika.adventure.domain.ApplyPenaltyUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CasablancaOutsideViewModel @Inject constructor(
-    observeRemainingTime: ObserveRemainingTimeUseCase
+    observeRemainingTime: ObserveRemainingTimeUseCase,
+    private val applyPenaltyUseCase: ApplyPenaltyUseCase
 ) : ViewModel() {
     val remainingTime: StateFlow<Int> =
         observeRemainingTime()
@@ -20,4 +25,31 @@ class CasablancaOutsideViewModel @Inject constructor(
                 started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
                 initialValue = 3_600_600
             )
+
+    private val _events = MutableSharedFlow<CasablancaEvent>()
+    val events = _events.asSharedFlow()
+
+    fun enterInAgency() {
+        viewModelScope.launch {
+            _events.emit(CasablancaEvent.ENTRY)
+        }
+    }
+
+    fun applyPenalty(penalty: String) {
+        viewModelScope.launch {
+            when (penalty) {
+                "door" -> _events.emit(CasablancaEvent.PENALTY_DOOR)
+                "hotel" -> _events.emit(CasablancaEvent.PENALTY_HOTEL)
+                "intercom" -> _events.emit(CasablancaEvent.PENALTY_INTERCOM)
+            }
+            applyPenaltyUseCase()
+        }
+    }
+}
+
+enum class CasablancaEvent {
+    ENTRY,
+    PENALTY_DOOR,
+    PENALTY_HOTEL,
+    PENALTY_INTERCOM
 }

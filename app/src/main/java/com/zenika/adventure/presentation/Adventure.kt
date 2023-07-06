@@ -19,6 +19,7 @@ import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
 import com.zenika.adventure.presentation.inventory.AdventureInventoryRoute
 import com.zenika.adventure.presentation.item.AdventureItemRoute
+import com.zenika.adventure.presentation.penalty.AdventurePenaltyRoute
 import com.zenika.adventure.presentation.portal.PortalRoute
 import com.zenika.adventure.presentation.portal_message.PortalMessageRoute
 import com.zenika.adventure.presentation.score.AdventureScoreDialog
@@ -53,6 +54,7 @@ private const val ROUTE_CASABLANCA_INSTRUCTION = "adventureCasablancaInstruction
 private const val ROUTE_CASABLANCA_OUTSIDE = "adventureCasablancaOutside"
 private const val ROUTE_CASABLANCA_AGENCY = "adventureCasablancaAgency"
 private const val ROUTE_CASABLANCA_AGENCY_DIALOG = "adventureCasablancaAgencyDialog"
+private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.adventureNavigation(
@@ -145,7 +147,31 @@ fun NavGraphBuilder.adventureNavigation(
             })
         ) {
             AdventureItemRoute(
-                onDismissRequest = { navController.popBackStack() }
+                onDismissRequest = { navController.popBackStack() },
+                openPenalty = { item ->
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            item
+                        )
+                    )
+                }
+            )
+        }
+        dialog(
+            ROUTE_PATTERN_PENALTY,
+            arguments = listOf(navArgument("penalty") {
+                type = NavType.StringType
+            })
+        ) {
+            AdventurePenaltyRoute(
+                onDismissRequest = { navController.popBackStack() },
+                goBackToSingaporeAgency = {
+                    navController.popBackStack(
+                        ROUTE_SINGAPORE_AGENCY,
+                        inclusive = false
+                    )
+                },
             )
         }
         dialog(ROUTE_WORLD_MAP) {

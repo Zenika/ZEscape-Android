@@ -31,6 +31,7 @@ fun CasablancaOutsideScreen(
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     enterInAgency: () -> Unit,
+    applyPenalty: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val buttonTexts = listOf(
@@ -60,7 +61,14 @@ fun CasablancaOutsideScreen(
             }
             items(buttonTexts) { buttonText ->
                 Button(
-                    onClick = { if (buttonText == R.string.go_through_window) enterInAgency() },
+                    onClick = {
+                        when (buttonText) {
+                            R.string.go_through_window -> enterInAgency()
+                            R.string.force_door -> applyPenalty("door")
+                            R.string.ring_intercom -> applyPenalty("intercom")
+                            R.string.sleep_hotel -> applyPenalty("hotel")
+                        }
+                    },
                     modifier = Modifier.height(80.dp)
                 ) {
                     Text(
@@ -90,11 +98,12 @@ fun CasablancaOutsideScreen(
 private fun CasablancaOutsideScreenPreview() {
     ZEscapeThemePreview {
         CasablancaOutsideScreen(
-            remainingTime = 60,
+            remainingTime = 0,
             goToSettings = {},
             openWorldMap = {},
             openInventory = {},
-            enterInAgency = {}
+            enterInAgency = {},
+            applyPenalty = {}
         )
     }
 }
