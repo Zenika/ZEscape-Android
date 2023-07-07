@@ -1,5 +1,6 @@
 package com.zenika.adventure.presentation.portal
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
