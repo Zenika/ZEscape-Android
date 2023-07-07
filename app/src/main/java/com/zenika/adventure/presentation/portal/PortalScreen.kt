@@ -26,15 +26,18 @@ fun PortalScreen(
     openInventory: () -> Unit,
 ) {
     val accessToPortal = if (state.collectSingaporeKey) {
-        {
-            accessToOpenPortal()
-            finishGame()
-        }
+        accessToOpenPortal
     } else {
         accessToClosePortal
     }
 
     ScaffoldScreen(
+        modifier = Modifier.clickable {
+            accessToPortal()
+            if (state.collectSingaporeKey) {
+                finishGame()
+            }
+        },
         remainingTime = state.remainingTime,
         goToSettings = goToSettings,
         onClick = accessToPortal,

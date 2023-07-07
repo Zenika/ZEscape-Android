@@ -1,9 +1,9 @@
 package com.zenika.adventure.presentation.portal
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun PortalRoute(
@@ -14,7 +14,11 @@ fun PortalRoute(
     openInventory: () -> Unit,
     viewModel: PortalViewModel = hiltViewModel(),
 ) {
-    val state by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    BackHandler {
+        // Player cannot leave the adventure while it is running.
+    }
 
     PortalScreen(
         state,
