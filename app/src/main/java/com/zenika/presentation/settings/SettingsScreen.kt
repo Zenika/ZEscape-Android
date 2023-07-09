@@ -1,6 +1,5 @@
 package com.zenika.presentation.settings
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,7 +21,6 @@ import com.zenika.presentation.component.ReturnButton
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
@@ -34,9 +32,8 @@ fun SettingsScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(id = R.string.settings),
-                        Modifier
-                            .fillMaxWidth()
+                        text = stringResource(R.string.settings),
+                        modifier = Modifier.fillMaxWidth()
                     )
                 },
                 navigationIcon = {
@@ -57,9 +54,7 @@ fun SettingsScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Button(onClick = {
-                goBackToHome()
-            }) {
+            Button(onClick = goBackToHome) {
                 Text(
                     text = stringResource(R.string.stop_game),
                     style = MaterialTheme.typography.headlineSmall

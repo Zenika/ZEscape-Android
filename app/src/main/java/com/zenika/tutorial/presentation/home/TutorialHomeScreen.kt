@@ -40,9 +40,8 @@ fun TutorialHomeScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(id = R.string.tutorial),
-                        Modifier
-                            .fillMaxWidth()
+                        text = stringResource(R.string.tutorial),
+                        modifier = Modifier.fillMaxWidth()
                     )
                 },
                 navigationIcon = {
@@ -73,13 +72,13 @@ fun TutorialHomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(id = R.string.tutorial_home_text),
+                text = stringResource(R.string.tutorial_home_text),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyLarge
             )
             Button(onClick = goToScan) {
                 Text(
-                    text = stringResource(id = R.string.scan),
+                    text = stringResource(R.string.scan),
                     style = MaterialTheme.typography.headlineSmall
                 )
             }

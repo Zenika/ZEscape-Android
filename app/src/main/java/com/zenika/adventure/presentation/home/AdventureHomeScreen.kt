@@ -37,9 +37,8 @@ fun AdventureHomeScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(id = R.string.adventure),
-                        Modifier
-                            .fillMaxWidth()
+                        text = stringResource(R.string.adventure),
+                        modifier = Modifier.fillMaxWidth()
                     )
                 },
                 navigationIcon = {
@@ -65,7 +64,7 @@ fun AdventureHomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(id = R.string.adventure_home_text),
+                text = stringResource(R.string.adventure_home_text),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyLarge
             )

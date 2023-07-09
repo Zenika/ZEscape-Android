@@ -23,7 +23,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.zenika.R
-import com.zenika.tutorial.presentation.component.TutorialTimer
+import com.zenika.presentation.component.Timer
 import com.zenika.tutorial.presentation.main.component.Key
 import com.zenika.tutorial.presentation.main.component.TreasureChest
 import com.zenika.tutorial.presentation.main.component.TutorialInventoryBag
@@ -49,7 +49,7 @@ fun MainScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    TutorialTimer(
+                    Timer(
                         mainUiState.remainingTime,
                         Modifier.fillMaxWidth()
                     )

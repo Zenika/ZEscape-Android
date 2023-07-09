@@ -17,10 +17,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import com.zenika.R
 import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.screenPadding
+import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,9 +34,8 @@ fun HomeScreen(
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = stringResource(id = R.string.app_name),
-                        Modifier
-                            .fillMaxWidth(),
+                        text = stringResource(R.string.app_name),
+                        modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center
                     )
                 },
@@ -48,8 +47,7 @@ fun HomeScreen(
         }
     ) { paddingValues ->
         Column(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(screenPadding),
@@ -60,21 +58,17 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(id = R.string.home_text),
+                text = stringResource(R.string.home_text),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyLarge
             )
-            Button(onClick = {
-                goToTutorial()
-            }) {
+            Button(onClick = goToTutorial) {
                 Text(
                     text = stringResource(R.string.tutorial),
                     style = MaterialTheme.typography.headlineLarge
                 )
             }
-            Button(onClick = {
-                goToAdventure()
-            }) {
+            Button(onClick = goToAdventure) {
                 Text(
                     text = stringResource(R.string.adventure),
                     style = MaterialTheme.typography.headlineSmall
@@ -86,7 +80,7 @@ fun HomeScreen(
 
 
 
-@Preview
+@ScreenPreview
 @Composable
 private fun HomeScreenPreview() {
     ZEscapeThemePreview {

@@ -59,7 +59,7 @@ fun EndParchment(
         ) { page ->
             Image(
                 painter = painterResource(R.mipmap.parchment),
-                contentDescription = stringResource(id = R.string.parchment_image),
+                contentDescription = stringResource(R.string.parchment_image),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .fillMaxSize()
@@ -72,7 +72,7 @@ fun EndParchment(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = stringResource(id = text[page]),
+                    text = stringResource(text[page]),
                     modifier = Modifier.padding(
                         top = mapPadding,
                         start = mapPadding,

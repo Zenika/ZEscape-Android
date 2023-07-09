@@ -2,7 +2,9 @@ package com.zenika.presentation.home
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun HomeRoute(
@@ -10,12 +12,12 @@ fun HomeRoute(
     goToAdventure: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(viewModel) {
-        viewModel.events.collect { event ->
-            when (event) {
-                HomeEvent.TUTORIAL -> goToTutorial()
-                HomeEvent.ADVENTURE -> goToAdventure()
-            }
+    val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
+    LaunchedEffect(event) {
+        when (event) {
+            HomeEvent.TUTORIAL -> goToTutorial()
+            HomeEvent.ADVENTURE -> goToAdventure()
+            null -> Unit
         }
     }
 

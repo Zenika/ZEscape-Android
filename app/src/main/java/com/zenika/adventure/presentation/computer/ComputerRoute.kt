@@ -17,7 +17,7 @@ fun ComputerRoute(
 
 @ScreenPreview
 @Composable
-fun ComputerRoutePreview() {
+private fun ComputerRoutePreview() {
     ZEscapeThemePreview {
         ComputerRoute(
             goBack = {},

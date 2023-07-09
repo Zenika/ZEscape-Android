@@ -2,7 +2,6 @@ package com.zenika.adventure.presentation.portal
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -11,7 +10,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -21,9 +19,9 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import com.zenika.R
 import com.zenika.presentation.component.SettingsButton
+import com.zenika.presentation.component.Timer
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -33,29 +31,14 @@ fun PortalScreen(
     remainingTime: Int,
     goToSettings: () -> Unit
 ) {
-    val minutes = remainingTime / 60000
-    val seconds = remainingTime / 1000 % 60
-    val secondsString = if (seconds in 0..9) {
-        "0$seconds"
-    } else {
-        seconds.toString()
-    }
-
-    val timer = "$minutes:$secondsString"
-
     Scaffold(topBar = {
         TopAppBar(
             title = {
-                Text(
-                    text = timer,
-                    Modifier
-                        .fillMaxWidth(),
-                    textAlign = TextAlign.Center
-                )
+                Timer(remainingTime, Modifier.fillMaxSize())
             },
             navigationIcon = {
                 IconButton(onClick = {}) {
-                    Icon(Icons.Filled.Search, stringResource(id = R.string.hint))
+                    Icon(Icons.Filled.Search, stringResource(R.string.hint))
                 }
             },
             actions = {

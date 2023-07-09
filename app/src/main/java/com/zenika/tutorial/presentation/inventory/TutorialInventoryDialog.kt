@@ -41,7 +41,7 @@ fun TutorialInventoryDialog(
         ) {
             Text(
                 text = stringResource(R.string.inventory),
-                Modifier.padding(dialogPadding),
+                modifier = Modifier.padding(dialogPadding),
                 style = MaterialTheme.typography.headlineMedium
             )
             LazyVerticalGrid(

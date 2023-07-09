@@ -13,13 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.zenika.R
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.ui.theme.screenPadding
+import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -73,12 +73,12 @@ private fun Modifier.dialogBackground(
     )
 }
 
-@Preview
+@ScreenPreview
 @Composable
 private fun TutorialDialogPreview() {
     ZEscapeThemePreview {
         TutorialDialog(onDismissRequest = { }) {
-            Text(text = stringResource(id = R.string.instruction))
+            Text(text = stringResource(R.string.instruction))
         }
     }
 }

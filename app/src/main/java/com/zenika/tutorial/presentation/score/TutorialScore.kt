@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.tutorial.domain.Statistics
 import com.zenika.tutorial.presentation.component.Parchment
-import com.zenika.tutorial.presentation.component.TutorialTimer
+import com.zenika.presentation.component.Timer
 import com.zenika.ui.theme.textListSpacing
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
@@ -33,14 +33,14 @@ fun TutorialScore(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(id = R.string.score),
+                text = stringResource(R.string.score),
                 style = MaterialTheme.typography.headlineLarge
             )
             Row {
                 Text(
                     text = stringResource(R.string.time)
                 )
-                TutorialTimer(
+                Timer(
                     statistics.elapsedTime,
                     Modifier.padding(4.dp)
                 )
@@ -55,7 +55,7 @@ fun TutorialScore(
             )
             Button(onClick = goToHome) {
                 Text(
-                    text = stringResource(id = R.string.home),
+                    text = stringResource(R.string.home),
                     style = MaterialTheme.typography.bodyMedium
                 )
             }

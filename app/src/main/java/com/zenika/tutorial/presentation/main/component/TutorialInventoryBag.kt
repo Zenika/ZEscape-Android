@@ -30,7 +30,7 @@ fun TutorialInventoryBag(
         painter = painterResource(
             id = imageRes
         ),
-        contentDescription = stringResource(id = R.string.inventory_bag_image),
+        contentDescription = stringResource(R.string.inventory_bag_image),
         contentScale = ContentScale.Fit,
         modifier = modifier
             .padding(screenPadding)

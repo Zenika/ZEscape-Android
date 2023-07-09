@@ -19,7 +19,7 @@ fun TutorialHintDialog(
         onDismissRequest = onDismissRequest
     ) {
         Text(
-            text = stringResource(id = hint.text),
+            text = stringResource(hint.text),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodyLarge
         )

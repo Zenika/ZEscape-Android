@@ -22,7 +22,7 @@ fun Key(
         painter = painterResource(
             id = R.mipmap.key
         ),
-        contentDescription = stringResource(id = R.string.key_image),
+        contentDescription = stringResource(R.string.key_image),
         contentScale = ContentScale.Fit,
         modifier = modifier
             .clickable { collectKey() }

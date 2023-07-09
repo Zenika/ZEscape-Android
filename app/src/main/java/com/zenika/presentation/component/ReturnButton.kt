@@ -6,8 +6,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.zenika.R
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -15,15 +15,16 @@ fun ReturnButton(
     goBack: () -> Unit
 ) {
     IconButton(onClick = goBack) {
-        Icon(Icons.Filled.ArrowBack, stringResource(id = R.string.retour))
+        Icon(Icons.Filled.ArrowBack, stringResource(R.string.retour))
     }
 }
 
-@Preview
+@ComposablePreview
 @Composable
 private fun ReturnButtonPreview() {
     ZEscapeThemePreview {
-        ReturnButton {
-        }
+        ReturnButton(
+            goBack = {}
+        )
     }
 }

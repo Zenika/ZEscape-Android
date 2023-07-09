@@ -35,8 +35,7 @@ fun ComputerScreen(
                 title = {
                     Text(
                         text = stringResource(R.string.desk),
-                        Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                     )
                 },
                 navigationIcon = {
@@ -54,8 +53,7 @@ fun ComputerScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-        )
-        {
+        ) {
             Image(
                 painter = painterResource(
                     id = R.mipmap.computer
@@ -66,8 +64,7 @@ fun ComputerScreen(
             )
             Button(
                 onClick = goToScan,
-                modifier = Modifier
-                    .align(Alignment.Center)
+                modifier = Modifier.align(Alignment.Center)
             ) {
                 Text(
                     text = stringResource(R.string.connexion),

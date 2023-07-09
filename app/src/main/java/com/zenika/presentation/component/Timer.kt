@@ -1,4 +1,4 @@
-package com.zenika.tutorial.presentation.component
+package com.zenika.presentation.component
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -8,7 +8,7 @@ import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun TutorialTimer(
+fun Timer(
     timer: Int,
     modifier: Modifier
 ) {
@@ -33,8 +33,8 @@ private fun timerConverter(timer: Int): String {
 
 @ComposablePreview
 @Composable
-private fun TutorialTimerPreview() {
+private fun TimerPreview() {
     ZEscapeThemePreview {
-        TutorialTimer(13 * 60_000 + 47_000, Modifier)
+        Timer(13 * 60_000 + 47_000, Modifier)
     }
 }

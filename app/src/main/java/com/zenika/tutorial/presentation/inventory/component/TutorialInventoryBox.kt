@@ -47,7 +47,7 @@ fun TutorialInventoryBox(
                 painter = painterResource(
                     id = item
                 ),
-                contentDescription = stringResource(id = R.string.item_image)
+                contentDescription = stringResource(R.string.item_image)
             )
         }
     }

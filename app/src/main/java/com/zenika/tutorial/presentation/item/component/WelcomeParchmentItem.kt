@@ -101,7 +101,7 @@ private fun PageContent(
     ) {
         if (page <= 1) {
             Text(
-                text = stringResource(id = text[page]),
+                text = stringResource(text[page]),
                 modifier = Modifier.padding(
                     top = topMapPadding,
                     start = mapPadding,
@@ -115,7 +115,7 @@ private fun PageContent(
                 painter = painterResource(
                     id = R.mipmap.arrow
                 ),
-                contentDescription = stringResource(id = R.string.arrow_image),
+                contentDescription = stringResource(R.string.arrow_image),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .size(50.dp)
@@ -127,7 +127,7 @@ private fun PageContent(
             )
         } else {
             Text(
-                text = stringResource(id = text[page]),
+                text = stringResource(text[page]),
                 modifier = Modifier.padding(
                     top = mapPadding,
                     start = mapPadding,

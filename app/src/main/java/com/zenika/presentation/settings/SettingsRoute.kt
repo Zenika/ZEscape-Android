@@ -2,7 +2,9 @@ package com.zenika.presentation.settings
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun SettingsRoute(
@@ -10,11 +12,11 @@ fun SettingsRoute(
     goBackToHome: () -> Unit,
     viewModel: SettingsViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(viewModel) {
-        viewModel.events.collect { event ->
-            when (event) {
-                SettingsEvent.HOME -> goBackToHome()
-            }
+    val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
+    LaunchedEffect(event) {
+        when (event) {
+            SettingsEvent.HOME -> goBackToHome()
+            null -> Unit
         }
     }
 
