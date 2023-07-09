@@ -37,7 +37,7 @@ fun ColorButton(
 
 @ScreenPreview
 @Composable
-fun ColorButtonPreview() {
+private fun ColorButtonPreview() {
     ZEscapeThemePreview {
         ColorButton(
             symbol = "@",

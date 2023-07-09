@@ -7,15 +7,20 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.zenika.R
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.ui.theme.screenPadding
+import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun TutorialDialog(
@@ -34,7 +39,7 @@ fun TutorialDialog(
                 .fillMaxWidth()
                 .dialogBackground(
                     color = backgroundColor,
-                    borderColor= MaterialTheme.colorScheme.onPrimaryContainer,
+                    borderColor = MaterialTheme.colorScheme.onPrimaryContainer,
                     shape = MaterialTheme.shapes.extraLarge
                 )
         ) {
@@ -66,5 +71,15 @@ private fun Modifier.dialogBackground(
             withBackgroundModifier
         } else Modifier
     )
+}
+
+@ScreenPreview
+@Composable
+private fun TutorialDialogPreview() {
+    ZEscapeThemePreview {
+        TutorialDialog(onDismissRequest = { }) {
+            Text(text = stringResource(R.string.instruction))
+        }
+    }
 }
 

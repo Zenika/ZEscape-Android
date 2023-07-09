@@ -62,7 +62,7 @@ fun WelcomeParchment(
                 painter = painterResource(
                     id = R.mipmap.parchment
                 ),
-                contentDescription = stringResource(id = R.string.parchment_image),
+                contentDescription = stringResource(R.string.parchment_image),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .fillMaxSize()
@@ -76,7 +76,7 @@ fun WelcomeParchment(
             ) {
                 if (page <= 1) {
                     Text(
-                        text = stringResource(id = text[page]),
+                        text = stringResource(text[page]),
                         modifier = Modifier.padding(
                             top = topMapPadding,
                             start = mapPadding,
@@ -90,7 +90,7 @@ fun WelcomeParchment(
                         painter = painterResource(
                             id = R.mipmap.arrow
                         ),
-                        contentDescription = stringResource(id = R.string.arrow_image),
+                        contentDescription = stringResource(R.string.arrow_image),
                         contentScale = ContentScale.Fit,
                         modifier = Modifier
                             .size(70.dp)
@@ -102,7 +102,7 @@ fun WelcomeParchment(
                     )
                 } else {
                     Text(
-                        text = stringResource(id = text[page]),
+                        text = stringResource(text[page]),
                         modifier = Modifier.padding(
                             top = mapPadding,
                             start = mapPadding,
@@ -115,7 +115,7 @@ fun WelcomeParchment(
                     )
                     Button(onClick = openInstruction) {
                         Text(
-                            text = stringResource(id = R.string.start_button),
+                            text = stringResource(R.string.start_button),
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }
@@ -127,7 +127,7 @@ fun WelcomeParchment(
 
 @ComposablePreview
 @Composable
-fun WelcomeParchmentPreview() {
+private fun WelcomeParchmentPreview() {
     ZEscapeThemePreview {
         WelcomeParchment(
             openInstruction = {}

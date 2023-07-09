@@ -2,9 +2,9 @@ package com.zenika.tutorial.presentation.color_buttons_order_game
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun ColorButtonsOrderGameRoute(
@@ -12,7 +12,7 @@ fun ColorButtonsOrderGameRoute(
     openPenalty: (String) -> Unit,
     viewModel: ColorButtonsOrderGameViewModel = hiltViewModel()
 ) {
-    val size by viewModel.sequenceSize.collectAsState()
+    val size by viewModel.sequenceSize.collectAsStateWithLifecycle()
 
     LaunchedEffect(viewModel) {
         viewModel.events.collect { event ->
