@@ -92,7 +92,7 @@
     <string name="go_through_window">Passer par la fenêtre</string>
     <string name="sleep_hotel">Dormir à l\'hôtel</string>
     <string name="penalty_hook">Pénalité\n
-        Que pensez-vous faire avec un crochet pareil ?</string>
+        Que pensez-vous faire avec un hameçon ?</string>
     <string name="penalty_sword">Pénalité\n
         Ce n\'est pas l\'heure de se battre…</string>
     <string name="penalty_force_door">Pénalité\n
@@ -101,6 +101,8 @@
         Ce n\'est pas le moment de se reposer !</string>
     <string name="penalty_ring_intercom">Pénalité\n
         Pas sûr que quelqu\'un vous ouvre à cette heure-ci…</string>
+    <string name="penalty_wrong_agency">Pénalité\n
+        Malheureusement, cette ville ne possède pas encore d\'agence Zenika…</string>
     <string name="casablanca_outside_text">Bienvenue devant l\'agence de Casablanca, que souhaitez-vous faire ?</string>
     <string name="key">Cette clé nous aidera sûrement à sortir de cette dimension…</string>
     <string name="debug">Debug</string>

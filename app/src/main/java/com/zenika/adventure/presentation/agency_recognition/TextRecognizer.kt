@@ -46,7 +46,6 @@ fun TextRecognizer(
         "MONTREAL",
         "CASABLANCA",
         "SINGAPOUR",
-        "LYON",
         "NEW YORK",
         "TOKYO",
         "BRASILIA",

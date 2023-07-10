@@ -220,6 +220,14 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.navigate(ROUTE_WORLD_MAP) {
                         popUpTo(ROUTE_PATTERN_AGENCY_VALIDATION) { inclusive = true }
                     }
+                },
+                openPenalty = { item ->
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            item
+                        )
+                    )
                 }
             )
         }

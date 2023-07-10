@@ -51,9 +51,11 @@ class AgencyValidationViewModel @Inject constructor(
         Agency.values()
             .firstOrNull { it.name == agency.value }
             ?.let { addAgency(it) }
+        _events.emit(AgencyValidationEvent.PENALTY)
     }
 }
 
 enum class AgencyValidationEvent {
-    OPEN_MAP
+    OPEN_MAP,
+    PENALTY
 }
