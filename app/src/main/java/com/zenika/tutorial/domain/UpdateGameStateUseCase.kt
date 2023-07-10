@@ -22,7 +22,7 @@ class UpdateGameStateUseCase @Inject constructor(
         gameStateManager.removeNewItemBadge()
     }
 
-    fun incrementClueCount() {
-        gameStateManager.incrementClueCount()
+    fun incrementHintCount() {
+        gameStateManager.incrementHintCount()
     }
 }

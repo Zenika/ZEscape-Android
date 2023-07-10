@@ -16,7 +16,7 @@ fun Stage(size: Int) {
 
 @ScreenPreview
 @Composable
-fun StagePreview() {
+private fun StagePreview() {
     ZEscapeThemePreview {
         Stage(
             size = 2

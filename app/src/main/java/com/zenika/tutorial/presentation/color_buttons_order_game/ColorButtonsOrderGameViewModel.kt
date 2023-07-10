@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ColorButtonsOrderGameViewModel @Inject constructor(
-    private val updateGameStateUseCase: UpdateGameStateUseCase,
+    private val updateGameState: UpdateGameStateUseCase,
     private val applyPenaltyUseCase: ApplyPenaltyUseCase
 ) : ViewModel() {
     private val _events = MutableSharedFlow<MiniGameEvent>()
@@ -49,7 +49,7 @@ class ColorButtonsOrderGameViewModel @Inject constructor(
             } else if (sequenceSize.value >= 3) {
                 _events.emit(MiniGameEvent.DISMISS)
                 initColorsSequence()
-                updateGameStateUseCase.openChest()
+                updateGameState.openChest()
             }
         }
     }

@@ -46,25 +46,25 @@ fun ColorButtonsOrderGameDialog(
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 ColorButton(
-                    symbol = stringResource(id = R.string.sharp),
+                    symbol = stringResource(R.string.sharp),
                     color = GreenSymbol,
                     colorName = "green",
                     onColorClick = onColorClick
                 )
                 ColorButton(
-                    symbol = stringResource(id = R.string.ampersand),
+                    symbol = stringResource(R.string.ampersand),
                     color = PurpleSymbol,
                     colorName = "purple",
                     onColorClick = onColorClick
                 )
                 ColorButton(
-                    symbol = stringResource(id = R.string.percent),
+                    symbol = stringResource(R.string.percent),
                     color = RedSymbol,
                     colorName = "red",
                     onColorClick = onColorClick
                 )
                 ColorButton(
-                    symbol = stringResource(id = R.string.at),
+                    symbol = stringResource(R.string.at),
                     color = BlueSymbol,
                     colorName = "blue",
                     onColorClick = onColorClick
@@ -76,7 +76,7 @@ fun ColorButtonsOrderGameDialog(
 
 @ScreenPreview
 @Composable
-fun ColorButtonsOrderGameDialogPreview() {
+private fun ColorButtonsOrderGameDialogPreview() {
     ZEscapeThemePreview {
         ColorButtonsOrderGameDialog(
             size = 2,

@@ -61,7 +61,7 @@ class GameStateManager @Inject constructor() {
         }
     }
 
-    fun incrementClueCount() {
+    fun incrementHintCount() {
         _state.update {
             it.copy(
                 hintCount = it.hintCount + 1

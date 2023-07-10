@@ -23,10 +23,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.zenika.R
-import com.zenika.tutorial.presentation.component.Timer
-import com.zenika.tutorial.presentation.main.component.InventoryBag
+import com.zenika.presentation.component.Timer
 import com.zenika.tutorial.presentation.main.component.Key
 import com.zenika.tutorial.presentation.main.component.TreasureChest
+import com.zenika.tutorial.presentation.main.component.TutorialInventoryBag
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
@@ -39,11 +39,11 @@ fun MainScreen(
     mainUiState: MainUiState,
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
-    showClue: () -> Unit,
+    showHint: () -> Unit,
     collectKey: () -> Unit,
     collectMap: () -> Unit,
     removeNewItemBadge: () -> Unit,
-    incrementClueCount: () -> Unit
+    incrementHintCount: () -> Unit
 ) {
     Scaffold(modifier = modifier,
         topBar = {
@@ -56,15 +56,15 @@ fun MainScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = {
-                        showClue()
-                        incrementClueCount()
+                        showHint()
+                        incrementHintCount()
                     }) {
-                        Icon(Icons.Filled.Search, stringResource(R.string.clue_icon))
+                        Icon(Icons.Filled.Search, stringResource(R.string.hint))
                     }
                 },
                 actions = {
                     IconButton(onClick = {}) {
-                        Icon(Icons.Filled.Settings, stringResource(R.string.settings_icon))
+                        Icon(Icons.Filled.Settings, stringResource(R.string.settings))
                     }
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
@@ -92,7 +92,7 @@ fun MainScreen(
                 openMiniGame,
                 collectMap
             )
-            InventoryBag(
+            TutorialInventoryBag(
                 Modifier
                     .align(Alignment.BottomEnd),
                 mainUiState.newItem,
@@ -114,7 +114,7 @@ fun MainScreen(
 
 @ScreenPreview
 @Composable
-fun TutorialScreenPreview() {
+private fun TutorialScreenPreview() {
     ZEscapeThemePreview {
         MainScreen(
             Modifier
@@ -128,11 +128,11 @@ fun TutorialScreenPreview() {
             ),
             openMiniGame = {},
             openInventory = {},
-            showClue = {},
+            showHint = {},
             collectKey = {},
             collectMap = {},
             removeNewItemBadge = {},
-            incrementClueCount = {}
+            incrementHintCount = {}
         )
     }
 }
