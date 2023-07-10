@@ -6,10 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.AddAgencyUseCase
 import com.zenika.data.Agency
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,10 +31,33 @@ class AgencyValidationViewModel @Inject constructor(
             initialValue = _agencyName
         )
 
-    fun addAgency() {
+    private val _events = MutableSharedFlow<AgencyValidationEvent>()
+    val events = _events.asSharedFlow()
+
+    fun dismissAgency() {
+        viewModelScope.launch {
+            _events.emit(AgencyValidationEvent.DISMISS)
+            _events.emit(AgencyValidationEvent.MAP)
+        }
+    }
+
+    fun confirmAgency() {
+        viewModelScope.launch {
+            addAgency()
+            _events.emit(AgencyValidationEvent.DISMISS)
+            _events.emit(AgencyValidationEvent.MAP)
+        }
+    }
+
+    private fun addAgency() {
         val agencyExists = Agency.values().any { it.name == agency.value }
         if (agencyExists) {
             addAgency(Agency.valueOf(agency.value))
         }
     }
+}
+
+enum class AgencyValidationEvent {
+    DISMISS,
+    MAP
 }

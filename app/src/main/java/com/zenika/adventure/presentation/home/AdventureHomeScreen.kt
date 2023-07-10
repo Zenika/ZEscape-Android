@@ -20,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.zenika.R
 import com.zenika.presentation.component.ReturnButton
+import com.zenika.ui.theme.adventureBodyMedium
 import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
@@ -66,7 +67,7 @@ fun AdventureHomeScreen(
             Text(
                 text = stringResource(R.string.adventure_home_text),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyLarge
+                style = adventureBodyMedium
             )
             Button(onClick = goToAdventure) {
                 Text(

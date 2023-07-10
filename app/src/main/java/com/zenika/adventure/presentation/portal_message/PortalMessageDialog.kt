@@ -43,7 +43,7 @@ fun PortalMessageDialog(
 
 @ScreenPreview
 @Composable
-fun PortalMessageDialogPreview() {
+private fun PortalMessageDialogPreview() {
     ZEscapeThemePreview {
         PortalMessageDialog(
             onDismissRequest = {}

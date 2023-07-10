@@ -3,7 +3,6 @@ package com.zenika.adventure.presentation.portal
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -24,9 +23,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
+import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
-import com.zenika.adventure.presentation.component.InventoryBag
-import com.zenika.adventure.presentation.component.Timer
 import com.zenika.presentation.component.SettingsButton
 import com.zenika.presentation.component.Timer
 import com.zenika.ui.theme.screenPadding
@@ -44,7 +42,7 @@ fun PortalScreen(
     Scaffold(topBar = {
         TopAppBar(
             title = {
-                Timer(remainingTime, Modifier.fillMaxWidth())
+                Timer(remainingTime, Modifier.fillMaxSize())
             },
             navigationIcon = {
                 IconButton(onClick = {}) {
@@ -71,22 +69,21 @@ fun PortalScreen(
                     painterResource(id = R.mipmap.background_neon),
                     contentScale = ContentScale.FillHeight
                 )
+                .padding(screenPadding)
                 .clickable(onClick = accessToPortal),
             contentAlignment = Alignment.Center
         ) {
             ContinentsMap(
                 modifier = Modifier
-                    .size(100.dp)
+                    .size(80.dp)
                     .align(Alignment.BottomStart)
                     .clickable { openWorldMap() }
-                    .padding(screenPadding)
             )
-            InventoryBag(
+            AdventureInventoryBag(
                 modifier = Modifier
-                    .size(100.dp)
+                    .size(80.dp)
                     .align(Alignment.BottomEnd)
                     .clickable { }
-                    .padding(screenPadding)
             )
         }
     }

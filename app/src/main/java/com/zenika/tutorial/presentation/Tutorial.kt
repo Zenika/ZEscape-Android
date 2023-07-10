@@ -9,6 +9,7 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.composable
 import com.zenika.presentation.qrcode_scan.QrCodeScanRoute
+import com.zenika.presentation.settings.SettingsRoute
 import com.zenika.tutorial.presentation.color_buttons_order_game.ColorButtonsOrderGameRoute
 import com.zenika.tutorial.presentation.hint.TutorialHintRoute
 import com.zenika.tutorial.presentation.home.TutorialHomeRoute
@@ -33,6 +34,7 @@ private const val ROUTE_SCORE = "tutorialScore"
 private const val ROUTE_HINT = "tutorialHint"
 private const val ROUTE_PATTERN_ITEM = "tutorialItem/{item}"
 private const val ROUTE_PATTERN_PENALTY = "tutorialPenalty/{penalty}"
+private const val ROUTE_SETTINGS = "tutorialSettings"
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.tutorialNavigation(
@@ -58,7 +60,7 @@ fun NavGraphBuilder.tutorialNavigation(
         composable(ROUTE_INTRODUCTION) {
             WelcomeParchmentRoute(
                 openInstruction = {
-                    navController.popBackStack()
+                    navController.popBackStack(ROUTE_HOME, inclusive = false)
                     navController.navigate(ROUTE_MAIN)
                     navController.navigate(ROUTE_INSTRUCTION)
                 }
@@ -173,7 +175,7 @@ fun NavGraphBuilder.tutorialNavigation(
             TutorialScoreRoute(
                 goBackToHome = {
                     navController.popBackStack(
-                        route = ROUTE_HOME_TUTORIAL,
+                        route = ROUTE_HOME,
                         inclusive = true
                     )
                 }
@@ -182,9 +184,9 @@ fun NavGraphBuilder.tutorialNavigation(
         composable(ROUTE_SETTINGS) {
             SettingsRoute(
                 goBack = { navController.popBackStack() },
-                backToHome = {
+                goBackToHome = {
                     navController.popBackStack(
-                        route = ROUTE_HOME_TUTORIAL,
+                        route = ROUTE_HOME,
                         inclusive = true
                     )
                 }

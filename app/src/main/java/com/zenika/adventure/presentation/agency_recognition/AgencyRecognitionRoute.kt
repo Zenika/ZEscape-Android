@@ -4,11 +4,11 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun AgencyRecognitionRoute(
-    backToPreviousScreen: () -> Unit,
+    goBack: () -> Unit,
     openValidationDialog: (String) -> Unit
 ) {
     AgencyRecognitionScreen(
-        backToPreviousScreen,
+        goBack,
         openValidationDialog
     )
 }

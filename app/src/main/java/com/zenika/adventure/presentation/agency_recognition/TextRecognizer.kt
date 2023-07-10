@@ -17,7 +17,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun TextRecognizer(
-    backToPreviousScreen: () -> Unit,
+    goBack: () -> Unit,
     openValidationDialog: (String) -> Unit,
     context: Context,
     cameraController: LifecycleCameraController
@@ -58,7 +58,7 @@ fun TextRecognizer(
     LaunchedEffect(agency) {
         if (agency in agenciesName) {
             delay(500)
-            backToPreviousScreen()
+            goBack()
             openValidationDialog(agency)
         }
     }

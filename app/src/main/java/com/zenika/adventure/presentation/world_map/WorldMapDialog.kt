@@ -16,14 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.zenika.R
 import com.zenika.data.Agency
-import com.zenika.ui.theme.ZEscapeTheme
 import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun WorldMapDialog(
@@ -92,11 +91,10 @@ fun WorldMapDialog(
     }
 }
 
-@Preview
 @ScreenPreview
 @Composable
-fun WorldMapDialogPreview() {
-    ZEscapeTheme {
+private fun WorldMapDialogPreview() {
+    ZEscapeThemePreview {
         WorldMapDialog(
             onDismissRequest = {},
             openTextRecognition = {},

@@ -37,6 +37,7 @@ import com.zenika.R
 import com.zenika.presentation.component.ReturnButton
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -134,6 +135,7 @@ fun QrCodeScanScreen(
 
             LaunchedEffect(code) {
                 if (code == "trigger-001") {
+                    delay(500)
                     goToNextScreen()
                 }
             }

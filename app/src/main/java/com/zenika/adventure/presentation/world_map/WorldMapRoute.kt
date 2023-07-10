@@ -1,11 +1,9 @@
 package com.zenika.adventure.presentation.world_map
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.zenika.ui.theme.ZEscapeTheme
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun WorldMapRoute(
@@ -13,22 +11,11 @@ fun WorldMapRoute(
     openTextRecognition: () -> Unit,
     viewModel: WorldMapViewModel = hiltViewModel()
 ) {
-    val agencies by viewModel.agencies.collectAsState()
+    val agencies by viewModel.agencies.collectAsStateWithLifecycle()
 
     WorldMapDialog(
         onDismissRequest,
         openTextRecognition,
         agencies
     )
-}
-
-@Preview
-@Composable
-fun WorldMapRoutePreview() {
-    ZEscapeTheme {
-        WorldMapRoute(
-            onDismissRequest = {},
-            openTextRecognition = {}
-        )
-    }
 }

@@ -11,11 +11,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -35,11 +31,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import com.zenika.R
+import com.zenika.presentation.component.ReturnButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AgencyRecognitionScreen(
-    backToPreviousScreen: () -> Unit,
+    goBack: () -> Unit,
     openValidationDialog: (String) -> Unit
 ) {
     val context = LocalContext.current
@@ -70,15 +67,13 @@ fun AgencyRecognitionScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(R.string.retour),
+                        text = stringResource(R.string.scan),
                         Modifier
                             .fillMaxWidth()
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { backToPreviousScreen() }) {
-                        Icon(Icons.Filled.ArrowBack, "backIcon")
-                    }
+                    ReturnButton(goBack)
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
@@ -105,7 +100,7 @@ fun AgencyRecognitionScreen(
                     modifier = Modifier.fillMaxSize()
                 )
                 TextRecognizer(
-                    backToPreviousScreen,
+                    goBack,
                     openValidationDialog,
                     context,
                     cameraController

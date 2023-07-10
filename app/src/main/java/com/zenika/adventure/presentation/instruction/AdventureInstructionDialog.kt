@@ -12,6 +12,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.zenika.R
+import com.zenika.ui.theme.adventureBodyMedium
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
@@ -35,7 +36,7 @@ fun AdventureInstructionDialog(
                 )
                 .padding(dialogPadding),
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.bodyLarge
+            style = adventureBodyMedium
         )
     }
 }

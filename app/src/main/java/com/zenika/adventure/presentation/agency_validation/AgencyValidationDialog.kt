@@ -5,31 +5,28 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.zenika.R
-import com.zenika.ui.theme.ZEscapeTheme
 import com.zenika.ui.theme.adventureBodyMedium
+import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun AgencyValidationDialog(
     onDismissRequest: () -> Unit,
-    goBackToWorldMap: () -> Unit,
-    addAgency: () -> Unit,
+    dismissAgency: () -> Unit,
+    confirmAgency: () -> Unit,
     agency: String
 ) {
     AlertDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             ConfirmButton(
-                addAgency,
-                onDismissRequest,
-                goBackToWorldMap
+                confirmAgency
             )
         },
         dismissButton = {
             DismissButton(
-                onDismissRequest,
-                goBackToWorldMap
+                dismissAgency
             )
         },
         title = { TitleDialog() },
@@ -39,28 +36,18 @@ fun AgencyValidationDialog(
 
 @Composable
 fun ConfirmButton(
-    addAgency: () -> Unit,
-    onDismissRequest: () -> Unit,
-    goBackToWorldMap: () -> Unit
+    confirmAgency: () -> Unit
 ) {
-    Button(onClick = {
-        addAgency()
-        onDismissRequest()
-        goBackToWorldMap()
-    }) {
+    Button(onClick = confirmAgency) {
         Text(text = stringResource(R.string.confirm))
     }
 }
 
 @Composable
 fun DismissButton(
-    onDismissRequest: () -> Unit,
-    goBackToWorldMap: () -> Unit
+    dismissAgency: () -> Unit
 ) {
-    Button(onClick = {
-        onDismissRequest()
-        goBackToWorldMap()
-    }) {
+    Button(onClick = dismissAgency) {
         Text(text = stringResource(R.string.cancel))
     }
 }
@@ -78,14 +65,14 @@ fun TextDialog(agency: String) {
         style = adventureBodyMedium)
 }
 
-@Preview
+@ScreenPreview
 @Composable
-fun AgencyValidationDialogPreview() {
-    ZEscapeTheme {
+private fun AgencyValidationDialogPreview() {
+    ZEscapeThemePreview {
         AgencyValidationDialog(
             onDismissRequest = {},
-            goBackToWorldMap = {},
-            addAgency = {},
+            dismissAgency = {},
+            confirmAgency = {},
             agency = "MONTREAL"
         )
     }

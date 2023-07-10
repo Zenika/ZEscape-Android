@@ -1,9 +1,10 @@
 package com.zenika.adventure.presentation.agency_validation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun AgencyValidationRoute(
@@ -11,12 +12,21 @@ fun AgencyValidationRoute(
     goBackToWorldMap: () -> Unit,
     viewModel: AgencyValidationViewModel = hiltViewModel()
 ) {
-    val agency by viewModel.agency.collectAsState()
+    val agency by viewModel.agency.collectAsStateWithLifecycle()
+
+    LaunchedEffect(viewModel) {
+        viewModel.events.collect { event ->
+            when (event) {
+                AgencyValidationEvent.DISMISS -> onDismissRequest()
+                AgencyValidationEvent.MAP -> goBackToWorldMap()
+            }
+        }
+    }
 
     AgencyValidationDialog(
         onDismissRequest,
-        goBackToWorldMap,
-        viewModel::addAgency,
+        viewModel::dismissAgency,
+        viewModel::confirmAgency,
         agency
     )
 }

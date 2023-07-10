@@ -32,7 +32,8 @@
     <string name="end_parchment2">Vous sentirez-vous capable de les accomplir ?\n\nProfesseur Z</string>
     <string name="penalty_key">Pénalité\n
         Bien tenté… Mais la clé rouillée s\'est cassée dans la serrure…</string>
-    <string name="penalty_game">Pénalité\nCe n\'est pas le bon code…</string>
+    <string name="penalty_game">Pénalité\n
+        Ce n\'est pas le bon code…</string>
     <string name="returnToHome">Quitter</string>
     <string name="score">Score</string>
     <string name="penalty_count">Pénalité(s) : %1$s</string>
@@ -68,8 +69,6 @@
     <string name="home_text">Entrez dans une nouvelle aventure immersive, et laissez-vous guider dans une enquête surprenante…\n
                         Jouez en solo ou en coopération depuis un seul téléphone
     </string>
-    <string name="desk">Bureau</string>
-    <string name="scan">Scan</string>
     <string name="close_treasure_chest">Coffre au trésor fermé</string>
     <string name="open_map_treasure_chest">Coffre au trésor ouvert avec une carte</string>
     <string name="open_treasure_chest">Coffre au trésor ouvert</string>
@@ -77,4 +76,6 @@
     <string name="agency_add">Ajout d\'une agence</string>
     <string name="cancel">Annuler</string>
     <string name="confirm">Confirmer</string>
+    <string name="desk">Bureau</string>
+    <string name="scan">Scan</string>
 </resources>

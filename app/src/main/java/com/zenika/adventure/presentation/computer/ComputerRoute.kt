@@ -1,8 +1,6 @@
 package com.zenika.adventure.presentation.computer
 
 import androidx.compose.runtime.Composable
-import com.zenika.utils.ScreenPreview
-import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun ComputerRoute(
@@ -13,15 +11,4 @@ fun ComputerRoute(
         goBack,
         goToScan
     )
-}
-
-@ScreenPreview
-@Composable
-private fun ComputerRoutePreview() {
-    ZEscapeThemePreview {
-        ComputerRoute(
-            goBack = {},
-            goToScan = {}
-        )
-    }
 }
