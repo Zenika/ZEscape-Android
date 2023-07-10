@@ -29,6 +29,7 @@ import androidx.compose.ui.res.painterResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScaffoldScreen(
+    modifier: Modifier = Modifier,
     remainingTime: Int,
     goToSettings: () -> Unit,
     onClick: () -> Unit,
@@ -36,6 +37,7 @@ fun ScaffoldScreen(
     content: @Composable BoxScope.() -> Unit
 ) {
     Scaffold(
+        modifier = modifier,
         topBar = {
             TopAppBar(
                 title = {
