@@ -7,14 +7,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
-fun InventoryRoute(
+fun AdventureInventoryRoute(
     onDismissRequest: () -> Unit,
     showItem: (Int) -> Unit,
-    viewModel: InventoryViewModel = hiltViewModel()
+    viewModel: AdventureInventoryViewModel = hiltViewModel()
 ) {
     val items by viewModel.inventoryItems.collectAsStateWithLifecycle()
 
-    InventoryDialog(
+    AdventureInventoryDialog(
         Modifier,
         items,
         showItem,

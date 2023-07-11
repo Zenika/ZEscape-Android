@@ -6,11 +6,11 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun ItemRoute(
+fun AdventureItemRoute(
     onDismissRequest: () -> Unit,
-    viewModel: ItemViewModel = hiltViewModel()
+    viewModel: AdventureItemViewModel = hiltViewModel()
 ) {
     val item by viewModel.item.collectAsState()
 
-    ItemDialog(item, onDismissRequest)
+    AdventureItemDialog(item, onDismissRequest)
 }

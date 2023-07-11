@@ -2,13 +2,13 @@ package com.zenika.adventure.presentation.item
 
 import androidx.compose.runtime.Composable
 import com.zenika.R
-import com.zenika.adventure.presentation.item.component.Item
+import com.zenika.adventure.presentation.item.component.AdventureItem
 import com.zenika.tutorial.presentation.component.TutorialDialog
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun ItemDialog(
+fun AdventureItemDialog(
     item: Int,
     onDismissRequest: () -> Unit
 ) {
@@ -16,15 +16,15 @@ fun ItemDialog(
         onDismissRequest = onDismissRequest,
         backgroundColor = null
     ) {
-        Item(item)
+        AdventureItem(item)
     }
 }
 
 @ScreenPreview
 @Composable
-fun ItemDialogPreview() {
+private fun AdventureItemDialogPreview() {
     ZEscapeThemePreview {
-        ItemDialog(
+        AdventureItemDialog(
             item = R.mipmap.parchment,
             onDismissRequest = {}
         )

@@ -9,7 +9,7 @@ import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun Item(
+fun AdventureItem(
     item: Int
 ) {
     Image(
@@ -22,9 +22,9 @@ fun Item(
 
 @ScreenPreview
 @Composable
-fun ItemPreview() {
+fun AdventureItemPreview() {
     ZEscapeThemePreview {
-        Item(
+        AdventureItem(
             item = R.mipmap.hook
         )
     }

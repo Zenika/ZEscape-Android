@@ -13,8 +13,8 @@ import com.zenika.adventure.presentation.agency_validation.AgencyValidationRoute
 import com.zenika.adventure.presentation.computer.ComputerRoute
 import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
-import com.zenika.adventure.presentation.inventory.InventoryRoute
-import com.zenika.adventure.presentation.item.ItemRoute
+import com.zenika.adventure.presentation.inventory.AdventureInventoryRoute
+import com.zenika.adventure.presentation.item.AdventureItemRoute
 import com.zenika.adventure.presentation.portal.PortalRoute
 import com.zenika.adventure.presentation.portal_message.PortalMessageRoute
 import com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyDialog
@@ -83,7 +83,7 @@ fun NavGraphBuilder.adventureNavigation(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 accessToPortal = { navController.navigate(ROUTE_PORTAL_MESSAGE) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
-                openInventory = { navController.navigate(ROUTE_INVENTORY) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) }
             )
         }
         dialog(ROUTE_PORTAL_MESSAGE) {
@@ -98,7 +98,7 @@ fun NavGraphBuilder.adventureNavigation(
             )
         }
         dialog(ROUTE_INVENTORY) {
-            InventoryRoute(
+            AdventureInventoryRoute(
                 onDismissRequest = {
                     navController.popBackStack()
                 },
@@ -118,7 +118,7 @@ fun NavGraphBuilder.adventureNavigation(
                 type = NavType.IntType
             })
         ) {
-            ItemRoute(
+            AdventureItemRoute(
                 onDismissRequest = {
                     navController.popBackStack()
                 }

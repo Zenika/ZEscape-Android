@@ -18,13 +18,13 @@ import com.zenika.R
 import com.zenika.data.model.ItemDto
 import com.zenika.data.state.InventoryState
 import com.zenika.tutorial.presentation.component.TutorialDialog
-import com.zenika.adventure.presentation.inventory.component.InventoryBox
+import com.zenika.adventure.presentation.inventory.component.AdventureInventoryBox
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun InventoryDialog(
+fun AdventureInventoryDialog(
     modifier: Modifier,
     items: InventoryState,
     showItem: (Int) -> Unit,
@@ -50,7 +50,7 @@ fun InventoryDialog(
                 items(
                     items.items
                 ) { item ->
-                    InventoryBox(item = item.resource, showItem = showItem)
+                    AdventureInventoryBox(item = item.resource, showItem = showItem)
                 }
             }
         }
@@ -59,9 +59,9 @@ fun InventoryDialog(
 
 @ScreenPreview
 @Composable
-fun InventoryDialogPreview() {
+private fun AdventureInventoryDialogPreview() {
     ZEscapeThemePreview {
-        InventoryDialog(
+        AdventureInventoryDialog(
             Modifier,
             items = InventoryState(
                 listOf(

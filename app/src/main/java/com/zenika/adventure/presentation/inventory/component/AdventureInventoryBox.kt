@@ -27,7 +27,7 @@ import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun InventoryBox(
+fun AdventureInventoryBox(
     item: Int,
     showItem: (Int) -> Unit
 ) {
@@ -55,14 +55,14 @@ fun InventoryBox(
 
 @ScreenPreview
 @Composable
-fun InventoryBoxPreview() {
+private fun AdventureInventoryBoxPreview() {
     ZEscapeThemePreview {
         Row {
-            InventoryBox(
+            AdventureInventoryBox(
                 item = R.mipmap.hook,
                 showItem = {}
             )
-            InventoryBox(
+            AdventureInventoryBox(
                 item = 0,
                 showItem = {}
             )
