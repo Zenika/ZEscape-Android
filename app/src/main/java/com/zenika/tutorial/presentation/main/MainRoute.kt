@@ -16,11 +16,11 @@ fun MainRoute(
     showHint: () -> Unit,
     viewModel: MainViewModel = hiltViewModel()
 ) {
-    val mainUiState by viewModel.state.collectAsStateWithLifecycle()
-
     BackHandler {
         // Player cannot leave the tutorial while it is running.
     }
+
+    val mainUiState by viewModel.state.collectAsStateWithLifecycle()
 
     MainScreen(
         Modifier.fillMaxSize(),

@@ -112,9 +112,7 @@ private fun PageContent(
                 style = tutorialBodyMedium
             )
             Image(
-                painter = painterResource(
-                    id = R.mipmap.arrow
-                ),
+                painter = painterResource(R.mipmap.arrow),
                 contentDescription = stringResource(R.string.arrow_image),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier

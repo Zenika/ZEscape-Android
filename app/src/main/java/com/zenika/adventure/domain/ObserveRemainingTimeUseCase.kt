@@ -8,6 +8,7 @@ import javax.inject.Inject
 
 private const val TOTAL_TIME_MS = 3_600_000
 private const val PENALTY_IN_MS = 60_000
+
 class ObserveRemainingTimeUseCase @Inject constructor(
     private val timerServiceManager: TimerServiceManager,
     private val gameStateManager: AdventureGameStateManager

@@ -54,15 +54,19 @@ fun DismissButton(
 
 @Composable
 fun TitleDialog() {
-    Text(text = stringResource(R.string.agency_add),
-        style = adventureBodyMedium)
+    Text(
+        text = stringResource(R.string.agency_add),
+        style = adventureBodyMedium
+    )
 }
 
 @Composable
 fun TextDialog(agency: String) {
-    Text(text = stringResource(R.string.agency_validation,
-        agency.lowercase().replaceFirstChar { it.uppercase() }),
-        style = adventureBodyMedium)
+    Text(
+        text = stringResource(R.string.agency_validation,
+            agency.lowercase().replaceFirstChar { it.uppercase() }),
+        style = adventureBodyMedium
+    )
 }
 
 @ScreenPreview

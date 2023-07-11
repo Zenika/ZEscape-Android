@@ -13,12 +13,12 @@ fun PortalRoute(
     openWorldMap: () -> Unit,
     viewModel: PortalViewModel = hiltViewModel(),
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
-
     BackHandler {
         // Player cannot leave the adventure while it is running.
     }
 
+    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
+    
     PortalScreen(
         remainingTime,
         goToSettings,

@@ -21,6 +21,7 @@ fun TutorialItemDialog(
             R.mipmap.parchment -> {
                 WelcomeParchmentItem(onDismissRequest)
             }
+
             else -> {
                 TutorialItem(item)
             }

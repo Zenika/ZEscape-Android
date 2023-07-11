@@ -17,7 +17,8 @@ fun TutorialInstructionDialog(
     TutorialDialog(
         onDismissRequest = onDismissRequest
     ) {
-        Text(text = stringResource(R.string.instruction),
+        Text(
+            text = stringResource(R.string.instruction),
             textAlign = TextAlign.Center,
             style = tutorialBodyMedium
         )

@@ -14,8 +14,8 @@ fun ContinentsMap(
     modifier: Modifier
 ) {
     Image(
-        painter = painterResource(id = R.mipmap.continents),
-        contentDescription = stringResource(id = R.string.world_map),
+        painter = painterResource(R.mipmap.continents),
+        contentDescription = stringResource(R.string.world_map),
         modifier = modifier
     )
 }

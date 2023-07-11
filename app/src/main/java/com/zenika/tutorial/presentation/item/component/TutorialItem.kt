@@ -13,9 +13,7 @@ fun TutorialItem(
     item: Int
 ) {
     Image(
-        painter = painterResource(
-            id = item
-        ),
+        painter = painterResource(item),
         contentDescription = stringResource(R.string.item_image)
     )
 }

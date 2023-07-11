@@ -1,9 +1,9 @@
 package com.zenika.tutorial.presentation.item
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.zenika.R
 
 @Composable
@@ -13,11 +13,12 @@ fun TutorialItemRoute(
     openPenalty: (String) -> Unit,
     viewModel: TutorialItemViewModel = hiltViewModel()
 ) {
-    val item by viewModel.item.collectAsState()
+    val item by viewModel.item.collectAsStateWithLifecycle()
 
-    when (item) {
+    when (val itemRes = item) {
         R.mipmap.key -> openPenalty("key")
         R.mipmap.rolled_map -> openEndParchment()
-        else -> TutorialItemDialog(item, onDismissRequest)
+        null -> Unit
+        else -> TutorialItemDialog(itemRes, onDismissRequest)
     }
 }

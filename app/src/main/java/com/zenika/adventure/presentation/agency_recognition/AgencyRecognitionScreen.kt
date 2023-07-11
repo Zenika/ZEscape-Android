@@ -23,6 +23,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -37,7 +38,7 @@ import com.zenika.presentation.component.ReturnButton
 @Composable
 fun AgencyRecognitionScreen(
     goBack: () -> Unit,
-    openValidationDialog: (String) -> Unit
+    onTextRecognized: (String) -> Unit
 ) {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -87,7 +88,8 @@ fun AgencyRecognitionScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color.Black)
-                .padding(paddingValues)
+                .padding(paddingValues),
+            contentAlignment = Alignment.Center
         ) {
             if (hasCamPermission) {
                 AndroidView(
@@ -100,8 +102,7 @@ fun AgencyRecognitionScreen(
                     modifier = Modifier.fillMaxSize()
                 )
                 TextRecognizer(
-                    goBack,
-                    openValidationDialog,
+                    onTextRecognized,
                     context,
                     cameraController
                 )

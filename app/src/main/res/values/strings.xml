@@ -25,15 +25,11 @@
         du Capitaine Zparrow. Malheureusement, le coffre est verrouillé… Trouvez le moyen
         de l\'ouvrir afin de récupérer la fameuse carte que recherche le Capitaine.\n\n
         Bonne chance !</string>
-    <string name="end_parchment">
-        Toute personne en possession de cette carte est destinée à réaliser une aventure périlleuse…
-        \nLes missions qui vous attendent ne sont pas sans danger…
-    </string>
+    <string name="end_parchment">Toute personne en possession de cette carte est destinée à réaliser une aventure périlleuse…
+        \nLes missions qui vous attendent ne sont pas sans danger…</string>
     <string name="end_parchment2">Vous sentirez-vous capable de les accomplir ?\n\nProfesseur Z</string>
-    <string name="penalty_key">Pénalité\n
-        Bien tenté… Mais la clé rouillée s\'est cassée dans la serrure…</string>
-    <string name="penalty_game">Pénalité\n
-        Ce n\'est pas le bon code…</string>
+    <string name="penalty_key">Pénalité\nBien tenté… Mais la clé rouillée s\'est cassée dans la serrure…</string>
+    <string name="penalty_game">Pénalité\nCe n\'est pas le bon code…</string>
     <string name="returnToHome">Quitter</string>
     <string name="score">Score</string>
     <string name="penalty_count">Pénalité(s) : %1$s</string>
@@ -67,8 +63,7 @@
     <string name="portal_message">Ce portail est sûrement notre porte de sortie… Malheureusement, il est verrouillé…</string>
     <string name="computer_image">Ordinateur portable sur un bureau avec un post-it où il est écrit de scanner un QR Code</string>
     <string name="home_text">Entrez dans une nouvelle aventure immersive, et laissez-vous guider dans une enquête surprenante…\n
-                        Jouez en solo ou en coopération depuis un seul téléphone
-    </string>
+        Jouez en solo ou en coopération depuis un seul téléphone</string>
     <string name="close_treasure_chest">Coffre au trésor fermé</string>
     <string name="open_map_treasure_chest">Coffre au trésor ouvert avec une carte</string>
     <string name="open_treasure_chest">Coffre au trésor ouvert</string>
@@ -78,4 +73,5 @@
     <string name="confirm">Confirmer</string>
     <string name="desk">Bureau</string>
     <string name="scan">Scan</string>
+    <string name="check">validation</string>
 </resources>

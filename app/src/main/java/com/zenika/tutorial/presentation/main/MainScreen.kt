@@ -80,7 +80,7 @@ fun MainScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .paint(
-                    painterResource(id = R.mipmap.background1),
+                    painterResource(R.mipmap.background1),
                     contentScale = ContentScale.FillHeight
                 ),
             contentAlignment = Alignment.Center

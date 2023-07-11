@@ -28,7 +28,7 @@ annotation class ScreenPreview
 annotation class ComposablePreview
 
 @Composable
-fun ZEscapeThemePreview(content :@Composable () -> Unit) {
+fun ZEscapeThemePreview(content: @Composable () -> Unit) {
     ZEscapeTheme {
         Surface(content = content)
     }

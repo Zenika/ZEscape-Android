@@ -26,7 +26,8 @@ fun AdventureInstructionDialog(
         onDismissRequest = onDismissRequest,
         properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
     ) {
-        Text(text = stringResource(R.string.instruction_adventure),
+        Text(
+            text = stringResource(R.string.instruction_adventure),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(screenPadding)

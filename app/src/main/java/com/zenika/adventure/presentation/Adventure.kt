@@ -103,13 +103,15 @@ fun NavGraphBuilder.adventureNavigation(
                 goBack = {
                     navController.popBackStack()
                 },
-                openValidationDialog = { agency ->
+                onTextRecognized = { agency ->
                     navController.navigate(
                         ROUTE_PATTERN_AGENCY_VALIDATION.replace(
                             "{agency}",
                             agency
                         )
-                    )
+                    ) {
+                        popUpTo(ROUTE_AGENCY_RECOGNITION) { inclusive = true }
+                    }
                 },
             )
         }
@@ -124,7 +126,9 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.popBackStack()
                 },
                 goBackToWorldMap = {
-                    navController.navigate(ROUTE_WORLD_MAP)
+                    navController.navigate(ROUTE_WORLD_MAP) {
+                        popUpTo(ROUTE_PATTERN_AGENCY_VALIDATION) { inclusive = true }
+                    }
                 }
             )
         }

@@ -38,13 +38,13 @@ private fun Chest(
     chestDrawable: Int,
     onClick: () -> Unit
 ) {
-    val closeChestState = stringResource(id = R.string.close_treasure_chest)
-    val mapChestState = stringResource(id = R.string.open_map_treasure_chest)
-    val openChestState = stringResource(id = R.string.open_treasure_chest)
+    val closeChestState = stringResource(R.string.close_treasure_chest)
+    val mapChestState = stringResource(R.string.open_map_treasure_chest)
+    val openChestState = stringResource(R.string.open_treasure_chest)
 
     Image(
         painter = painterResource(chestDrawable),
-        contentDescription = stringResource(id = R.string.treasure_chest),
+        contentDescription = stringResource(R.string.treasure_chest),
         contentScale = ContentScale.Fit,
         modifier = Modifier
             .padding(top = 400.dp)

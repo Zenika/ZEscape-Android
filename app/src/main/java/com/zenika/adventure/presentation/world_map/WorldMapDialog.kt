@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,54 +41,56 @@ fun WorldMapDialog(
         ) {
             Box {
                 Image(
-                    painter = painterResource(id = R.mipmap.world_map),
-                    contentDescription = stringResource(R.string.world_map)
+                    painter = painterResource(R.mipmap.world_map),
+                    contentDescription = stringResource(R.string.world_map),
+                    modifier = Modifier.width(400.dp)
                 )
-                if (agencies.contains(Agency.CASABLANCA)) {
-                    Canvas(
+                if (Agency.CASABLANCA in agencies) {
+                    CityCircle(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(top = 12.dp, end = 20.dp)
                             .clickable { Log.d("city", Agency.CASABLANCA.name) }
-                    ) {
-                        drawCircle(Color.Red, radius = 10.dp.toPx())
-                    }
+                    )
                 }
-                if (agencies.contains(Agency.PARIS)) {
-                    Canvas(
+                if (Agency.PARIS in agencies) {
+                    CityCircle(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(bottom = 40.dp)
                             .clickable { Log.d("city", Agency.PARIS.name) }
-                    ) {
-                        drawCircle(Color.Red, radius = 10.dp.toPx())
-                    }
+                    )
                 }
-                if (agencies.contains(Agency.SINGAPOUR)) {
-                    Canvas(
+                if (Agency.SINGAPOUR in agencies) {
+                    CityCircle(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(start = 160.dp, top = 20.dp)
                             .clickable { Log.d("city", Agency.SINGAPOUR.name) }
-                    ) {
-                        drawCircle(Color.Red, radius = 10.dp.toPx())
-                    }
+                    )
                 }
-                if (agencies.contains(Agency.MONTREAL)) {
-                    Canvas(
+                if (Agency.MONTREAL in agencies) {
+                    CityCircle(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(end = 160.dp, bottom = 80.dp)
                             .clickable { Log.d("city", Agency.MONTREAL.name) }
-                    ) {
-                        drawCircle(Color.Red, radius = 10.dp.toPx())
-                    }
+                    )
                 }
             }
             Button(onClick = openTextRecognition) {
                 Text(text = stringResource(R.string.add_agency))
             }
         }
+    }
+}
+
+@Composable
+private fun CityCircle(modifier: Modifier) {
+    Canvas(
+        modifier = modifier
+    ) {
+        drawCircle(Color.Red, radius = 10.dp.toPx())
     }
 }
 
@@ -98,7 +101,12 @@ private fun WorldMapDialogPreview() {
         WorldMapDialog(
             onDismissRequest = {},
             openTextRecognition = {},
-            agencies = mutableSetOf(Agency.MONTREAL)
+            agencies = mutableSetOf(
+                Agency.MONTREAL,
+                Agency.CASABLANCA,
+                Agency.PARIS,
+                Agency.SINGAPOUR
+            )
         )
     }
 }

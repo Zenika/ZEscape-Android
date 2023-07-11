@@ -50,8 +50,8 @@ fun EndParchmentScreen(
             .fillMaxSize()
             .padding()
             .paint(
-                painterResource(id = R.mipmap.background1),
-                contentScale = ContentScale.FillHeight
+                painterResource(R.mipmap.background1),
+                contentScale = ContentScale.Crop
             )
     ) {
         HorizontalPager(

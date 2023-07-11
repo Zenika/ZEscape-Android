@@ -5,10 +5,10 @@ import androidx.compose.runtime.Composable
 @Composable
 fun AgencyRecognitionRoute(
     goBack: () -> Unit,
-    openValidationDialog: (String) -> Unit
+    onTextRecognized: (String) -> Unit
 ) {
     AgencyRecognitionScreen(
         goBack,
-        openValidationDialog
+        onTextRecognized
     )
 }

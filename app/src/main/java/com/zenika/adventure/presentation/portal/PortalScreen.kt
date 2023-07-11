@@ -66,8 +66,8 @@ fun PortalScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .paint(
-                    painterResource(id = R.mipmap.background_neon),
-                    contentScale = ContentScale.FillHeight
+                    painterResource(R.mipmap.background_neon),
+                    contentScale = ContentScale.Crop
                 )
                 .padding(screenPadding)
                 .clickable(onClick = accessToPortal),

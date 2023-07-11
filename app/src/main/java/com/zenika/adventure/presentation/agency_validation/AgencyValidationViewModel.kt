@@ -36,28 +36,24 @@ class AgencyValidationViewModel @Inject constructor(
 
     fun dismissAgency() {
         viewModelScope.launch {
-            _events.emit(AgencyValidationEvent.DISMISS)
-            _events.emit(AgencyValidationEvent.MAP)
+            _events.emit(AgencyValidationEvent.OPEN_MAP)
         }
     }
 
     fun confirmAgency() {
         viewModelScope.launch {
             addAgency()
-            _events.emit(AgencyValidationEvent.DISMISS)
-            _events.emit(AgencyValidationEvent.MAP)
+            _events.emit(AgencyValidationEvent.OPEN_MAP)
         }
     }
 
     private fun addAgency() {
-        val agencyExists = Agency.values().any { it.name == agency.value }
-        if (agencyExists) {
-            addAgency(Agency.valueOf(agency.value))
-        }
+        Agency.values()
+            .firstOrNull { it.name == agency.value }
+            ?.let { addAgency(it) }
     }
 }
 
 enum class AgencyValidationEvent {
-    DISMISS,
-    MAP
+    OPEN_MAP
 }

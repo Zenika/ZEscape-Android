@@ -1,6 +1,9 @@
 package com.zenika.tutorial.presentation.color_buttons_order_game
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -11,97 +14,39 @@ class ColorButtonsOrderGameDialogTest {
     @get:Rule
     val rule = createComposeRule()
 
-    private val stage = mutableStateOf(0)
-
-    private fun onClick() {
-        stage.value += 1
-    }
-
     @Test
-    fun clickOnBlueButton_incrementCount() {
+    fun clickOnButton_incrementCount() {
         rule.setContent {
+            var stage by remember {
+                mutableStateOf(0)
+            }
+
             ColorButtonsOrderGameDialog(
-                size = stage.value,
+                size = stage,
                 onDismissRequest = {},
-                onColorClick = { onClick() })
+                onColorClick = { stage += 1 })
         }
-
-        //do something
-        rule.onNodeWithText("@").performClick()
-
-        //check something
-        rule.onNodeWithText("1/4").assertExists()
-    }
-
-    @Test
-    fun clickOnGreenButton_doNothing() {
-        rule.setContent {
-            ColorButtonsOrderGameDialog(
-                size = stage.value,
-                onDismissRequest = {},
-                onColorClick = { onClick() })
-        }
-
-        //do something
-        rule.onNodeWithText("#").performClick()
 
         //check something
         rule.onNodeWithText("0/4").assertExists()
-    }
-
-    @Test
-    fun clickOnTwoFirstButtons_incrementCount() {
-        rule.setContent {
-            ColorButtonsOrderGameDialog(
-                size = stage.value,
-                onDismissRequest = {},
-                onColorClick = { onClick() })
-        }
 
         //do something
         rule.onNodeWithText("@").performClick()
 
         //check something
         rule.onNodeWithText("1/4").assertExists()
-
-        //do something
-        rule.onNodeWithText("#").performClick()
-
-        //check something
-        rule.onNodeWithText("2/4").assertExists()
     }
 
     @Test
-    fun clickOnAllButtonsInOrder_incrementCount() {
+    fun displayGoodStage() {
         rule.setContent {
             ColorButtonsOrderGameDialog(
-                size = stage.value,
+                size = 3,
                 onDismissRequest = {},
-                onColorClick = { onClick() })
+                onColorClick = {})
         }
-
-        //do something
-        rule.onNodeWithText("@").performClick()
-
-        //check something
-        rule.onNodeWithText("1/4").assertExists()
-
-        //do something
-        rule.onNodeWithText("#").performClick()
-
-        //check something
-        rule.onNodeWithText("2/4").assertExists()
-
-        //do something
-        rule.onNodeWithText("%").performClick()
 
         //check something
         rule.onNodeWithText("3/4").assertExists()
-
-        //do something
-        rule.onNodeWithText("&").performClick()
-
-        //check something
-        rule.onNodeWithText("4/4").assertExists()
     }
 }

@@ -2,13 +2,13 @@ package com.zenika.adventure.presentation.home
 
 import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AdventureHomeRoute(
     goBack: () -> Unit,
@@ -19,11 +19,11 @@ fun AdventureHomeRoute(
         // Player cannot leave the adventure while it is running.
     }
 
-    LaunchedEffect(viewModel) {
-        viewModel.events.collect { event ->
-            when (event) {
-                AdventureHomeEvent.HOME -> goBack()
-            }
+    val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
+    LaunchedEffect(event) {
+        when (event) {
+            AdventureHomeEvent.HOME -> goBack()
+            null -> Unit
         }
     }
 

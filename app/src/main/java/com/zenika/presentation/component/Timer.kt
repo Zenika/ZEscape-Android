@@ -10,7 +10,7 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun Timer(
     timer: Int,
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     Text(
         text = timerConverter(timer),

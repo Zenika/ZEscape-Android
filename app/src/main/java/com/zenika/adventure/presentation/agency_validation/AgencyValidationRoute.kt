@@ -13,13 +13,11 @@ fun AgencyValidationRoute(
     viewModel: AgencyValidationViewModel = hiltViewModel()
 ) {
     val agency by viewModel.agency.collectAsStateWithLifecycle()
-
-    LaunchedEffect(viewModel) {
-        viewModel.events.collect { event ->
-            when (event) {
-                AgencyValidationEvent.DISMISS -> onDismissRequest()
-                AgencyValidationEvent.MAP -> goBackToWorldMap()
-            }
+    val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
+    LaunchedEffect(event) {
+        when (event) {
+            AgencyValidationEvent.OPEN_MAP -> goBackToWorldMap()
+            null -> Unit
         }
     }
 

@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -14,14 +16,14 @@ fun TutorialHomeRoute(
     viewModel: TutorialHomeViewModel = hiltViewModel()
 ) {
     BackHandler {
-        // Player cannot leave the adventure while it is running.
+        // Player cannot leave the tutorial while it is running.
     }
 
-    LaunchedEffect(viewModel) {
-        viewModel.events.collect { event ->
-            when (event) {
-                TutorialHomeEvent.HOME -> goBack()
-            }
+    val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
+    LaunchedEffect(event) {
+        when (event) {
+            TutorialHomeEvent.HOME -> goBack()
+            null -> Unit
         }
     }
 

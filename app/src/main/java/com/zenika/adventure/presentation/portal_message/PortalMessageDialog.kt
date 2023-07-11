@@ -26,7 +26,8 @@ fun PortalMessageDialog(
         onDismissRequest = onDismissRequest,
         properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
     ) {
-        Text(text = stringResource(R.string.portal_message),
+        Text(
+            text = stringResource(R.string.portal_message),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(screenPadding)

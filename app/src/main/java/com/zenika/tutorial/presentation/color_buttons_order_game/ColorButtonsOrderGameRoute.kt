@@ -13,15 +13,15 @@ fun ColorButtonsOrderGameRoute(
     viewModel: ColorButtonsOrderGameViewModel = hiltViewModel()
 ) {
     val size by viewModel.sequenceSize.collectAsStateWithLifecycle()
-
-    LaunchedEffect(viewModel) {
-        viewModel.events.collect { event ->
-            when (event) {
-                MiniGameEvent.DISMISS -> onDismissRequest()
-                MiniGameEvent.PENALTY -> openPenalty("game")
-            }
+    val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
+    LaunchedEffect(event) {
+        when (event) {
+            MiniGameEvent.DISMISS -> onDismissRequest()
+            MiniGameEvent.PENALTY -> openPenalty("game")
+            null -> Unit
         }
     }
+
     ColorButtonsOrderGameDialog(
         size,
         onDismissRequest,

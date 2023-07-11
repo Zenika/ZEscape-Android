@@ -51,8 +51,8 @@ fun WelcomeParchmentScreen(
             .fillMaxSize()
             .padding()
             .paint(
-                painterResource(id = R.mipmap.background1),
-                contentScale = ContentScale.FillHeight
+                painterResource(R.mipmap.background1),
+                contentScale = ContentScale.Crop
             )
     ) {
         HorizontalPager(
@@ -60,9 +60,7 @@ fun WelcomeParchmentScreen(
             state = pagerState
         ) { page ->
             Image(
-                painter = painterResource(
-                    id = R.mipmap.parchment
-                ),
+                painter = painterResource(R.mipmap.parchment),
                 contentDescription = stringResource(R.string.parchment_image),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
@@ -88,9 +86,7 @@ fun WelcomeParchmentScreen(
                         style = tutorialBodyMedium
                     )
                     Image(
-                        painter = painterResource(
-                            id = R.mipmap.arrow
-                        ),
+                        painter = painterResource(R.mipmap.arrow),
                         contentDescription = stringResource(R.string.arrow_image),
                         contentScale = ContentScale.Fit,
                         modifier = Modifier

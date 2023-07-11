@@ -15,9 +15,7 @@ fun AdventureInventoryBag(
     modifier: Modifier
 ) {
     Image(
-        painter = painterResource(
-            id = R.mipmap.suitcase
-        ),
+        painter = painterResource(R.mipmap.suitcase),
         contentDescription = stringResource(R.string.inventory_bag_image),
         contentScale = ContentScale.Fit,
         modifier = modifier
