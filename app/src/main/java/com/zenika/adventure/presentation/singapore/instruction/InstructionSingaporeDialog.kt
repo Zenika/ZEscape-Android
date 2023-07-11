@@ -44,7 +44,7 @@ fun InstructionSingaporeDialog(
 
 @ScreenPreview
 @Composable
-fun InstructionSingaporeDialogPreview() {
+private fun InstructionSingaporeDialogPreview() {
     ZEscapeThemePreview {
         InstructionSingaporeDialog(
             onDismissRequest = {}

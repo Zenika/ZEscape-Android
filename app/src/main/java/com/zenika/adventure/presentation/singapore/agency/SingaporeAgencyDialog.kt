@@ -42,7 +42,7 @@ fun SingaporeAgencyDialog(onDismissRequest: () -> Unit) {
 
 @Preview
 @Composable
-fun SingaporeAgencyDialogPreview() {
+private fun SingaporeAgencyDialogPreview() {
     ZEscapeThemePreview {
         SingaporeAgencyDialog(
             onDismissRequest = {}

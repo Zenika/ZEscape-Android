@@ -73,7 +73,7 @@
     <string name="confirm">Confirmer</string>
     <string name="instruction_singapore">Vous voilà arrivé(e) devant l\'agence Zenika de Singapour. Malheureusement, la porte d\'entrée est fermée. Essayez de l\'ouvrir pour tenter de récupérer la clé à l\'intérieur.</string>
     <string name="instruction_singapore_agency">Bien joué, vous avez réussi à entrer dans l\'agence.</string>
-    <string name="desk">Bureau</string>
     <string name="scan">Scan</string>
     <string name="check">validation</string>
+    <string name="desk">Bureau</string>
 </resources>
