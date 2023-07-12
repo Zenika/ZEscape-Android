@@ -119,9 +119,7 @@ fun NavGraphBuilder.adventureNavigation(
             })
         ) {
             AdventureItemRoute(
-                onDismissRequest = {
-                    navController.popBackStack()
-                }
+                onDismissRequest = { navController.popBackStack() }
             )
         }
         dialog(ROUTE_WORLD_MAP) {
