@@ -9,7 +9,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.zenika.data.TutorialHint
 import com.zenika.tutorial.presentation.component.TutorialDialog
 import com.zenika.ui.theme.tutorialBodyMedium
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -29,7 +29,7 @@ fun TutorialHintDialog(
     }
 }
 
-@ScreenPreview
+@ComposablePreview
 @Composable
 private fun TutorialHintDialogPreview() {
     ZEscapeThemePreview {

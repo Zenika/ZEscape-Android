@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.zenika.R
 import com.zenika.ui.theme.adventureBodyMedium
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -35,7 +35,7 @@ fun AgencyValidationDialog(
 }
 
 @Composable
-fun ConfirmButton(
+private fun ConfirmButton(
     confirmAgency: () -> Unit
 ) {
     Button(onClick = confirmAgency) {
@@ -44,7 +44,7 @@ fun ConfirmButton(
 }
 
 @Composable
-fun DismissButton(
+private fun DismissButton(
     dismissAgency: () -> Unit
 ) {
     Button(onClick = dismissAgency) {
@@ -53,7 +53,7 @@ fun DismissButton(
 }
 
 @Composable
-fun TitleDialog() {
+private fun TitleDialog() {
     Text(
         text = stringResource(R.string.agency_add),
         style = adventureBodyMedium
@@ -61,7 +61,7 @@ fun TitleDialog() {
 }
 
 @Composable
-fun TextDialog(agency: String) {
+private fun TextDialog(agency: String) {
     Text(
         text = stringResource(R.string.agency_validation,
             agency.lowercase().replaceFirstChar { it.uppercase() }),
@@ -69,7 +69,7 @@ fun TextDialog(agency: String) {
     )
 }
 
-@ScreenPreview
+@ComposablePreview
 @Composable
 private fun AgencyValidationDialogPreview() {
     ZEscapeThemePreview {

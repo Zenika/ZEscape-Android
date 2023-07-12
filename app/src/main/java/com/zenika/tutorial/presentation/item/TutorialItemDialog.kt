@@ -5,7 +5,7 @@ import com.zenika.R
 import com.zenika.tutorial.presentation.component.TutorialDialog
 import com.zenika.tutorial.presentation.item.component.TutorialItem
 import com.zenika.tutorial.presentation.item.component.WelcomeParchmentItem
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -29,7 +29,7 @@ fun TutorialItemDialog(
     }
 }
 
-@ScreenPreview
+@ComposablePreview
 @Composable
 private fun TutorialItemDialogPreview() {
     ZEscapeThemePreview {

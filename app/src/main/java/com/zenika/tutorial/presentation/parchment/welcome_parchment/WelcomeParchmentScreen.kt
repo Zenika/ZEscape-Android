@@ -31,7 +31,7 @@ import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.mapPadding
 import com.zenika.ui.theme.topMapPadding
 import com.zenika.ui.theme.tutorialBodyMedium
-import com.zenika.utils.ComposablePreview
+import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 import kotlinx.coroutines.launch
 
@@ -122,7 +122,7 @@ fun WelcomeParchmentScreen(
     }
 }
 
-@ComposablePreview
+@ScreenPreview
 @Composable
 private fun WelcomeParchmentPreview() {
     ZEscapeThemePreview {

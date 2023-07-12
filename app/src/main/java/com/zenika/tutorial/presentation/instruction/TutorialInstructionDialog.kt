@@ -7,7 +7,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.zenika.R
 import com.zenika.tutorial.presentation.component.TutorialDialog
 import com.zenika.ui.theme.tutorialBodyMedium
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -25,7 +25,7 @@ fun TutorialInstructionDialog(
     }
 }
 
-@ScreenPreview
+@ComposablePreview
 @Composable
 private fun TutorialInstructionDialogPreview() {
     ZEscapeThemePreview {

@@ -13,7 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -35,7 +35,7 @@ fun ColorButton(
 }
 
 
-@ScreenPreview
+@ComposablePreview
 @Composable
 private fun ColorButtonPreview() {
     ZEscapeThemePreview {

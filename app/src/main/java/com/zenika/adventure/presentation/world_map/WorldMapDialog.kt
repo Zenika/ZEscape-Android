@@ -22,7 +22,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.zenika.R
 import com.zenika.data.Agency
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -57,7 +57,7 @@ fun WorldMapDialog(
                     CityCircle(
                         modifier = Modifier
                             .align(Alignment.Center)
-                            .padding(bottom = 40.dp)
+                            .padding(bottom = 60.dp)
                             .clickable { Log.d("city", Agency.PARIS.name) }
                     )
                 }
@@ -90,11 +90,11 @@ private fun CityCircle(modifier: Modifier) {
     Canvas(
         modifier = modifier
     ) {
-        drawCircle(Color.Red, radius = 10.dp.toPx())
+        drawCircle(Color.Red, radius = 16.dp.toPx())
     }
 }
 
-@ScreenPreview
+@ComposablePreview
 @Composable
 private fun WorldMapDialogPreview() {
     ZEscapeThemePreview {

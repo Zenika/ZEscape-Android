@@ -15,7 +15,7 @@ import com.zenika.R
 import com.zenika.ui.theme.adventureBodyMedium
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.ui.theme.screenPadding
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -42,7 +42,7 @@ fun AdventureInstructionDialog(
     }
 }
 
-@ScreenPreview
+@ComposablePreview
 @Composable
 private fun AdventureInstructionDialogPreview() {
     ZEscapeThemePreview {

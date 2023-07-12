@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.zenika.R
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -18,7 +18,7 @@ fun TutorialItem(
     )
 }
 
-@ScreenPreview
+@ComposablePreview
 @Composable
 private fun TutorialItemPreview() {
     ZEscapeThemePreview {

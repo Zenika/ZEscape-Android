@@ -20,7 +20,7 @@ import com.zenika.data.state.InventoryState
 import com.zenika.tutorial.presentation.component.TutorialDialog
 import com.zenika.tutorial.presentation.inventory.component.TutorialInventoryBox
 import com.zenika.ui.theme.dialogPadding
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -57,7 +57,7 @@ fun TutorialInventoryDialog(
     }
 }
 
-@ScreenPreview
+@ComposablePreview
 @Composable
 private fun TutorialInventoryDialogPreview() {
     ZEscapeThemePreview {
