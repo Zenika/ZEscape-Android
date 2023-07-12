@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.AddAgencyUseCase
+import com.zenika.adventure.domain.ApplyPenaltyUseCase
 import com.zenika.data.Agency
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AgencyValidationViewModel @Inject constructor(
     private val addAgency: AddAgencyUseCase,
+    private val applyPenaltyUseCase: ApplyPenaltyUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private var _agencyName: String =
@@ -48,10 +50,21 @@ class AgencyValidationViewModel @Inject constructor(
     }
 
     private fun addAgency() {
-        Agency.values()
-            .firstOrNull { it.name == agency.value }
-            ?.let { addAgency(it) }
-        _events.emit(AgencyValidationEvent.PENALTY)
+        val agencyExists = Agency.values().any { it.name == agency.value }
+        viewModelScope.launch {
+            if (agencyExists) {
+                addAgency(Agency.valueOf(agency.value))
+            } else {
+                applyPenalty()
+            }
+        }
+    }
+
+    private fun applyPenalty() {
+        viewModelScope.launch {
+            _events.emit(AgencyValidationEvent.PENALTY)
+            applyPenaltyUseCase()
+        }
     }
 }
 

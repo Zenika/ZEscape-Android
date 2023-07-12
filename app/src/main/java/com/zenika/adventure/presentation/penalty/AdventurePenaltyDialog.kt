@@ -10,7 +10,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.zenika.R
 import com.zenika.adventure.presentation.component.AdventureDialog
 import com.zenika.ui.theme.adventureBodyMedium
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -29,10 +29,9 @@ fun AdventurePenaltyDialog(
         else -> R.string.penalty
     }
 
-    val onDismiss = if (penalty == "hook" || penalty == "sword") {
-        goBackToSingaporeAgency
-    } else {
-        onDismissRequest
+    val onDismiss = when (penalty) {
+        "hook", "sword" -> goBackToSingaporeAgency
+        else -> onDismissRequest
     }
 
     AdventureDialog(
@@ -49,7 +48,7 @@ fun AdventurePenaltyDialog(
     }
 }
 
-@ScreenPreview
+@ComposablePreview
 @Composable
 private fun AdventurePenaltyDialogPreview() {
     ZEscapeThemePreview {

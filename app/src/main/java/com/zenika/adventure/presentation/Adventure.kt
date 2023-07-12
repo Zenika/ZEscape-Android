@@ -171,7 +171,7 @@ fun NavGraphBuilder.adventureNavigation(
                         ROUTE_SINGAPORE_AGENCY,
                         inclusive = false
                     )
-                },
+                }
             )
         }
         dialog(ROUTE_WORLD_MAP) {
@@ -227,7 +227,9 @@ fun NavGraphBuilder.adventureNavigation(
                             "{penalty}",
                             item
                         )
-                    )
+                    ) {
+                        popUpTo(ROUTE_PATTERN_AGENCY_VALIDATION) { inclusive = true }
+                    }
                 }
             )
         }
@@ -289,6 +291,16 @@ fun NavGraphBuilder.adventureNavigation(
                 enterInAgency = {
                     navController.navigate(ROUTE_CASABLANCA_AGENCY)
                     navController.navigate(ROUTE_CASABLANCA_AGENCY_DIALOG)
+                },
+                openPenalty = { item ->
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            item
+                        )
+                    ) {
+                        popUpTo(ROUTE_SINGAPORE_AGENCY) { inclusive = false }
+                    }
                 }
             )
         }
