@@ -127,10 +127,6 @@ fun NavGraphBuilder.adventureNavigation(
                 goToSingaporeAgency = {
                     navController.navigate(ROUTE_ON_OFF_GAME)
                     navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
-                },
-                openOnOffGame = {
-                    navController.navigate(ROUTE_ON_OFF_GAME)
-                    navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
                 }
             )
         }
