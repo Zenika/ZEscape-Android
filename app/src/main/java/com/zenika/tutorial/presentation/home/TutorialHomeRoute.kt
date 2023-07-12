@@ -16,7 +16,7 @@ fun TutorialHomeRoute(
     viewModel: TutorialHomeViewModel = hiltViewModel()
 ) {
     BackHandler {
-        // Player cannot leave the tutorial while it is running.
+        goBack()
     }
 
     val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)

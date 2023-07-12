@@ -16,7 +16,7 @@ fun AdventureHomeRoute(
     viewModel: AdventureHomeViewModel = hiltViewModel()
 ) {
     BackHandler {
-        // Player cannot leave the adventure while it is running.
+        goBack()
     }
 
     val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
