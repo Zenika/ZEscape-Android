@@ -95,7 +95,7 @@ fun NavGraphBuilder.adventureNavigation(
         dialog(ROUTE_WORLD_MAP) {
             WorldMapRoute(
                 onDismissRequest = { navController.popBackStack() },
-                openTextRecognition = { navController.navigate(ROUTE_AGENCY_RECOGNITION) }, ,
+                openTextRecognition = { navController.navigate(ROUTE_AGENCY_RECOGNITION) },
                 openOnOffGame = {
                     navController.navigate(ROUTE_ON_OFF_GAME)
                     navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
