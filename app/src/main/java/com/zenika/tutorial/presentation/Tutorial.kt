@@ -68,32 +68,20 @@ fun NavGraphBuilder.tutorialNavigation(
         }
         dialog(ROUTE_INSTRUCTION) {
             TutorialInstructionRoute(
-                onDismissRequest = {
-                    navController.popBackStack()
-                }
+                onDismissRequest = { navController.popBackStack() }
             )
         }
         composable(ROUTE_MAIN) {
             MainRoute(
-                goToSettings = {
-                    navController.navigate(ROUTE_SETTINGS)
-                },
-                openMiniGame = {
-                    navController.navigate(ROUTE_MINI_GAME)
-                },
-                openInventory = {
-                    navController.navigate(ROUTE_INVENTORY)
-                },
-                showHint = {
-                    navController.navigate(ROUTE_HINT)
-                }
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openMiniGame = { navController.navigate(ROUTE_MINI_GAME) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) },
+                showHint = { navController.navigate(ROUTE_HINT) }
             )
         }
         dialog(ROUTE_MINI_GAME) {
             ColorButtonsOrderGameRoute(
-                onDismissRequest = {
-                    navController.popBackStack()
-                },
+                onDismissRequest = { navController.popBackStack() },
                 openPenalty = { game ->
                     navController.navigate(
                         ROUTE_PATTERN_PENALTY.replace(
@@ -106,16 +94,12 @@ fun NavGraphBuilder.tutorialNavigation(
         }
         dialog(ROUTE_HINT) {
             TutorialHintRoute(
-                onDismissRequest = {
-                    navController.popBackStack()
-                }
+                onDismissRequest = { navController.popBackStack() }
             )
         }
         dialog(ROUTE_INVENTORY) {
             TutorialInventoryRoute(
-                onDismissRequest = {
-                    navController.popBackStack()
-                },
+                onDismissRequest = { navController.popBackStack() },
                 showItem = { item ->
                     navController.navigate(
                         ROUTE_PATTERN_ITEM.replace(
@@ -133,12 +117,8 @@ fun NavGraphBuilder.tutorialNavigation(
             })
         ) {
             TutorialItemRoute(
-                onDismissRequest = {
-                    navController.popBackStack()
-                },
-                openEndParchment = {
-                    navController.navigate(ROUTE_END_PARCHMENT)
-                },
+                onDismissRequest = { navController.popBackStack() },
+                openEndParchment = { navController.navigate(ROUTE_END_PARCHMENT) },
                 openPenalty = { item ->
                     navController.navigate(
                         ROUTE_PATTERN_PENALTY.replace(
@@ -151,9 +131,7 @@ fun NavGraphBuilder.tutorialNavigation(
         }
         composable(ROUTE_END_PARCHMENT) {
             EndParchmentRoute(
-                goToScore = {
-                    navController.navigate(ROUTE_SCORE)
-                }
+                goToScore = { navController.navigate(ROUTE_SCORE) }
             )
         }
         dialog(

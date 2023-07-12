@@ -63,9 +63,7 @@ fun NavGraphBuilder.adventureNavigation(
         }
         dialog(ROUTE_INSTRUCTION) {
             AdventureInstructionRoute(
-                onDismissRequest = {
-                    navController.popBackStack()
-                }
+                onDismissRequest = { navController.popBackStack() }
             )
         }
         composable(ROUTE_PORTAL) {
@@ -77,9 +75,7 @@ fun NavGraphBuilder.adventureNavigation(
         }
         dialog(ROUTE_PORTAL_MESSAGE) {
             PortalMessageRoute(
-                onDismissRequest = {
-                    navController.popBackStack()
-                }
+                onDismissRequest = { navController.popBackStack() }
             )
         }
         composable(ROUTE_SETTINGS) {
@@ -90,19 +86,13 @@ fun NavGraphBuilder.adventureNavigation(
         }
         dialog(ROUTE_WORLD_MAP) {
             WorldMapRoute(
-                onDismissRequest = {
-                    navController.popBackStack()
-                },
-                openTextRecognition = {
-                    navController.navigate(ROUTE_AGENCY_RECOGNITION)
-                }
+                onDismissRequest = { navController.popBackStack() },
+                openTextRecognition = { navController.navigate(ROUTE_AGENCY_RECOGNITION) }
             )
         }
         composable(ROUTE_AGENCY_RECOGNITION) {
             AgencyRecognitionRoute(
-                goBack = {
-                    navController.popBackStack()
-                },
+                goBack = { navController.popBackStack() },
                 onTextRecognized = { agency ->
                     navController.navigate(
                         ROUTE_PATTERN_AGENCY_VALIDATION.replace(
@@ -122,9 +112,7 @@ fun NavGraphBuilder.adventureNavigation(
             })
         ) {
             AgencyValidationRoute(
-                onDismissRequest = {
-                    navController.popBackStack()
-                },
+                onDismissRequest = { navController.popBackStack() },
                 goBackToWorldMap = {
                     navController.navigate(ROUTE_WORLD_MAP) {
                         popUpTo(ROUTE_PATTERN_AGENCY_VALIDATION) { inclusive = true }
