@@ -36,9 +36,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.adventure.presentation.component.AdventureInventoryBag
-import com.zenika.adventure.presentation.component.AdventureTimer
 import com.zenika.adventure.presentation.component.ContinentsMap
 import com.zenika.presentation.component.SettingsButton
+import com.zenika.presentation.component.Timer
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
@@ -59,7 +59,7 @@ fun MeetingRoomScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    AdventureTimer(
+                    Timer(
                         remainingTime,
                         Modifier.fillMaxWidth()
                     )
