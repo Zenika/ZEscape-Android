@@ -57,6 +57,22 @@ class AdventureGameStateManager @Inject constructor() {
         }
     }
 
+    fun openSafe() {
+        _state.update {
+            it.copy(
+                isSafeOpen = true
+            )
+        }
+    }
+
+    fun collectCasablancaKey() {
+        _state.update {
+            it.copy(
+                isCasablancaKeyCollected = true
+            )
+        }
+    }
+
     fun collectCasablancaPaper() {
         _state.update {
             it.copy(
