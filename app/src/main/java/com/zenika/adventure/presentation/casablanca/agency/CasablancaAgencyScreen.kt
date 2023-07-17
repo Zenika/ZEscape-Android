@@ -15,14 +15,18 @@ import com.zenika.adventure.presentation.casablanca.component.FlashlightScaffold
 import com.zenika.presentation.component.HintButton
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
+import com.zenika.adventure.presentation.casablanca.component.CasablancaMap
 
 @Composable
 fun CasablancaAgencyScreen(
     remainingTime: Int,
+    safeState: CasablancaUiState,
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     openAgencyMap: () -> Unit,
+    goToSafe: () -> Unit,
+    collectKey: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     FlashlightScaffoldScreen(
@@ -45,6 +49,12 @@ fun CasablancaAgencyScreen(
                     onClick = openAgencyMap
                 )
         )
+        Safe(
+            safeState,
+            goToSafe,
+            collectKey,
+            modifier = Modifier.align(Alignment.Center)
+        )
     }
 }
 
@@ -54,10 +64,13 @@ private fun CasablancaAgencyScreenPreview() {
     ZEscapeThemePreview {
         CasablancaAgencyScreen(
             remainingTime = 3_600,
+            safeState = CasablancaUiState(safeOpened = false, keyCollected = false),
             goToSettings = {},
             openWorldMap = {},
             openInventory = {},
-            openAgencyMap = {}
+            openAgencyMap = {},
+            goToSafe = {},
+            collectKey = {}
         )
     }
 }
