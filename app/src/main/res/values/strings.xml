@@ -108,4 +108,5 @@
     <string name="debug">Debug</string>
     <string name="init_game">Initialiser l\'état du jeu</string>
     <string name="casablanca_map">Plan de l\'agence de Casablanca</string>
+    <string name="casablanca_paper">Papier posé sur le bureau</string>
 </resources>

@@ -57,6 +57,14 @@ class AdventureGameStateManager @Inject constructor() {
         }
     }
 
+    fun collectCasablancaPaper() {
+        _state.update {
+            it.copy(
+                isCasablancaPaperCollected = true
+            )
+        }
+    }
+
     fun applyPenalty() {
         _state.update {
             it.copy(
