@@ -5,9 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.OpenSafeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -17,6 +19,9 @@ import javax.inject.Inject
 class SafeViewModel @Inject constructor(
     private val openSafe: OpenSafeUseCase
 ) : ViewModel() {
+    private val _events = MutableSharedFlow<SafeEvent>()
+    val events = _events.asSharedFlow()
+
     private var _code = MutableStateFlow("")
     val code: StateFlow<String> = _code
         .stateIn(
@@ -50,7 +55,12 @@ class SafeViewModel @Inject constructor(
         viewModelScope.launch {
             if (code.value == "531296") {
                 openSafe()
+                _events.emit(SafeEvent.DISMISS)
             }
         }
     }
+}
+
+enum class SafeEvent {
+    DISMISS
 }
