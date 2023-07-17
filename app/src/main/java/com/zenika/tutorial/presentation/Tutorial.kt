@@ -1,13 +1,15 @@
 package com.zenika.tutorial.presentation
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.dialog
-import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
+import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.zenika.presentation.qrcode_scan.QrCodeScanRoute
 import com.zenika.presentation.settings.SettingsRoute
 import com.zenika.tutorial.presentation.color_buttons_order_game.ColorButtonsOrderGameRoute
@@ -39,136 +41,141 @@ private const val ROUTE_SETTINGS = "tutorialSettings"
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.tutorialNavigation(
     route: String,
-    navController: NavHostController
+    parentNavController: NavHostController
 ) {
-    navigation(
-        route = route,
-        startDestination = ROUTE_HOME
-    ) {
-        composable(ROUTE_HOME) {
-            TutorialHomeRoute(
-                goBack = { navController.popBackStack() },
-                goToScan = { navController.navigate(ROUTE_QRCODE_SCAN) }
-            )
-        }
-        composable(ROUTE_QRCODE_SCAN) {
-            QrCodeScanRoute(
-                goBack = { navController.popBackStack() },
-                goToNextScreen = { navController.navigate(ROUTE_INTRODUCTION) }
-            )
-        }
-        composable(ROUTE_INTRODUCTION) {
-            WelcomeParchmentRoute(
-                openInstruction = {
-                    navController.popBackStack(ROUTE_HOME, inclusive = false)
-                    navController.navigate(ROUTE_MAIN)
-                    navController.navigate(ROUTE_INSTRUCTION)
-                }
-            )
-        }
-        dialog(ROUTE_INSTRUCTION) {
-            TutorialInstructionRoute(
-                onDismissRequest = { navController.popBackStack() }
-            )
-        }
-        composable(ROUTE_MAIN) {
-            MainRoute(
-                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
-                openMiniGame = { navController.navigate(ROUTE_MINI_GAME) },
-                openInventory = { navController.navigate(ROUTE_INVENTORY) },
-                showHint = { navController.navigate(ROUTE_HINT) }
-            )
-        }
-        dialog(ROUTE_MINI_GAME) {
-            ColorButtonsOrderGameRoute(
-                onDismissRequest = { navController.popBackStack() },
-                openPenalty = { game ->
-                    navController.navigate(
-                        ROUTE_PATTERN_PENALTY.replace(
-                            "{penalty}",
-                            game
-                        )
+    composable(route) {
+        TutorialTheme {
+            val tutorialNavController = rememberAnimatedNavController()
+            AnimatedNavHost(
+                navController = tutorialNavController,
+                startDestination = ROUTE_HOME
+            ) {
+                composable(ROUTE_HOME) {
+                    TutorialHomeRoute(
+                        goBack = { parentNavController.popBackStack() },
+                        goToScan = { tutorialNavController.navigate(ROUTE_QRCODE_SCAN) }
                     )
                 }
-            )
-        }
-        dialog(ROUTE_HINT) {
-            TutorialHintRoute(
-                onDismissRequest = { navController.popBackStack() }
-            )
-        }
-        dialog(ROUTE_INVENTORY) {
-            TutorialInventoryRoute(
-                onDismissRequest = { navController.popBackStack() },
-                showItem = { item ->
-                    navController.navigate(
-                        ROUTE_PATTERN_ITEM.replace(
-                            "{item}",
-                            item.toString()
-                        )
+                composable(ROUTE_QRCODE_SCAN) {
+                    QrCodeScanRoute(
+                        goBack = { tutorialNavController.popBackStack() },
+                        goToNextScreen = { tutorialNavController.navigate(ROUTE_INTRODUCTION) }
                     )
                 }
-            )
-        }
-        dialog(
-            ROUTE_PATTERN_ITEM,
-            arguments = listOf(navArgument("item") {
-                type = NavType.IntType
-            })
-        ) {
-            TutorialItemRoute(
-                onDismissRequest = { navController.popBackStack() },
-                openEndParchment = { navController.navigate(ROUTE_END_PARCHMENT) },
-                openPenalty = { item ->
-                    navController.navigate(
-                        ROUTE_PATTERN_PENALTY.replace(
-                            "{penalty}",
-                            item
-                        )
+                composable(ROUTE_INTRODUCTION) {
+                    WelcomeParchmentRoute(
+                        openInstruction = {
+                            tutorialNavController.popBackStack(ROUTE_HOME, inclusive = false)
+                            tutorialNavController.navigate(ROUTE_MAIN)
+                            tutorialNavController.navigate(ROUTE_INSTRUCTION)
+                        }
                     )
                 }
-            )
-        }
-        composable(ROUTE_END_PARCHMENT) {
-            EndParchmentRoute(
-                goToScore = { navController.navigate(ROUTE_SCORE) }
-            )
-        }
-        dialog(
-            ROUTE_PATTERN_PENALTY,
-            arguments = listOf(navArgument("penalty") {
-                type = NavType.StringType
-            })
-        ) {
-            TutorialPenaltyRoute(
-                onDismissRequest = {
-                    navController.popBackStack(
-                        route = ROUTE_MAIN,
-                        inclusive = false
+                dialog(ROUTE_INSTRUCTION) {
+                    TutorialInstructionRoute(
+                        onDismissRequest = { tutorialNavController.popBackStack() }
                     )
                 }
-            )
-        }
-        composable(ROUTE_SCORE) {
-            TutorialScoreRoute(
-                goBackToHome = {
-                    navController.popBackStack(
-                        route = ROUTE_HOME,
-                        inclusive = true
+                composable(ROUTE_MAIN) {
+                    MainRoute(
+                        goToSettings = { tutorialNavController.navigate(ROUTE_SETTINGS) },
+                        openMiniGame = { tutorialNavController.navigate(ROUTE_MINI_GAME) },
+                        openInventory = { tutorialNavController.navigate(ROUTE_INVENTORY) },
+                        showHint = { tutorialNavController.navigate(ROUTE_HINT) }
                     )
                 }
-            )
-        }
-        composable(ROUTE_SETTINGS) {
-            SettingsRoute(
-                goBack = { navController.popBackStack() },
-                goBackToHome = {
-                    navController.popBackStack(
-                        route = ROUTE_HOME,
-                        inclusive = true
+                dialog(ROUTE_MINI_GAME) {
+                    ColorButtonsOrderGameRoute(
+                        onDismissRequest = { tutorialNavController.popBackStack() },
+                        openPenalty = { game ->
+                            tutorialNavController.navigate(
+                                ROUTE_PATTERN_PENALTY.replace(
+                                    "{penalty}",
+                                    game
+                                )
+                            )
+                        }
                     )
                 }
-            )
+                dialog(ROUTE_HINT) {
+                    TutorialHintRoute(
+                        onDismissRequest = { tutorialNavController.popBackStack() }
+                    )
+                }
+                dialog(ROUTE_INVENTORY) {
+                    TutorialInventoryRoute(
+                        onDismissRequest = { tutorialNavController.popBackStack() },
+                        showItem = { item ->
+                            tutorialNavController.navigate(
+                                ROUTE_PATTERN_ITEM.replace(
+                                    "{item}",
+                                    item.toString()
+                                )
+                            )
+                        }
+                    )
+                }
+                dialog(
+                    ROUTE_PATTERN_ITEM,
+                    arguments = listOf(navArgument("item") {
+                        type = NavType.IntType
+                    })
+                ) {
+                    TutorialItemRoute(
+                        onDismissRequest = { tutorialNavController.popBackStack() },
+                        openEndParchment = { tutorialNavController.navigate(ROUTE_END_PARCHMENT) },
+                        openPenalty = { item ->
+                            tutorialNavController.navigate(
+                                ROUTE_PATTERN_PENALTY.replace(
+                                    "{penalty}",
+                                    item
+                                )
+                            )
+                        }
+                    )
+                }
+                composable(ROUTE_END_PARCHMENT) {
+                    EndParchmentRoute(
+                        goToScore = { tutorialNavController.navigate(ROUTE_SCORE) }
+                    )
+                }
+                dialog(
+                    ROUTE_PATTERN_PENALTY,
+                    arguments = listOf(navArgument("penalty") {
+                        type = NavType.StringType
+                    })
+                ) {
+                    TutorialPenaltyRoute(
+                        onDismissRequest = {
+                            tutorialNavController.popBackStack(
+                                route = ROUTE_MAIN,
+                                inclusive = false
+                            )
+                        }
+                    )
+                }
+                composable(ROUTE_SCORE) {
+                    TutorialScoreRoute(
+                        goBackToHome = { parentNavController.popBackStack() }
+                    )
+                }
+                composable(ROUTE_SETTINGS) {
+                    SettingsRoute(
+                        goBack = { tutorialNavController.popBackStack() },
+                        goBackToHome = { parentNavController.popBackStack() }
+                    )
+                }
+            }
         }
+    }
+}
+
+@OptIn(ExperimentalAnimationApi::class)
+fun NavGraphBuilder.tutorialComposable(
+    route: String,
+    content: @Composable () -> Unit
+) {
+    composable(route) {
+        TutorialTheme(content = content)
     }
 }

@@ -29,7 +29,7 @@ fun ZEscape() {
         }
         tutorialNavigation(
             route = ROUTE_TUTORIAL,
-            navController = navController
+            parentNavController = navController
         )
         adventureNavigation(
             route = ROUTE_ADVENTURE,

@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.zenika.R
+import com.zenika.ui.theme.LocalZEscapeTypography
 import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
@@ -60,7 +61,8 @@ fun HomeScreen(
             Text(
                 text = stringResource(R.string.home_text),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyLarge
+//                style = MaterialTheme.typography.bodyLarge
+                style = LocalZEscapeTypography.current.shoutOut
             )
             Button(onClick = goToTutorial) {
                 Text(
