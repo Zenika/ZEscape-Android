@@ -22,6 +22,8 @@ import com.zenika.adventure.presentation.casablanca.kitchen.CasablancaKitchenRou
 import com.zenika.adventure.presentation.casablanca.meetingroom.CasablancaMeetingRoomRoute
 import com.zenika.adventure.presentation.casablanca.offices.CasablancaOfficesRoute
 import com.zenika.adventure.presentation.casablanca.outside.CasablancaOutsideRoute
+import com.zenika.adventure.presentation.casablanca.safe.SafeRoute
+import com.zenika.adventure.presentation.casablanca.gameroom.CasablancaGameRoomRoute
 import com.zenika.adventure.presentation.computer.ComputerRoute
 import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
@@ -63,6 +65,7 @@ private const val ROUTE_CASABLANCA_OUTSIDE = "adventureCasablancaOutside"
 private const val ROUTE_CASABLANCA_AGENCY = "adventureCasablancaAgency"
 private const val ROUTE_CASABLANCA_AGENCY_DIALOG = "adventureCasablancaAgencyDialog"
 private const val ROUTE_CASABLANCA_AGENCY_MAP = "adventureCasablancaAgencyMap"
+private const val ROUTE_CASABLANCA_SAFE = "adventureCasablancaSafe"
 private const val ROUTE_CASABLANCA_RESTROOM = "adventureCasablancaRestroom"
 private const val ROUTE_CASABLANCA_KITCHEN = "adventureCasablancaKitchen"
 private const val ROUTE_CASABLANCA_OFFICES = "adventureCasablancaOffices"
@@ -323,7 +326,8 @@ fun NavGraphBuilder.adventureNavigation(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) },
-                openAgencyMap = { navController.navigate(ROUTE_CASABLANCA_AGENCY_MAP) }
+                openAgencyMap = { navController.navigate(ROUTE_CASABLANCA_AGENCY_MAP) },
+                goToSafe = { navController.navigate(ROUTE_CASABLANCA_SAFE) }
             )
         }
         dialog(ROUTE_CASABLANCA_AGENCY_DIALOG) {
@@ -338,6 +342,11 @@ fun NavGraphBuilder.adventureNavigation(
                 goToKitchen = { navController.navigate(ROUTE_CASABLANCA_KITCHEN) },
                 goToOffices = { navController.navigate(ROUTE_CASABLANCA_OFFICES) },
                 goToMeetingRoom = { navController.navigate(ROUTE_CASABLANCA_MEETING_ROOM) }
+            )
+        }
+        dialog(ROUTE_CASABLANCA_SAFE) {
+            SafeRoute(
+                onDismissRequest = { navController.popBackStack() }
             )
         }
         composable(ROUTE_CASABLANCA_RESTROOM) {
