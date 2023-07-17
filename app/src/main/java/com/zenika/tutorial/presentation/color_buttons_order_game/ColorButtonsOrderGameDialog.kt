@@ -21,7 +21,7 @@ import com.zenika.ui.theme.PurpleSymbol
 import com.zenika.ui.theme.RedSymbol
 import com.zenika.ui.theme.itemDialogPadding
 import com.zenika.ui.theme.screenPadding
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -74,7 +74,7 @@ fun ColorButtonsOrderGameDialog(
     }
 }
 
-@ScreenPreview
+@ComposablePreview
 @Composable
 private fun ColorButtonsOrderGameDialogPreview() {
     ZEscapeThemePreview {

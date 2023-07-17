@@ -56,7 +56,7 @@ fun ZEscapeTheme(
 
             val windowsInsetsController = WindowCompat.getInsetsController(window, view)
             windowsInsetsController.isAppearanceLightStatusBars = darkTheme
-            windowsInsetsController.isAppearanceLightNavigationBars  = darkTheme
+            windowsInsetsController.isAppearanceLightNavigationBars = darkTheme
         }
     }
 

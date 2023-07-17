@@ -1,12 +1,12 @@
 package com.zenika.tutorial.domain
 
-import com.zenika.data.state.GameStateManager
+import com.zenika.data.state.TutorialGameStateManager
 import com.zenika.data.timer.TimerServiceManager
 import javax.inject.Inject
 
 class GetStatisticsUseCase @Inject constructor(
     private val timerServiceManager: TimerServiceManager,
-    private val gameStateManager: GameStateManager
+    private val gameStateManager: TutorialGameStateManager
 ) {
     operator fun invoke(): Statistics {
         return Statistics(

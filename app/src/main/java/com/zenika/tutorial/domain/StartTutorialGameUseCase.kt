@@ -3,13 +3,13 @@ package com.zenika.tutorial.domain
 import com.zenika.R
 import com.zenika.data.dao.ItemDao
 import com.zenika.data.model.ItemDto
-import com.zenika.data.state.GameStateManager
+import com.zenika.data.state.TutorialGameStateManager
 import com.zenika.data.timer.TimerServiceManager
 import javax.inject.Inject
 
 class StartTutorialGameUseCase @Inject constructor(
     private val itemDao: ItemDao,
-    private val gameStateManager: GameStateManager,
+    private val gameStateManager: TutorialGameStateManager,
     private val timerServiceManager: TimerServiceManager
 ) {
     suspend operator fun invoke() {

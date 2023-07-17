@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.ui.theme.itemDialogPadding
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -44,16 +44,14 @@ fun TutorialInventoryBox(
     ) {
         if (item != 0) {
             Image(
-                painter = painterResource(
-                    id = item
-                ),
+                painter = painterResource(item),
                 contentDescription = stringResource(R.string.item_image)
             )
         }
     }
 }
 
-@ScreenPreview
+@ComposablePreview
 @Composable
 private fun TutorialInventoryBoxPreview() {
     ZEscapeThemePreview {

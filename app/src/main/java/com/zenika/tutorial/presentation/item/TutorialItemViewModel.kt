@@ -27,7 +27,7 @@ class TutorialItemViewModel @Inject constructor(
         savedStateHandle.get<Int>("item") ?: error("Item is required")
 
     private var _item = MutableStateFlow(itemId)
-    val item: StateFlow<Int> = _item
+    val item: StateFlow<Int?> = _item
         .onEach {
             when (it) {
                 R.mipmap.rolled_map -> {
@@ -42,7 +42,7 @@ class TutorialItemViewModel @Inject constructor(
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = itemId
+            initialValue = null
         )
 
     private fun applyPenalty() {

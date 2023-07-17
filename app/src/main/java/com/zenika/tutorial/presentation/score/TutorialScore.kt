@@ -3,7 +3,6 @@ package com.zenika.tutorial.presentation.score
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -13,9 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
+import com.zenika.presentation.component.Timer
 import com.zenika.tutorial.domain.Statistics
 import com.zenika.tutorial.presentation.component.Parchment
-import com.zenika.presentation.component.Timer
 import com.zenika.ui.theme.textListSpacing
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
@@ -36,14 +35,11 @@ fun TutorialScore(
                 text = stringResource(R.string.score),
                 style = MaterialTheme.typography.headlineLarge
             )
-            Row {
-                Text(
-                    text = stringResource(R.string.time)
-                )
-                Timer(
-                    statistics.elapsedTime,
-                    Modifier.padding(4.dp)
-                )
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(text = stringResource(R.string.time))
+                Timer(statistics.elapsedTime)
             }
             Text(
                 text = stringResource(R.string.hint_count, statistics.hint),

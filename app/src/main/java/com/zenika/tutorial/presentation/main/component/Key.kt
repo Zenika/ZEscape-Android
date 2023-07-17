@@ -19,9 +19,7 @@ fun Key(
     modifier: Modifier
 ) {
     Image(
-        painter = painterResource(
-            id = R.mipmap.key
-        ),
+        painter = painterResource(R.mipmap.key),
         contentDescription = stringResource(R.string.key_image),
         contentScale = ContentScale.Fit,
         modifier = modifier

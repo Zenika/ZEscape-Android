@@ -15,9 +15,10 @@ fun TutorialItemRoute(
 ) {
     val item by viewModel.item.collectAsStateWithLifecycle()
 
-    when (item) {
+    when (val itemRes = item) {
         R.mipmap.key -> openPenalty("key")
         R.mipmap.rolled_map -> openEndParchment()
-        else -> TutorialItemDialog(item, onDismissRequest)
+        null -> Unit
+        else -> TutorialItemDialog(itemRes, onDismissRequest)
     }
 }

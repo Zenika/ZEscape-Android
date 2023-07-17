@@ -55,12 +55,10 @@ fun ComputerScreen(
                 .padding(paddingValues)
         ) {
             Image(
-                painter = painterResource(
-                    id = R.mipmap.computer
-                ),
+                painter = painterResource(R.mipmap.computer),
                 contentDescription = stringResource(R.string.computer_image),
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.FillHeight
+                contentScale = ContentScale.Crop
             )
             Button(
                 onClick = goToScan,

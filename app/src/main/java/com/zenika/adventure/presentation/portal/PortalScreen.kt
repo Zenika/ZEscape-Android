@@ -1,8 +1,10 @@
 package com.zenika.adventure.presentation.portal
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -19,9 +21,13 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.zenika.R
+import com.zenika.adventure.presentation.component.AdventureInventoryBag
+import com.zenika.adventure.presentation.component.ContinentsMap
 import com.zenika.presentation.component.SettingsButton
 import com.zenika.presentation.component.Timer
+import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -29,7 +35,9 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun PortalScreen(
     remainingTime: Int,
-    goToSettings: () -> Unit
+    goToSettings: () -> Unit,
+    accessToPortal: () -> Unit,
+    openWorldMap: () -> Unit
 ) {
     Scaffold(topBar = {
         TopAppBar(
@@ -58,11 +66,25 @@ fun PortalScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .paint(
-                    painterResource(id = R.mipmap.portal),
-                    contentScale = ContentScale.FillHeight
-                ),
+                    painterResource(R.mipmap.background_neon),
+                    contentScale = ContentScale.Crop
+                )
+                .padding(screenPadding)
+                .clickable(onClick = accessToPortal),
             contentAlignment = Alignment.Center
         ) {
+            ContinentsMap(
+                modifier = Modifier
+                    .size(80.dp)
+                    .align(Alignment.BottomStart)
+                    .clickable { openWorldMap() }
+            )
+            AdventureInventoryBag(
+                modifier = Modifier
+                    .size(80.dp)
+                    .align(Alignment.BottomEnd)
+                    .clickable { }
+            )
         }
     }
 }
@@ -73,7 +95,9 @@ private fun PortalScreenPreview() {
     ZEscapeThemePreview {
         PortalScreen(
             remainingTime = 60,
-            goToSettings = {}
+            goToSettings = {},
+            accessToPortal = {},
+            openWorldMap = {}
         )
     }
 }

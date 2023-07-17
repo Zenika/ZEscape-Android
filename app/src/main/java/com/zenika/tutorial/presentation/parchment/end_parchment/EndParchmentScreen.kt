@@ -1,4 +1,4 @@
-package com.zenika.tutorial.presentation.parchment.welcome_parchment
+package com.zenika.tutorial.presentation.parchment.end_parchment
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -17,7 +17,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
@@ -29,39 +28,38 @@ import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.mapPadding
-import com.zenika.ui.theme.topMapPadding
-import com.zenika.utils.ComposablePreview
+import com.zenika.ui.theme.tutorialBodyMedium
+import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun WelcomeParchment(
-    openInstruction: () -> Unit
+fun EndParchmentScreen(
+    goToScore: () -> Unit
 ) {
     val pagerState = rememberPagerState()
     val coroutineScope = rememberCoroutineScope()
 
     val text = listOf(
-        R.string.welcome_parchment, R.string.welcome_parchment2, R.string.welcome_parchment3
+        R.string.end_parchment,
+        R.string.end_parchment2
     )
     Box(
         Modifier
             .fillMaxSize()
             .padding()
             .paint(
-                painterResource(id = R.mipmap.background1),
-                contentScale = ContentScale.FillHeight
+                painterResource(R.mipmap.background1),
+                contentScale = ContentScale.Crop
             )
     ) {
         HorizontalPager(
-            pageCount = 3,
+            pageCount = 2,
             state = pagerState
         ) { page ->
             Image(
-                painter = painterResource(
-                    id = R.mipmap.parchment
-                ),
+                painter = painterResource(R.mipmap.parchment),
                 contentDescription = stringResource(R.string.parchment_image),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
@@ -70,67 +68,56 @@ fun WelcomeParchment(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .align(Center),
+                    .align(Alignment.Center),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                if (page <= 1) {
-                    Text(
-                        text = stringResource(text[page]),
-                        modifier = Modifier.padding(
-                            top = topMapPadding,
-                            start = mapPadding,
-                            end = mapPadding
-                        ),
-                        textAlign = TextAlign.Center,
-                        color = Color.Black,
-                        style = MaterialTheme.typography.bodyLarge
-                    )
+                Text(
+                    text = stringResource(text[page]),
+                    modifier = Modifier.padding(
+                        top = mapPadding,
+                        start = mapPadding,
+                        end = mapPadding
+                    ),
+                    textAlign = TextAlign.Center,
+                    color = Color.Black,
+                    style = tutorialBodyMedium
+                )
+                if (page == text.size - 1) {
+                    Button(
+                        modifier = Modifier.padding(top = buttonPadding),
+                        onClick = goToScore
+                    ) {
+                        Text(
+                            text = stringResource(R.string.score),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                } else {
                     Image(
-                        painter = painterResource(
-                            id = R.mipmap.arrow
-                        ),
+                        painter = painterResource(R.mipmap.arrow),
                         contentDescription = stringResource(R.string.arrow_image),
                         contentScale = ContentScale.Fit,
                         modifier = Modifier
                             .size(70.dp)
                             .clickable {
                                 coroutineScope.launch {
-                                    pagerState.animateScrollToPage(page + 1)
+                                    pagerState.animateScrollToPage(1)
                                 }
                             }
                     )
-                } else {
-                    Text(
-                        text = stringResource(text[page]),
-                        modifier = Modifier.padding(
-                            top = mapPadding,
-                            start = mapPadding,
-                            end = mapPadding,
-                            bottom = buttonPadding
-                        ),
-                        textAlign = TextAlign.Center,
-                        color = Color.Black,
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                    Button(onClick = openInstruction) {
-                        Text(
-                            text = stringResource(R.string.start_button),
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
                 }
             }
         }
     }
 }
 
-@ComposablePreview
+@ScreenPreview
 @Composable
-private fun WelcomeParchmentPreview() {
+private fun EndParchmentPreview() {
     ZEscapeThemePreview {
-        WelcomeParchment(
-            openInstruction = {}
+        EndParchmentScreen(
+            goToScore = {}
         )
     }
 }

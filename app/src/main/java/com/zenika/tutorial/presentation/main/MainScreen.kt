@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -23,6 +22,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.zenika.R
+import com.zenika.presentation.component.SettingsButton
 import com.zenika.presentation.component.Timer
 import com.zenika.tutorial.presentation.main.component.Key
 import com.zenika.tutorial.presentation.main.component.TreasureChest
@@ -37,6 +37,7 @@ import com.zenika.utils.ZEscapeThemePreview
 fun MainScreen(
     modifier: Modifier,
     mainUiState: MainUiState,
+    goToSettings: () -> Unit,
     openMiniGame: () -> Unit,
     openInventory: () -> Unit,
     showHint: () -> Unit,
@@ -63,9 +64,7 @@ fun MainScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = {}) {
-                        Icon(Icons.Filled.Settings, stringResource(R.string.settings))
-                    }
+                    SettingsButton(goToSettings)
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
@@ -81,7 +80,7 @@ fun MainScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .paint(
-                    painterResource(id = R.mipmap.background1),
+                    painterResource(R.mipmap.background1),
                     contentScale = ContentScale.FillHeight
                 ),
             contentAlignment = Alignment.Center
@@ -105,8 +104,7 @@ fun MainScreen(
                     Modifier
                         .padding(screenPadding)
                         .align(Alignment.BottomStart),
-
-                    )
+                )
             }
         }
     }
@@ -126,6 +124,7 @@ private fun TutorialScreenPreview() {
                 newItem = false,
                 remainingTime = 60
             ),
+            goToSettings = {},
             openMiniGame = {},
             openInventory = {},
             showHint = {},

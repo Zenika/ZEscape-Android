@@ -12,9 +12,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.zenika.R
+import com.zenika.ui.theme.adventureBodyMedium
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.ui.theme.screenPadding
-import com.zenika.utils.ScreenPreview
+import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
@@ -25,7 +26,8 @@ fun AdventureInstructionDialog(
         onDismissRequest = onDismissRequest,
         properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
     ) {
-        Text(text = stringResource(R.string.instruction_adventure),
+        Text(
+            text = stringResource(R.string.instruction_adventure),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(screenPadding)
@@ -35,12 +37,12 @@ fun AdventureInstructionDialog(
                 )
                 .padding(dialogPadding),
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.bodyLarge
+            style = adventureBodyMedium
         )
     }
 }
 
-@ScreenPreview
+@ComposablePreview
 @Composable
 private fun AdventureInstructionDialogPreview() {
     ZEscapeThemePreview {

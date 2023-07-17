@@ -16,7 +16,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -36,6 +35,7 @@ import com.zenika.ui.theme.buttonPadding
 import com.zenika.ui.theme.mapPadding
 import com.zenika.ui.theme.screenPadding
 import com.zenika.ui.theme.topMapPadding
+import com.zenika.ui.theme.tutorialBodyMedium
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 import kotlinx.coroutines.CoroutineScope
@@ -109,12 +109,10 @@ private fun PageContent(
                 ),
                 textAlign = TextAlign.Center,
                 color = Color.Black,
-                style = MaterialTheme.typography.bodyMedium
+                style = tutorialBodyMedium
             )
             Image(
-                painter = painterResource(
-                    id = R.mipmap.arrow
-                ),
+                painter = painterResource(R.mipmap.arrow),
                 contentDescription = stringResource(R.string.arrow_image),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
@@ -136,7 +134,7 @@ private fun PageContent(
                 ),
                 textAlign = TextAlign.Center,
                 color = Color.Black,
-                style = MaterialTheme.typography.bodyMedium
+                style = tutorialBodyMedium
             )
         }
     }

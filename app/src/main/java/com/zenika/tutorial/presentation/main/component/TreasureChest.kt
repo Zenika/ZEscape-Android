@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.utils.ComposablePreview
@@ -36,6 +38,10 @@ private fun Chest(
     chestDrawable: Int,
     onClick: () -> Unit
 ) {
+    val closeChestState = stringResource(R.string.close_treasure_chest)
+    val mapChestState = stringResource(R.string.open_map_treasure_chest)
+    val openChestState = stringResource(R.string.open_treasure_chest)
+
     Image(
         painter = painterResource(chestDrawable),
         contentDescription = stringResource(R.string.treasure_chest),
@@ -43,6 +49,14 @@ private fun Chest(
         modifier = Modifier
             .padding(top = 400.dp)
             .clickable { onClick() }
+            .semantics {
+                stateDescription =
+                    when (chestDrawable) {
+                        R.mipmap.closed_chest -> closeChestState
+                        R.mipmap.map_chest -> mapChestState
+                        else -> openChestState
+                    }
+            }
     )
 }
 

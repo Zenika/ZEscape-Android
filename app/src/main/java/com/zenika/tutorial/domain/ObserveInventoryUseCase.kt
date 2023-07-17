@@ -20,10 +20,10 @@ private fun List<ItemDto>.toInventory(): List<ItemDto> {
         return this
     }
     return (this.size until 10).fold(this) { acc, _ ->
-            acc + ItemDto(
-                "",
-                0
-            )
+        acc + ItemDto(
+            "",
+            0
+        )
     }
 }
 
