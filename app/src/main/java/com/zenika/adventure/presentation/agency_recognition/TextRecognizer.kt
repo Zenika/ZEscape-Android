@@ -1,6 +1,7 @@
 package com.zenika.adventure.presentation.agency_recognition
 
 import android.content.Context
+import android.util.Log
 import androidx.camera.mlkit.vision.MlKitAnalyzer
 import androidx.camera.view.CameraController
 import androidx.camera.view.LifecycleCameraController
@@ -26,6 +27,8 @@ import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import com.zenika.R
 import kotlinx.coroutines.delay
+
+private const val TAG = "TextRecognizer"
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -58,11 +61,19 @@ fun TextRecognizer(
         CameraController.COORDINATE_SYSTEM_VIEW_REFERENCED,
         mainExecutor,
     ) { analyzerResult ->
-        analyzerResult.getValue(textRecognizer)?.let { text ->
-            if (text.text in agenciesName) {
-                agency = text.text
+        analyzerResult.getValue(textRecognizer)
+            ?.text?.uppercase()
+            ?.let { text ->
+                Log.v(TAG, "Text found: $text")
+                text in agenciesName || return@let
+
+                if (agency.isEmpty()) {
+                    Log.d(TAG, "New agency found: $text")
+                    agency = text
+                } else {
+                    Log.d(TAG, "Agency is already found: $agency")
+                }
             }
-        }
     }
     cameraController.setImageAnalysisAnalyzer(
         mainExecutor,
