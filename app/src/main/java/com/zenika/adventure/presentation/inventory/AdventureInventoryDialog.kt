@@ -57,7 +57,8 @@ fun AdventureInventoryDialog(
         ) {
             Column(
                 modifier
-                    .height(580.dp),
+                    .height(580.dp)
+                    .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
