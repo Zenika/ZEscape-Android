@@ -1,13 +1,30 @@
-package com.zenika.adventure.presentation.casablanca.agency
+package com.zenika.adventure.presentation.casablanca.kitchen
 
 import android.content.Context
 import android.hardware.camera2.CameraManager
 import android.os.Build.VERSION_CODES.M
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
@@ -23,48 +40,26 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
-import com.zenika.adventure.presentation.casablanca.component.CasablancaMap
 import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
 import com.zenika.presentation.component.SettingsButton
 import com.zenika.presentation.component.Timer
 import com.zenika.ui.theme.screenPadding
-import com.zenika.adventure.presentation.casablanca.component.FlashlightScaffoldScreen
-import com.zenika.adventure.presentation.component.CasablancaMap
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @RequiresApi(M)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CasablancaAgencyScreen(
+fun KitchenScreen(
     remainingTime: Int,
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
-    openInventory: () -> Unit,
-    openAgencyMap: () -> Unit,
-    modifier: Modifier = Modifier
+    openInventory: () -> Unit
 ) {
-    FlashlightScaffoldScreen(
-        modifier = modifier,
-        remainingTime = remainingTime,
-        goToSettings = goToSettings,
-        background = R.mipmap.casablanca_agency,
-        openWorldMap = openWorldMap,
-        openInventory = openInventory
-    ) {
-        CasablancaMap(
-            modifier = Modifier
-                .size(100.dp)
-                .align(Alignment.CenterEnd)
-                .clickable(
-                    interactionSource = MutableInteractionSource(),
-                    indication = null,
-                    onClick = openAgencyMap
-                )
-        )
-
-
+    var pointerOffset by remember {
+        mutableStateOf(Offset(0f, 0f))
+    }
     var isFlashLightOn by remember {
         mutableStateOf(false)
     }
@@ -72,8 +67,7 @@ fun CasablancaAgencyScreen(
     val context = LocalContext.current
     val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
 
-    val torchCallback: CameraManager.TorchCallback =
-    object : CameraManager.TorchCallback() {
+    val torchCallback: CameraManager.TorchCallback = object : CameraManager.TorchCallback() {
         override fun onTorchModeChanged(cameraId: String, enabled: Boolean) {
             super.onTorchModeChanged(cameraId, enabled)
             isFlashLightOn = enabled
@@ -116,7 +110,7 @@ fun CasablancaAgencyScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .paint(
-                    painterResource(R.mipmap.casablanca_agency),
+                    painterResource(R.mipmap.casablanca_kitchen),
                     contentScale = ContentScale.Crop
                 )
                 .pointerInput("dragging") {
@@ -139,20 +133,7 @@ fun CasablancaAgencyScreen(
                 }
                 .padding(paddingValues)
                 .padding(screenPadding)
-        ) {
-            if (isFlashLightOn) {
-                CasablancaMap(
-                    modifier = Modifier
-                        .size(100.dp)
-                        .align(Alignment.CenterEnd)
-                        .clickable(
-                            interactionSource = MutableInteractionSource(),
-                            indication = null,
-                            onClick = openAgencyMap
-                        )
-                )
-            }
-        }
+        )
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -179,15 +160,13 @@ fun CasablancaAgencyScreen(
 @RequiresApi(M)
 @ScreenPreview
 @Composable
-private fun CasablancaAgencyScreenPreview() {
+private fun KitchenScreenPreview() {
     ZEscapeThemePreview {
-        CasablancaAgencyScreen(
+        KitchenScreen(
             remainingTime = 3_600,
             goToSettings = {},
             openWorldMap = {},
-            openInventory = {},
-            openAgencyMap = {}
+            openInventory = {}
         )
     }
 }
-
