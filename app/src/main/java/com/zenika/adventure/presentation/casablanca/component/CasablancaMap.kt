@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.component
+package com.zenika.adventure.presentation.casablanca.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
