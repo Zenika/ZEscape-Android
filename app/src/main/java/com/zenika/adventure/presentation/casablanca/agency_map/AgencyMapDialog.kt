@@ -39,7 +39,7 @@ fun AgencyMapDialog(
         ) {
             Box {
                 Image(
-                    painter = painterResource(id = R.mipmap.casablanca_map),
+                    painter = painterResource(R.mipmap.casablanca_map),
                     contentDescription = stringResource(R.string.world_map)
                 )
                 Canvas(

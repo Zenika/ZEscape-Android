@@ -69,7 +69,7 @@ fun CasablancaAgencyScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = {}) {
-                        Icon(Icons.Filled.Search, stringResource(id = R.string.hint))
+                        Icon(Icons.Filled.Search, stringResource(R.string.hint))
                     }
                 },
                 actions = {
@@ -88,8 +88,8 @@ fun CasablancaAgencyScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .paint(
-                    painterResource(id = R.mipmap.casablanca_agency),
-                    contentScale = ContentScale.FillHeight
+                    painterResource(R.mipmap.casablanca_agency),
+                    contentScale = ContentScale.Crop
                 )
                 .pointerInput("dragging") {
                     detectDragGestures { _, dragAmount ->

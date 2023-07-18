@@ -14,8 +14,8 @@ fun CasablancaMap(
     modifier: Modifier
 ) {
     Image(
-        painter = painterResource(id = R.mipmap.casablanca_map),
-        contentDescription = stringResource(id = R.string.casablanca_map),
+        painter = painterResource(R.mipmap.casablanca_map),
+        contentDescription = stringResource(R.string.casablanca_map),
         modifier = modifier
     )
 }

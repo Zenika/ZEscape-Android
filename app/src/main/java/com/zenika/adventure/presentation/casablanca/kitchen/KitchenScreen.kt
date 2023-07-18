@@ -66,7 +66,7 @@ fun KitchenScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = {}) {
-                        Icon(Icons.Filled.Search, stringResource(id = R.string.hint))
+                        Icon(Icons.Filled.Search, stringResource(R.string.hint))
                     }
                 },
                 actions = {
@@ -85,8 +85,8 @@ fun KitchenScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .paint(
-                    painterResource(id = R.mipmap.casablanca_kitchen),
-                    contentScale = ContentScale.FillHeight
+                    painterResource(R.mipmap.casablanca_kitchen),
+                    contentScale = ContentScale.Crop
                 )
                 .pointerInput("dragging") {
                     detectDragGestures { _, dragAmount ->
