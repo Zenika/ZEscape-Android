@@ -13,10 +13,8 @@ fun AdventureItem(
     item: Int
 ) {
     Image(
-        painter = painterResource(
-            id = item
-        ),
-        contentDescription = stringResource(id = R.string.item_image)
+        painter = painterResource(item),
+        contentDescription = stringResource(R.string.item_image)
     )
 }
 
