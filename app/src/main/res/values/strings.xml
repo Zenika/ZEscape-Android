@@ -32,8 +32,8 @@
     <string name="penalty_game">Pénalité\nCe n\'est pas le bon code…</string>
     <string name="returnToHome">Quitter</string>
     <string name="score">Score</string>
-    <string name="penalty_count">Pénalité(s) : %1$s</string>
-    <string name="hint_count">Indice(s) : %1$s</string>
+    <string name="penalty_count">Pénalité(s) : %1$d</string>
+    <string name="hint_count">Indice(s) : %1$d</string>
     <string name="time">Temps : </string>
     <string name="no_hint">Pas d\'indice disponible</string>
     <string name="captain_chest_hint">Le message du Capitaine présent dans votre inventaire devrait vous aider à ouvrir ce coffre</string>
@@ -45,7 +45,7 @@
     <string name="item_image">Objet dans un emplacement</string>
     <string name="parchment_image">Parchemin avec un intriguant message</string>
     <string name="parchment_image_score">Parchemin avec le score de la partie</string>
-    <string name="arrow_image">Flèche qui permet de passer à la page %1$s</string>
+    <string name="arrow_image">Flèche qui permet de passer à la page %1$d</string>
     <string name="inventory_bag_image">Sacoche d\'inventaire</string>
     <string name="key_image">Clé</string>
     <string name="start_button">C\'est parti !</string>

@@ -2,10 +2,9 @@ package com.zenika.adventure.presentation.singapore.on_off_game
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun OnOffRoute(
@@ -13,10 +12,8 @@ fun OnOffRoute(
     goToSettings: () -> Unit,
     viewModel: OnOffViewModel = hiltViewModel()
 ) {
-    val buttonsList = remember {
-        viewModel.buttonsList
-    }
-    val remainingTime by viewModel.remainingTime.collectAsState()
+    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(viewModel) {
         viewModel.events.collect { event ->
@@ -29,7 +26,7 @@ fun OnOffRoute(
     OnOffScreen(
         goToSettings,
         remainingTime,
-        buttonsList,
+        state.buttonsList,
         viewModel::switchColor
     )
 }

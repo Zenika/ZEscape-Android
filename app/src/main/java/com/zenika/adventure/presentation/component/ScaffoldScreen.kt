@@ -46,7 +46,7 @@ fun ScaffoldScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = {}) {
-                        Icon(Icons.Filled.Search, stringResource(id = R.string.hint))
+                        Icon(Icons.Filled.Search, stringResource(R.string.hint))
                     }
                 },
                 actions = {
@@ -66,7 +66,7 @@ fun ScaffoldScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .paint(
-                    painterResource(id = background),
+                    painterResource(background),
                     contentScale = ContentScale.FillHeight
                 )
                 .padding(screenPadding),

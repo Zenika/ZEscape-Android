@@ -1,5 +1,7 @@
 package com.zenika.adventure.presentation.singapore.on_off_game
 
+import androidx.compose.animation.Animatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -10,6 +12,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,8 +45,8 @@ fun OnOffScreen(
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             items(buttonsList.size) { buttonId ->
-                Button(
-                    buttonsList,
+                ColorButton(
+                    buttonsList[buttonId],
                     buttonId,
                     switchColor
                 )
@@ -52,22 +56,24 @@ fun OnOffScreen(
 }
 
 @Composable
-private fun Button(
-    buttonsList: List<Boolean>,
+private fun ColorButton(
+    isButtonGreen: Boolean,
     buttonId: Int,
     switchColor: (Int) -> Unit
 ) {
+    val color = remember { Animatable(FalseButton) }
+
+    LaunchedEffect(isButtonGreen) {
+        color.animateTo(
+            if (isButtonGreen) TrueButton else FalseButton,
+            animationSpec = tween(1000)
+        )
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
             .clip(RoundedCornerShape(20.dp))
-            .background(
-                if (buttonsList[buttonId]) {
-                    TrueButton
-                } else {
-                    FalseButton
-                }
-            )
+            .background(color.value)
             .size(100.dp)
             .clickable { switchColor(buttonId) }
     )

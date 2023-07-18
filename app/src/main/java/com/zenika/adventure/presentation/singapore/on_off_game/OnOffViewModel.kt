@@ -1,17 +1,20 @@
 package com.zenika.adventure.presentation.singapore.on_off_game
 
-import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.tutorial.domain.ObserveRemainingTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.random.Random
+
+private const val GAME_SIZE = 20
 
 @HiltViewModel
 class OnOffViewModel @Inject constructor(
@@ -28,45 +31,47 @@ class OnOffViewModel @Inject constructor(
     private val _events = MutableSharedFlow<OnOffGameEvent>()
     val events = _events.asSharedFlow()
 
-    private val gameSize = 20
-
-    private val _buttonsList = mutableStateListOf<Boolean>()
-    val buttonsList get() = _buttonsList
+    private val _state: StateFlow<OnOffUiState> = MutableStateFlow(OnOffUiState())
+    val state: StateFlow<OnOffUiState> = _state
 
     private val shuffleCombinationButtons = mutableSetOf<Int>()
 
-    private val buttons = (0 until gameSize).toList()
+    private val buttons = (0 until GAME_SIZE).toList()
 
     private val combinations = mutableListOf<Map<Int, Int>>()
 
     init {
-        for (i in 1..gameSize) {
-            buttonsList.add(false)
+        viewModelScope.launch {
+            for (i in 1..GAME_SIZE) {
+                state.value.buttonsList.add(false)
+            }
         }
         initCombinationButtons()
     }
 
     private fun initCombinationButtons() {
-        while (shuffleCombinationButtons.size < gameSize / 2) {
+        while (shuffleCombinationButtons.size < GAME_SIZE / 2) {
             val size = shuffleCombinationButtons.size
-            var random = (0 until gameSize).random()
+            var random = Random.nextInt(0, GAME_SIZE)
             while (size == random || size + 10 == random) {
-                random = (0 until gameSize).random()
+                random = Random.nextInt(0, GAME_SIZE)
             }
             shuffleCombinationButtons.add(random)
         }
         val shuffleCombinationList = shuffleCombinationButtons.toMutableList()
         shuffleCombinationList.addAll(shuffleCombinationList)
 
-        for (i in 0 until gameSize) {
+        for (i in 0 until GAME_SIZE) {
             combinations.add(mapOf(buttons[i] to shuffleCombinationList[i]))
         }
     }
 
     fun switchColor(buttonId: Int) {
-        _buttonsList[buttonId] = _buttonsList[buttonId].not()
-        buttonsList
+        _state.value.buttonsList[buttonId] = !_state.value.buttonsList[buttonId]
         switchCombinationColor(buttonId)
+        viewModelScope.launch {
+            checkWin()
+        }
     }
 
     private fun switchCombinationColor(buttonId: Int) {
@@ -76,18 +81,19 @@ class OnOffViewModel @Inject constructor(
                 button = combination.getValue(buttonId)
             }
         }
-        _buttonsList[button] = _buttonsList[button].not()
-        viewModelScope.launch {
-            checkWin()
-        }
+        _state.value.buttonsList[button] = !_state.value.buttonsList[button]
     }
 
     private suspend fun checkWin() {
-        if (buttonsList.all { it }) {
+        if (_state.value.buttonsList.all { it }) {
             _events.emit(OnOffGameEvent.WIN)
         }
     }
 }
+
+class OnOffUiState(
+    val buttonsList: MutableList<Boolean> = mutableListOf()
+)
 
 enum class OnOffGameEvent {
     WIN

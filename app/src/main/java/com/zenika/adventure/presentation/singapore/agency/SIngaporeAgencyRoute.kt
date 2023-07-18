@@ -1,9 +1,9 @@
 package com.zenika.adventure.presentation.singapore.agency
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun SingaporeAgencyRoute(
@@ -11,7 +11,7 @@ fun SingaporeAgencyRoute(
     openWorldMap: () -> Unit,
     viewModel: SingaporeAgencyViewModel = hiltViewModel(),
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsState()
+    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
 
     SingaporeAgencyScreen(
         remainingTime,
