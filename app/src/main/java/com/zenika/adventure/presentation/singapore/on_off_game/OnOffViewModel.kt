@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.random.Random
@@ -31,7 +32,7 @@ class OnOffViewModel @Inject constructor(
     private val _events = MutableSharedFlow<OnOffGameEvent>()
     val events = _events.asSharedFlow()
 
-    private val _state: StateFlow<OnOffUiState> = MutableStateFlow(OnOffUiState())
+    private val _state: MutableStateFlow<OnOffUiState> = MutableStateFlow(OnOffUiState(GAME_SIZE))
     val state: StateFlow<OnOffUiState> = _state
 
     private val shuffleCombinationButtons = mutableSetOf<Int>()
@@ -41,11 +42,6 @@ class OnOffViewModel @Inject constructor(
     private val combinations = mutableListOf<Pair<Int, Int>>()
 
     init {
-        viewModelScope.launch {
-            for (i in 1..GAME_SIZE) {
-                state.value.buttonsList.add(false)
-            }
-        }
         initCombinationButtons()
     }
 
@@ -67,22 +63,13 @@ class OnOffViewModel @Inject constructor(
     }
 
     fun switchColor(buttonId: Int) {
-        _state.value.buttonsList[buttonId] = !_state.value.buttonsList[buttonId]
-        switchCombinationColor(buttonId)
-        viewModelScope.launch {
-            checkWin()
-        }
+        val combinedButtonToSwitch = getCombinedButtonToSwitch(buttonId)
+        _state.update { it.withSwitchedButtons(buttonId, combinedButtonToSwitch) }
+        viewModelScope.launch { checkWin() }
     }
 
-    private fun switchCombinationColor(buttonId: Int) {
-        var button = 0
-        for (combination in combinations) {
-            if (combination.first == buttonId) {
-                button = combination.second
-            }
-        }
-        _state.value.buttonsList[button] = !_state.value.buttonsList[button]
-    }
+    private fun getCombinedButtonToSwitch(buttonId: Int): Int =
+        combinations.first { it.first == buttonId }.second
 
     private suspend fun checkWin() {
         if (_state.value.buttonsList.all { it }) {
@@ -92,8 +79,16 @@ class OnOffViewModel @Inject constructor(
 }
 
 class OnOffUiState(
-    val buttonsList: MutableList<Boolean> = mutableListOf()
-)
+    val buttonsList: List<Boolean> = listOf()
+) {
+    constructor(size: Int) : this((1..size).map { false })
+
+    fun withSwitchedButtons(buttonId: Int, combinedButtonToSwitch: Int) = OnOffUiState(
+        buttonsList.mapIndexed { index, value ->
+            if (index == buttonId || index == combinedButtonToSwitch) !value else value
+        }
+    )
+}
 
 enum class OnOffGameEvent {
     WIN
