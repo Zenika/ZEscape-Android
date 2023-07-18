@@ -16,7 +16,7 @@ fun TutorialHomeRoute(
     viewModel: TutorialHomeViewModel = hiltViewModel()
 ) {
     BackHandler {
-        goBack()
+        viewModel.goBack()
     }
 
     val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
