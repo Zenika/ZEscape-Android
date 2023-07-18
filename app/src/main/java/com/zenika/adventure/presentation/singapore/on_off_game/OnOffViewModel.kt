@@ -38,7 +38,7 @@ class OnOffViewModel @Inject constructor(
 
     private val buttons = (0 until GAME_SIZE).toList()
 
-    private val combinations = mutableListOf<Map<Int, Int>>()
+    private val combinations = mutableListOf<Pair<Int, Int>>()
 
     init {
         viewModelScope.launch {
@@ -62,7 +62,7 @@ class OnOffViewModel @Inject constructor(
         shuffleCombinationList.addAll(shuffleCombinationList)
 
         for (i in 0 until GAME_SIZE) {
-            combinations.add(mapOf(buttons[i] to shuffleCombinationList[i]))
+            combinations.add(buttons[i] to shuffleCombinationList[i])
         }
     }
 
@@ -77,8 +77,8 @@ class OnOffViewModel @Inject constructor(
     private fun switchCombinationColor(buttonId: Int) {
         var button = 0
         for (combination in combinations) {
-            if (combination.containsKey(buttonId)) {
-                button = combination.getValue(buttonId)
+            if (combination.first == buttonId) {
+                button = combination.second
             }
         }
         _state.value.buttonsList[button] = !_state.value.buttonsList[button]
