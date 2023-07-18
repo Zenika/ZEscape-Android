@@ -21,8 +21,6 @@ import com.zenika.adventure.presentation.component.ScaffoldScreen
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.size
 
 @Composable
 fun SingaporeAgencyScreen(
@@ -53,7 +51,7 @@ fun SingaporeAgencyScreen(
             exit = fadeOut()
         ) {
             Image(
-                painter = painterResource(id = R.mipmap.green_balloon),
+                painter = painterResource(R.mipmap.green_balloon),
                 contentDescription = stringResource(R.string.green_balloon)
             )
         }
@@ -71,7 +69,7 @@ fun SingaporeAgencyScreen(
             exit = fadeOut()
         ) {
             Image(
-                painter = painterResource(id = R.mipmap.red_balloon),
+                painter = painterResource(R.mipmap.red_balloon),
                 contentDescription = stringResource(R.string.red_balloon)
             )
         }
@@ -89,7 +87,7 @@ fun SingaporeAgencyScreen(
             exit = fadeOut()
         ) {
             Image(
-                painter = painterResource(id = R.mipmap.orange_balloon),
+                painter = painterResource(R.mipmap.orange_balloon),
                 contentDescription = stringResource(R.string.orange_balloon)
             )
         }
