@@ -57,7 +57,7 @@ fun CasablancaOutsideScreen(
                     modifier = Modifier.height(80.dp)
                 ) {
                     Text(
-                        text = stringResource(id = buttonsText[item]),
+                        text = stringResource(buttonsText[item]),
                         textAlign = TextAlign.Center
                     )
                 }
