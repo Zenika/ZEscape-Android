@@ -29,6 +29,7 @@ import com.zenika.utils.ZEscapeThemePreview
 fun WorldMapDialog(
     onDismissRequest: () -> Unit,
     openTextRecognition: () -> Unit,
+    goToSingaporeAgency: () -> Unit,
     agencies: Set<Agency>
 ) {
     Dialog(
@@ -66,7 +67,7 @@ fun WorldMapDialog(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(start = 160.dp, top = 20.dp)
-                            .clickable { Log.d("city", Agency.SINGAPOUR.name) }
+                            .clickable(onClick = goToSingaporeAgency)
                     )
                 }
                 if (Agency.MONTREAL in agencies) {
@@ -101,12 +102,8 @@ private fun WorldMapDialogPreview() {
         WorldMapDialog(
             onDismissRequest = {},
             openTextRecognition = {},
-            agencies = mutableSetOf(
-                Agency.MONTREAL,
-                Agency.CASABLANCA,
-                Agency.PARIS,
-                Agency.SINGAPOUR
-            )
+            goToSingaporeAgency = {},
+            agencies = mutableSetOf(Agency.MONTREAL, Agency.CASABLANCA, Agency.PARIS)
         )
     }
 }

@@ -32,8 +32,8 @@
     <string name="penalty_game">Pénalité\nCe n\'est pas le bon code…</string>
     <string name="returnToHome">Quitter</string>
     <string name="score">Score</string>
-    <string name="penalty_count">Pénalité(s) : %1$s</string>
-    <string name="hint_count">Indice(s) : %1$s</string>
+    <string name="penalty_count">Pénalité(s) : %1$d</string>
+    <string name="hint_count">Indice(s) : %1$d</string>
     <string name="time">Temps : </string>
     <string name="no_hint">Pas d\'indice disponible</string>
     <string name="captain_chest_hint">Le message du Capitaine présent dans votre inventaire devrait vous aider à ouvrir ce coffre</string>
@@ -45,7 +45,7 @@
     <string name="item_image">Objet dans un emplacement</string>
     <string name="parchment_image">Parchemin avec un intriguant message</string>
     <string name="parchment_image_score">Parchemin avec le score de la partie</string>
-    <string name="arrow_image">Flèche qui permet de passer à la page suivante</string>
+    <string name="arrow_image">Flèche qui permet de passer à la page %1$d</string>
     <string name="inventory_bag_image">Sacoche d\'inventaire</string>
     <string name="key_image">Clé</string>
     <string name="start_button">C\'est parti !</string>
@@ -71,7 +71,9 @@
     <string name="agency_add">Ajout d\'une agence</string>
     <string name="cancel">Annuler</string>
     <string name="confirm">Confirmer</string>
-    <string name="desk">Bureau</string>
+    <string name="instruction_singapore">Vous voilà arrivé(e) devant l\'agence Zenika de Singapour. Malheureusement, la porte d\'entrée est fermée. Essayez de l\'ouvrir pour tenter de récupérer la clé à l\'intérieur.</string>
+    <string name="instruction_singapore_agency">Bien joué, vous avez réussi à entrer dans l\'agence.</string>
     <string name="scan">Scan</string>
     <string name="check">validation</string>
+    <string name="desk">Bureau</string>
 </resources>

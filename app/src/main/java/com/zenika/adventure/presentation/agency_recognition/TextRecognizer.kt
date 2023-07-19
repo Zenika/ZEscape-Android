@@ -59,7 +59,9 @@ fun TextRecognizer(
         mainExecutor,
     ) { analyzerResult ->
         analyzerResult.getValue(textRecognizer)?.let { text ->
-            agency = text.text
+            if (text.text in agenciesName) {
+                agency = text.text
+            }
         }
     }
     cameraController.setImageAnalysisAnalyzer(

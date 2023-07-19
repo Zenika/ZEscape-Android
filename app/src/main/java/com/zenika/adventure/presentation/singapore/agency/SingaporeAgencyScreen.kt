@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.portal
+package com.zenika.adventure.presentation.singapore.agency
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.size
@@ -14,17 +14,15 @@ import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun PortalScreen(
+fun SingaporeAgencyScreen(
     remainingTime: Int,
     goToSettings: () -> Unit,
-    accessToPortal: () -> Unit,
     openWorldMap: () -> Unit
 ) {
     ScaffoldScreen(
-        modifier = Modifier.clickable { accessToPortal() },
         remainingTime = remainingTime,
         goToSettings = goToSettings,
-        background = R.mipmap.background_neon
+        background = R.mipmap.singapore_agency
     ) {
         ContinentsMap(
             modifier = Modifier
@@ -43,12 +41,11 @@ fun PortalScreen(
 
 @ScreenPreview
 @Composable
-private fun PortalScreenPreview() {
+private fun SingaporeAgencyScreenPreview() {
     ZEscapeThemePreview {
-        PortalScreen(
+        SingaporeAgencyScreen(
             remainingTime = 60,
             goToSettings = {},
-            accessToPortal = {},
             openWorldMap = {}
         )
     }

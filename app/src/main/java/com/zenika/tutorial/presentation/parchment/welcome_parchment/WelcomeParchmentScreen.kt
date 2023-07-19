@@ -87,7 +87,7 @@ fun WelcomeParchmentScreen(
                     )
                     Image(
                         painter = painterResource(R.mipmap.arrow),
-                        contentDescription = stringResource(R.string.arrow_image),
+                        contentDescription = stringResource(R.string.arrow_image, page + 1),
                         contentScale = ContentScale.Fit,
                         modifier = Modifier
                             .size(70.dp)
