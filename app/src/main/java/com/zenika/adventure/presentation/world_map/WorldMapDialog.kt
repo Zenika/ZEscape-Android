@@ -30,7 +30,8 @@ fun WorldMapDialog(
     openTextRecognition: () -> Unit,
     goBackToPortal: () -> Unit,
     goToSingaporeAgency: () -> Unit,
-    goToCasablanca: () -> Unit,
+    goToCasablancaAgency: () -> Unit,
+    goToMontrealAgency: () -> Unit,
     agencies: Set<Agency>
 ) {
     Dialog(
@@ -52,7 +53,7 @@ fun WorldMapDialog(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(top = 12.dp, end = 20.dp)
-                            .clickable(onClick = goToCasablanca)
+                            .clickable(onClick = goToCasablancaAgency)
                     )
                 }
                 if (Agency.PARIS in agencies) {
@@ -76,7 +77,7 @@ fun WorldMapDialog(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(end = 160.dp, bottom = 80.dp)
-                            .clickable(onClick = {})
+                            .clickable(onClick = goToMontrealAgency)
                     )
                 }
             }
@@ -108,7 +109,8 @@ private fun WorldMapDialogPreview() {
             openTextRecognition = {},
             goBackToPortal = {},
             goToSingaporeAgency = {},
-            goToCasablanca = {},
+            goToCasablancaAgency = {},
+            goToMontrealAgency = {},
             agencies = mutableSetOf(Agency.MONTREAL, Agency.CASABLANCA, Agency.PARIS)
         )
     }
