@@ -26,6 +26,8 @@ import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
 import com.zenika.adventure.presentation.inventory.AdventureInventoryRoute
 import com.zenika.adventure.presentation.item.AdventureItemRoute
+import com.zenika.adventure.presentation.montreal.instruction.InstructionMontrealRoute
+import com.zenika.adventure.presentation.montreal.simon_says.SimonSaysRoute
 import com.zenika.adventure.presentation.penalty.AdventurePenaltyRoute
 import com.zenika.adventure.presentation.portal.PortalRoute
 import com.zenika.adventure.presentation.portal_message.PortalMessageRoute
@@ -68,6 +70,8 @@ private const val ROUTE_CASABLANCA_KITCHEN = "adventureCasablancaKitchen"
 private const val ROUTE_CASABLANCA_OFFICES = "adventureCasablancaOffices"
 private const val ROUTE_CASABLANCA_MEETING_ROOM = "adventureCasablancaMeetingRoom"
 private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
+private const val ROUTE_MONTREAL_INSTRUCTION = "adventureMontrealInstruction"
+private const val ROUTE_SIMON_SAYS_GAME = "adventureSimonSaysGame"
 
 private val casablancaOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/casablanca/outside" })
 private val singaporeOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/singapore/outside" })
@@ -200,9 +204,13 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.navigate(ROUTE_ON_OFF_GAME)
                     navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
                 },
-                goToCasablanca = {
+                goToCasablancaAgency = {
                     navController.navigate(ROUTE_CASABLANCA_OUTSIDE)
                     navController.navigate(ROUTE_CASABLANCA_INSTRUCTION)
+                },
+                goToMontrealAgency = {
+                    navController.navigate(ROUTE_SIMON_SAYS_GAME)
+                    navController.navigate(ROUTE_MONTREAL_INSTRUCTION)
                 }
             )
         }
@@ -375,6 +383,19 @@ fun NavGraphBuilder.adventureNavigation(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) }
+            )
+        }
+        dialog(ROUTE_MONTREAL_INSTRUCTION) {
+            InstructionMontrealRoute(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
+        composable(ROUTE_SIMON_SAYS_GAME) {
+            SimonSaysRoute(
+                winGame = {
+                    navController.popBackStack(ROUTE_PORTAL, inclusive = false)
+                },
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) }
             )
         }
     }
