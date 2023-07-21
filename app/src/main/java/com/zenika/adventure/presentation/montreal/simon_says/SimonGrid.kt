@@ -16,15 +16,16 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun SimonGrid(
-    buttonsText: List<Int>,
-    onButtonClick: (Int) -> Unit,
-    lightButton: Int?,
+    buttonsText: List<Char>,
+    onButtonClick: (Char) -> Unit,
+    lightButton: Char?,
     mode: SimonGridMode,
     modifier: Modifier = Modifier
 ) {
@@ -51,7 +52,16 @@ fun SimonGrid(
                     disabledContainerColor = lightColor
                 )
             ) {
-                Text(text = if (text == lightButton) "($text)" else text.toString())
+                Text(
+                    text = text.toString(),
+                    fontWeight = if (text == lightButton) FontWeight.Bold else FontWeight.Normal,
+                    color = if (mode == SimonGridMode.PLAYER) {
+                        MaterialTheme.colorScheme.onPrimary
+                    } else {
+                        if (text == lightButton) MaterialTheme.colorScheme.onTertiary
+                        else Color.White
+                    }
+                )
             }
         }
     }
@@ -60,11 +70,11 @@ fun SimonGrid(
 @Preview
 @Composable
 fun SimonGridPreview() {
-    val sequence = remember { mutableStateListOf<Int>() }
+    val sequence = remember { mutableStateListOf<Char>() }
     ZEscapeThemePreview {
         Column {
             SimonGrid(
-                buttonsText = (1..16).toList(),
+                buttonsText = ('A'..'P').toList(),
                 onButtonClick = { sequence += it },
                 lightButton = null,
                 mode = SimonGridMode.PLAYER,
@@ -81,9 +91,9 @@ fun SimonGridPreview() {
 fun SimonGridLightPreview() {
     ZEscapeThemePreview {
         SimonGrid(
-            buttonsText = (1..16).toList(),
+            buttonsText = ('A'..'P').toList(),
             onButtonClick = { },
-            lightButton = 3,
+            lightButton = 'A',
             mode = SimonGridMode.SYSTEM,
             modifier = Modifier
                 .background(Color.White)

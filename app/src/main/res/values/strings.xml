@@ -114,4 +114,8 @@
     <string name="ok">OK</string>
     <string name="open_safe">Coffre fort ouvert</string>
     <string name="safe">Coffre fort</string>
+    <string name="ready">Prêt(e) ?</string>
+    <string name="playerGame">À toi !</string>
+    <string name="systemGame">Écoute…</string>
+    <string name="loseGame">Raté…</string>
 </resources>
