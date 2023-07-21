@@ -26,10 +26,8 @@ fun SimonSaysRoute(
     SimonCase(
         goToSettings,
         remainingTime,
-        viewModel::startSimonsSays,
-        buttonsText = state.buttonsText,
-        onButtonClick = viewModel::onButtonClick,
-        lightButton = state.lightButton,
-        mode = state.mode,
+        state,
+        viewModel::startGame,
+        viewModel::onButtonClick
     )
 }
