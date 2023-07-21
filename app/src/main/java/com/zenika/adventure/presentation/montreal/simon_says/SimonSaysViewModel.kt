@@ -1,8 +1,10 @@
 package com.zenika.adventure.presentation.montreal.simon_says
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zenika.tutorial.domain.ObserveRemainingTimeUseCase
+import com.zenika.R
+import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -39,85 +41,118 @@ class SimonsSaysViewModel @Inject constructor(
         SimonState(
             mode = SimonGridMode.SYSTEM,
             lightButton = null,
-            buttonsText = (1..GAME_SIZE).toList(),
-            systemSequence = initSystemSequence(),
-            playerSequence = mutableListOf()
+            buttonsText = ('A'..'P').toList(),
+            systemSequence = mutableListOf(),
+            playerSequence = mutableListOf(),
+            indicationText = R.string.ready
         )
     )
     val state = _state.asStateFlow()
 
-    private fun initSystemSequence(): List<Int> {
-        val sequence = mutableListOf<Int>()
-        for (i in 1..SEQUENCE_SIZE) {
-            val random = Random.nextInt(GAME_SIZE) + 1
-            sequence.add(random)
-        }
-        return sequence
+    fun startGame() {
+        initGame(R.string.systemGame)
+        playSystemSequence()
     }
 
-    fun startSimonsSays() {
+    private fun initGame(indicationText: Int) {
+        _state.update {
+            it.copy(
+                systemSequence = mutableListOf(),
+                playerSequence = mutableListOf(),
+                mode = SimonGridMode.SYSTEM,
+                indicationText = indicationText
+            )
+        }
+    }
+
+    private suspend fun continueGame() {
+        delay(500)
+        _state.update {
+            it.copy(
+                playerSequence = mutableListOf(),
+                mode = SimonGridMode.SYSTEM,
+                indicationText = R.string.systemGame
+            )
+        }
+        playSystemSequence()
+    }
+
+    private fun playSystemSequence() {
         viewModelScope.launch {
-            delay(1000)
-            for (number in _state.value.systemSequence) {
-                lightButton(number)
+            addCharToSystemSequence()
+            delay(500)
+            for (char in _state.value.systemSequence) {
+                lightButton(char)
             }
             _state.update {
-                it.copy(mode = SimonGridMode.PLAYER)
+                it.copy(
+                    mode = SimonGridMode.PLAYER,
+                    indicationText = R.string.playerGame
+                )
             }
         }
     }
 
-    private suspend fun lightButton(number: Int) {
+    private fun addCharToSystemSequence() {
+        val random = Random.nextInt(GAME_SIZE)
+        val randomChar = _state.value.buttonsText[random]
         _state.update {
-            it.copy(lightButton = number)
+            it.systemSequence.add(randomChar)
+            it
         }
-        delay(1500)
+    }
+
+    private suspend fun lightButton(char: Char) {
+        _state.update {
+            it.copy(lightButton = char)
+        }
+        delay(1000)
         _state.update {
             it.copy(lightButton = null)
         }
         delay(200)
     }
 
-    fun onButtonClick(number: Int) {
+    fun onButtonClick(char: Char) {
         viewModelScope.launch {
             _state.update {
-                it.playerSequence.add(number)
+                it.playerSequence.add(char)
                 it
             }
             checkSequence()
-            checkWin()
         }
     }
 
-    private fun checkSequence() {
-        for (int in 0 until (_state.value.playerSequence.size)) {
-            if (_state.value.playerSequence[int] == _state.value.systemSequence[int]) {
-                continue
+    private suspend fun checkSequence() {
+        if (_state.value.playerSequence.size == _state.value.systemSequence.size) {
+            if (_state.value.playerSequence.last() == _state.value.systemSequence.last()) {
+                checkWin()
             } else {
-                _state.update {
-                    it.copy(
-                        playerSequence = mutableListOf(),
-                        mode = SimonGridMode.SYSTEM
-                    )
-                }
-                startSimonsSays()
+                initGame(R.string.loseGame)
+            }
+        } else {
+            if (_state.value.playerSequence.last() != _state.value.systemSequence[_state.value.playerSequence.size - 1]) {
+                initGame(R.string.loseGame)
             }
         }
     }
 
     private suspend fun checkWin() {
-        if (_state.value.playerSequence.size == _state.value.systemSequence.size) {
-            _events.emit(SimonsSaysGameEvent.WIN)
+        viewModelScope.launch {
+            if (_state.value.playerSequence.size == SEQUENCE_SIZE) {
+                _events.emit(SimonsSaysGameEvent.WIN)
+            } else continueGame()
         }
     }
 }
 
 data class SimonState(
     val mode: SimonGridMode,
-    val lightButton: Int?,
-    val buttonsText: List<Int>,
-    val systemSequence: List<Int>,
-    var playerSequence: MutableList<Int>
+    val lightButton: Char?,
+    val buttonsText: List<Char>,
+    var systemSequence: MutableList<Char>,
+    var playerSequence: MutableList<Char>,
+    @StringRes val indicationText: Int
 )
 
 enum class SimonsSaysGameEvent {
