@@ -32,7 +32,7 @@ fun SimonCase(
     ScaffoldScreen(
         remainingTime = remainingTime,
         goToSettings = goToSettings,
-        background = R.mipmap.singapore_outside
+        background = R.mipmap.montreal_outside
     ) {
         Column(
             modifier = modifier
