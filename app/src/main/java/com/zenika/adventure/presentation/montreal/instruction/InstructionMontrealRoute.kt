@@ -6,7 +6,5 @@ import androidx.compose.runtime.Composable
 fun InstructionMontrealRoute(
     onDismissRequest: () -> Unit
 ) {
-    InstructionMontrealDialog(
-        onDismissRequest
-    )
+    InstructionMontrealDialog(onDismissRequest)
 }
