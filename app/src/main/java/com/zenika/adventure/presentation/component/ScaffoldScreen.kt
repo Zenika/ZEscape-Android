@@ -67,7 +67,7 @@ fun ScaffoldScreen(
                 .padding(paddingValues)
                 .paint(
                     painterResource(background),
-                    contentScale = ContentScale.FillHeight
+                    contentScale = ContentScale.Crop
                 )
                 .padding(screenPadding),
             contentAlignment = Alignment.Center
