@@ -20,7 +20,7 @@ fun PortalScreen(
     accessToPortal: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
-    ) {
+) {
     ScaffoldScreen(
         modifier = Modifier.clickable { accessToPortal() },
         remainingTime = remainingTime,

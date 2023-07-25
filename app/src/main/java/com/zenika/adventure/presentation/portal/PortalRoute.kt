@@ -19,7 +19,7 @@ fun PortalRoute(
     }
 
     val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
-    
+
     PortalScreen(
         remainingTime,
         goToSettings,
