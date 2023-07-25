@@ -22,7 +22,7 @@ fun PortalScreen(
     openInventory: () -> Unit,
 ) {
     ScaffoldScreen(
-        modifier = Modifier.clickable { accessToPortal() },
+        modifier = Modifier.clickable(onClick = accessToPortal),
         remainingTime = remainingTime,
         goToSettings = goToSettings,
         background = R.mipmap.background_neon
