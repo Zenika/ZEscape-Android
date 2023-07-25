@@ -1,5 +1,9 @@
 package com.zenika.presentation.home
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +17,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -27,15 +35,27 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun HomeScreen(
     goToTutorial: () -> Unit,
-    goToAdventure: () -> Unit
+    goToAdventure: () -> Unit,
+    goToDebug: () -> Unit
 ) {
+    var tapCount by remember {
+        mutableStateOf(0)
+    }
+    val interactionSource = remember { MutableInteractionSource() }
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
                     Text(
                         text = stringResource(R.string.app_name),
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable(
+                                interactionSource = interactionSource,
+                                indication = null,
+                                onClick = { tapCount++ }
+                            ),
                         textAlign = TextAlign.Center
                     )
                 },
@@ -74,6 +94,17 @@ fun HomeScreen(
                     style = MaterialTheme.typography.headlineSmall
                 )
             }
+            AnimatedVisibility(
+                visible = tapCount >= 10,
+                enter = fadeIn()
+            ) {
+                Button(onClick = goToDebug) {
+                    Text(
+                        text = stringResource(R.string.debug),
+                        style = MaterialTheme.typography.headlineSmall
+                    )
+                }
+            }
         }
     }
 }
@@ -84,7 +115,8 @@ private fun HomeScreenPreview() {
     ZEscapeThemePreview {
         HomeScreen(
             goToTutorial = {},
-            goToAdventure = {}
+            goToAdventure = {},
+            goToDebug = {}
         )
     }
 }

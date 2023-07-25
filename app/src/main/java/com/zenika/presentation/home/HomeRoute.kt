@@ -10,6 +10,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 fun HomeRoute(
     goToTutorial: () -> Unit,
     goToAdventure: () -> Unit,
+    goToDebug: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
@@ -23,6 +24,7 @@ fun HomeRoute(
 
     HomeScreen(
         viewModel::goToTutorial,
-        viewModel::goToAdventure
+        viewModel::goToAdventure,
+        goToDebug
     )
 }
