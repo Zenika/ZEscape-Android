@@ -119,4 +119,11 @@
     <string name="playerGame">À toi !</string>
     <string name="systemGame">Écoute…</string>
     <string name="loseGame">Raté…</string>
+    <string name="credit">Crédits</string>
+    <string name="credit_names">Photos de :\nKari Shea sur Unsplash\nAnthony Esau sur Unsplash\nRandall Meng sur Unsplash\n
+        Zakaria Zayane sur Unsplash\nR ARCHITECTURE sur Unsplash\nBilal Mansuri sur Unsplash\nJose Losada sur Unsplash\n
+        Annie Spratt sur Unsplash\nDimas Ardirosatama sur Unsplash\nMichael Jasmund sur Unsplash\nwirestock sur Freepik\n\n
+        Icônes et éléments de :\njuicy_fish sur Flaticon\nFreepik sur Flaticon\nupklyak sur Freepik\n
+        macrovector sur Freepik\nStock Hunter sur Vecteezy\nCraftpix
+    </string>
 </resources>

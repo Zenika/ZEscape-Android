@@ -4,7 +4,9 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -36,7 +38,8 @@ import com.zenika.utils.ZEscapeThemePreview
 fun HomeScreen(
     goToTutorial: () -> Unit,
     goToAdventure: () -> Unit,
-    goToDebug: () -> Unit
+    goToDebug: () -> Unit,
+    goToCredit: () -> Unit
 ) {
     var tapCount by remember {
         mutableStateOf(0)
@@ -71,7 +74,8 @@ fun HomeScreen(
             tapCount = tapCount,
             goToTutorial = goToTutorial,
             goToAdventure = goToAdventure,
-            goToDebug = goToDebug
+            goToDebug = goToDebug,
+            goToCredit = goToCredit
         )
     }
 }
@@ -82,6 +86,7 @@ private fun HomeContent(
     goToTutorial: () -> Unit,
     goToAdventure: () -> Unit,
     goToDebug: () -> Unit,
+    goToCredit: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -122,6 +127,11 @@ private fun HomeContent(
                 )
             }
         }
+        Text(
+            text = stringResource(R.string.credit),
+            modifier = Modifier
+                .clickable(onClick = goToCredit)
+        )
     }
 }
 
@@ -132,7 +142,8 @@ private fun HomeScreenPreview() {
         HomeScreen(
             goToTutorial = {},
             goToAdventure = {},
-            goToDebug = {}
+            goToDebug = {},
+            goToCredit = {}
         )
     }
 }
@@ -145,6 +156,7 @@ private fun DebugHomeContentPreview() {
             goToTutorial = {},
             goToAdventure = {},
             goToDebug = {},
+            goToCredit = {},
             tapCount = 15
         )
     }
