@@ -1,0 +1,317 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ComposableParamOrder:AdventureDialog.kt$AdventureDialog</ID>
+    <ID>ComposableParamOrder:ScaffoldScreen.kt$ScaffoldScreen</ID>
+    <ID>ComposableParamOrder:TutorialDialog.kt$TutorialDialog</ID>
+    <ID>FunctionNaming:AdventureDialog.kt$@Composable fun AdventureDialog( modifier: Modifier = Modifier, onDismissRequest: () -&gt; Unit, backgroundColor: Color? = MaterialTheme.colorScheme.primaryContainer, content: @Composable BoxScope.() -&gt; Unit )</ID>
+    <ID>FunctionNaming:AdventureDialog.kt$@ComposablePreview @Composable fun AdventureDialogPreview()</ID>
+    <ID>FunctionNaming:AdventureHomeRoute.kt$@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter") @Composable fun AdventureHomeRoute( goBack: () -&gt; Unit, goToAdventure: () -&gt; Unit, viewModel: AdventureHomeViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:AdventureHomeScreen.kt$@ScreenPreview @Composable private fun AdventureHomeScreenPreview()</ID>
+    <ID>FunctionNaming:AdventureHomeScreen.kt$@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter") @OptIn(ExperimentalMaterial3Api::class) @Composable fun AdventureHomeScreen( goBack: () -&gt; Unit, goToAdventure: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:AdventureInstructionDialog.kt$@Composable fun AdventureInstructionDialog(onDismissRequest: () -&gt; Unit)</ID>
+    <ID>FunctionNaming:AdventureInstructionDialog.kt$@ComposablePreview @Composable private fun AdventureInstructionDialogPreview()</ID>
+    <ID>FunctionNaming:AdventureInstructionRoute.kt$@Composable fun AdventureInstructionRoute( onDismissRequest: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:AdventureInventoryBag.kt$@Composable fun AdventureInventoryBag( modifier: Modifier )</ID>
+    <ID>FunctionNaming:AdventureInventoryBag.kt$@ComposablePreview @Composable private fun AdventureInventoryBagPreview()</ID>
+    <ID>FunctionNaming:AgencyRecognitionRoute.kt$@Composable fun AgencyRecognitionRoute( goBack: () -&gt; Unit, onTextRecognized: (String) -&gt; Unit )</ID>
+    <ID>FunctionNaming:AgencyRecognitionScreen.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun AgencyRecognitionScreen( goBack: () -&gt; Unit, onTextRecognized: (String) -&gt; Unit )</ID>
+    <ID>FunctionNaming:AgencyValidationDialog.kt$@Composable fun AgencyValidationDialog( onDismissRequest: () -&gt; Unit, dismissAgency: () -&gt; Unit, confirmAgency: () -&gt; Unit, agency: String )</ID>
+    <ID>FunctionNaming:AgencyValidationDialog.kt$@Composable private fun ConfirmButton( confirmAgency: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:AgencyValidationDialog.kt$@Composable private fun DismissButton( dismissAgency: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:AgencyValidationDialog.kt$@Composable private fun TextDialog(agency: String)</ID>
+    <ID>FunctionNaming:AgencyValidationDialog.kt$@Composable private fun TitleDialog()</ID>
+    <ID>FunctionNaming:AgencyValidationDialog.kt$@ComposablePreview @Composable private fun AgencyValidationDialogPreview()</ID>
+    <ID>FunctionNaming:AgencyValidationRoute.kt$@Composable fun AgencyValidationRoute( onDismissRequest: () -&gt; Unit, goBackToWorldMap: () -&gt; Unit, viewModel: AgencyValidationViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:ColorButton.kt$@Composable fun ColorButton( symbol: String, color: Color, colorName: String, onColorClick: (String) -&gt; Unit )</ID>
+    <ID>FunctionNaming:ColorButton.kt$@ComposablePreview @Composable private fun ColorButtonPreview()</ID>
+    <ID>FunctionNaming:ColorButtonsOrderGameDialog.kt$@Composable fun ColorButtonsOrderGameDialog( size: Int, onDismissRequest: () -&gt; Unit, onColorClick: (String) -&gt; Unit )</ID>
+    <ID>FunctionNaming:ColorButtonsOrderGameDialog.kt$@ComposablePreview @Composable private fun ColorButtonsOrderGameDialogPreview()</ID>
+    <ID>FunctionNaming:ColorButtonsOrderGameRoute.kt$@Composable fun ColorButtonsOrderGameRoute( onDismissRequest: () -&gt; Unit, openPenalty: (String) -&gt; Unit, viewModel: ColorButtonsOrderGameViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:ComputerRoute.kt$@Composable fun ComputerRoute( goBack: () -&gt; Unit, goToScan: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:ComputerScreen.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun ComputerScreen( goBack: () -&gt; Unit, goToScan: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:ComputerScreen.kt$@ScreenPreview @Composable private fun ComputerScreenPreview()</ID>
+    <ID>FunctionNaming:ContinentsMap.kt$@Composable fun ContinentsMap( modifier: Modifier )</ID>
+    <ID>FunctionNaming:ContinentsMap.kt$@ComposablePreview @Composable private fun ContinentsMapPreview()</ID>
+    <ID>FunctionNaming:EndParchmentRoute.kt$@Composable fun EndParchmentRoute( goToScore: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:EndParchmentScreen.kt$@OptIn(ExperimentalFoundationApi::class) @Composable fun EndParchmentScreen( goToScore: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:EndParchmentScreen.kt$@ScreenPreview @Composable private fun EndParchmentPreview()</ID>
+    <ID>FunctionNaming:HomeRoute.kt$@Composable fun HomeRoute( goToTutorial: () -&gt; Unit, goToAdventure: () -&gt; Unit, viewModel: HomeViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:HomeScreen.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun HomeScreen( goToTutorial: () -&gt; Unit, goToAdventure: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:HomeScreen.kt$@ScreenPreview @Composable private fun HomeScreenPreview()</ID>
+    <ID>FunctionNaming:InstructionSingaporeDialog.kt$@Composable fun InstructionSingaporeDialog(onDismissRequest: () -&gt; Unit)</ID>
+    <ID>FunctionNaming:InstructionSingaporeDialog.kt$@ScreenPreview @Composable private fun InstructionSingaporeDialogPreview()</ID>
+    <ID>FunctionNaming:InstructionSingaporeRoute.kt$@Composable fun InstructionSingaporeRoute( onDismissRequest: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:Key.kt$@Composable fun Key( collectKey: () -&gt; Unit, modifier: Modifier )</ID>
+    <ID>FunctionNaming:Key.kt$@ComposablePreview @Composable private fun KeyPreview()</ID>
+    <ID>FunctionNaming:MainRoute.kt$@Composable fun MainRoute( goToSettings: () -&gt; Unit, openMiniGame: () -&gt; Unit, openInventory: () -&gt; Unit, showHint: () -&gt; Unit, viewModel: MainViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:MainScreen.kt$@ScreenPreview @Composable private fun TutorialScreenPreview()</ID>
+    <ID>FunctionNaming:MainScreen.kt$@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter") @OptIn(ExperimentalMaterial3Api::class) @Composable fun MainScreen( modifier: Modifier, mainUiState: MainUiState, goToSettings: () -&gt; Unit, openMiniGame: () -&gt; Unit, openInventory: () -&gt; Unit, showHint: () -&gt; Unit, collectKey: () -&gt; Unit, collectMap: () -&gt; Unit, removeNewItemBadge: () -&gt; Unit, incrementHintCount: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:OnOffRoute.kt$@Composable fun OnOffRoute( winGame: () -&gt; Unit, goToSettings: () -&gt; Unit, viewModel: OnOffViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:OnOffScreen.kt$@Composable fun OnOffScreen( goToSettings: () -&gt; Unit, remainingTime: Int, buttonsList: List&lt;Boolean&gt;, switchColor: (Int) -&gt; Unit )</ID>
+    <ID>FunctionNaming:OnOffScreen.kt$@Composable private fun ColorButton( isButtonGreen: Boolean, onClick: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:OnOffScreen.kt$@ScreenPreview @Composable private fun OnOffScreenPreview()</ID>
+    <ID>FunctionNaming:Parchment.kt$@Composable fun Parchment( content: @Composable BoxScope.() -&gt; Unit )</ID>
+    <ID>FunctionNaming:Parchment.kt$@ScreenPreview @Composable private fun ParchmentPreview()</ID>
+    <ID>FunctionNaming:PortalMessageDialog.kt$@Composable fun PortalMessageDialog(onDismissRequest: () -&gt; Unit)</ID>
+    <ID>FunctionNaming:PortalMessageDialog.kt$@ComposablePreview @Composable private fun PortalMessageDialogPreview()</ID>
+    <ID>FunctionNaming:PortalMessageRoute.kt$@Composable fun PortalMessageRoute( onDismissRequest: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:PortalRoute.kt$@Composable fun PortalRoute( goToSettings: () -&gt; Unit, accessToPortal: () -&gt; Unit, openWorldMap: () -&gt; Unit, viewModel: PortalViewModel = hiltViewModel(), )</ID>
+    <ID>FunctionNaming:PortalScreen.kt$@Composable fun PortalScreen( remainingTime: Int, goToSettings: () -&gt; Unit, accessToPortal: () -&gt; Unit, openWorldMap: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:PortalScreen.kt$@ScreenPreview @Composable private fun PortalScreenPreview()</ID>
+    <ID>FunctionNaming:Previews.kt$@Composable fun ZEscapeThemePreview(content: @Composable () -&gt; Unit)</ID>
+    <ID>FunctionNaming:QrCodeScanRoute.kt$@Composable fun QrCodeScanRoute( goBack: () -&gt; Unit, goToNextScreen: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:QrCodeScanScreen.kt$@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class) @Composable fun QrCodeScanScreen( goBack: () -&gt; Unit, goToNextScreen: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:QrCodeScanScreen.kt$@ScreenPreview @Composable private fun QrCodeScanScreenPreview()</ID>
+    <ID>FunctionNaming:ReturnButton.kt$@Composable fun ReturnButton( goBack: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:ReturnButton.kt$@ComposablePreview @Composable private fun ReturnButtonPreview()</ID>
+    <ID>FunctionNaming:SIngaporeAgencyRoute.kt$@Composable fun SingaporeAgencyRoute( goToSettings: () -&gt; Unit, openWorldMap: () -&gt; Unit, viewModel: SingaporeAgencyViewModel = hiltViewModel(), )</ID>
+    <ID>FunctionNaming:ScaffoldScreen.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun ScaffoldScreen( modifier: Modifier = Modifier, remainingTime: Int, goToSettings: () -&gt; Unit, background: Int, content: @Composable BoxScope.() -&gt; Unit )</ID>
+    <ID>FunctionNaming:SettingsButton.kt$@Composable fun SettingsButton( goToSettings: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:SettingsButton.kt$@ComposablePreview @Composable private fun SettingsButtonPreview()</ID>
+    <ID>FunctionNaming:SettingsRoute.kt$@Composable fun SettingsRoute( goBack: () -&gt; Unit, goBackToHome: () -&gt; Unit, viewModel: SettingsViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:SettingsScreen.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun SettingsScreen( goBack: () -&gt; Unit, goBackToHome: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:SettingsScreen.kt$@ScreenPreview @Composable private fun SettingsScreenPreview()</ID>
+    <ID>FunctionNaming:SingaporeAgencyDialog.kt$@Composable fun SingaporeAgencyDialog(onDismissRequest: () -&gt; Unit)</ID>
+    <ID>FunctionNaming:SingaporeAgencyDialog.kt$@Preview @Composable private fun SingaporeAgencyDialogPreview()</ID>
+    <ID>FunctionNaming:SingaporeAgencyScreen.kt$@Composable fun SingaporeAgencyScreen( remainingTime: Int, goToSettings: () -&gt; Unit, openWorldMap: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:SingaporeAgencyScreen.kt$@ScreenPreview @Composable private fun SingaporeAgencyScreenPreview()</ID>
+    <ID>FunctionNaming:Stage.kt$@Composable fun Stage(size: Int)</ID>
+    <ID>FunctionNaming:Stage.kt$@ScreenPreview @Composable private fun StagePreview()</ID>
+    <ID>FunctionNaming:TextRecognizer.kt$@OptIn(ExperimentalAnimationApi::class) @Composable fun TextRecognizer( onTextRecognized: (String) -&gt; Unit, context: Context, cameraController: LifecycleCameraController )</ID>
+    <ID>FunctionNaming:Theme.kt$@Composable fun ZEscapeTheme( darkTheme: Boolean = isSystemInDarkTheme(), dynamicColor: Boolean = true, content: @Composable () -&gt; Unit )</ID>
+    <ID>FunctionNaming:Timer.kt$@Composable fun Timer( timer: Int, modifier: Modifier = Modifier )</ID>
+    <ID>FunctionNaming:Timer.kt$@ComposablePreview @Composable private fun TimerPreview()</ID>
+    <ID>FunctionNaming:TreasureChest.kt$@Composable fun TreasureChest( chestOpened: Boolean, mapCollected: Boolean, openMiniGame: () -&gt; Unit, collectMap: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:TreasureChest.kt$@Composable private fun Chest( @DrawableRes chestDrawable: Int, onClick: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:TreasureChest.kt$@ComposablePreview @Composable private fun TreasureChestPreview()</ID>
+    <ID>FunctionNaming:TutorialDialog.kt$@Composable fun TutorialDialog( modifier: Modifier = Modifier, onDismissRequest: () -&gt; Unit, backgroundColor: Color? = MaterialTheme.colorScheme.primaryContainer, content: @Composable BoxScope.() -&gt; Unit )</ID>
+    <ID>FunctionNaming:TutorialDialog.kt$@ComposablePreview @Composable private fun TutorialDialogPreview()</ID>
+    <ID>FunctionNaming:TutorialHintDialog.kt$@Composable fun TutorialHintDialog( hint: TutorialHint, onDismissRequest: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:TutorialHintDialog.kt$@ComposablePreview @Composable private fun TutorialHintDialogPreview()</ID>
+    <ID>FunctionNaming:TutorialHintRoute.kt$@Composable fun TutorialHintRoute( onDismissRequest: () -&gt; Unit, viewModel: TutorialHintViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:TutorialHomeRoute.kt$@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter") @Composable fun TutorialHomeRoute( goBack: () -&gt; Unit, goToScan: () -&gt; Unit, viewModel: TutorialHomeViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:TutorialHomeScreen.kt$@ScreenPreview @Composable private fun TutorialHomeScreenPreview()</ID>
+    <ID>FunctionNaming:TutorialHomeScreen.kt$@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter") @OptIn(ExperimentalMaterial3Api::class) @Composable fun TutorialHomeScreen( goBack: () -&gt; Unit, goToScan: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:TutorialInstructionDialog.kt$@Composable fun TutorialInstructionDialog( onDismissRequest: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:TutorialInstructionDialog.kt$@ComposablePreview @Composable private fun TutorialInstructionDialogPreview()</ID>
+    <ID>FunctionNaming:TutorialInstructionRoute.kt$@Composable fun TutorialInstructionRoute( onDismissRequest: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:TutorialInventoryBag.kt$@Composable fun TutorialInventoryBag( modifier: Modifier, newItem: Boolean, openInventory: () -&gt; Unit, removeNewItemBadge: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:TutorialInventoryBag.kt$@ComposablePreview @Composable private fun InventoryBagPreview()</ID>
+    <ID>FunctionNaming:TutorialInventoryBag.kt$@ComposablePreview @Composable private fun InventoryBagWithBadgePreview()</ID>
+    <ID>FunctionNaming:TutorialInventoryBox.kt$@Composable fun TutorialInventoryBox( item: Int, showItem: (Int) -&gt; Unit )</ID>
+    <ID>FunctionNaming:TutorialInventoryBox.kt$@ComposablePreview @Composable private fun TutorialInventoryBoxPreview()</ID>
+    <ID>FunctionNaming:TutorialInventoryDialog.kt$@Composable fun TutorialInventoryDialog( modifier: Modifier, items: InventoryState, showItem: (Int) -&gt; Unit, onDismissRequest: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:TutorialInventoryDialog.kt$@ComposablePreview @Composable private fun TutorialInventoryDialogPreview()</ID>
+    <ID>FunctionNaming:TutorialInventoryRoute.kt$@Composable fun TutorialInventoryRoute( onDismissRequest: () -&gt; Unit, showItem: (Int) -&gt; Unit, viewModel: TutorialInventoryViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:TutorialItem.kt$@Composable fun TutorialItem( item: Int )</ID>
+    <ID>FunctionNaming:TutorialItem.kt$@ComposablePreview @Composable private fun TutorialItemPreview()</ID>
+    <ID>FunctionNaming:TutorialItemDialog.kt$@Composable fun TutorialItemDialog( item: Int, onDismissRequest: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:TutorialItemDialog.kt$@ComposablePreview @Composable private fun TutorialItemDialogPreview()</ID>
+    <ID>FunctionNaming:TutorialItemRoute.kt$@Composable fun TutorialItemRoute( onDismissRequest: () -&gt; Unit, openEndParchment: () -&gt; Unit, openPenalty: (String) -&gt; Unit, viewModel: TutorialItemViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:TutorialPenaltyDialog.kt$@Composable fun TutorialPenaltyDialog( onDismissRequest: () -&gt; Unit, penalty: String )</ID>
+    <ID>FunctionNaming:TutorialPenaltyDialog.kt$@ComposablePreview @Composable private fun TutorialPenaltyDialogPreview()</ID>
+    <ID>FunctionNaming:TutorialPenaltyRoute.kt$@Composable fun TutorialPenaltyRoute( onDismissRequest: () -&gt; Unit, viewModel: TutorialPenaltyViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:TutorialScore.kt$@Composable fun TutorialScore( goToHome: () -&gt; Unit, statistics: Statistics )</ID>
+    <ID>FunctionNaming:TutorialScore.kt$@ScreenPreview @Composable private fun TutorialScorePreview()</ID>
+    <ID>FunctionNaming:TutorialScoreRoute.kt$@Composable fun TutorialScoreRoute( goBackToHome: () -&gt; Unit, viewModel: TutorialScoreViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:WelcomeParchmentItem.kt$@OptIn(ExperimentalFoundationApi::class) @Composable fun WelcomeParchmentItem( onDismissRequest: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:WelcomeParchmentItem.kt$@OptIn(ExperimentalFoundationApi::class) @Composable private fun PageContent( page: Int, text: List&lt;Int&gt;, coroutineScope: CoroutineScope, pagerState: PagerState )</ID>
+    <ID>FunctionNaming:WelcomeParchmentItem.kt$@ScreenPreview @Composable private fun WelcomeParchmentItemPreview()</ID>
+    <ID>FunctionNaming:WelcomeParchmentRoute.kt$@Composable fun WelcomeParchmentRoute( openInstruction: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:WelcomeParchmentScreen.kt$@OptIn(ExperimentalFoundationApi::class) @Composable fun WelcomeParchmentScreen( openInstruction: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:WelcomeParchmentScreen.kt$@ScreenPreview @Composable private fun WelcomeParchmentPreview()</ID>
+    <ID>FunctionNaming:WorldMapDialog.kt$@Composable fun WorldMapDialog( onDismissRequest: () -&gt; Unit, openTextRecognition: () -&gt; Unit, goToSingaporeAgency: () -&gt; Unit, agencies: Set&lt;Agency&gt; )</ID>
+    <ID>FunctionNaming:WorldMapDialog.kt$@Composable private fun CityCircle(modifier: Modifier)</ID>
+    <ID>FunctionNaming:WorldMapDialog.kt$@ComposablePreview @Composable private fun WorldMapDialogPreview()</ID>
+    <ID>FunctionNaming:WorldMapRoute.kt$@Composable fun WorldMapRoute( onDismissRequest: () -&gt; Unit, openTextRecognition: () -&gt; Unit, goToSingaporeAgency: () -&gt; Unit, viewModel: WorldMapViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:ZEscape.kt$@OptIn(ExperimentalAnimationApi::class) @Composable fun ZEscape()</ID>
+    <ID>LongMethod:Adventure.kt$@OptIn(ExperimentalAnimationApi::class) fun NavGraphBuilder.adventureNavigation( route: String, navController: NavHostController )</ID>
+    <ID>LongMethod:AgencyRecognitionScreen.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun AgencyRecognitionScreen( goBack: () -&gt; Unit, onTextRecognized: (String) -&gt; Unit )</ID>
+    <ID>LongMethod:EndParchmentScreen.kt$@OptIn(ExperimentalFoundationApi::class) @Composable fun EndParchmentScreen( goToScore: () -&gt; Unit )</ID>
+    <ID>LongMethod:MainScreen.kt$@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter") @OptIn(ExperimentalMaterial3Api::class) @Composable fun MainScreen( modifier: Modifier, mainUiState: MainUiState, goToSettings: () -&gt; Unit, openMiniGame: () -&gt; Unit, openInventory: () -&gt; Unit, showHint: () -&gt; Unit, collectKey: () -&gt; Unit, collectMap: () -&gt; Unit, removeNewItemBadge: () -&gt; Unit, incrementHintCount: () -&gt; Unit )</ID>
+    <ID>LongMethod:QrCodeScanScreen.kt$@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class) @Composable fun QrCodeScanScreen( goBack: () -&gt; Unit, goToNextScreen: () -&gt; Unit )</ID>
+    <ID>LongMethod:Tutorial.kt$@OptIn(ExperimentalAnimationApi::class) fun NavGraphBuilder.tutorialNavigation( route: String, navController: NavHostController )</ID>
+    <ID>LongMethod:WelcomeParchmentScreen.kt$@OptIn(ExperimentalFoundationApi::class) @Composable fun WelcomeParchmentScreen( openInstruction: () -&gt; Unit )</ID>
+    <ID>LongParameterList:MainScreen.kt$( modifier: Modifier, mainUiState: MainUiState, goToSettings: () -&gt; Unit, openMiniGame: () -&gt; Unit, openInventory: () -&gt; Unit, showHint: () -&gt; Unit, collectKey: () -&gt; Unit, collectMap: () -&gt; Unit, removeNewItemBadge: () -&gt; Unit, incrementHintCount: () -&gt; Unit )</ID>
+    <ID>MagicNumber:Color.kt$0xFF2196F3</ID>
+    <ID>MagicNumber:Color.kt$0xFF4CAF50</ID>
+    <ID>MagicNumber:Color.kt$0xFF625b71</ID>
+    <ID>MagicNumber:Color.kt$0xFF6650a4</ID>
+    <ID>MagicNumber:Color.kt$0xFF78B432</ID>
+    <ID>MagicNumber:Color.kt$0xFF7D5260</ID>
+    <ID>MagicNumber:Color.kt$0xFF9727B0</ID>
+    <ID>MagicNumber:Color.kt$0xFFCC3E34</ID>
+    <ID>MagicNumber:Color.kt$0xFFCCC2DC</ID>
+    <ID>MagicNumber:Color.kt$0xFFD0BCFF</ID>
+    <ID>MagicNumber:Color.kt$0xFFEFB8C8</ID>
+    <ID>MagicNumber:Color.kt$0xFFF44336</ID>
+    <ID>MagicNumber:ColorButtonsOrderGameViewModel.kt$ColorButtonsOrderGameViewModel$3</ID>
+    <ID>MagicNumber:ObserveInventoryUseCase.kt$10</ID>
+    <ID>MagicNumber:OnOffScreen.kt$300</ID>
+    <ID>MagicNumber:OnOffScreen.kt$4</ID>
+    <ID>MagicNumber:OnOffViewModel.kt$OnOffViewModel$10</ID>
+    <ID>MagicNumber:QrCodeScanScreen.kt$1500</ID>
+    <ID>MagicNumber:TextRecognizer.kt$500</ID>
+    <ID>MagicNumber:Timer.kt$1000</ID>
+    <ID>MagicNumber:Timer.kt$13</ID>
+    <ID>MagicNumber:Timer.kt$47_000</ID>
+    <ID>MagicNumber:Timer.kt$60</ID>
+    <ID>MagicNumber:Timer.kt$60000</ID>
+    <ID>MagicNumber:Timer.kt$60_000</ID>
+    <ID>MagicNumber:Timer.kt$9</ID>
+    <ID>MagicNumber:TimerService.kt$TimerService.&lt;no name provided&gt;$1000</ID>
+    <ID>MagicNumber:TimerServiceManager.kt$TimerServiceManager.&lt;no name provided&gt;$2</ID>
+    <ID>MagicNumber:TutorialInventoryBox.kt$25</ID>
+    <ID>MagicNumber:WelcomeParchmentItem.kt$6f</ID>
+    <ID>MatchingDeclarationName:ObserveGameStateUseCase.kt$ObserveTutorialStateUseCase</ID>
+    <ID>ModifierMissing:AdventureHomeScreen.kt$AdventureHomeScreen</ID>
+    <ID>ModifierMissing:AdventureInstructionDialog.kt$AdventureInstructionDialog</ID>
+    <ID>ModifierMissing:AgencyRecognitionScreen.kt$AgencyRecognitionScreen</ID>
+    <ID>ModifierMissing:ColorButton.kt$ColorButton</ID>
+    <ID>ModifierMissing:ColorButtonsOrderGameDialog.kt$ColorButtonsOrderGameDialog</ID>
+    <ID>ModifierMissing:ComputerScreen.kt$ComputerScreen</ID>
+    <ID>ModifierMissing:EndParchmentScreen.kt$EndParchmentScreen</ID>
+    <ID>ModifierMissing:HomeScreen.kt$HomeScreen</ID>
+    <ID>ModifierMissing:InstructionSingaporeDialog.kt$InstructionSingaporeDialog</ID>
+    <ID>ModifierMissing:OnOffScreen.kt$OnOffScreen</ID>
+    <ID>ModifierMissing:Parchment.kt$Parchment</ID>
+    <ID>ModifierMissing:PortalMessageDialog.kt$PortalMessageDialog</ID>
+    <ID>ModifierMissing:PortalScreen.kt$PortalScreen</ID>
+    <ID>ModifierMissing:Previews.kt$ZEscapeThemePreview</ID>
+    <ID>ModifierMissing:QrCodeScanScreen.kt$QrCodeScanScreen</ID>
+    <ID>ModifierMissing:ReturnButton.kt$ReturnButton</ID>
+    <ID>ModifierMissing:SettingsButton.kt$SettingsButton</ID>
+    <ID>ModifierMissing:SettingsScreen.kt$SettingsScreen</ID>
+    <ID>ModifierMissing:SingaporeAgencyDialog.kt$SingaporeAgencyDialog</ID>
+    <ID>ModifierMissing:SingaporeAgencyScreen.kt$SingaporeAgencyScreen</ID>
+    <ID>ModifierMissing:Stage.kt$Stage</ID>
+    <ID>ModifierMissing:TextRecognizer.kt$TextRecognizer</ID>
+    <ID>ModifierMissing:TutorialHintDialog.kt$TutorialHintDialog</ID>
+    <ID>ModifierMissing:TutorialHomeScreen.kt$TutorialHomeScreen</ID>
+    <ID>ModifierMissing:TutorialInstructionDialog.kt$TutorialInstructionDialog</ID>
+    <ID>ModifierMissing:TutorialInventoryBox.kt$TutorialInventoryBox</ID>
+    <ID>ModifierMissing:TutorialItem.kt$TutorialItem</ID>
+    <ID>ModifierMissing:TutorialPenaltyDialog.kt$TutorialPenaltyDialog</ID>
+    <ID>ModifierMissing:TutorialScore.kt$TutorialScore</ID>
+    <ID>ModifierMissing:WelcomeParchmentItem.kt$WelcomeParchmentItem</ID>
+    <ID>ModifierMissing:WelcomeParchmentScreen.kt$WelcomeParchmentScreen</ID>
+    <ID>ModifierMissing:WorldMapDialog.kt$WorldMapDialog</ID>
+    <ID>ModifierWithoutDefault:AdventureInventoryBag.kt$modifier</ID>
+    <ID>ModifierWithoutDefault:ContinentsMap.kt$modifier</ID>
+    <ID>ModifierWithoutDefault:Key.kt$modifier</ID>
+    <ID>ModifierWithoutDefault:MainScreen.kt$modifier</ID>
+    <ID>ModifierWithoutDefault:TutorialInventoryBag.kt$modifier</ID>
+    <ID>ModifierWithoutDefault:TutorialInventoryDialog.kt$modifier</ID>
+    <ID>ModifierWithoutDefault:WorldMapDialog.kt$modifier</ID>
+    <ID>NewLineAtEndOfFile:AdventureGameStateManager.kt$com.zenika.data.state.AdventureGameStateManager.kt</ID>
+    <ID>NewLineAtEndOfFile:AdventureHomeViewModel.kt$com.zenika.adventure.presentation.home.AdventureHomeViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:AdventureInstructionRoute.kt$com.zenika.adventure.presentation.instruction.AdventureInstructionRoute.kt</ID>
+    <ID>NewLineAtEndOfFile:AdventureInventoryBag.kt$com.zenika.adventure.presentation.component.AdventureInventoryBag.kt</ID>
+    <ID>NewLineAtEndOfFile:AgencyValidationRoute.kt$com.zenika.adventure.presentation.agency_validation.AgencyValidationRoute.kt</ID>
+    <ID>NewLineAtEndOfFile:Color.kt$com.zenika.ui.theme.Color.kt</ID>
+    <ID>NewLineAtEndOfFile:ContinentsMap.kt$com.zenika.adventure.presentation.component.ContinentsMap.kt</ID>
+    <ID>NewLineAtEndOfFile:EndParchmentRoute.kt$com.zenika.tutorial.presentation.parchment.end_parchment.EndParchmentRoute.kt</ID>
+    <ID>NewLineAtEndOfFile:InstructionSingaporeRoute.kt$com.zenika.adventure.presentation.singapore.instruction.InstructionSingaporeRoute.kt</ID>
+    <ID>NewLineAtEndOfFile:InventoryState.kt$com.zenika.data.state.InventoryState.kt</ID>
+    <ID>NewLineAtEndOfFile:Key.kt$com.zenika.tutorial.presentation.main.component.Key.kt</ID>
+    <ID>NewLineAtEndOfFile:MainActivity.kt$com.zenika.MainActivity.kt</ID>
+    <ID>NewLineAtEndOfFile:ObserveRemainingTimeUseCase.kt$com.zenika.adventure.domain.ObserveRemainingTimeUseCase.kt</ID>
+    <ID>NewLineAtEndOfFile:OnOffRoute.kt$com.zenika.adventure.presentation.singapore.on_off_game.OnOffRoute.kt</ID>
+    <ID>NewLineAtEndOfFile:OnOffScreen.kt$com.zenika.adventure.presentation.singapore.on_off_game.OnOffScreen.kt</ID>
+    <ID>NewLineAtEndOfFile:PortalMessageRoute.kt$com.zenika.adventure.presentation.portal_message.PortalMessageRoute.kt</ID>
+    <ID>NewLineAtEndOfFile:PortalScreen.kt$com.zenika.adventure.presentation.portal.PortalScreen.kt</ID>
+    <ID>NewLineAtEndOfFile:QrCodeAnalyzer.kt$com.zenika.presentation.qrcode_scan.QrCodeAnalyzer.kt</ID>
+    <ID>NewLineAtEndOfFile:SettingsViewModel.kt$com.zenika.presentation.settings.SettingsViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:SingaporeAgencyDialog.kt$com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyDialog.kt</ID>
+    <ID>NewLineAtEndOfFile:SingaporeAgencyScreen.kt$com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyScreen.kt</ID>
+    <ID>NewLineAtEndOfFile:TutorialHint.kt$com.zenika.data.TutorialHint.kt</ID>
+    <ID>NewLineAtEndOfFile:TutorialHomeViewModel.kt$com.zenika.tutorial.presentation.home.TutorialHomeViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:TutorialInstructionRoute.kt$com.zenika.tutorial.presentation.instruction.TutorialInstructionRoute.kt</ID>
+    <ID>NewLineAtEndOfFile:TutorialInventoryViewModel.kt$com.zenika.tutorial.presentation.inventory.TutorialInventoryViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:TutorialItemViewModel.kt$com.zenika.tutorial.presentation.item.TutorialItemViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:TutorialPenaltyRoute.kt$com.zenika.tutorial.presentation.penalty.TutorialPenaltyRoute.kt</ID>
+    <ID>NewLineAtEndOfFile:TutorialScoreRoute.kt$com.zenika.tutorial.presentation.score.TutorialScoreRoute.kt</ID>
+    <ID>NewLineAtEndOfFile:Type.kt$com.zenika.ui.theme.Type.kt</ID>
+    <ID>NewLineAtEndOfFile:WelcomeParchmentRoute.kt$com.zenika.tutorial.presentation.parchment.welcome_parchment.WelcomeParchmentRoute.kt</ID>
+    <ID>NewLineAtEndOfFile:WorldMapDialog.kt$com.zenika.adventure.presentation.world_map.WorldMapDialog.kt</ID>
+    <ID>PackageNaming:AgencyRecognitionRoute.kt$package com.zenika.adventure.presentation.agency_recognition</ID>
+    <ID>PackageNaming:AgencyRecognitionScreen.kt$package com.zenika.adventure.presentation.agency_recognition</ID>
+    <ID>PackageNaming:AgencyValidationDialog.kt$package com.zenika.adventure.presentation.agency_validation</ID>
+    <ID>PackageNaming:AgencyValidationRoute.kt$package com.zenika.adventure.presentation.agency_validation</ID>
+    <ID>PackageNaming:AgencyValidationViewModel.kt$package com.zenika.adventure.presentation.agency_validation</ID>
+    <ID>PackageNaming:ColorButton.kt$package com.zenika.tutorial.presentation.color_buttons_order_game.component</ID>
+    <ID>PackageNaming:ColorButtonsOrderGameDialog.kt$package com.zenika.tutorial.presentation.color_buttons_order_game</ID>
+    <ID>PackageNaming:ColorButtonsOrderGameRoute.kt$package com.zenika.tutorial.presentation.color_buttons_order_game</ID>
+    <ID>PackageNaming:ColorButtonsOrderGameViewModel.kt$package com.zenika.tutorial.presentation.color_buttons_order_game</ID>
+    <ID>PackageNaming:EndParchmentRoute.kt$package com.zenika.tutorial.presentation.parchment.end_parchment</ID>
+    <ID>PackageNaming:EndParchmentScreen.kt$package com.zenika.tutorial.presentation.parchment.end_parchment</ID>
+    <ID>PackageNaming:OnOffRoute.kt$package com.zenika.adventure.presentation.singapore.on_off_game</ID>
+    <ID>PackageNaming:OnOffScreen.kt$package com.zenika.adventure.presentation.singapore.on_off_game</ID>
+    <ID>PackageNaming:OnOffViewModel.kt$package com.zenika.adventure.presentation.singapore.on_off_game</ID>
+    <ID>PackageNaming:PortalMessageDialog.kt$package com.zenika.adventure.presentation.portal_message</ID>
+    <ID>PackageNaming:PortalMessageRoute.kt$package com.zenika.adventure.presentation.portal_message</ID>
+    <ID>PackageNaming:QrCodeAnalyzer.kt$package com.zenika.presentation.qrcode_scan</ID>
+    <ID>PackageNaming:QrCodeScanRoute.kt$package com.zenika.presentation.qrcode_scan</ID>
+    <ID>PackageNaming:QrCodeScanScreen.kt$package com.zenika.presentation.qrcode_scan</ID>
+    <ID>PackageNaming:Stage.kt$package com.zenika.tutorial.presentation.color_buttons_order_game.component</ID>
+    <ID>PackageNaming:TextRecognizer.kt$package com.zenika.adventure.presentation.agency_recognition</ID>
+    <ID>PackageNaming:WelcomeParchmentRoute.kt$package com.zenika.tutorial.presentation.parchment.welcome_parchment</ID>
+    <ID>PackageNaming:WelcomeParchmentScreen.kt$package com.zenika.tutorial.presentation.parchment.welcome_parchment</ID>
+    <ID>PackageNaming:WorldMapDialog.kt$package com.zenika.adventure.presentation.world_map</ID>
+    <ID>PackageNaming:WorldMapRoute.kt$package com.zenika.adventure.presentation.world_map</ID>
+    <ID>PackageNaming:WorldMapViewModel.kt$package com.zenika.adventure.presentation.world_map</ID>
+    <ID>PreviewNaming:Previews.kt$ComposablePreview$ComposablePreview</ID>
+    <ID>PreviewNaming:Previews.kt$ScreenPreview$ScreenPreview</ID>
+    <ID>PrintStackTrace:QrCodeAnalyzer.kt$QrCodeAnalyzer$e</ID>
+    <ID>TooGenericExceptionCaught:QrCodeAnalyzer.kt$QrCodeAnalyzer$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:QrCodeScanScreen.kt$e: Exception</ID>
+    <ID>UnstableCollections:OnOffScreen.kt$List&lt;Boolean&gt;</ID>
+    <ID>UnstableCollections:WelcomeParchmentItem.kt$List&lt;Int&gt;</ID>
+    <ID>UnstableCollections:WorldMapDialog.kt$Set&lt;Agency&gt;</ID>
+    <ID>UnusedPrivateMember:AdventureHomeScreen.kt$@ScreenPreview @Composable private fun AdventureHomeScreenPreview()</ID>
+    <ID>UnusedPrivateMember:AdventureInstructionDialog.kt$@ComposablePreview @Composable private fun AdventureInstructionDialogPreview()</ID>
+    <ID>UnusedPrivateMember:AdventureInventoryBag.kt$@ComposablePreview @Composable private fun AdventureInventoryBagPreview()</ID>
+    <ID>UnusedPrivateMember:AgencyValidationDialog.kt$@ComposablePreview @Composable private fun AgencyValidationDialogPreview()</ID>
+    <ID>UnusedPrivateMember:ColorButton.kt$@ComposablePreview @Composable private fun ColorButtonPreview()</ID>
+    <ID>UnusedPrivateMember:ColorButtonsOrderGameDialog.kt$@ComposablePreview @Composable private fun ColorButtonsOrderGameDialogPreview()</ID>
+    <ID>UnusedPrivateMember:ComputerScreen.kt$@ScreenPreview @Composable private fun ComputerScreenPreview()</ID>
+    <ID>UnusedPrivateMember:ContinentsMap.kt$@ComposablePreview @Composable private fun ContinentsMapPreview()</ID>
+    <ID>UnusedPrivateMember:EndParchmentScreen.kt$@ScreenPreview @Composable private fun EndParchmentPreview()</ID>
+    <ID>UnusedPrivateMember:HomeScreen.kt$@ScreenPreview @Composable private fun HomeScreenPreview()</ID>
+    <ID>UnusedPrivateMember:InstructionSingaporeDialog.kt$@ScreenPreview @Composable private fun InstructionSingaporeDialogPreview()</ID>
+    <ID>UnusedPrivateMember:Key.kt$@ComposablePreview @Composable private fun KeyPreview()</ID>
+    <ID>UnusedPrivateMember:MainScreen.kt$@ScreenPreview @Composable private fun TutorialScreenPreview()</ID>
+    <ID>UnusedPrivateMember:OnOffScreen.kt$@ScreenPreview @Composable private fun OnOffScreenPreview()</ID>
+    <ID>UnusedPrivateMember:Parchment.kt$@ScreenPreview @Composable private fun ParchmentPreview()</ID>
+    <ID>UnusedPrivateMember:PortalMessageDialog.kt$@ComposablePreview @Composable private fun PortalMessageDialogPreview()</ID>
+    <ID>UnusedPrivateMember:PortalScreen.kt$@ScreenPreview @Composable private fun PortalScreenPreview()</ID>
+    <ID>UnusedPrivateMember:QrCodeScanScreen.kt$@ScreenPreview @Composable private fun QrCodeScanScreenPreview()</ID>
+    <ID>UnusedPrivateMember:ReturnButton.kt$@ComposablePreview @Composable private fun ReturnButtonPreview()</ID>
+    <ID>UnusedPrivateMember:SettingsButton.kt$@ComposablePreview @Composable private fun SettingsButtonPreview()</ID>
+    <ID>UnusedPrivateMember:SettingsScreen.kt$@ScreenPreview @Composable private fun SettingsScreenPreview()</ID>
+    <ID>UnusedPrivateMember:SingaporeAgencyDialog.kt$@Preview @Composable private fun SingaporeAgencyDialogPreview()</ID>
+    <ID>UnusedPrivateMember:SingaporeAgencyScreen.kt$@ScreenPreview @Composable private fun SingaporeAgencyScreenPreview()</ID>
+    <ID>UnusedPrivateMember:Stage.kt$@ScreenPreview @Composable private fun StagePreview()</ID>
+    <ID>UnusedPrivateMember:Timer.kt$@ComposablePreview @Composable private fun TimerPreview()</ID>
+    <ID>UnusedPrivateMember:TreasureChest.kt$@ComposablePreview @Composable private fun TreasureChestPreview()</ID>
+    <ID>UnusedPrivateMember:TutorialDialog.kt$@ComposablePreview @Composable private fun TutorialDialogPreview()</ID>
+    <ID>UnusedPrivateMember:TutorialHintDialog.kt$@ComposablePreview @Composable private fun TutorialHintDialogPreview()</ID>
+    <ID>UnusedPrivateMember:TutorialHomeScreen.kt$@ScreenPreview @Composable private fun TutorialHomeScreenPreview()</ID>
+    <ID>UnusedPrivateMember:TutorialInstructionDialog.kt$@ComposablePreview @Composable private fun TutorialInstructionDialogPreview()</ID>
+    <ID>UnusedPrivateMember:TutorialInventoryBag.kt$@ComposablePreview @Composable private fun InventoryBagPreview()</ID>
+    <ID>UnusedPrivateMember:TutorialInventoryBag.kt$@ComposablePreview @Composable private fun InventoryBagWithBadgePreview()</ID>
+    <ID>UnusedPrivateMember:TutorialInventoryBox.kt$@ComposablePreview @Composable private fun TutorialInventoryBoxPreview()</ID>
+    <ID>UnusedPrivateMember:TutorialInventoryDialog.kt$@ComposablePreview @Composable private fun TutorialInventoryDialogPreview()</ID>
+    <ID>UnusedPrivateMember:TutorialItem.kt$@ComposablePreview @Composable private fun TutorialItemPreview()</ID>
+    <ID>UnusedPrivateMember:TutorialItemDialog.kt$@ComposablePreview @Composable private fun TutorialItemDialogPreview()</ID>
+    <ID>UnusedPrivateMember:TutorialPenaltyDialog.kt$@ComposablePreview @Composable private fun TutorialPenaltyDialogPreview()</ID>
+    <ID>UnusedPrivateMember:TutorialScore.kt$@ScreenPreview @Composable private fun TutorialScorePreview()</ID>
+    <ID>UnusedPrivateMember:WelcomeParchmentItem.kt$@ScreenPreview @Composable private fun WelcomeParchmentItemPreview()</ID>
+    <ID>UnusedPrivateMember:WelcomeParchmentScreen.kt$@ScreenPreview @Composable private fun WelcomeParchmentPreview()</ID>
+    <ID>UnusedPrivateMember:WorldMapDialog.kt$@ComposablePreview @Composable private fun WorldMapDialogPreview()</ID>
+    <ID>WildcardImport:ObserveInventoryUseCaseTest.kt$import org.junit.jupiter.api.Assertions.*</ID>
+    <ID>WildcardImport:QrCodeAnalyzer.kt$import com.google.zxing.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

@@ -3,6 +3,7 @@ plugins {
     id "org.jetbrains.kotlin.android"
     id "org.jetbrains.kotlin.kapt"
     id "com.google.dagger.hilt.android"
+    id "io.gitlab.arturbosch.detekt"
 }
 
 android {
@@ -59,6 +60,12 @@ android {
     }
 }
 
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false
+    baseline = file("$rootDir/detekt-baseline.xml")
+}
+
 dependencies {
     implementation "androidx.core:core-ktx:1.10.1"
     implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.1"
@@ -112,4 +119,6 @@ dependencies {
     androidTestImplementation "com.google.dagger:hilt-android-testing:2.37"
     debugImplementation "androidx.compose.ui:ui-tooling"
     debugImplementation "androidx.compose.ui:ui-test-manifest"
+
+    detektPlugins "com.twitter.compose.rules:detekt:0.0.26"
 }
