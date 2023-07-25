@@ -6,12 +6,14 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.zenika.adventure.presentation.adventureNavigation
+import com.zenika.presentation.debug.DebugScreen
 import com.zenika.presentation.home.HomeRoute
 import com.zenika.tutorial.presentation.tutorialNavigation
 
 private const val ROUTE_HOME = "home"
 private const val ROUTE_ADVENTURE = "adventure"
 private const val ROUTE_TUTORIAL = "tutorial"
+private const val ROUTE_DEBUG = "debug"
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -24,7 +26,8 @@ fun ZEscape() {
         composable(ROUTE_HOME) {
             HomeRoute(
                 goToTutorial = { navController.navigate(ROUTE_TUTORIAL) },
-                goToAdventure = { navController.navigate(ROUTE_ADVENTURE) }
+                goToAdventure = { navController.navigate(ROUTE_ADVENTURE) },
+                goToDebug = { navController.navigate(ROUTE_DEBUG) }
             )
         }
         tutorialNavigation(
@@ -35,5 +38,8 @@ fun ZEscape() {
             route = ROUTE_ADVENTURE,
             navController = navController
         )
+        composable(ROUTE_DEBUG) {
+            DebugScreen()
+        }
     }
 }
