@@ -37,6 +37,7 @@ fun AdventureInventoryBox(
             .padding(itemDialogPadding)
             .clip(shape = RoundedCornerShape(25))
             .border(border = BorderStroke(2.dp, Color.Black), shape = RoundedCornerShape(25))
+            .padding(1.dp)
             .background(MaterialTheme.colorScheme.primary)
             .clickable(enabled = item != 0) { showItem(item) }
             .wrapContentSize(Alignment.Center)
