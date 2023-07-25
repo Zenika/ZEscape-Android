@@ -1,0 +1,14 @@
+#!/bin/sh
+
+./gradlew :app:detekt :app:testDebugUnitTest
+
+EXIT_CODE=$?
+if [ $EXIT_CODE -ne 0 ]; then
+  >&2 echo "*************************"
+  >&2 echo "*  😵 Tests failed 😵  *"
+  >&2 echo "* Fix it before pushing *"
+  >&2 echo "*************************"
+  exit $EXIT_CODE
+fi
+
+echo "Tests checked ✅"
