@@ -9,7 +9,7 @@ build:
 
 config:
   validation: true
-  warningsAsErrors: false
+  warningsAsErrors: true
   checkExhaustiveness: false
   # when writing own rules with new properties, exclude the property path e.g.: 'my_rule_set,.*>.*>[my_property]'
   excludes: ''
@@ -44,11 +44,8 @@ console-reports:
 output-reports:
   active: true
   exclude:
-  # - 'TxtOutputReport'
-  # - 'XmlOutputReport'
   # - 'HtmlOutputReport'
   # - 'MdOutputReport'
-  # - 'SarifOutputReport'
 
 comments:
   active: true
@@ -136,6 +133,7 @@ complexity:
     ignoreDefaultParameters: false
     ignoreDataClasses: true
     ignoreAnnotatedParameter: []
+    ignoreAnnotated: [ 'Composable' ]
   MethodOverloading:
     active: false
     threshold: 6
@@ -333,6 +331,7 @@ naming:
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
     functionPattern: '[a-z][a-zA-Z0-9]*'
     excludeClassPattern: '$^'
+    ignoreAnnotated: [ 'Composable' ]
   FunctionParameterNaming:
     active: true
     parameterPattern: '[a-z][A-Za-z0-9]*'
@@ -614,6 +613,7 @@ style:
       - '0'
       - '1'
       - '2'
+      - '1_000'
     ignoreHashCodeFunction: true
     ignorePropertyDeclaration: false
     ignoreLocalVariableDeclaration: false
