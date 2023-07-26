@@ -48,21 +48,23 @@ class SingaporeAgencyViewModel @Inject constructor(
     fun collectKey() {
         viewModelScope.launch {
             collectSingaporeKey()
+            addItemToInventory("singaporeKey", R.mipmap.singapore_key)
         }
     }
 
     fun collectSword() {
         viewModelScope.launch {
             collectSwordItem()
+            addItemToInventory("sword", R.mipmap.sword)
         }
     }
 
     fun collectHook() {
         viewModelScope.launch {
             collectHookItem()
+            addItemToInventory("hook", R.mipmap.hook)
         }
     }
-
 }
 
 class SingaporeUiState(
