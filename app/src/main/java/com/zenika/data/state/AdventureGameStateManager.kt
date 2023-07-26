@@ -28,7 +28,7 @@ class AdventureGameStateManager @Inject constructor() {
     fun openSingaporeAgency() {
         _state.update {
             it.copy(
-                singaporeAgencyOpen = true
+                isSingaporeAgencyOpen = true
             )
         }
     }

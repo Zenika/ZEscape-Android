@@ -19,7 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.adventure.domain.Statistics
-import com.zenika.adventure.presentation.component.Timer
+import com.zenika.presentation.component.Timer
 import com.zenika.ui.theme.textListSpacing
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
@@ -33,8 +33,8 @@ fun AdventureScoreScreen(
         modifier = Modifier
             .fillMaxSize()
             .paint(
-                painter = painterResource(id = R.mipmap.computer),
-                contentScale = ContentScale.FillHeight
+                painter = painterResource(R.mipmap.computer),
+                contentScale = ContentScale.Crop
             )
     ) {
         Column(
@@ -76,7 +76,7 @@ fun AdventureScoreScreen(
 
 @ScreenPreview
 @Composable
-private fun ScorePreview() {
+private fun AdventureScoreScreenPreview() {
     ZEscapeThemePreview {
         AdventureScoreScreen(
             goBackToHome = {},
