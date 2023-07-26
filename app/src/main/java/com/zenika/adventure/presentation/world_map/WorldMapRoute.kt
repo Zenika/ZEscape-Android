@@ -9,14 +9,24 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 fun WorldMapRoute(
     onDismissRequest: () -> Unit,
     openTextRecognition: () -> Unit,
-    goToSingaporeAgency: () -> Unit,
+    goBackToPortal: () -> Unit,
+    goInsideSingaporeAgency: () -> Unit,
+    openOnOffGame: () -> Unit,
     viewModel: WorldMapViewModel = hiltViewModel()
 ) {
     val agencies by viewModel.agencies.collectAsStateWithLifecycle()
+    val agenciesState by viewModel.agenciesState.collectAsStateWithLifecycle()
+
+    val goToSingaporeAgency = if (agenciesState) {
+        goInsideSingaporeAgency
+    } else {
+        openOnOffGame
+    }
 
     WorldMapDialog(
         onDismissRequest,
         openTextRecognition,
+        goBackToPortal,
         goToSingaporeAgency,
         agencies
     )

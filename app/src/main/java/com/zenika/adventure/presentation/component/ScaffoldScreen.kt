@@ -39,6 +39,7 @@ fun ScaffoldScreen(
     content: @Composable BoxScope.() -> Unit
 ) {
     Scaffold(
+        modifier = modifier,
         topBar = {
             TopAppBar(
                 title = {

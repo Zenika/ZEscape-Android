@@ -2,6 +2,7 @@ package com.zenika.adventure.presentation.singapore.on_off_game
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zenika.adventure.domain.OpenSingaporeAgencyUseCase
 import com.zenika.tutorial.domain.ObserveRemainingTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -19,7 +20,8 @@ private const val GAME_SIZE = 20
 
 @HiltViewModel
 class OnOffViewModel @Inject constructor(
-    observeRemainingTime: ObserveRemainingTimeUseCase
+    observeRemainingTime: ObserveRemainingTimeUseCase,
+    private val openSingaporeAgency: OpenSingaporeAgencyUseCase
 ) : ViewModel() {
     val remainingTime: StateFlow<Int> =
         observeRemainingTime()
@@ -74,6 +76,7 @@ class OnOffViewModel @Inject constructor(
     private suspend fun checkWin() {
         if (_state.value.buttonsList.all { it }) {
             _events.emit(OnOffGameEvent.WIN)
+            openSingaporeAgency()
         }
     }
 }
