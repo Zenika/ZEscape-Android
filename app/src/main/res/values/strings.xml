@@ -92,6 +92,6 @@
     <string name="sleep_hotel">Dormir à l\'hôtel</string>
     <string name="casablanca_outside_text">Bienvenue devant l\'agence de Casablanca, que souhaitez-vous faire ?</string>
     <string name="key">Cette clé nous aidera sûrement à sortir de cette dimension…</string>
-    <string name="debug">DEBUG</string>
+    <string name="debug">Debug</string>
     <string name="init_game">Initialiser l\'état du jeu</string>
 </resources>

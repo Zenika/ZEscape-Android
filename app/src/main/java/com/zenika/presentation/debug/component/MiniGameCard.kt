@@ -1,6 +1,9 @@
-package com.zenika.presentation.debug
+package com.zenika.presentation.debug.component
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -8,21 +11,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import com.zenika.data.Game
 import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun MiniGameCard() {
+fun MiniGameCard(
+    game: Game,
+    goTo: () -> Unit
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .semantics(mergeDescendants = true) {}
+            .clickable(onClick = goTo)
     ) {
         Text(
-            text = "Mini Game",
-            modifier = Modifier.fillMaxWidth(),
+            text = game.toString(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.primary)
+                .padding(12.dp),
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.headlineSmall
+            color = MaterialTheme.colorScheme.onPrimary
         )
     }
 }
@@ -31,6 +43,9 @@ fun MiniGameCard() {
 @Composable
 fun MiniGameCardPreview() {
     ZEscapeThemePreview {
-        MiniGameCard()
+        MiniGameCard(
+            game = Game.ON_OFF,
+            goTo = {}
+        )
     }
 }
