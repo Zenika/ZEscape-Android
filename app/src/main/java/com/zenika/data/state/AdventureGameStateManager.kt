@@ -28,7 +28,7 @@ class AdventureGameStateManager @Inject constructor() {
     fun collectSingaporeKey() {
         _state.update {
             it.copy(
-                collectSingaporeKey = true
+                isSingaporeKeyCollected = true
             )
         }
     }
@@ -36,7 +36,7 @@ class AdventureGameStateManager @Inject constructor() {
     fun collectHook() {
         _state.update {
             it.copy(
-                collectHook = true
+                isHookCollected = true
             )
         }
     }
@@ -44,7 +44,7 @@ class AdventureGameStateManager @Inject constructor() {
     fun collectSword() {
         _state.update {
             it.copy(
-                collectSword = true
+                isSwordCollected = true
             )
         }
     }

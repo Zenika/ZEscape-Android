@@ -31,9 +31,9 @@ class SingaporeAgencyViewModel @Inject constructor(
         observeAdventureState(), observeRemainingTime()
     ) { gameState, remainingTime ->
         SingaporeUiState(
-            gameState.collectSingaporeKey,
-            gameState.collectSword,
-            gameState.collectHook,
+            gameState.isSingaporeKeyCollected,
+            gameState.isSwordCollected,
+            gameState.isHookCollected,
             remainingTime
         )
     }
@@ -41,38 +41,42 @@ class SingaporeAgencyViewModel @Inject constructor(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
             initialValue = SingaporeUiState(
-                collectSingaporeKey = false,
-                collectSword = false,
-                collectHook = false,
-                remainingTime = 3_600_600
+                isSingaporeKeyCollected = false,
+                isSwordCollected = false,
+                isHookCollected = false,
+                remainingTime = 0
             )
         )
 
     fun collectKey() {
         viewModelScope.launch {
-            itemRepository.addItem("singaporeKey", R.mipmap.singapore_key)
             collectSingaporeKey()
+            addItemToInventory("singaporeKey", R.mipmap.singapore_key)
         }
     }
 
     fun collectSword() {
         viewModelScope.launch {
-            itemRepository.addItem("sword", R.mipmap.sword)
             collectSwordItem()
+            addItemToInventory("sword", R.mipmap.sword)
         }
     }
 
     fun collectHook() {
         viewModelScope.launch {
-            itemRepository.addItem("hook", R.mipmap.hook)
             collectHookItem()
+            addItemToInventory("hook", R.mipmap.hook)
         }
+    }
+
+    private suspend fun addItemToInventory(itemName: String, itemRes: Int) {
+        itemRepository.addItem(itemName = itemName, itemRes = itemRes)
     }
 }
 
 class SingaporeUiState(
-    val collectSingaporeKey: Boolean,
-    val collectSword: Boolean,
-    val collectHook: Boolean,
+    val isSingaporeKeyCollected: Boolean,
+    val isSwordCollected: Boolean,
+    val isHookCollected: Boolean,
     val remainingTime: Int
 )

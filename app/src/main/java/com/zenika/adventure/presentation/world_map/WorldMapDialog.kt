@@ -1,6 +1,5 @@
 package com.zenika.adventure.presentation.world_map
 
-import android.util.Log
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -51,7 +50,7 @@ fun WorldMapDialog(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(top = 12.dp, end = 20.dp)
-                            .clickable { Log.d("city", Agency.CASABLANCA.name) }
+                            .clickable(onClick = {})
                     )
                 }
                 if (Agency.PARIS in agencies) {
@@ -59,7 +58,7 @@ fun WorldMapDialog(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(bottom = 60.dp)
-                            .clickable { Log.d("city", Agency.PARIS.name) }
+                            .clickable(onClick = {})
                     )
                 }
                 if (Agency.SINGAPOUR in agencies) {
@@ -75,7 +74,7 @@ fun WorldMapDialog(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(end = 160.dp, bottom = 80.dp)
-                            .clickable { Log.d("city", Agency.MONTREAL.name) }
+                            .clickable(onClick = {})
                     )
                 }
             }

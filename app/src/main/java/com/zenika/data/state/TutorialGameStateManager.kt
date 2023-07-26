@@ -20,7 +20,7 @@ class TutorialGameStateManager @Inject constructor() {
     fun openChest() {
         _state.update {
             it.copy(
-                chestOpened = true,
+                isChestOpened = true,
                 currentHint = TutorialHint.END_GAME
             )
         }
@@ -29,7 +29,7 @@ class TutorialGameStateManager @Inject constructor() {
     fun collectKey() {
         _state.update {
             it.copy(
-                keyCollected = true,
+                isKeyCollected = true,
                 newItem = true
             )
         }
@@ -38,7 +38,7 @@ class TutorialGameStateManager @Inject constructor() {
     fun collectMap() {
         _state.update {
             it.copy(
-                mapCollected = true,
+                isMapCollected = true,
                 newItem = true,
                 currentHint = TutorialHint.END_GAME
             )

@@ -38,7 +38,7 @@ fun SingaporeAgencyScreen(
         background = R.mipmap.singapore_agency
     ) {
         AnimatedVisibility(
-            !state.collectSword,
+            !state.isSwordCollected,
             modifier = Modifier
                 .height(300.dp)
                 .align(Alignment.TopStart)
@@ -56,7 +56,7 @@ fun SingaporeAgencyScreen(
             )
         }
         AnimatedVisibility(
-            !state.collectHook,
+            !state.isHookCollected,
             modifier = Modifier
                 .height(250.dp)
                 .align(Alignment.TopCenter)
@@ -74,7 +74,7 @@ fun SingaporeAgencyScreen(
             )
         }
         AnimatedVisibility(
-            !state.collectSingaporeKey,
+            !state.isSingaporeKeyCollected,
             modifier = Modifier
                 .height(300.dp)
                 .align(Alignment.TopEnd)
@@ -112,10 +112,10 @@ private fun SingaporeAgencyScreenPreview() {
     ZEscapeThemePreview {
         SingaporeAgencyScreen(
             state = SingaporeUiState(
-                collectSingaporeKey = true,
-                collectSword = false,
-                collectHook = false,
-                remainingTime = 36000
+                isSingaporeKeyCollected = true,
+                isSwordCollected = false,
+                isHookCollected = false,
+                remainingTime = 0
             ),
             goToSettings = {},
             openWorldMap = {},

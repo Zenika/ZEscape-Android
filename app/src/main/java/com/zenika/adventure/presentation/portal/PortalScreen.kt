@@ -47,7 +47,7 @@ fun PortalScreen(
 private fun PortalScreenPreview() {
     ZEscapeThemePreview {
         PortalScreen(
-            remainingTime = 60,
+            remainingTime = 0,
             goToSettings = {},
             accessToPortal = {},
             openWorldMap = {},
