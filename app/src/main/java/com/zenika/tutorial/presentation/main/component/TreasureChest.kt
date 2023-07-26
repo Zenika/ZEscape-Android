@@ -48,7 +48,7 @@ private fun Chest(
         contentScale = ContentScale.Fit,
         modifier = Modifier
             .padding(top = 400.dp)
-            .clickable { onClick() }
+            .clickable(onClick = onClick)
             .semantics {
                 stateDescription =
                     when (chestDrawable) {

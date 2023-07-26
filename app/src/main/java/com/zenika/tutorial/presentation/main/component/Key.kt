@@ -23,7 +23,7 @@ fun Key(
         contentDescription = stringResource(R.string.key_image),
         contentScale = ContentScale.Fit,
         modifier = modifier
-            .clickable { collectKey() }
+            .clickable(onClick = collectKey)
     )
 }
 

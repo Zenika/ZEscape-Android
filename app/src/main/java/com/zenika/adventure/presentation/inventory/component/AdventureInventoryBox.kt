@@ -1,4 +1,4 @@
-package com.zenika.tutorial.presentation.inventory.component
+package com.zenika.adventure.presentation.inventory.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -23,11 +23,11 @@ import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.ui.theme.dialogPadding
 import com.zenika.ui.theme.itemDialogPadding
-import com.zenika.utils.ComposablePreview
+import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun TutorialInventoryBox(
+fun AdventureInventoryBox(
     item: Int,
     showItem: (Int) -> Unit
 ) {
@@ -52,16 +52,16 @@ fun TutorialInventoryBox(
     }
 }
 
-@ComposablePreview
+@ScreenPreview
 @Composable
-private fun TutorialInventoryBoxPreview() {
+private fun AdventureInventoryBoxPreview() {
     ZEscapeThemePreview {
         Row {
-            TutorialInventoryBox(
-                item = R.mipmap.parchment,
+            AdventureInventoryBox(
+                item = R.mipmap.hook,
                 showItem = {}
             )
-            TutorialInventoryBox(
+            AdventureInventoryBox(
                 item = 0,
                 showItem = {}
             )

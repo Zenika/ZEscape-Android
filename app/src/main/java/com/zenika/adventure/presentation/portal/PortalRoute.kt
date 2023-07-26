@@ -11,6 +11,7 @@ fun PortalRoute(
     goToSettings: () -> Unit,
     accessToPortal: () -> Unit,
     openWorldMap: () -> Unit,
+    openInventory: () -> Unit,
     viewModel: PortalViewModel = hiltViewModel(),
 ) {
     BackHandler {
@@ -18,12 +19,13 @@ fun PortalRoute(
     }
 
     val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
-    
+
     PortalScreen(
         remainingTime,
         goToSettings,
         accessToPortal,
-        openWorldMap
+        openWorldMap,
+        openInventory
     )
 }
 

@@ -17,7 +17,8 @@ import com.zenika.utils.ZEscapeThemePreview
 fun SingaporeAgencyScreen(
     remainingTime: Int,
     goToSettings: () -> Unit,
-    openWorldMap: () -> Unit
+    openWorldMap: () -> Unit,
+    openInventory: () -> Unit
 ) {
     ScaffoldScreen(
         remainingTime = remainingTime,
@@ -28,13 +29,13 @@ fun SingaporeAgencyScreen(
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomStart)
-                .clickable { openWorldMap() }
+                .clickable(onClick = openWorldMap)
         )
         AdventureInventoryBag(
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
-                .clickable { }
+                .clickable(onClick = openInventory)
         )
     }
 }
@@ -46,7 +47,8 @@ private fun SingaporeAgencyScreenPreview() {
         SingaporeAgencyScreen(
             remainingTime = 60,
             goToSettings = {},
-            openWorldMap = {}
+            openWorldMap = {},
+            openInventory = {}
         )
     }
 }

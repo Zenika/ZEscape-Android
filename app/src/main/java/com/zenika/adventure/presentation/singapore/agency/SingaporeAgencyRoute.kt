@@ -9,6 +9,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 fun SingaporeAgencyRoute(
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
+    openInventory: () -> Unit,
     viewModel: SingaporeAgencyViewModel = hiltViewModel(),
 ) {
     val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
@@ -16,7 +17,8 @@ fun SingaporeAgencyRoute(
     SingaporeAgencyScreen(
         remainingTime,
         goToSettings,
-        openWorldMap
+        openWorldMap,
+        openInventory
     )
 }
 

@@ -18,10 +18,11 @@ fun PortalScreen(
     remainingTime: Int,
     goToSettings: () -> Unit,
     accessToPortal: () -> Unit,
-    openWorldMap: () -> Unit
+    openWorldMap: () -> Unit,
+    openInventory: () -> Unit,
 ) {
     ScaffoldScreen(
-        modifier = Modifier.clickable { accessToPortal() },
+        modifier = Modifier.clickable(onClick = accessToPortal),
         remainingTime = remainingTime,
         goToSettings = goToSettings,
         background = R.mipmap.background_neon
@@ -30,13 +31,13 @@ fun PortalScreen(
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomStart)
-                .clickable { openWorldMap() }
+                .clickable(onClick = openWorldMap)
         )
         AdventureInventoryBag(
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
-                .clickable { }
+                .clickable(onClick = openInventory)
         )
     }
 }
@@ -49,7 +50,8 @@ private fun PortalScreenPreview() {
             remainingTime = 60,
             goToSettings = {},
             accessToPortal = {},
-            openWorldMap = {}
+            openWorldMap = {},
+            openInventory = {}
         )
     }
 }
