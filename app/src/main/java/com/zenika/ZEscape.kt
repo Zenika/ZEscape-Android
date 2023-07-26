@@ -6,7 +6,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.zenika.adventure.presentation.adventureNavigation
-import com.zenika.presentation.debug.DebugScreen
+import com.zenika.presentation.debug.debugNavigation
 import com.zenika.presentation.home.HomeRoute
 import com.zenika.tutorial.presentation.tutorialNavigation
 
@@ -38,8 +38,9 @@ fun ZEscape() {
             route = ROUTE_ADVENTURE,
             navController = navController
         )
-        composable(ROUTE_DEBUG) {
-            DebugScreen()
-        }
+        debugNavigation(
+            route = ROUTE_DEBUG,
+            navController = navController
+        )
     }
 }
