@@ -32,6 +32,7 @@ fun WorldMapDialog(
     goToSingaporeAgency: () -> Unit,
     goToCasablancaAgency: () -> Unit,
     goToMontrealAgency: () -> Unit,
+    openAgencyTeaser: () -> Unit,
     agencies: Set<Agency>
 ) {
     Dialog(
@@ -61,7 +62,7 @@ fun WorldMapDialog(
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(bottom = 60.dp)
-                            .clickable(onClick = {})
+                            .clickable(onClick = openAgencyTeaser)
                     )
                 }
                 if (Agency.SINGAPOUR in agencies) {
@@ -111,6 +112,7 @@ private fun WorldMapDialogPreview() {
             goToSingaporeAgency = {},
             goToCasablancaAgency = {},
             goToMontrealAgency = {},
+            openAgencyTeaser = {},
             agencies = mutableSetOf(Agency.MONTREAL, Agency.CASABLANCA, Agency.PARIS)
         )
     }

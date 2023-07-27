@@ -14,6 +14,7 @@ fun WorldMapRoute(
     goOutsideSingaporeAgency: () -> Unit,
     goToCasablancaAgency: () -> Unit,
     goToMontrealAgency: () -> Unit,
+    openAgencyTeaser: () -> Unit,
     viewModel: WorldMapViewModel = hiltViewModel()
 ) {
     val agencies by viewModel.agencies.collectAsStateWithLifecycle()
@@ -32,6 +33,7 @@ fun WorldMapRoute(
         goToSingaporeAgency,
         goToCasablancaAgency,
         goToMontrealAgency,
+        openAgencyTeaser,
         agencies
     )
 }
