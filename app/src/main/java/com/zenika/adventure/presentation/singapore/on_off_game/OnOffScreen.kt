@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -77,7 +78,12 @@ private fun ColorButton(
             .drawBehind { drawRect(color) }
             .size(100.dp)
             .clickable(interactionSource, null, onClick = onClick)
-    )
+    ) {
+        Text(
+            text = if (isButtonGreen) "ON" else "OFF",
+            modifier = Modifier.align(Alignment.Center)
+        )
+    }
 }
 
 @ScreenPreview
