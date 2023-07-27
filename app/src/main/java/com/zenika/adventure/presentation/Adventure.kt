@@ -29,6 +29,7 @@ import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
 import com.zenika.adventure.presentation.inventory.AdventureInventoryRoute
 import com.zenika.adventure.presentation.item.AdventureItemRoute
 import com.zenika.adventure.presentation.montreal.instruction.InstructionMontrealRoute
+import com.zenika.adventure.presentation.montreal.library.LibraryRoute
 import com.zenika.adventure.presentation.montreal.simonsays.SimonSaysRoute
 import com.zenika.adventure.presentation.penalty.AdventurePenaltyRoute
 import com.zenika.adventure.presentation.portal.PortalRoute
@@ -78,6 +79,7 @@ private const val ROUTE_CASABLANCA_OFFICES = "adventureCasablancaOffices"
 private const val ROUTE_CASABLANCA_MEETING_ROOM = "adventureCasablancaMeetingRoom"
 private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
 private const val ROUTE_MONTREAL_INSTRUCTION = "adventureMontrealInstruction"
+private const val ROUTE_MONTREAL_LIBRARY = "adventureMontrealLibrary"
 private const val ROUTE_SIMON_SAYS_GAME = "adventureSimonSaysGame"
 
 private val casablancaOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/casablanca/outside" })
@@ -441,6 +443,14 @@ fun NavGraphBuilder.adventureNavigation(
         dialog(ROUTE_MONTREAL_INSTRUCTION) {
             InstructionMontrealRoute(
                 onDismissRequest = { navController.popBackStack() }
+            )
+        }
+        composable(ROUTE_MONTREAL_LIBRARY) {
+            LibraryRoute(
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                goToRooftop = { },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) }
             )
         }
         composable(ROUTE_SIMON_SAYS_GAME, deepLinks = montrealOutsideDeeplink) {
