@@ -88,4 +88,13 @@ class AdventureGameStateManager @Inject constructor() {
             )
         }
     }
+
+    fun incrementHintCount() {
+        _state.update {
+            it.copy(
+                hintCount = it.hintCount + 1
+            )
+        }
+    }
 }
+
