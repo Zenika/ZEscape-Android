@@ -6,11 +6,7 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -24,8 +20,7 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import com.zenika.R
+import com.zenika.presentation.component.HintButton
 import com.zenika.presentation.component.SettingsButton
 import com.zenika.presentation.component.Timer
 import com.zenika.ui.theme.screenPadding
@@ -36,6 +31,7 @@ fun ScaffoldScreen(
     modifier: Modifier = Modifier,
     remainingTime: Int,
     goToSettings: () -> Unit,
+    openHintValidation: () -> Unit,
     @DrawableRes
     background: Int,
     content: @Composable BoxScope.() -> Unit
@@ -48,9 +44,7 @@ fun ScaffoldScreen(
                     Timer(remainingTime, Modifier.fillMaxWidth())
                 },
                 navigationIcon = {
-                    IconButton(onClick = {}) {
-                        Icon(Icons.Filled.Search, stringResource(R.string.hint))
-                    }
+                    HintButton(openHintValidation)
                 },
                 actions = {
                     SettingsButton(goToSettings)
