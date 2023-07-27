@@ -21,7 +21,6 @@ import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
 import com.zenika.adventure.presentation.component.ScaffoldScreen
 import com.zenika.data.AdventureHint
-import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
