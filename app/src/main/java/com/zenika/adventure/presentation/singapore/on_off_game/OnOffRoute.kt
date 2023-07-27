@@ -10,6 +10,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 fun OnOffRoute(
     winGame: () -> Unit,
     goToSettings: () -> Unit,
+    openHintValidation: (String) -> Unit,
     viewModel: OnOffViewModel = hiltViewModel()
 ) {
     val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
@@ -25,6 +26,7 @@ fun OnOffRoute(
 
     OnOffScreen(
         goToSettings,
+        openHintValidation,
         remainingTime,
         state.buttonsList,
         viewModel::switchColor

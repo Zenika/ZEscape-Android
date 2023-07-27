@@ -126,4 +126,15 @@
         Icônes et éléments de :\njuicy_fish sur Flaticon\nFreepik sur Flaticon\nupklyak sur Freepik\n
         macrovector sur Freepik\nStock Hunter sur Vecteezy\nCraftpix
     </string>
+    <string name="hint_validation">Voulez-vous obtenir un indice ?</string>
+    <string name="portal_hint">Récupérez les clés des agences dans votre inventaire pour pouvoir ouvrir le portail.</string>
+    <string name="agency_scan_hint">Scannez le nom d\'une agence Zenika en majuscules pour l\'ajouter à la carte.</string>
+    <string name="on_off_hint">Essayez de déceler les bonnes combinaisons d\'interrupteurs pour qu\'ils soient tous au vert.</string>
+    <string name="singapore_agency_hint">Récupérez la clé de l\'agence de Singapour suspendue au ballon orange.</string>
+    <string name="simon_says_hint">Retenez la séquence de boutons jouée par le jeu, et reproduisez-là à votre tour.</string>
+    <string name="casablanca_outside_hint">Passez par la fenêtre afin d\'entrer dans l\'agence de Casablanca.</string>
+    <string name="casablanca_flashlight_hint">Allumez le flash de votre téléphone afin d\'éclairer la pièce.</string>
+    <string name="casablanca_safe_hint">Entrez le code 531296 pour ouvrir le coffre-fort.</string>
+    <string name="casablanca_code_hint">Récupérez le papier posé sur le bureau de la salle de réunion et associez les chiffres cachés des autres pièces dans l\'ordre indiqué sur celui-ci.</string>
+    <string name="montreal_library_hint">Faites glisser la bibliotèque afin d\'accéder à la pièce cachée.</string>
 </resources>

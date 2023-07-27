@@ -22,6 +22,8 @@ import com.zenika.adventure.presentation.casablanca.offices.CasablancaOfficesRou
 import com.zenika.adventure.presentation.casablanca.outside.CasablancaOutsideRoute
 import com.zenika.adventure.presentation.casablanca.safe.SafeRoute
 import com.zenika.adventure.presentation.computer.ComputerRoute
+import com.zenika.adventure.presentation.hint.AdventureHintRoute
+import com.zenika.adventure.presentation.hint_validation.AdventureHintValidationRoute
 import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
 import com.zenika.adventure.presentation.inventory.AdventureInventoryRoute
@@ -47,6 +49,8 @@ private const val ROUTE_QRCODE_SCAN = "adventureQrCodeScan/{qrcode}"
 private const val ROUTE_PORTAL = "adventurePortal"
 private const val ROUTE_INSTRUCTION = "adventureInstruction"
 private const val ROUTE_SETTINGS = "adventureSettings"
+private const val ROUTE_HINT_VALIDATION = "adventureHintValidation/{hint}"
+private const val ROUTE_HINT = "adventureHint/{hint}"
 private const val ROUTE_PORTAL_MESSAGE = "adventurePortalMessage"
 private const val ROUTE_INVENTORY = "adventureInventory"
 private const val ROUTE_PATTERN_ITEM = "adventureItem/{item}"
@@ -134,7 +138,15 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.navigate(ROUTE_SCORE_DIALOG)
                 },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
-                openInventory = { navController.navigate(ROUTE_INVENTORY) }
+                openInventory = { navController.navigate(ROUTE_INVENTORY) },
+                openHintValidation = { hint ->
+                    navController.navigate(
+                        ROUTE_HINT_VALIDATION.replace(
+                            "{hint}",
+                            hint
+                        )
+                    )
+                }
             )
         }
         dialog(ROUTE_PORTAL_MESSAGE) {
@@ -146,6 +158,36 @@ fun NavGraphBuilder.adventureNavigation(
             SettingsRoute(
                 goBack = { navController.popBackStack() },
                 goBackToHome = { navController.popBackStack(ROUTE_HOME, inclusive = true) }
+            )
+        }
+        dialog(
+            ROUTE_HINT_VALIDATION,
+            arguments = listOf(navArgument("hint") {
+                type = NavType.StringType
+            })
+        ) {
+            AdventureHintValidationRoute(
+                onDismissRequest = { navController.popBackStack() },
+                showHint = { hint ->
+                    navController.navigate(
+                        ROUTE_HINT.replace(
+                            "{hint}",
+                            hint
+                        )
+                    ) {
+                        popUpTo(ROUTE_HINT_VALIDATION) { inclusive = true }
+                    }
+                }
+            )
+        }
+        dialog(
+            ROUTE_HINT,
+            arguments = listOf(navArgument("hint") {
+                type = NavType.StringType
+            })
+        ) {
+            AdventureHintRoute(
+                onDismissRequest = { navController.popBackStack() }
             )
         }
         dialog(ROUTE_INVENTORY) {
@@ -270,14 +312,30 @@ fun NavGraphBuilder.adventureNavigation(
                     }
                     navController.navigate(ROUTE_SINGAPORE_AGENCY_DIALOG)
                 },
-                goToSettings = { navController.navigate(ROUTE_SETTINGS) }
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openHintValidation = { hint ->
+                    navController.navigate(
+                        ROUTE_HINT_VALIDATION.replace(
+                            "{hint}",
+                            hint
+                        )
+                    )
+                }
             )
         }
         composable(ROUTE_SINGAPORE_AGENCY) {
             SingaporeAgencyRoute(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
-                openInventory = { navController.navigate(ROUTE_INVENTORY) }
+                openInventory = { navController.navigate(ROUTE_INVENTORY) },
+                openHintValidation = { hint ->
+                    navController.navigate(
+                        ROUTE_HINT_VALIDATION.replace(
+                            "{hint}",
+                            hint
+                        )
+                    )
+                }
             )
         }
         dialog(ROUTE_SINGAPORE_AGENCY_DIALOG) {

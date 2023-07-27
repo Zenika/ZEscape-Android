@@ -14,6 +14,7 @@ fun PortalRoute(
     onGameFinished: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
+    openHintValidation: (String) -> Unit,
     viewModel: PortalViewModel = hiltViewModel(),
 ) {
     BackHandler {
@@ -36,7 +37,8 @@ fun PortalRoute(
         goToSettings,
         viewModel::onPortalClick,
         openWorldMap,
-        openInventory
+        openInventory,
+        openHintValidation
     )
 }
 

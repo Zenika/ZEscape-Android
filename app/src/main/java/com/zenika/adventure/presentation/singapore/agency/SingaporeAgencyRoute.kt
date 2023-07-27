@@ -10,6 +10,7 @@ fun SingaporeAgencyRoute(
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
+    openHintValidation: (String) -> Unit,
     viewModel: SingaporeAgencyViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -19,6 +20,7 @@ fun SingaporeAgencyRoute(
         goToSettings,
         openWorldMap,
         openInventory,
+        openHintValidation,
         viewModel::collectKey,
         viewModel::collectSword,
         viewModel::collectHook

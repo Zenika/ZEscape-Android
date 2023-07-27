@@ -20,7 +20,7 @@ import com.zenika.R
 import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
 import com.zenika.adventure.presentation.component.ScaffoldScreen
-import com.zenika.ui.theme.screenPadding
+import com.zenika.data.AdventureHint
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -30,6 +30,7 @@ fun SingaporeAgencyScreen(
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
+    openHintValidation: (String) -> Unit,
     collectKey: () -> Unit,
     collectSword: () -> Unit,
     collectHook: () -> Unit,
@@ -39,6 +40,7 @@ fun SingaporeAgencyScreen(
         modifier = modifier,
         remainingTime = state.remainingTime,
         goToSettings = goToSettings,
+        openHintValidation = { openHintValidation(AdventureHint.SINGAPORE_AGENCY_HINT.name) },
         background = R.mipmap.singapore_agency
     ) {
         Balloon(
@@ -123,6 +125,7 @@ private fun SingaporeAgencyScreenPreview() {
             goToSettings = {},
             openWorldMap = {},
             openInventory = {},
+            openHintValidation = {},
             collectKey = {},
             collectSword = {},
             collectHook = {}
