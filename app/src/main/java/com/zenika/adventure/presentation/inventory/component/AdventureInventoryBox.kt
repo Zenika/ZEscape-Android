@@ -26,6 +26,8 @@ import com.zenika.ui.theme.itemDialogPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
+private const val CORNER_RADIUS = 25
+
 @Composable
 fun AdventureInventoryBox(
     item: Int,
@@ -36,8 +38,8 @@ fun AdventureInventoryBox(
         modifier = modifier
             .size(100.dp)
             .padding(itemDialogPadding)
-            .clip(shape = RoundedCornerShape(25))
-            .border(border = BorderStroke(2.dp, Color.Black), shape = RoundedCornerShape(25))
+            .clip(shape = RoundedCornerShape(CORNER_RADIUS))
+            .border(border = BorderStroke(2.dp, Color.Black), shape = RoundedCornerShape(CORNER_RADIUS))
             .padding(1.dp)
             .background(MaterialTheme.colorScheme.primary)
             .clickable(enabled = item != 0) { showItem(item) }
