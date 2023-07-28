@@ -739,6 +739,7 @@ style:
     active: true
   UnusedPrivateMember:
     active: true
+    ignoreAnnotated: [ 'Preview', 'ScreenPreview', 'ComposablePreview' ]
     allowedNames: ''
   UnusedPrivateProperty:
     active: true
