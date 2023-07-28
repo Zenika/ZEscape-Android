@@ -1,0 +1,6 @@
+tasks.register("setupGitHooks", Copy) {
+    from rootDir.path + "/scripts/hooks"
+    into rootDir.path + "/.git/hooks"
+    fileMode 0775
+}
+tasks.getByPath(':app:preBuild').dependsOn setupGitHooks
