@@ -44,8 +44,11 @@ console-reports:
 output-reports:
   active: true
   exclude:
-  # - 'HtmlOutputReport'
-  # - 'MdOutputReport'
+     - 'TxtOutputReport'
+     - 'XmlOutputReport'
+     - 'SarifOutputReport'
+  #  - 'HtmlOutputReport'
+  #  - 'MdOutputReport'
 
 comments:
   active: true
