@@ -131,6 +131,7 @@ fun NavGraphBuilder.adventureNavigation(
         dialog(ROUTE_WORLD_MAP) {
             WorldMapRoute(
                 onDismissRequest = { navController.popBackStack() },
+
                 openTextRecognition = { navController.navigate(ROUTE_AGENCY_RECOGNITION) },
                 goBackToPortal = {
                     navController.popBackStack(route = ROUTE_PORTAL, inclusive = false)
