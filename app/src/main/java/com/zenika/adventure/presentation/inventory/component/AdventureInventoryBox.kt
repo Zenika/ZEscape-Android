@@ -29,10 +29,11 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun AdventureInventoryBox(
     item: Int,
+    modifier: Modifier = Modifier,
     showItem: (Int) -> Unit
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(100.dp)
             .padding(itemDialogPadding)
             .clip(shape = RoundedCornerShape(25))
