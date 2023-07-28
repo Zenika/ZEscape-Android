@@ -26,9 +26,9 @@ class MainViewModel @Inject constructor(
         observeTutorialState(), observeRemainingTime()
     ) { gameState, remainingTime ->
         MainUiState(
-            gameState.chestOpened,
-            gameState.mapCollected,
-            gameState.keyCollected,
+            gameState.isChestOpened,
+            gameState.isMapCollected,
+            gameState.isKeyCollected,
             gameState.newItem,
             remainingTime
         )
@@ -37,11 +37,11 @@ class MainViewModel @Inject constructor(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
             initialValue = MainUiState(
-                chestOpened = false,
-                mapCollected = false,
-                keyCollected = false,
+                isChestOpened = false,
+                isMapCollected = false,
+                isKeyCollected = false,
                 newItem = false,
-                remainingTime = 3_600_600
+                remainingTime = 0
             )
         )
 
@@ -69,9 +69,9 @@ class MainViewModel @Inject constructor(
 }
 
 class MainUiState(
-    val chestOpened: Boolean,
-    val mapCollected: Boolean,
-    val keyCollected: Boolean,
+    val isChestOpened: Boolean,
+    val isMapCollected: Boolean,
+    val isKeyCollected: Boolean,
     val newItem: Boolean,
     val remainingTime: Int
 )

@@ -86,8 +86,8 @@ fun MainScreen(
             contentAlignment = Alignment.Center
         ) {
             TreasureChest(
-                mainUiState.chestOpened,
-                mainUiState.mapCollected,
+                mainUiState.isChestOpened,
+                mainUiState.isMapCollected,
                 openMiniGame,
                 collectMap
             )
@@ -98,7 +98,7 @@ fun MainScreen(
                 openInventory,
                 removeNewItemBadge
             )
-            if (!mainUiState.keyCollected) {
+            if (!mainUiState.isKeyCollected) {
                 Key(
                     collectKey,
                     Modifier
@@ -118,11 +118,11 @@ private fun TutorialScreenPreview() {
             Modifier
                 .fillMaxSize(),
             mainUiState = MainUiState(
-                chestOpened = false,
-                mapCollected = false,
-                keyCollected = false,
+                isChestOpened = false,
+                isMapCollected = false,
+                isKeyCollected = false,
                 newItem = false,
-                remainingTime = 60
+                remainingTime = 0
             ),
             goToSettings = {},
             openMiniGame = {},

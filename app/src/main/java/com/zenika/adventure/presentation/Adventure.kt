@@ -99,9 +99,7 @@ fun NavGraphBuilder.adventureNavigation(
         }
         dialog(ROUTE_INVENTORY) {
             AdventureInventoryRoute(
-                onDismissRequest = {
-                    navController.popBackStack()
-                },
+                onDismissRequest = { navController.popBackStack() },
                 showItem = { item ->
                     navController.navigate(
                         ROUTE_PATTERN_ITEM.replace(
@@ -170,7 +168,11 @@ fun NavGraphBuilder.adventureNavigation(
         composable(ROUTE_ON_OFF_GAME) {
             OnOffRoute(
                 winGame = {
-                    navController.navigate(ROUTE_SINGAPORE_AGENCY)
+                    navController.navigate(ROUTE_SINGAPORE_AGENCY) {
+                        popUpTo(ROUTE_ON_OFF_GAME) {
+                            inclusive = true
+                        }
+                    }
                     navController.navigate(ROUTE_SINGAPORE_AGENCY_DIALOG)
                 },
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) }
