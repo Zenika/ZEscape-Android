@@ -23,7 +23,7 @@ fun PortalScreen(
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
 ) {
-    val accessToPortal = if (state.collectSingaporeKey) {
+    val accessToPortal = if (state.isSingaporeKeyCollected) {
         accessToOpenPortal
     } else {
         accessToClosePortal
@@ -31,7 +31,7 @@ fun PortalScreen(
     ScaffoldScreen(
         modifier = Modifier.clickable {
             accessToPortal()
-            if (state.collectSingaporeKey) {
+            if (state.isSingaporeKeyCollected) {
                 finishGame()
             }
         },
@@ -60,7 +60,7 @@ private fun PortalScreenPreview() {
     ZEscapeThemePreview {
         PortalScreen(
             state = PortalUiState(
-                collectSingaporeKey = false,
+                isSingaporeKeyCollected = false,
                 remainingTime = 0
             ),
             goToSettings = {},

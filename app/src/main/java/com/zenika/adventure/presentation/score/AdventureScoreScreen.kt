@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -45,24 +46,29 @@ fun AdventureScoreScreen(
         ) {
             Text(
                 text = stringResource(id = R.string.score),
-                style = MaterialTheme.typography.headlineLarge
+                style = MaterialTheme.typography.headlineLarge,
+                color = Color.White
             )
             Row {
                 Text(
-                    text = stringResource(R.string.time)
+                    text = stringResource(R.string.time),
+                    color = Color.White
                 )
                 Timer(
                     statistics.elapsedTime,
-                    Modifier.padding(start = 4.dp)
+                    Modifier.padding(start = 4.dp),
+                    Color.White
                 )
             }
             Text(
                 text = stringResource(R.string.hint_count, statistics.hint),
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color.White
             )
             Text(
                 text = stringResource(R.string.penalty_count, statistics.penalty),
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color.White
             )
             Button(onClick = goBackToHome) {
                 Text(

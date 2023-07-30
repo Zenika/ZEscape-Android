@@ -30,7 +30,7 @@ class PortalViewModel @Inject constructor(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
             initialValue = PortalUiState(
-                collectSingaporeKey = false,
+                isSingaporeKeyCollected = false,
                 remainingTime = 0
             )
         )
@@ -41,6 +41,6 @@ class PortalViewModel @Inject constructor(
 }
 
 class PortalUiState(
-    val collectSingaporeKey: Boolean,
+    val isSingaporeKeyCollected: Boolean,
     val remainingTime: Int
 )
