@@ -15,9 +15,9 @@ fun WorldMapRoute(
     viewModel: WorldMapViewModel = hiltViewModel()
 ) {
     val agencies by viewModel.agencies.collectAsStateWithLifecycle()
-    val agenciesState by viewModel.agenciesState.collectAsStateWithLifecycle()
+    val isSingaporeAgencyOpen by viewModel.isSingaporeAgencyOpen.collectAsStateWithLifecycle()
 
-    val goToSingaporeAgency = if (agenciesState) {
+    val goToSingaporeAgency = if (isSingaporeAgencyOpen) {
         goInsideSingaporeAgency
     } else {
         openOnOffGame

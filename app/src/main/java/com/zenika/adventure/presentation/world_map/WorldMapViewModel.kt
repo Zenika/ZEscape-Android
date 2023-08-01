@@ -24,7 +24,7 @@ class WorldMapViewModel @Inject constructor(
             initialValue = setOf()
         )
 
-    val agenciesState: StateFlow<Boolean> =
+    val isSingaporeAgencyOpen: StateFlow<Boolean> =
         getAdventureState().map { state -> state.isSingaporeAgencyOpen }
             .stateIn(
                 scope = viewModelScope,

@@ -22,7 +22,7 @@ class PortalViewModel @Inject constructor(
         getAdventureState(), observeRemainingTime()
     ) { gameState, remainingTime ->
         PortalUiState(
-            gameState.isSingaporeKeyCollected,
+            portalCanBeOpened = gameState.isSingaporeKeyCollected,
             remainingTime
         )
     }
@@ -30,7 +30,7 @@ class PortalViewModel @Inject constructor(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
             initialValue = PortalUiState(
-                isSingaporeKeyCollected = false,
+                portalCanBeOpened = false,
                 remainingTime = 0
             )
         )
@@ -41,6 +41,6 @@ class PortalViewModel @Inject constructor(
 }
 
 class PortalUiState(
-    val isSingaporeKeyCollected: Boolean,
+    val portalCanBeOpened: Boolean,
     val remainingTime: Int
 )
