@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.ui.theme.dialogPadding
@@ -29,14 +30,19 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun AdventureInventoryBox(
     item: Int,
-    showItem: (Int) -> Unit
+    showItem: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+    size: Dp = 100.dp
 ) {
     Box(
-        modifier = Modifier
-            .size(100.dp)
+        modifier = modifier
+            .size(size)
             .padding(itemDialogPadding)
-            .clip(shape = RoundedCornerShape(25))
-            .border(border = BorderStroke(2.dp, Color.Black), shape = RoundedCornerShape(25))
+            .clip(shape = RoundedCornerShape(percent = 25))
+            .border(
+                border = BorderStroke(2.dp, Color.Black),
+                shape = RoundedCornerShape(percent = 25)
+            )
             .padding(1.dp)
             .background(MaterialTheme.colorScheme.primary)
             .clickable(enabled = item != 0) { showItem(item) }

@@ -2,7 +2,6 @@ package com.zenika.adventure.presentation.inventory
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
@@ -15,7 +14,6 @@ fun AdventureInventoryRoute(
     val items by viewModel.inventoryItems.collectAsStateWithLifecycle()
 
     AdventureInventoryDialog(
-        Modifier,
         items,
         showItem,
         onDismissRequest
