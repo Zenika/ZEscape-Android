@@ -17,7 +17,8 @@ import com.zenika.utils.ZEscapeThemePreview
 fun AdventurePenaltyDialog(
     onDismissRequest: () -> Unit,
     goBackToSingaporeAgency: () -> Unit,
-    penalty: String
+    penalty: String,
+    modifier: Modifier = Modifier
 ) {
     val penaltyRes = when (penalty) {
         "hook" -> R.string.penalty_hook
@@ -40,7 +41,7 @@ fun AdventurePenaltyDialog(
     ) {
         Text(
             text = stringResource(penaltyRes),
-            modifier = Modifier.fillMaxWidth(),
+            modifier = modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = adventureBodyMedium,
             color = MaterialTheme.colorScheme.onErrorContainer
