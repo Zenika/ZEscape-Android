@@ -1,6 +1,7 @@
 package com.zenika.adventure.presentation.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -12,13 +13,25 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun AdventureInventoryBag(
-    modifier: Modifier
+    newItem: Boolean,
+    openInventory: () -> Unit,
+    removeNewItemBadge: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
+    val imageRes = if (newItem) {
+        R.mipmap.newitem_suitcase
+    } else {
+        R.mipmap.suitcase
+    }
+
     Image(
-        painter = painterResource(R.mipmap.suitcase),
+        painter = painterResource(imageRes),
         contentDescription = stringResource(R.string.inventory_bag_image),
         contentScale = ContentScale.Fit,
-        modifier = modifier
+        modifier = modifier.clickable(onClick = {
+            removeNewItemBadge()
+            openInventory()
+        })
     )
 }
 
@@ -27,7 +40,9 @@ fun AdventureInventoryBag(
 private fun AdventureInventoryBagPreview() {
     ZEscapeThemePreview {
         AdventureInventoryBag(
-            modifier = Modifier
+            newItem = false,
+            openInventory = {},
+            removeNewItemBadge = {}
         )
     }
 }
