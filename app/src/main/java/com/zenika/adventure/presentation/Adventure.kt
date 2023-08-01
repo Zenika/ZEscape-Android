@@ -28,6 +28,8 @@ import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
 import com.zenika.adventure.presentation.inventory.AdventureInventoryRoute
 import com.zenika.adventure.presentation.item.AdventureItemRoute
+import com.zenika.adventure.presentation.montreal.agency.MontrealAgencyDialog
+import com.zenika.adventure.presentation.montreal.agency.MontrealAgencyRoute
 import com.zenika.adventure.presentation.montreal.instruction.InstructionMontrealRoute
 import com.zenika.adventure.presentation.montreal.library.LibraryRoute
 import com.zenika.adventure.presentation.montreal.simonsays.SimonSaysRoute
@@ -77,9 +79,11 @@ private const val ROUTE_CASABLANCA_RESTROOM = "adventureCasablancaRestroom"
 private const val ROUTE_CASABLANCA_KITCHEN = "adventureCasablancaKitchen"
 private const val ROUTE_CASABLANCA_OFFICES = "adventureCasablancaOffices"
 private const val ROUTE_CASABLANCA_MEETING_ROOM = "adventureCasablancaMeetingRoom"
-private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
+private const val ROUTE_MONTREAL_AGENCY = "adventureMontrealAgency"
+private const val ROUTE_MONTREAL_AGENCY_DIALOG = "adventureMontrealAgencyDialog"
 private const val ROUTE_MONTREAL_INSTRUCTION = "adventureMontrealInstruction"
 private const val ROUTE_MONTREAL_LIBRARY = "adventureMontrealLibrary"
+private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
 private const val ROUTE_SIMON_SAYS_GAME = "adventureSimonSaysGame"
 
 private val casablancaOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/casablanca/outside" })
@@ -254,6 +258,10 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.navigate(ROUTE_SIMON_SAYS_GAME)
                     navController.navigate(ROUTE_MONTREAL_INSTRUCTION)
                 },
+                goToMontrealAgency = {
+                    navController.navigate(ROUTE_MONTREAL_AGENCY)
+                    navController.navigate(ROUTE_MONTREAL_AGENCY_DIALOG)
+                },
                 openAgencyTeaser = {
                     navController.navigate(ROUTE_AGENCY_TEASER)
                 }
@@ -335,6 +343,19 @@ fun NavGraphBuilder.adventureNavigation(
         }
         dialog(ROUTE_SINGAPORE_AGENCY_DIALOG) {
             SingaporeAgencyDialog(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
+        composable(ROUTE_MONTREAL_AGENCY) {
+            MontrealAgencyRoute(
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) },
+                goToScan = { navController.navigate(ROUTE_QRCODE_SCAN) }
+            )
+        }
+        dialog(ROUTE_MONTREAL_AGENCY_DIALOG) {
+            MontrealAgencyDialog(
                 onDismissRequest = { navController.popBackStack() }
             )
         }
