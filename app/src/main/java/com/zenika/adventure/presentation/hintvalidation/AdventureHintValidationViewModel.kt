@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.hint_validation
+package com.zenika.adventure.presentation.hintvalidation
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

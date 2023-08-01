@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.hint_validation
+package com.zenika.adventure.presentation.hintvalidation
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button

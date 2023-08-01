@@ -23,7 +23,7 @@ import com.zenika.adventure.presentation.casablanca.outside.CasablancaOutsideRou
 import com.zenika.adventure.presentation.casablanca.safe.SafeRoute
 import com.zenika.adventure.presentation.computer.ComputerRoute
 import com.zenika.adventure.presentation.hint.AdventureHintRoute
-import com.zenika.adventure.presentation.hint_validation.AdventureHintValidationRoute
+import com.zenika.adventure.presentation.hintvalidation.AdventureHintValidationRoute
 import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
 import com.zenika.adventure.presentation.inventory.AdventureInventoryRoute

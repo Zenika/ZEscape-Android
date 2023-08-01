@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.hint_validation
+package com.zenika.adventure.presentation.hintvalidation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

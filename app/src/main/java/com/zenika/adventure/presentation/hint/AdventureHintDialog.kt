@@ -15,14 +15,15 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun AdventureHintDialog(
     hint: String,
-    onDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     AdventureDialog(
         onDismissRequest = onDismissRequest
     ) {
         Text(
             text = stringResource(AdventureHint.valueOf(hint).text),
-            modifier = Modifier.fillMaxWidth(),
+            modifier = modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = adventureBodyMedium
         )
