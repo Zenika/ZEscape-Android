@@ -140,4 +140,6 @@
     <string name="agency_teaser">Prochainement…\n\nCette partie de l\'histoire n\'a pas encore été écrite.</string>
     <string name="bookshelf">Bibliothèque</string>
     <string name="rooftop_access">Rooftop</string>
+    <string name="instruction_montreal_agency">Il ne vous reste plus qu\'à trouver la clé de cette agence, où peut-elle bien être ?</string>
+    <string name="montreal_map">Plan de l\'agence de Montreal</string>
 </resources>
