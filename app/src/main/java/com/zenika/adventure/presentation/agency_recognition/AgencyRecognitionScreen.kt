@@ -68,7 +68,7 @@ fun AgencyRecognitionScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(R.string.scan),
+                        text = stringResource(R.string.agency_scan),
                         Modifier
                             .fillMaxWidth()
                     )

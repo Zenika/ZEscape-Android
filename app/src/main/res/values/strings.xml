@@ -77,6 +77,8 @@
     <string name="red_balloon">Ballon rouge avec crochet accroché au bout</string>
     <string name="orange_balloon">Ballon orange avec clé accrochée au bout</string>
     <string name="scan">Scan</string>
+    <string name="qr_code_scan">Scan de QR Code</string>
+    <string name="agency_scan">Scan d\'une agence Zenika</string>
     <string name="check">validation</string>
     <string name="desk">Bureau</string>
 </resources>
