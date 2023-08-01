@@ -35,6 +35,7 @@ fun SingaporeAgencyScreen(
     collectKey: () -> Unit,
     collectSword: () -> Unit,
     collectHook: () -> Unit,
+    removeNewItemBadge: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     ScaffoldScreen(
@@ -78,10 +79,12 @@ fun SingaporeAgencyScreen(
                 .clickable(onClick = openWorldMap)
         )
         AdventureInventoryBag(
+            newItem = state.newItem,
+            openInventory = openInventory,
+            removeNewItemBadge = removeNewItemBadge,
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
-                .clickable(onClick = openInventory)
         )
     }
 }
@@ -121,6 +124,7 @@ private fun SingaporeAgencyScreenPreview() {
                 isSingaporeKeyCollected = true,
                 isSwordCollected = false,
                 isHookCollected = false,
+                newItem = false,
                 remainingTime = 0
             ),
             goToSettings = {},
@@ -129,7 +133,8 @@ private fun SingaporeAgencyScreenPreview() {
             openHintValidation = {},
             collectKey = {},
             collectSword = {},
-            collectHook = {}
+            collectHook = {},
+            removeNewItemBadge = {}
         )
     }
 }

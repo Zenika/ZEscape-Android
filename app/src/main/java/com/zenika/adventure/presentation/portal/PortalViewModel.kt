@@ -3,8 +3,10 @@ package com.zenika.adventure.presentation.portal
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.FinishGameUseCase
+import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveKeyCollectionUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
+import com.zenika.adventure.domain.RemoveNewItemBadgeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,14 +21,19 @@ import javax.inject.Inject
 class PortalViewModel @Inject constructor(
     observeRemainingTime: ObserveRemainingTimeUseCase,
     observeKeyCollection: ObserveKeyCollectionUseCase,
-    private val finishGameUseCase: FinishGameUseCase
+    observeAdventureState: ObserveAdventureStateUseCase,
+    private val finishGameUseCase: FinishGameUseCase,
+    private val removeNewItemBadgeUseCase: RemoveNewItemBadgeUseCase
 ) : ViewModel() {
     val state: StateFlow<PortalUiState> = combine(
-        observeKeyCollection(), observeRemainingTime()
-    ) { keyCollection, remainingTime ->
+        observeKeyCollection(),
+        observeAdventureState(),
+        observeRemainingTime()
+    ) { keyCollection, gameState, remainingTime ->
         PortalUiState(
             portalCanBeOpened = keyCollection.isSingaporeKeyCollected && keyCollection.isCasablancaKeyCollected,
-            remainingTime
+            newItem = gameState.newItem,
+            remainingTime = remainingTime
         )
     }
         .stateIn(
@@ -34,6 +41,7 @@ class PortalViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
             initialValue = PortalUiState(
                 portalCanBeOpened = false,
+                newItem = false,
                 remainingTime = 0
             )
         )
@@ -50,11 +58,16 @@ class PortalViewModel @Inject constructor(
                 _events.emit(PortalEvent.SHOW_CLOSED_PORTAL)
             }
         }
+
+        fun removeNewItemBadge() {
+            removeNewItemBadgeUseCase()
+        }
     }
 }
 
 class PortalUiState(
     val portalCanBeOpened: Boolean,
+    val newItem: Boolean,
     val remainingTime: Int
 )
 

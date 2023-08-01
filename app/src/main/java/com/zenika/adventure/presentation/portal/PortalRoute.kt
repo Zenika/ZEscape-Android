@@ -39,7 +39,8 @@ fun PortalRoute(
         viewModel::onPortalClick,
         openWorldMap,
         openInventory,
-        openHintValidation
+        openHintValidation,
+        viewModel::removeNewItemBadge
     )
 }
 

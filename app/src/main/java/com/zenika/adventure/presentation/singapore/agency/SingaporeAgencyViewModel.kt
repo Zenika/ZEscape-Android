@@ -7,6 +7,7 @@ import com.zenika.adventure.domain.CollectSingaporeKeyUseCase
 import com.zenika.adventure.domain.CollectSwordUseCase
 import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
+import com.zenika.adventure.domain.RemoveNewItemBadgeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -21,7 +22,8 @@ class SingaporeAgencyViewModel @Inject constructor(
     observeRemainingTime: ObserveRemainingTimeUseCase,
     private val collectSingaporeKey: CollectSingaporeKeyUseCase,
     private val collectSwordItem: CollectSwordUseCase,
-    private val collectHookItem: CollectHookUseCase
+    private val collectHookItem: CollectHookUseCase,
+    private val removeNewItemBadgeUseCase: RemoveNewItemBadgeUseCase
 ) : ViewModel() {
 
     val state: StateFlow<SingaporeUiState> = combine(
@@ -31,6 +33,7 @@ class SingaporeAgencyViewModel @Inject constructor(
             gameState.isSingaporeKeyCollected,
             gameState.isSwordCollected,
             gameState.isHookCollected,
+            gameState.newItem,
             remainingTime
         )
     }
@@ -41,6 +44,7 @@ class SingaporeAgencyViewModel @Inject constructor(
                 isSingaporeKeyCollected = false,
                 isSwordCollected = false,
                 isHookCollected = false,
+                newItem = false,
                 remainingTime = 0
             )
         )
@@ -62,11 +66,16 @@ class SingaporeAgencyViewModel @Inject constructor(
             collectHookItem()
         }
     }
+
+    fun removeNewItemBadge() {
+        removeNewItemBadgeUseCase()
+    }
 }
 
 class SingaporeUiState(
     val isSingaporeKeyCollected: Boolean,
     val isSwordCollected: Boolean,
     val isHookCollected: Boolean,
+    val newItem: Boolean,
     val remainingTime: Int
 )

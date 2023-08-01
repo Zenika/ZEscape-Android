@@ -24,6 +24,7 @@ fun SingaporeAgencyRoute(
         openHintValidation,
         viewModel::collectKey,
         viewModel::collectSword,
-        viewModel::collectHook
+        viewModel::collectHook,
+        viewModel::removeNewItemBadge
     )
 }
