@@ -28,6 +28,7 @@ import com.zenika.utils.ZEscapeThemePreview
 fun WorldMapDialog(
     onDismissRequest: () -> Unit,
     openTextRecognition: () -> Unit,
+    goBackToPortal: () -> Unit,
     goToSingaporeAgency: () -> Unit,
     agencies: Set<Agency>
 ) {
@@ -81,6 +82,9 @@ fun WorldMapDialog(
             Button(onClick = openTextRecognition) {
                 Text(text = stringResource(R.string.add_agency))
             }
+            Button(onClick = goBackToPortal) {
+                Text(text = stringResource(R.string.goBackToPortal))
+            }
         }
     }
 }
@@ -101,6 +105,7 @@ private fun WorldMapDialogPreview() {
         WorldMapDialog(
             onDismissRequest = {},
             openTextRecognition = {},
+            goBackToPortal = {},
             goToSingaporeAgency = {},
             agencies = mutableSetOf(Agency.MONTREAL, Agency.CASABLANCA, Agency.PARIS)
         )

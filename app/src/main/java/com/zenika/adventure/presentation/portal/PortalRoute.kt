@@ -9,7 +9,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 @Composable
 fun PortalRoute(
     goToSettings: () -> Unit,
-    accessToPortal: () -> Unit,
+    accessToClosePortal: () -> Unit,
+    accessToOpenPortal: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     viewModel: PortalViewModel = hiltViewModel(),
@@ -18,12 +19,14 @@ fun PortalRoute(
         // Player cannot leave the adventure while it is running.
     }
 
-    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     PortalScreen(
-        remainingTime,
+        state,
         goToSettings,
-        accessToPortal,
+        accessToClosePortal,
+        accessToOpenPortal,
+        viewModel::finishGame,
         openWorldMap,
         openInventory
     )
