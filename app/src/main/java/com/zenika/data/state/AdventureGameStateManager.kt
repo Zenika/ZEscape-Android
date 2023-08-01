@@ -96,5 +96,20 @@ class AdventureGameStateManager @Inject constructor() {
             )
         }
     }
-}
 
+    fun discoverRooftop() {
+        _state.update {
+            it.copy(
+                isRooftopDiscovered = true
+            )
+        }
+    }
+
+    fun discoverMeetingRoom() {
+        _state.update {
+            it.copy(
+                isMeetingRoomDiscovered = true
+            )
+        }
+    }
+}

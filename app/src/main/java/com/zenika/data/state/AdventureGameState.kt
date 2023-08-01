@@ -11,6 +11,8 @@ data class AdventureGameState(
     val isSafeOpen: Boolean = false,
     val isCasablancaKeyCollected: Boolean = false,
     val isCasablancaPaperCollected: Boolean = false,
+    val isRooftopDiscovered: Boolean = false,
+    val isMeetingRoomDiscovered: Boolean = false,
     val penaltyCount: Int = 0,
     val hintCount: Int = 0,
     val newItem: Boolean = false
