@@ -23,10 +23,10 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun AdventureInventoryDialog(
-    modifier: Modifier,
     items: InventoryState,
     showItem: (Int) -> Unit,
-    onDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     AdventureDialog(
         onDismissRequest = onDismissRequest
@@ -59,7 +59,6 @@ fun AdventureInventoryDialog(
 private fun AdventureInventoryDialogPreview() {
     ZEscapeThemePreview {
         AdventureInventoryDialog(
-            Modifier,
             items = InventoryState(
                 listOf(
                     ItemDto("hook", R.mipmap.hook),
@@ -74,7 +73,8 @@ private fun AdventureInventoryDialogPreview() {
                     ItemDto("", 0)
                 )
             ),
-            showItem = {}
-        ) {}
+            showItem = {},
+            onDismissRequest = {}
+        )
     }
 }

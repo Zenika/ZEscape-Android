@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -30,67 +31,42 @@ fun SingaporeAgencyScreen(
     openInventory: () -> Unit,
     collectKey: () -> Unit,
     collectSword: () -> Unit,
-    collectHook: () -> Unit
+    collectHook: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     ScaffoldScreen(
         remainingTime = state.remainingTime,
         goToSettings = goToSettings,
-        background = R.mipmap.singapore_agency
+        background = R.mipmap.singapore_agency,
+        modifier = modifier
     ) {
-        AnimatedVisibility(
-            !state.isSwordCollected,
+        Balloon(
+            isCollected = state.isSwordCollected,
+            collect = collectSword,
+            painter = painterResource(R.mipmap.green_balloon),
+            contentDescription = stringResource(R.string.green_balloon),
             modifier = Modifier
                 .height(300.dp)
                 .align(Alignment.TopStart)
-                .clickable(
-                    interactionSource = MutableInteractionSource(),
-                    indication = null,
-                    onClick = collectSword
-                )
-                .padding(screenPadding),
-            exit = fadeOut()
-        ) {
-            Image(
-                painter = painterResource(R.mipmap.green_balloon),
-                contentDescription = stringResource(R.string.green_balloon)
-            )
-        }
-        AnimatedVisibility(
-            !state.isHookCollected,
+        )
+        Balloon(
+            isCollected = state.isHookCollected,
+            collect = collectHook,
+            painter = painterResource(R.mipmap.red_balloon),
+            contentDescription = stringResource(R.string.red_balloon),
             modifier = Modifier
                 .height(250.dp)
                 .align(Alignment.TopCenter)
-                .clickable(
-                    interactionSource = MutableInteractionSource(),
-                    indication = null,
-                    onClick = collectHook
-                )
-                .padding(screenPadding),
-            exit = fadeOut()
-        ) {
-            Image(
-                painter = painterResource(R.mipmap.red_balloon),
-                contentDescription = stringResource(R.string.red_balloon)
-            )
-        }
-        AnimatedVisibility(
-            !state.isSingaporeKeyCollected,
+        )
+        Balloon(
+            isCollected = state.isSingaporeKeyCollected,
+            collect = collectKey,
+            painter = painterResource(R.mipmap.orange_balloon),
+            contentDescription = stringResource(R.string.orange_balloon),
             modifier = Modifier
                 .height(300.dp)
                 .align(Alignment.TopEnd)
-                .clickable(
-                    interactionSource = MutableInteractionSource(),
-                    indication = null,
-                    onClick = collectKey
-                )
-                .padding(screenPadding),
-            exit = fadeOut()
-        ) {
-            Image(
-                painter = painterResource(R.mipmap.orange_balloon),
-                contentDescription = stringResource(R.string.orange_balloon)
-            )
-        }
+        )
         ContinentsMap(
             modifier = Modifier
                 .size(80.dp)
@@ -102,6 +78,32 @@ fun SingaporeAgencyScreen(
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
                 .clickable(onClick = openInventory)
+        )
+    }
+}
+
+@Composable
+private fun Balloon(
+    isCollected: Boolean,
+    collect: () -> Unit,
+    painter: Painter,
+    contentDescription: String,
+    modifier: Modifier = Modifier
+) {
+    AnimatedVisibility(
+        !isCollected,
+        modifier = modifier
+            .clickable(
+                interactionSource = MutableInteractionSource(),
+                indication = null,
+                onClick = collect
+            )
+            .padding(screenPadding),
+        exit = fadeOut()
+    ) {
+        Image(
+            painter = painter,
+            contentDescription = contentDescription
         )
     }
 }
