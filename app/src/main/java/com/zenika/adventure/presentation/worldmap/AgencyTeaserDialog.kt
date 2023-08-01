@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.world_map
+package com.zenika.adventure.presentation.worldmap
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
@@ -13,11 +13,14 @@ import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun AgencyTeaserDialog(onDismissRequest: () -> Unit) {
+fun AgencyTeaserDialog(
+    onDismissRequest: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     AdventureDialog(onDismissRequest = onDismissRequest) {
         Text(
             text = stringResource(R.string.agency_teaser),
-            modifier = Modifier.fillMaxWidth(),
+            modifier = modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = adventureBodyMedium
         )

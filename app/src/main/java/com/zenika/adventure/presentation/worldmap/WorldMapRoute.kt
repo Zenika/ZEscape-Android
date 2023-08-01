@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.world_map
+package com.zenika.adventure.presentation.worldmap
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
