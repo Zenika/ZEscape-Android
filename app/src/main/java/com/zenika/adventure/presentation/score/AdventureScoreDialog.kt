@@ -14,14 +14,15 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun AdventureScoreDialog(
-    onDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     AdventureDialog(
         onDismissRequest = onDismissRequest
     ) {
         Text(
             text = stringResource(R.string.final_text),
-            modifier = Modifier.fillMaxWidth(),
+            modifier = modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = adventureBodyMedium
         )

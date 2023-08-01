@@ -28,10 +28,11 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun AdventureScoreScreen(
     goBackToHome: () -> Unit,
-    statistics: Statistics
+    statistics: Statistics,
+    modifier: Modifier = Modifier
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .paint(
                 painter = painterResource(R.mipmap.computer),
