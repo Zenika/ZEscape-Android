@@ -9,4 +9,3 @@ gradle/
 .externalNativeBuild/
 
 /local.properties
-/gradlew*
