@@ -1,5 +1,7 @@
 package com.zenika.adventure.presentation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -70,6 +72,7 @@ private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
 private val casablancaOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/casablanca/outside" })
 private val singaporeOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/singapore/outside" })
 
+@RequiresApi(Build.VERSION_CODES.M)
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.adventureNavigation(
     route: String,

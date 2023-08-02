@@ -47,7 +47,6 @@ import com.zenika.ui.theme.screenPadding
 @Composable
 fun FlashlightScaffoldScreen(
     remainingTime: Int,
-    goBack: (() -> Unit)? = null,
     goToSettings: () -> Unit,
     background: Int,
     openWorldMap: () -> Unit,
