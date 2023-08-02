@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.montreal.simon_says
+package com.zenika.adventure.presentation.montreal.simonsays
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +19,8 @@ import com.zenika.R
 import com.zenika.adventure.presentation.component.ScaffoldScreen
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun SimonCase(
@@ -79,7 +81,7 @@ private fun SimonCasePlayerPreview() {
             state = SimonState(
                 mode = SimonGridMode.PLAYER,
                 lightButton = null,
-                buttonsText = ('A'..'P').toList(),
+                buttonsText = ('A'..'P').toImmutableList(),
                 systemSequence = mutableListOf(),
                 playerSequence = mutableListOf(),
                 indicationText = R.string.ready
@@ -102,7 +104,7 @@ private fun SimonCaseSystemPreview() {
             state = SimonState(
                 mode = SimonGridMode.SYSTEM,
                 lightButton = null,
-                buttonsText = listOf(),
+                buttonsText = persistentListOf(),
                 systemSequence = mutableListOf(),
                 playerSequence = mutableListOf(),
                 indicationText = R.string.ready

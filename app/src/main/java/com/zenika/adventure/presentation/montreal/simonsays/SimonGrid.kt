@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.montreal.simon_says
+package com.zenika.adventure.presentation.montreal.simonsays
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -20,17 +20,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.zenika.utils.ZEscapeThemePreview
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
+
+private const val COLUMNS_COUNT = 4
 
 @Composable
 fun SimonGrid(
-    buttonsText: List<Char>,
+    buttonsText: ImmutableList<Char>,
     onButtonClick: (Char) -> Unit,
     lightButton: Char?,
     mode: SimonGridMode,
     modifier: Modifier = Modifier
 ) {
     LazyVerticalGrid(
-        columns = GridCells.Fixed(4),
+        columns = GridCells.Fixed(COLUMNS_COUNT),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier
@@ -74,7 +78,7 @@ fun SimonGridPreview() {
     ZEscapeThemePreview {
         Column {
             SimonGrid(
-                buttonsText = ('A'..'P').toList(),
+                buttonsText = ('A'..'P').toImmutableList(),
                 onButtonClick = { sequence += it },
                 lightButton = null,
                 mode = SimonGridMode.PLAYER,
@@ -91,7 +95,7 @@ fun SimonGridPreview() {
 fun SimonGridLightPreview() {
     ZEscapeThemePreview {
         SimonGrid(
-            buttonsText = ('A'..'P').toList(),
+            buttonsText = ('A'..'P').toImmutableList(),
             onButtonClick = { },
             lightButton = 'A',
             mode = SimonGridMode.SYSTEM,
@@ -101,7 +105,7 @@ fun SimonGridLightPreview() {
     }
 }
 
-enum class SimonGridMode() {
+enum class SimonGridMode {
     PLAYER,
     SYSTEM
 }

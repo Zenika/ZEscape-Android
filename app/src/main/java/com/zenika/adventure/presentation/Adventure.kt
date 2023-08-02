@@ -27,7 +27,7 @@ import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
 import com.zenika.adventure.presentation.inventory.AdventureInventoryRoute
 import com.zenika.adventure.presentation.item.AdventureItemRoute
 import com.zenika.adventure.presentation.montreal.instruction.InstructionMontrealRoute
-import com.zenika.adventure.presentation.montreal.simon_says.SimonSaysRoute
+import com.zenika.adventure.presentation.montreal.simonsays.SimonSaysRoute
 import com.zenika.adventure.presentation.penalty.AdventurePenaltyRoute
 import com.zenika.adventure.presentation.portal.PortalRoute
 import com.zenika.adventure.presentation.portal_message.PortalMessageRoute

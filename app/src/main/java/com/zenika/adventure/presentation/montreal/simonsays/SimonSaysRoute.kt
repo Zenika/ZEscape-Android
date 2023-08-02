@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.montreal.simon_says
+package com.zenika.adventure.presentation.montreal.simonsays
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

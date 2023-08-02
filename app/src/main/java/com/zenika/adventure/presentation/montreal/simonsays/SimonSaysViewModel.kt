@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.montreal.simon_says
+package com.zenika.adventure.presentation.montreal.simonsays
 
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.zenika.R
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,6 +23,9 @@ import kotlin.random.Random
 
 private const val GAME_SIZE = 16
 private const val SEQUENCE_SIZE = 7
+private const val SHORT_DELAY: Long = 200
+private const val MEDIUM_DELAY: Long = 500
+private const val LONG_DELAY: Long = 1000
 
 @HiltViewModel
 class SimonsSaysViewModel @Inject constructor(
@@ -31,7 +36,7 @@ class SimonsSaysViewModel @Inject constructor(
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-                initialValue = 3_600_600
+                initialValue = 0
             )
 
     private val _events = MutableSharedFlow<SimonsSaysGameEvent>()
@@ -41,7 +46,7 @@ class SimonsSaysViewModel @Inject constructor(
         SimonState(
             mode = SimonGridMode.SYSTEM,
             lightButton = null,
-            buttonsText = ('A'..'P').toList(),
+            buttonsText = ('A'..'P').toImmutableList(),
             systemSequence = mutableListOf(),
             playerSequence = mutableListOf(),
             indicationText = R.string.ready
@@ -66,7 +71,7 @@ class SimonsSaysViewModel @Inject constructor(
     }
 
     private suspend fun continueGame() {
-        delay(500)
+        delay(MEDIUM_DELAY)
         _state.update {
             it.copy(
                 playerSequence = mutableListOf(),
@@ -80,7 +85,7 @@ class SimonsSaysViewModel @Inject constructor(
     private fun playSystemSequence() {
         viewModelScope.launch {
             addCharToSystemSequence()
-            delay(500)
+            delay(MEDIUM_DELAY)
             for (char in _state.value.systemSequence) {
                 lightButton(char)
             }
@@ -106,11 +111,11 @@ class SimonsSaysViewModel @Inject constructor(
         _state.update {
             it.copy(lightButton = char)
         }
-        delay(1000)
+        delay(LONG_DELAY)
         _state.update {
             it.copy(lightButton = null)
         }
-        delay(200)
+        delay(SHORT_DELAY)
     }
 
     fun onButtonClick(char: Char) {
@@ -131,7 +136,9 @@ class SimonsSaysViewModel @Inject constructor(
                 initGame(R.string.loseGame)
             }
         } else {
-            if (_state.value.playerSequence.last() != _state.value.systemSequence[_state.value.playerSequence.size - 1]) {
+            val lastButtonClick = _state.value.playerSequence.last()
+            val goodButton = _state.value.systemSequence[_state.value.playerSequence.size - 1]
+            if (lastButtonClick != goodButton) {
                 initGame(R.string.loseGame)
             }
         }
@@ -149,7 +156,7 @@ class SimonsSaysViewModel @Inject constructor(
 data class SimonState(
     val mode: SimonGridMode,
     val lightButton: Char?,
-    val buttonsText: List<Char>,
+    val buttonsText: ImmutableList<Char>,
     var systemSequence: MutableList<Char>,
     var playerSequence: MutableList<Char>,
     @StringRes val indicationText: Int
