@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -55,10 +56,6 @@ fun FlashlightScaffoldScreen(
     modifier: Modifier = Modifier,
     content: @Composable (BoxScope.() -> Unit)? = null
 ) {
-    var pointerOffset by remember {
-        mutableStateOf(Offset(0f, 0f))
-    }
-
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -86,58 +83,86 @@ fun FlashlightScaffoldScreen(
             )
         }
     ) { paddingValues ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .paint(
-                    painterResource(background),
-                    contentScale = ContentScale.Crop
-                )
-                .pointerInput("dragging") {
-                    detectDragGestures { _, dragAmount ->
-                        pointerOffset += dragAmount
-                    }
-                }
-                .onSizeChanged {
-                    pointerOffset = Offset(it.width / 2f, it.height / 2f)
-                }
-                .drawWithContent {
-                    drawContent()
-                    drawRect(
-                        Brush.radialGradient(
-                            listOf(Color.Transparent, Color.Black),
-                            center = pointerOffset,
-                            radius = 100.dp.toPx(),
-                        )
-                    )
-                }
-                .padding(paddingValues)
-                .padding(screenPadding)
-        ) {
-            CompositionLocalProvider(LocalContentColor provides Color.Black) {
-                if (content != null) {
-                    content()
+        FlashlightContent(
+            paddingValues,
+            background,
+            content
+        )
+        BottomItems(
+            openWorldMap,
+            openInventory
+        )
+    }
+}
+
+@Composable
+private fun FlashlightContent(
+    paddingValues: PaddingValues,
+    background: Int,
+    content: @Composable (BoxScope.() -> Unit)? = null
+) {
+    var pointerOffset by remember {
+        mutableStateOf(Offset(0f, 0f))
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .paint(
+                painterResource(background),
+                contentScale = ContentScale.Crop
+            )
+            .pointerInput("dragging") {
+                detectDragGestures { _, dragAmount ->
+                    pointerOffset += dragAmount
                 }
             }
+            .onSizeChanged {
+                pointerOffset = Offset(it.width / 2f, it.height / 2f)
+            }
+            .drawWithContent {
+                drawContent()
+                drawRect(
+                    Brush.radialGradient(
+                        listOf(Color.Transparent, Color.Black),
+                        center = pointerOffset,
+                        radius = 100.dp.toPx(),
+                    )
+                )
+            }
+            .padding(paddingValues)
+            .padding(screenPadding)
+    ) {
+        CompositionLocalProvider(LocalContentColor provides Color.Black) {
+            if (content != null) {
+                content()
+            }
         }
-        Box(
+    }
+}
+
+@Composable
+private fun BottomItems(
+    openWorldMap: () -> Unit,
+    openInventory: () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(screenPadding),
+        contentAlignment = Alignment.Center
+    ) {
+        ContinentsMap(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(screenPadding),
-            contentAlignment = Alignment.Center
-        ) {
-            ContinentsMap(
-                modifier = Modifier
-                    .size(80.dp)
-                    .align(Alignment.BottomStart)
-                    .clickable { openWorldMap() }
-            )
-            AdventureInventoryBag(
-                modifier = Modifier
-                    .size(80.dp)
-                    .align(Alignment.BottomEnd)
-                    .clickable { openInventory() }
-            )
-        }
+                .size(80.dp)
+                .align(Alignment.BottomStart)
+                .clickable { openWorldMap() }
+        )
+        AdventureInventoryBag(
+            modifier = Modifier
+                .size(80.dp)
+                .align(Alignment.BottomEnd)
+                .clickable { openInventory() }
+        )
     }
 }

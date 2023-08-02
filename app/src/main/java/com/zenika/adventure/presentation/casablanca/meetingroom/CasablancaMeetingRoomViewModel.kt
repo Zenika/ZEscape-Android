@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.casablanca.game_room
+package com.zenika.adventure.presentation.casablanca.meetingroom
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class CasablancaGameRoomViewModel @Inject constructor(
+class CasablancaMeetingRoomViewModel @Inject constructor(
     observeRemainingTime: ObserveRemainingTimeUseCase
 ) : ViewModel() {
     val remainingTime: StateFlow<Int> =

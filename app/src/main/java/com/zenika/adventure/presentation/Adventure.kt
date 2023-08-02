@@ -15,10 +15,10 @@ import com.zenika.adventure.presentation.casablanca.agency.CasablancaAgencyRoute
 import com.zenika.adventure.presentation.casablanca.component.CasablancaAgencyMapDialog
 import com.zenika.adventure.presentation.casablanca.instruction.InstructionCasablancaRoute
 import com.zenika.adventure.presentation.casablanca.kitchen.CasablancaKitchenRoute
-import com.zenika.adventure.presentation.casablanca.meeting_room.CasablancaMeetingRoomRoute
+import com.zenika.adventure.presentation.casablanca.meetingroom.CasablancaMeetingRoomRoute
 import com.zenika.adventure.presentation.casablanca.offices.CasablancaOfficesRoute
 import com.zenika.adventure.presentation.casablanca.outside.CasablancaOutsideRoute
-import com.zenika.adventure.presentation.casablanca.game_room.CasablancaGameRoomRoute
+import com.zenika.adventure.presentation.casablanca.gameroom.CasablancaGameRoomRoute
 import com.zenika.adventure.presentation.computer.ComputerRoute
 import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
