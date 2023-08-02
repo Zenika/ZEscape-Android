@@ -27,13 +27,15 @@ fun CasablancaAgencyMapDialog(
     goToRestRoom: () -> Unit,
     goToKitchen: () -> Unit,
     goToOffices: () -> Unit,
-    goToMeetingRoom: () -> Unit
+    goToMeetingRoom: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Dialog(
         onDismissRequest = onDismissRequest,
         properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
     ) {
         Column(
+            modifier = modifier,
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
