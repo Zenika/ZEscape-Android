@@ -1,5 +1,7 @@
 package com.zenika.adventure.presentation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -66,6 +68,7 @@ private const val ROUTE_CASABLANCA_OFFICES = "adventureCasablancaOffices"
 private const val ROUTE_CASABLANCA_MEETING_ROOM = "adventureCasablancaMeetingRoom"
 private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
 
+@RequiresApi(Build.VERSION_CODES.M)
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.adventureNavigation(
     route: String,
@@ -335,6 +338,7 @@ fun NavGraphBuilder.adventureNavigation(
         }
         composable(ROUTE_CASABLANCA_RESTROOM) {
             CasablancaGameRoomRoute(
+                goBack = { navController.popBackStack() },
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) }
@@ -342,6 +346,7 @@ fun NavGraphBuilder.adventureNavigation(
         }
         composable(ROUTE_CASABLANCA_KITCHEN) {
             CasablancaKitchenRoute(
+                goBack = { navController.popBackStack() },
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) }
@@ -349,6 +354,7 @@ fun NavGraphBuilder.adventureNavigation(
         }
         composable(ROUTE_CASABLANCA_OFFICES) {
             CasablancaOfficesRoute(
+                goBack = { navController.popBackStack() },
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) }
@@ -356,6 +362,7 @@ fun NavGraphBuilder.adventureNavigation(
         }
         composable(ROUTE_CASABLANCA_MEETING_ROOM) {
             CasablancaMeetingRoomRoute(
+                goBack = { navController.popBackStack() },
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) }

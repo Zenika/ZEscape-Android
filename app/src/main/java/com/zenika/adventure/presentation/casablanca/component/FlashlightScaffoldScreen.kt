@@ -1,5 +1,9 @@
 package com.zenika.adventure.presentation.casablanca.component
 
+import android.content.Context
+import android.hardware.camera2.CameraManager
+import android.os.Build.VERSION_CODES
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
@@ -35,16 +39,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
+import com.zenika.presentation.component.ReturnButton
 import com.zenika.presentation.component.SettingsButton
 import com.zenika.presentation.component.Timer
 import com.zenika.ui.theme.screenPadding
 
+@RequiresApi(VERSION_CODES.M)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FlashlightScaffoldScreen(
@@ -54,6 +61,7 @@ fun FlashlightScaffoldScreen(
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     modifier: Modifier = Modifier,
+    goBack: (() -> Unit)? = null,
     content: @Composable (BoxScope.() -> Unit)? = null
 ) {
     Scaffold(
@@ -67,8 +75,11 @@ fun FlashlightScaffoldScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = {}) {
-                        Icon(Icons.Filled.Search, stringResource(R.string.hint))
+                    if (goBack != null) ReturnButton(goBack = goBack)
+                    else {
+                        IconButton(onClick = {}) {
+                            Icon(Icons.Filled.Search, stringResource(R.string.hint))
+                        }
                     }
                 },
                 actions = {
@@ -95,6 +106,7 @@ fun FlashlightScaffoldScreen(
     }
 }
 
+@RequiresApi(VERSION_CODES.M)
 @Composable
 private fun FlashlightContent(
     paddingValues: PaddingValues,
@@ -103,6 +115,28 @@ private fun FlashlightContent(
 ) {
     var pointerOffset by remember {
         mutableStateOf(Offset(0f, 0f))
+    }
+
+    var isFlashLightOn by remember {
+        mutableStateOf(false)
+    }
+
+    val context = LocalContext.current
+    val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+
+    val torchCallback: CameraManager.TorchCallback =
+        object : CameraManager.TorchCallback() {
+            override fun onTorchModeChanged(cameraId: String, enabled: Boolean) {
+                super.onTorchModeChanged(cameraId, enabled)
+                isFlashLightOn = enabled
+            }
+        }
+    cameraManager.registerTorchCallback(torchCallback, null)
+
+    val colors = if (isFlashLightOn) {
+        listOf(Color.Transparent, Color.Black)
+    } else {
+        listOf(Color.Black, Color.Black)
     }
 
     Box(
@@ -124,7 +158,7 @@ private fun FlashlightContent(
                 drawContent()
                 drawRect(
                     Brush.radialGradient(
-                        listOf(Color.Transparent, Color.Black),
+                        colors,
                         center = pointerOffset,
                         radius = 100.dp.toPx(),
                     )
@@ -134,7 +168,7 @@ private fun FlashlightContent(
             .padding(screenPadding)
     ) {
         CompositionLocalProvider(LocalContentColor provides Color.Black) {
-            if (content != null) {
+            if (content != null && isFlashLightOn) {
                 content()
             }
         }

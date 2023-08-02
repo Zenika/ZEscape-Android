@@ -10,6 +10,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 @RequiresApi(Build.VERSION_CODES.M)
 @Composable
 fun CasablancaOfficesRoute(
+    goBack: () -> Unit,
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
@@ -19,6 +20,7 @@ fun CasablancaOfficesRoute(
 
     CasablancaOfficesScreen(
         remainingTime,
+        goBack,
         goToSettings,
         openWorldMap,
         openInventory

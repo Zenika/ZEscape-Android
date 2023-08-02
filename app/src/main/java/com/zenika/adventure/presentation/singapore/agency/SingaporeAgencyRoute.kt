@@ -12,13 +12,15 @@ fun SingaporeAgencyRoute(
     openInventory: () -> Unit,
     viewModel: SingaporeAgencyViewModel = hiltViewModel(),
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     SingaporeAgencyScreen(
-        remainingTime,
+        state,
         goToSettings,
         openWorldMap,
-        openInventory
+        openInventory,
+        viewModel::collectKey,
+        viewModel::collectSword,
+        viewModel::collectHook
     )
 }
-
