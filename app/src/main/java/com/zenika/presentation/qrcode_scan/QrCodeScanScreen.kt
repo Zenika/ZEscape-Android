@@ -86,7 +86,7 @@ fun QrCodeScanScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(R.string.scan),
+                        text = stringResource(R.string.qr_code_scan),
                         Modifier
                             .fillMaxWidth()
                     )
