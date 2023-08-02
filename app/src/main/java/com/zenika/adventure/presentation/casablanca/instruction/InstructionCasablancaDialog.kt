@@ -14,12 +14,13 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun InstructionCasablancaDialog(
-    onDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     AdventureDialog(onDismissRequest = onDismissRequest) {
         Text(
             text = stringResource(R.string.instruction_casablanca),
-            modifier = Modifier.fillMaxWidth(),
+            modifier = modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = adventureBodyMedium
         )

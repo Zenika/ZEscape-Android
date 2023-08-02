@@ -18,9 +18,11 @@ fun CasablancaAgencyScreen(
     remainingTime: Int,
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
-    openInventory: () -> Unit
+    openInventory: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     ScaffoldScreen(
+        modifier = modifier,
         remainingTime = remainingTime,
         goToSettings = goToSettings,
         background = R.mipmap.casablanca_agency
@@ -45,7 +47,7 @@ fun CasablancaAgencyScreen(
 private fun CasablancaAgencyScreenPreview() {
     ZEscapeThemePreview {
         CasablancaAgencyScreen(
-            remainingTime = 60,
+            remainingTime = 0,
             goToSettings = {},
             openWorldMap = {},
             openInventory = {}

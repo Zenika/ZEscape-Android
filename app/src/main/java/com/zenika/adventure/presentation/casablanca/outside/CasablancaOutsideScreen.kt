@@ -29,7 +29,8 @@ fun CasablancaOutsideScreen(
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
-    enterInAgency: () -> Unit
+    enterInAgency: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val buttonsText = listOf(
         R.string.force_door,
@@ -39,6 +40,7 @@ fun CasablancaOutsideScreen(
     )
 
     ScaffoldScreen(
+        modifier = modifier,
         remainingTime = remainingTime,
         goToSettings = goToSettings,
         background = R.mipmap.casablanca_outside

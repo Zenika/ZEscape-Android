@@ -35,10 +35,10 @@ fun SingaporeAgencyScreen(
     modifier: Modifier = Modifier
 ) {
     ScaffoldScreen(
+        modifier = modifier,
         remainingTime = state.remainingTime,
         goToSettings = goToSettings,
-        background = R.mipmap.singapore_agency,
-        modifier = modifier
+        background = R.mipmap.singapore_agency
     ) {
         Balloon(
             isCollected = state.isSwordCollected,
