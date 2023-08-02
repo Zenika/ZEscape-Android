@@ -25,7 +25,8 @@ import com.zenika.utils.ZEscapeThemePreview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreditScreen(
-    goBack: () -> Unit
+    goBack: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Scaffold(
         topBar = {
@@ -48,7 +49,7 @@ fun CreditScreen(
         }
     ) { paddingValues ->
         LazyColumn(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(screenPadding),
