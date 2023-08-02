@@ -18,6 +18,6 @@ class CasablancaGameRoomViewModel @Inject constructor(
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-                initialValue = 3_600_600
+                initialValue = 0
             )
 }
