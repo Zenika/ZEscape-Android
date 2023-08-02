@@ -30,6 +30,7 @@ fun CasablancaMeetingRoomScreen(
     FlashlightScaffoldScreen(
         modifier = modifier,
         remainingTime = state.remainingTime,
+        goBack = goBack,
         goToSettings = goToSettings,
         background = R.mipmap.casablanca_meeting_room,
         openWorldMap = openWorldMap,
