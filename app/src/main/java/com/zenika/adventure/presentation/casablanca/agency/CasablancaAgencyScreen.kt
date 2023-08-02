@@ -31,13 +31,13 @@ fun CasablancaAgencyScreen(
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomStart)
-                .clickable { openWorldMap() }
+                .clickable(onClick = openWorldMap)
         )
         AdventureInventoryBag(
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
-                .clickable { openInventory() }
+                .clickable(onClick = openInventory)
         )
     }
 }

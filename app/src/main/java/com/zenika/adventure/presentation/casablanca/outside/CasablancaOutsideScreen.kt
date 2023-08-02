@@ -2,11 +2,12 @@ package com.zenika.adventure.presentation.casablanca.outside
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,7 +33,7 @@ fun CasablancaOutsideScreen(
     enterInAgency: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val buttonsText = listOf(
+    val buttonTexts = listOf(
         R.string.force_door,
         R.string.ring_intercom,
         R.string.go_through_window,
@@ -45,32 +46,27 @@ fun CasablancaOutsideScreen(
         goToSettings = goToSettings,
         background = R.mipmap.casablanca_outside
     ) {
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
+            horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally)
         ) {
-            Text(
-                text = stringResource(R.string.casablanca_outside_text),
-                color = Color.White,
-                textAlign = TextAlign.Center
-            )
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
-                horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally)
-            ) {
-                items(
-                    buttonsText.size
-                ) { item ->
-                    Button(
-                        onClick = { if (buttonsText[item] == R.string.go_through_window) enterInAgency() },
-                        modifier = Modifier.height(80.dp)
-                    ) {
-                        Text(
-                            text = stringResource(buttonsText[item]),
-                            textAlign = TextAlign.Center
-                        )
-                    }
+            item(span = { GridItemSpan(2) }) {
+                Text(
+                    text = stringResource(R.string.casablanca_outside_text),
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+            }
+            items(buttonTexts) { buttonText ->
+                Button(
+                    onClick = { if (buttonText == R.string.go_through_window) enterInAgency() },
+                    modifier = Modifier.height(80.dp)
+                ) {
+                    Text(
+                        text = stringResource(buttonText),
+                        textAlign = TextAlign.Center
+                    )
                 }
             }
         }
@@ -78,13 +74,13 @@ fun CasablancaOutsideScreen(
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomStart)
-                .clickable { openWorldMap() }
+                .clickable(onClick = openWorldMap)
         )
         AdventureInventoryBag(
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
-                .clickable { openInventory() }
+                .clickable(onClick = openInventory)
         )
     }
 }
