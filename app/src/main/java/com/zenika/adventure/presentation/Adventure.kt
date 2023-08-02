@@ -33,7 +33,7 @@ import com.zenika.presentation.settings.SettingsRoute
 
 private const val ROUTE_HOME = "adventureHome"
 private const val ROUTE_COMPUTER = "adventureComputer"
-private const val ROUTE_QRCODE_SCAN = "adventureQrCodeScan"
+private const val ROUTE_QRCODE_SCAN = "adventureQrCodeScan/{qrcode}"
 private const val ROUTE_PORTAL = "adventurePortal"
 private const val ROUTE_INSTRUCTION = "adventureInstruction"
 private const val ROUTE_SETTINGS = "adventureSettings"
@@ -72,10 +72,22 @@ fun NavGraphBuilder.adventureNavigation(
         composable(ROUTE_COMPUTER) {
             ComputerRoute(
                 goBack = { navController.popBackStack() },
-                goToScan = { navController.navigate(ROUTE_QRCODE_SCAN) }
+                goToScan = {
+                    navController.navigate(
+                        ROUTE_QRCODE_SCAN.replace(
+                            "{qrcode}",
+                            "trigger-002"
+                        )
+                    )
+                }
             )
         }
-        composable(ROUTE_QRCODE_SCAN) {
+        composable(
+            ROUTE_QRCODE_SCAN,
+            arguments = listOf(navArgument("qrcode") {
+                type = NavType.StringType
+            })
+        ) {
             QrCodeScanRoute(
                 goBack = { navController.popBackStack() },
                 goToNextScreen = {

@@ -51,6 +51,7 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
 fun QrCodeScanScreen(
+    qrcode: String,
     goBack: () -> Unit,
     goToNextScreen: () -> Unit
 ) {
@@ -141,7 +142,7 @@ fun QrCodeScanScreen(
                     modifier = Modifier.fillMaxSize()
                 )
                 AnimatedVisibility(
-                    visible = code == "trigger-001",
+                    visible = code == qrcode,
                     modifier = Modifier.align(Alignment.Center),
                     enter = scaleIn()
                 ) {
@@ -156,7 +157,7 @@ fun QrCodeScanScreen(
             }
 
             LaunchedEffect(code) {
-                if (code == "trigger-001") {
+                if (code == qrcode) {
                     delay(1500)
                     goToNextScreen()
                 }
@@ -170,6 +171,7 @@ fun QrCodeScanScreen(
 private fun QrCodeScanScreenPreview() {
     ZEscapeThemePreview {
         QrCodeScanScreen(
+            qrcode = "trigger-001",
             goBack = {},
             goToNextScreen = {}
         )
