@@ -39,6 +39,7 @@ fun ScaffoldScreen(
     content: @Composable BoxScope.() -> Unit
 ) {
     Scaffold(
+        modifier = modifier,
         topBar = {
             TopAppBar(
                 title = {
@@ -62,7 +63,7 @@ fun ScaffoldScreen(
         }
     ) { paddingValues ->
         Box(
-            modifier
+            Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .paint(

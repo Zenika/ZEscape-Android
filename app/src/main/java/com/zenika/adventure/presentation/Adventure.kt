@@ -17,6 +17,8 @@ import com.zenika.adventure.presentation.inventory.AdventureInventoryRoute
 import com.zenika.adventure.presentation.item.AdventureItemRoute
 import com.zenika.adventure.presentation.portal.PortalRoute
 import com.zenika.adventure.presentation.portal_message.PortalMessageRoute
+import com.zenika.adventure.presentation.score.AdventureScoreDialog
+import com.zenika.adventure.presentation.score.AdventureScoreRoute
 import com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyDialog
 import com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyRoute
 import com.zenika.adventure.presentation.singapore.instruction.InstructionSingaporeRoute
@@ -41,6 +43,8 @@ private const val ROUTE_SINGAPORE_INSTRUCTION = "adventureSingaporeInstruction"
 private const val ROUTE_ON_OFF_GAME = "adventureOnOffGame"
 private const val ROUTE_SINGAPORE_AGENCY = "adventureSingaporeAgency"
 private const val ROUTE_SINGAPORE_AGENCY_DIALOG = "adventureSingaporeAgencyDialog"
+private const val ROUTE_SCORE = "adventureScore"
+private const val ROUTE_SCORE_DIALOG = "adventureScoreDialog"
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.adventureNavigation(
@@ -81,7 +85,11 @@ fun NavGraphBuilder.adventureNavigation(
         composable(ROUTE_PORTAL) {
             PortalRoute(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
-                accessToPortal = { navController.navigate(ROUTE_PORTAL_MESSAGE) },
+                accessToClosePortal = { navController.navigate(ROUTE_PORTAL_MESSAGE) },
+                accessToOpenPortal = {
+                    navController.navigate(ROUTE_SCORE)
+                    navController.navigate(ROUTE_SCORE_DIALOG)
+                },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) }
             )
@@ -124,7 +132,11 @@ fun NavGraphBuilder.adventureNavigation(
             WorldMapRoute(
                 onDismissRequest = { navController.popBackStack() },
                 openTextRecognition = { navController.navigate(ROUTE_AGENCY_RECOGNITION) },
-                goToSingaporeAgency = {
+                goBackToPortal = {
+                    navController.popBackStack(route = ROUTE_PORTAL, inclusive = false)
+                },
+                goInsideSingaporeAgency = { navController.navigate(route = ROUTE_SINGAPORE_AGENCY) },
+                openOnOffGame = {
                     navController.navigate(ROUTE_ON_OFF_GAME)
                     navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
                 }
@@ -187,6 +199,21 @@ fun NavGraphBuilder.adventureNavigation(
         }
         dialog(ROUTE_SINGAPORE_AGENCY_DIALOG) {
             SingaporeAgencyDialog(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
+        composable(ROUTE_SCORE) {
+            AdventureScoreRoute(
+                goBackToHome = {
+                    navController.popBackStack(
+                        route = ROUTE_HOME,
+                        inclusive = true
+                    )
+                }
+            )
+        }
+        dialog(ROUTE_SCORE_DIALOG) {
+            AdventureScoreDialog(
                 onDismissRequest = { navController.popBackStack() }
             )
         }
