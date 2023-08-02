@@ -24,3 +24,4 @@ fun SingaporeAgencyRoute(
         viewModel::collectHook
     )
 }
+

@@ -23,7 +23,7 @@ fun AdventureItem(
 
 @ScreenPreview
 @Composable
-fun AdventureItemPreview() {
+private fun AdventureItemPreview() {
     ZEscapeThemePreview {
         AdventureItem(
             item = R.mipmap.hook

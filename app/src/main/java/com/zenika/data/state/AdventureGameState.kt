@@ -4,6 +4,7 @@ import com.zenika.data.Agency
 
 data class AdventureGameState(
     val agencies: Set<Agency> = setOf(),
+    val isSingaporeAgencyOpen: Boolean = false,
     val isSingaporeKeyCollected: Boolean = false,
     val isSwordCollected: Boolean = false,
     val isHookCollected: Boolean = false,

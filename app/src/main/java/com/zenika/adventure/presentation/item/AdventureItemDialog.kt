@@ -25,7 +25,7 @@ fun AdventureItemDialog(
 private fun AdventureItemDialogPreview() {
     ZEscapeThemePreview {
         AdventureItemDialog(
-            item = R.mipmap.parchment,
+            item = R.mipmap.hook,
             onDismissRequest = {}
         )
     }
