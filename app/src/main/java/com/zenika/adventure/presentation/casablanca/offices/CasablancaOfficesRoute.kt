@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.casablanca.game_room
+package com.zenika.adventure.presentation.casablanca.offices
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -6,15 +6,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
-fun GameRoomRoute(
+fun CasablancaOfficesRoute(
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
-    viewModel: GameRoomViewModel = hiltViewModel()
+    viewModel: CasablancaOfficesViewModel = hiltViewModel()
 ) {
     val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
 
-    GameRoomScreen(
+    CasablancaOfficesScreen(
         remainingTime,
         goToSettings,
         openWorldMap,

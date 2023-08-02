@@ -12,13 +12,13 @@ import com.zenika.adventure.presentation.agency_recognition.AgencyRecognitionRou
 import com.zenika.adventure.presentation.agency_validation.AgencyValidationRoute
 import com.zenika.adventure.presentation.casablanca.agency.CasablancaAgencyDialog
 import com.zenika.adventure.presentation.casablanca.agency.CasablancaAgencyRoute
-import com.zenika.adventure.presentation.casablanca.agency_map.AgencyMapRoute
+import com.zenika.adventure.presentation.casablanca.component.CasablancaAgencyMapDialog
 import com.zenika.adventure.presentation.casablanca.instruction.InstructionCasablancaRoute
-import com.zenika.adventure.presentation.casablanca.kitchen.KitchenRoute
-import com.zenika.adventure.presentation.casablanca.meeting_room.MeetingRoomRoute
-import com.zenika.adventure.presentation.casablanca.offices.OfficesRoute
+import com.zenika.adventure.presentation.casablanca.kitchen.CasablancaKitchenRoute
+import com.zenika.adventure.presentation.casablanca.meeting_room.CasablancaMeetingRoomRoute
+import com.zenika.adventure.presentation.casablanca.offices.CasablancaOfficesRoute
 import com.zenika.adventure.presentation.casablanca.outside.CasablancaOutsideRoute
-import com.zenika.adventure.presentation.casablanca.game_room.GameRoomRoute
+import com.zenika.adventure.presentation.casablanca.game_room.CasablancaGameRoomRoute
 import com.zenika.adventure.presentation.computer.ComputerRoute
 import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
@@ -325,7 +325,7 @@ fun NavGraphBuilder.adventureNavigation(
             )
         }
         dialog(ROUTE_CASABLANCA_AGENCY_MAP) {
-            AgencyMapRoute(
+            CasablancaAgencyMapDialog(
                 onDismissRequest = { navController.popBackStack() },
                 goToRestRoom = { navController.navigate(ROUTE_CASABLANCA_RESTROOM) },
                 goToKitchen = { navController.navigate(ROUTE_CASABLANCA_KITCHEN) },
@@ -334,28 +334,28 @@ fun NavGraphBuilder.adventureNavigation(
             )
         }
         composable(ROUTE_CASABLANCA_RESTROOM) {
-            GameRoomRoute(
+            CasablancaGameRoomRoute(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) }
             )
         }
         composable(ROUTE_CASABLANCA_KITCHEN) {
-            KitchenRoute(
+            CasablancaKitchenRoute(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) }
             )
         }
         composable(ROUTE_CASABLANCA_OFFICES) {
-            OfficesRoute(
+            CasablancaOfficesRoute(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) }
             )
         }
         composable(ROUTE_CASABLANCA_MEETING_ROOM) {
-            MeetingRoomRoute(
+            CasablancaMeetingRoomRoute(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) }

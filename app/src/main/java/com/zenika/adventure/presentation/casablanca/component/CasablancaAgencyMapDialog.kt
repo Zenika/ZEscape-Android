@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.casablanca.agency_map
+package com.zenika.adventure.presentation.casablanca.component
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -22,7 +22,7 @@ import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun AgencyMapDialog(
+fun CasablancaAgencyMapDialog(
     onDismissRequest: () -> Unit,
     goToRestRoom: () -> Unit,
     goToKitchen: () -> Unit,
@@ -91,7 +91,7 @@ fun AgencyMapDialog(
 @Composable
 private fun AgencyMapDialogPreview() {
     ZEscapeThemePreview {
-        AgencyMapDialog(
+        CasablancaAgencyMapDialog(
             onDismissRequest = {},
             goToRestRoom = {},
             goToKitchen = {},

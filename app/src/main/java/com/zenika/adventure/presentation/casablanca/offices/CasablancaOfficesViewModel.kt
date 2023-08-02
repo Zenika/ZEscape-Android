@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class OfficesViewModel @Inject constructor(
+class CasablancaOfficesViewModel @Inject constructor(
     observeRemainingTime: ObserveRemainingTimeUseCase
 ) : ViewModel() {
     val remainingTime: StateFlow<Int> =
