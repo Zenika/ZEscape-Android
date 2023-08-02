@@ -27,13 +27,16 @@ import com.zenika.presentation.debug.component.MiniGameCard
 import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DebugScreen(
     goBack: () -> Unit,
     initGameState: () -> Unit,
-    games: List<Pair<Game, () -> Unit>>
+    games: ImmutableList<Pair<Game, () -> Unit>>,
+    modifier: Modifier = Modifier
 ) {
     Scaffold(
         topBar = {
@@ -56,7 +59,7 @@ fun DebugScreen(
         }
     ) { paddingValues ->
         Column(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(screenPadding),
@@ -88,7 +91,7 @@ private fun DebugScreenPreview() {
         DebugScreen(
             goBack = {},
             initGameState = {},
-            games = listOf(
+            games = persistentListOf(
                 Game.ON_OFF to {},
                 Game.ON_OFF to {}
             )

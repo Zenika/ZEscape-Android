@@ -7,11 +7,12 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.zenika.data.Game
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 fun DebugRoute(
     goBack: () -> Unit,
-    games: List<Pair<Game, () -> Unit>>,
+    games: ImmutableList<Pair<Game, () -> Unit>>,
     viewModel: DebugViewModel = hiltViewModel()
 ) {
     BackHandler {

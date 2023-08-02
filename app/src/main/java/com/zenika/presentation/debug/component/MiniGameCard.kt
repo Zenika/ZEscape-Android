@@ -19,10 +19,11 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun MiniGameCard(
     game: Game,
-    goTo: () -> Unit
+    goTo: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .semantics(mergeDescendants = true) {}
             .clickable(onClick = goTo)

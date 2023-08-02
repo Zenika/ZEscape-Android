@@ -8,6 +8,7 @@ import com.google.accompanist.navigation.animation.composable
 import com.zenika.adventure.presentation.singapore.on_off_game.OnOffRoute
 import com.zenika.data.Game
 import com.zenika.presentation.qrcode_scan.QrCodeScanRoute
+import kotlinx.collections.immutable.persistentListOf
 
 private const val ROUTE_HOME = "adventureHome"
 private const val ROUTE_QRCODE_SCAN = "adventureQrCodeScan"
@@ -25,7 +26,9 @@ fun NavGraphBuilder.debugNavigation(
         composable(ROUTE_HOME) {
             DebugRoute(
                 goBack = { navController.popBackStack() },
-                games = listOf(Game.ON_OFF to { navController.navigate(ROUTE_ON_OFF_GAME) })
+                games = persistentListOf(
+                    Game.ON_OFF to { navController.navigate(ROUTE_ON_OFF_GAME) }
+                )
             )
         }
         composable(ROUTE_QRCODE_SCAN) {

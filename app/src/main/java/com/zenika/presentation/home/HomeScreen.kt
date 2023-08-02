@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -66,44 +67,61 @@ fun HomeScreen(
             )
         }
     ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(screenPadding),
-            verticalArrangement = Arrangement.spacedBy(
-                buttonPadding,
-                alignment = Alignment.CenterVertically
-            ),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+        HomeContent(
+            paddingValues = paddingValues,
+            tapCount = tapCount,
+            goToTutorial = goToTutorial,
+            goToAdventure = goToAdventure,
+            goToDebug = goToDebug
+        )
+    }
+}
+
+@Composable
+private fun HomeContent(
+    paddingValues: PaddingValues,
+    tapCount: Int,
+    goToTutorial: () -> Unit,
+    goToAdventure: () -> Unit,
+    goToDebug: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+            .padding(screenPadding),
+        verticalArrangement = Arrangement.spacedBy(
+            buttonPadding,
+            alignment = Alignment.CenterVertically
+        ),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(R.string.home_text),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyLarge
+        )
+        Button(onClick = goToTutorial) {
             Text(
-                text = stringResource(R.string.home_text),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyLarge
+                text = stringResource(R.string.tutorial),
+                style = MaterialTheme.typography.headlineLarge
             )
-            Button(onClick = goToTutorial) {
+        }
+        Button(onClick = goToAdventure) {
+            Text(
+                text = stringResource(R.string.adventure),
+                style = MaterialTheme.typography.headlineSmall
+            )
+        }
+        AnimatedVisibility(
+            visible = tapCount >= 10,
+            enter = fadeIn()
+        ) {
+            Button(onClick = goToDebug) {
                 Text(
-                    text = stringResource(R.string.tutorial),
-                    style = MaterialTheme.typography.headlineLarge
-                )
-            }
-            Button(onClick = goToAdventure) {
-                Text(
-                    text = stringResource(R.string.adventure),
+                    text = stringResource(R.string.debug),
                     style = MaterialTheme.typography.headlineSmall
                 )
-            }
-            AnimatedVisibility(
-                visible = tapCount >= 10,
-                enter = fadeIn()
-            ) {
-                Button(onClick = goToDebug) {
-                    Text(
-                        text = stringResource(R.string.debug),
-                        style = MaterialTheme.typography.headlineSmall
-                    )
-                }
             }
         }
     }
