@@ -1,4 +1,4 @@
-package com.zenika.presentation.qrcode_scan
+package com.zenika.presentation.qrcodescan
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

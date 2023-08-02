@@ -8,7 +8,7 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.composable
-import com.zenika.presentation.qrcode_scan.QrCodeScanRoute
+import com.zenika.presentation.qrcodescan.QrCodeScanRoute
 import com.zenika.presentation.settings.SettingsRoute
 import com.zenika.tutorial.presentation.color_buttons_order_game.ColorButtonsOrderGameRoute
 import com.zenika.tutorial.presentation.hint.TutorialHintRoute

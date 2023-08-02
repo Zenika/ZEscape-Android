@@ -28,7 +28,7 @@ import com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyRoute
 import com.zenika.adventure.presentation.singapore.instruction.InstructionSingaporeRoute
 import com.zenika.adventure.presentation.singapore.on_off_game.OnOffRoute
 import com.zenika.adventure.presentation.world_map.WorldMapRoute
-import com.zenika.presentation.qrcode_scan.QrCodeScanRoute
+import com.zenika.presentation.qrcodescan.QrCodeScanRoute
 import com.zenika.presentation.settings.SettingsRoute
 
 private const val ROUTE_HOME = "adventureHome"

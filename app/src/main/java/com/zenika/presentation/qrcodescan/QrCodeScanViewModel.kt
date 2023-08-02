@@ -1,4 +1,4 @@
-package com.zenika.presentation.qrcode_scan
+package com.zenika.presentation.qrcodescan
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
