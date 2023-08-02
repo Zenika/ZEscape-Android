@@ -25,9 +25,9 @@ fun Safe(
     collectKey: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    if (!safeState.safeOpened) {
+    if (!safeState.isSafeOpen) {
         SafeItem(R.mipmap.close_safe, onClick = goToSafe, modifier)
-    } else if (!safeState.keyCollected) {
+    } else if (!safeState.isKeyCollected) {
         SafeItem(R.mipmap.key_safe, onClick = collectKey, modifier)
     } else {
         SafeItem(R.mipmap.open_safe, onClick = {}, modifier)
@@ -72,7 +72,7 @@ private fun SafeItem(
 fun SafePreview() {
     ZEscapeThemePreview {
         Safe(
-            safeState = CasablancaUiState(safeOpened = true, keyCollected = false),
+            safeState = CasablancaUiState(isSafeOpen = true, isKeyCollected = false),
             goToSafe = {},
             collectKey = {}
         )

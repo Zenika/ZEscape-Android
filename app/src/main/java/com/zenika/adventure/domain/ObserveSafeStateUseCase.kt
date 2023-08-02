@@ -7,5 +7,5 @@ import javax.inject.Inject
 class ObserveSafeStateUseCase @Inject constructor(
     private val gameStateManager: AdventureGameStateManager
 ) {
-    operator fun invoke() = gameStateManager.state.map { it.safeOpened }
+    operator fun invoke() = gameStateManager.state.map { it.isSafeOpen }
 }

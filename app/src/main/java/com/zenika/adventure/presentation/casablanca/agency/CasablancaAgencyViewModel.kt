@@ -36,14 +36,14 @@ class CasablancaAgencyViewModel @Inject constructor(
         observeSafeStateUseCase(), observeCasablancaKeyStateUseCase()
     ) { safeState, keyState ->
         CasablancaUiState(
-            safeState,
-            keyState
+            isSafeOpen = safeState,
+            isKeyCollected = keyState
         )
     }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = CasablancaUiState(safeOpened = false, keyCollected = false)
+            initialValue = CasablancaUiState(isSafeOpen = false, isKeyCollected = false)
         )
 
     fun collectKey() {
@@ -55,6 +55,6 @@ class CasablancaAgencyViewModel @Inject constructor(
 }
 
 class CasablancaUiState(
-    val safeOpened: Boolean,
-    val keyCollected: Boolean
+    val isSafeOpen: Boolean,
+    val isKeyCollected: Boolean
 )
