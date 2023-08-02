@@ -32,19 +32,26 @@ import com.zenika.R
 import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
+private const val COLUMNS_COUNT = 3
+private const val NUMBERS = 9
+
 @Composable
 fun SafeDialog(
     onDismissRequest: () -> Unit,
     code: String,
     addNumber: (String) -> Unit,
     clearNumber: () -> Unit,
-    checkCode: () -> Unit
+    checkCode: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Dialog(
         onDismissRequest = onDismissRequest,
         properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
     ) {
-        Box(contentAlignment = Alignment.Center) {
+        Box(
+            modifier = modifier,
+            contentAlignment = Alignment.Center
+        ) {
             Image(
                 painter = painterResource(R.mipmap.mecanism),
                 contentDescription = stringResource(R.string.close_safe),
@@ -59,14 +66,13 @@ fun SafeDialog(
                         .background(MaterialTheme.colorScheme.primaryContainer)
                         .border(4.dp, MaterialTheme.colorScheme.primary)
                         .align(CenterHorizontally),
-                    textAlign = TextAlign.Center,
-                    maxLines = 1
+                    textAlign = TextAlign.Center
                 )
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(3),
+                    columns = GridCells.Fixed(COLUMNS_COUNT),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    items(9) {
+                    items(NUMBERS) {
                         val number = it + 1
                         Button(onClick = { addNumber(number.toString()) }) {
                             Text(text = number.toString())

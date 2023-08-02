@@ -15,6 +15,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+private const val MAX_SIZE_CODE = 6
+
 @HiltViewModel
 class SafeViewModel @Inject constructor(
     private val openSafe: OpenSafeUseCase
@@ -33,7 +35,7 @@ class SafeViewModel @Inject constructor(
     fun addNumber(number: String) {
         _code.update { code ->
             var newCode = code
-            if (code.length < 6) {
+            if (code.length < MAX_SIZE_CODE) {
                 Log.d("code", code)
                 newCode = code + number
             }
