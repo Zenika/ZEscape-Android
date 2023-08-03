@@ -16,6 +16,7 @@ fun AdventureItemRoute(
 
     when (val itemRes = item) {
         R.mipmap.singapore_key -> KeyDialog(onDismissRequest)
+        R.mipmap.casablanca_key -> KeyDialog(onDismissRequest)
         null -> Unit
         else -> AdventureItemDialog(itemRes, onDismissRequest)
     }
