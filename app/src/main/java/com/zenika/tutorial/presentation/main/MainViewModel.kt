@@ -2,8 +2,8 @@ package com.zenika.tutorial.presentation.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zenika.R
-import com.zenika.data.repository.ItemRepository
+import com.zenika.tutorial.domain.CollectKeyUseCase
+import com.zenika.tutorial.domain.CollectMapUseCase
 import com.zenika.tutorial.domain.ObserveRemainingTimeUseCase
 import com.zenika.tutorial.domain.ObserveTutorialStateUseCase
 import com.zenika.tutorial.domain.UpdateGameStateUseCase
@@ -17,8 +17,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val itemRepository: ItemRepository,
     private val updateGameState: UpdateGameStateUseCase,
+    private val collectKeyUseCase: CollectKeyUseCase,
+    private val collectMapUseCase: CollectMapUseCase,
     observeTutorialState: ObserveTutorialStateUseCase,
     observeRemainingTime: ObserveRemainingTimeUseCase
 ) : ViewModel() {
@@ -47,15 +48,13 @@ class MainViewModel @Inject constructor(
 
     fun collectKey() {
         viewModelScope.launch {
-            itemRepository.addItem("key", R.mipmap.key)
-            updateGameState.collectKey()
+            collectKeyUseCase()
         }
     }
 
     fun collectMap() {
         viewModelScope.launch {
-            itemRepository.addItem("map", R.mipmap.rolled_map)
-            updateGameState.collectMap()
+            collectMapUseCase()
         }
     }
 

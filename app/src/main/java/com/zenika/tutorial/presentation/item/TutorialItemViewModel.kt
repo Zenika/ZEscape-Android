@@ -4,9 +4,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.R
-import com.zenika.data.repository.ItemRepository
 import com.zenika.tutorial.domain.ApplyPenaltyUseCase
 import com.zenika.tutorial.domain.FinishGameUseCase
+import com.zenika.tutorial.domain.RemoveKeyFromInventoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TutorialItemViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val itemRepository: ItemRepository,
+    private val removeKeyFromInventory: RemoveKeyFromInventoryUseCase,
     private val finishGameUseCase: FinishGameUseCase,
     private val applyPenaltyUseCase: ApplyPenaltyUseCase
 ) : ViewModel() {
@@ -56,7 +56,7 @@ class TutorialItemViewModel @Inject constructor(
 
     private fun deleteKey() {
         viewModelScope.launch {
-            itemRepository.deleteItem("key", R.mipmap.key)
+            removeKeyFromInventory()
         }
     }
 }

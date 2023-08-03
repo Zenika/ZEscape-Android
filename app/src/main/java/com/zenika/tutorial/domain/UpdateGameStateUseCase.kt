@@ -10,14 +10,6 @@ class UpdateGameStateUseCase @Inject constructor(
         gameStateManager.openChest()
     }
 
-    fun collectKey() {
-        gameStateManager.collectKey()
-    }
-
-    fun collectMap() {
-        gameStateManager.collectMap()
-    }
-
     fun removeNewItemBadge() {
         gameStateManager.removeNewItemBadge()
     }
