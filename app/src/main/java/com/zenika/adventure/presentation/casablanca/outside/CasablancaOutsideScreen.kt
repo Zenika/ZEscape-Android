@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,50 +34,16 @@ fun CasablancaOutsideScreen(
     applyPenalty: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val buttonTexts = listOf(
-        R.string.force_door,
-        R.string.ring_intercom,
-        R.string.go_through_window,
-        R.string.sleep_hotel
-    )
-
     ScaffoldScreen(
         modifier = modifier,
         remainingTime = remainingTime,
         goToSettings = goToSettings,
         background = R.mipmap.casablanca_outside
     ) {
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
-            horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally)
-        ) {
-            item(span = { GridItemSpan(2) }) {
-                Text(
-                    text = stringResource(R.string.casablanca_outside_text),
-                    color = Color.White,
-                    textAlign = TextAlign.Center
-                )
-            }
-            items(buttonTexts) { buttonText ->
-                Button(
-                    onClick = {
-                        when (buttonText) {
-                            R.string.go_through_window -> enterInAgency()
-                            R.string.force_door -> applyPenalty("door")
-                            R.string.ring_intercom -> applyPenalty("intercom")
-                            R.string.sleep_hotel -> applyPenalty("hotel")
-                        }
-                    },
-                    modifier = Modifier.height(80.dp)
-                ) {
-                    Text(
-                        text = stringResource(buttonText),
-                        textAlign = TextAlign.Center
-                    )
-                }
-            }
-        }
+        CasablancaOutsideContent(
+            enterInAgency = enterInAgency,
+            applyPenalty = applyPenalty
+        )
         ContinentsMap(
             modifier = Modifier
                 .size(80.dp)
@@ -89,6 +56,51 @@ fun CasablancaOutsideScreen(
                 .align(Alignment.BottomEnd)
                 .clickable(onClick = openInventory)
         )
+    }
+}
+
+@Composable
+private fun CasablancaOutsideContent(
+    enterInAgency: () -> Unit,
+    applyPenalty: (String) -> Unit
+) {
+    val buttonTexts = listOf(
+        R.string.force_door,
+        R.string.ring_intercom,
+        R.string.go_through_window,
+        R.string.sleep_hotel
+    )
+
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
+        horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally)
+    ) {
+        item(span = { GridItemSpan(2) }) {
+            Text(
+                text = stringResource(R.string.casablanca_outside_text),
+                color = Color.White,
+                textAlign = TextAlign.Center
+            )
+        }
+        items(buttonTexts) { buttonText ->
+            Button(
+                onClick = {
+                    when (buttonText) {
+                        R.string.go_through_window -> enterInAgency()
+                        R.string.force_door -> applyPenalty("door")
+                        R.string.ring_intercom -> applyPenalty("intercom")
+                        R.string.sleep_hotel -> applyPenalty("hotel")
+                    }
+                },
+                modifier = Modifier.height(80.dp)
+            ) {
+                Text(
+                    text = stringResource(buttonText),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
     }
 }
 
