@@ -11,7 +11,7 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun CasablancaMap(
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     Image(
         painter = painterResource(id = R.mipmap.casablanca_map),
