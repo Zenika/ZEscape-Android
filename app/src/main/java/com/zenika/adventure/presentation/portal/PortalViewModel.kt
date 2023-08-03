@@ -3,7 +3,7 @@ package com.zenika.adventure.presentation.portal
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.FinishGameUseCase
-import com.zenika.adventure.domain.GetAdventureStateUseCase
+import com.zenika.adventure.domain.ObserveKeyCollectionUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -15,14 +15,14 @@ import javax.inject.Inject
 @HiltViewModel
 class PortalViewModel @Inject constructor(
     observeRemainingTime: ObserveRemainingTimeUseCase,
-    getAdventureState: GetAdventureStateUseCase,
+    observeKeyCollection: ObserveKeyCollectionUseCase,
     private val finishGameUseCase: FinishGameUseCase
 ) : ViewModel() {
     val state: StateFlow<PortalUiState> = combine(
-        getAdventureState(), observeRemainingTime()
-    ) { gameState, remainingTime ->
+        observeKeyCollection(), observeRemainingTime()
+    ) { keyCollection, remainingTime ->
         PortalUiState(
-            portalCanBeOpened = gameState.isSingaporeKeyCollected,
+            portalCanBeOpened = keyCollection.isSingaporeKeyCollected && keyCollection.isCasablancaKeyCollected,
             remainingTime
         )
     }
