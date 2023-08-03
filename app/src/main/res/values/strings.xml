@@ -114,6 +114,7 @@
     <string name="ok">OK</string>
     <string name="open_safe">Coffre fort ouvert</string>
     <string name="safe">Coffre fort</string>
+    <string name="instruction_montreal">Vous êtes actuellement devant l\'agence Zenika de Montréal mais un curieux interphone bloque l\'entrée.</string>
     <string name="ready">Prêt(e) ?</string>
     <string name="playerGame">À toi !</string>
     <string name="systemGame">Écoute…</string>
