@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.ApplyPenaltyUseCase
 import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
+import com.zenika.adventure.domain.OpenCasablancaAgencyUseCase
+import com.zenika.adventure.domain.RemoveNewItemBadgeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,7 +21,8 @@ import javax.inject.Inject
 class CasablancaOutsideViewModel @Inject constructor(
     observeAdventureState: ObserveAdventureStateUseCase,
     observeRemainingTime: ObserveRemainingTimeUseCase,
-    private val applyPenaltyUseCase: ApplyPenaltyUseCase
+    private val applyPenaltyUseCase: ApplyPenaltyUseCase,
+    private val openCasablancaAgency: OpenCasablancaAgencyUseCase
 ) : ViewModel() {
     val state: StateFlow<CasablancaOutsideUiState> =
         combine(
@@ -45,6 +48,7 @@ class CasablancaOutsideViewModel @Inject constructor(
 
     fun enterInAgency() {
         viewModelScope.launch {
+            openCasablancaAgency()
             _events.emit(CasablancaEvent.ENTRY)
         }
     }

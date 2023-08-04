@@ -68,6 +68,14 @@ class AdventureGameStateManager @Inject constructor() {
         }
     }
 
+    fun openCasablancaAgency() {
+        _state.update {
+            it.copy(
+                isCasablancaAgencyOpen = true
+            )
+        }
+    }
+
     fun openSafe() {
         _state.update {
             it.copy(
@@ -98,6 +106,14 @@ class AdventureGameStateManager @Inject constructor() {
         _state.update {
             it.copy(
                 penaltyCount = it.penaltyCount + 1
+            )
+        }
+    }
+
+    fun openMontrealAgency() {
+        _state.update {
+            it.copy(
+                isMontrealAgencyOpen = true
             )
         }
     }

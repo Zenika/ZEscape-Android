@@ -12,18 +12,32 @@ fun WorldMapRoute(
     goBackToPortal: () -> Unit,
     goInsideSingaporeAgency: () -> Unit,
     goOutsideSingaporeAgency: () -> Unit,
-    goToCasablancaAgency: () -> Unit,
-    goToMontrealAgency: () -> Unit,
+    goInsideCasablancaAgency: () -> Unit,
+    goOutsideCasablancaAgency: () -> Unit,
+    goInsideMontrealAgency: () -> Unit,
+    goOutsideMontrealAgency: () -> Unit,
     openAgencyTeaser: () -> Unit,
     viewModel: WorldMapViewModel = hiltViewModel()
 ) {
     val agencies by viewModel.agencies.collectAsStateWithLifecycle()
-    val isSingaporeAgencyOpen by viewModel.isSingaporeAgencyOpen.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
-    val goToSingaporeAgency = if (isSingaporeAgencyOpen) {
+    val goToSingaporeAgency = if (state.isSingaporeAgencyOpen) {
         goInsideSingaporeAgency
     } else {
         goOutsideSingaporeAgency
+    }
+
+    val goToCasablancaAgency = if (state.isCasablancaAgencyOpen) {
+        goInsideCasablancaAgency
+    } else {
+        goOutsideCasablancaAgency
+    }
+
+    val goToMontrealAgency = if (state.isMontrealAgencyOpen) {
+        goInsideMontrealAgency
+    } else {
+        goOutsideMontrealAgency
     }
 
     WorldMapDialog(

@@ -261,11 +261,15 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.navigate(ROUTE_ON_OFF_GAME)
                     navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
                 },
-                goToCasablancaAgency = {
+                goInsideCasablancaAgency = {
+                    navController.navigate(route = ROUTE_CASABLANCA_AGENCY)
+                },
+                goOutsideCasablancaAgency = {
                     navController.navigate(ROUTE_CASABLANCA_OUTSIDE)
                     navController.navigate(ROUTE_CASABLANCA_INSTRUCTION)
                 },
-                goToMontrealAgency = {
+                goInsideMontrealAgency = { navController.navigate(route = ROUTE_MONTREAL_AGENCY) },
+                goOutsideMontrealAgency = {
                     navController.navigate(ROUTE_SIMON_SAYS_GAME)
                     navController.navigate(ROUTE_MONTREAL_INSTRUCTION)
                 },
