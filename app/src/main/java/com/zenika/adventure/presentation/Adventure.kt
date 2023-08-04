@@ -32,6 +32,10 @@ import com.zenika.adventure.presentation.montreal.agency.MontrealAgencyDialog
 import com.zenika.adventure.presentation.montreal.agency.MontrealAgencyRoute
 import com.zenika.adventure.presentation.montreal.instruction.InstructionMontrealRoute
 import com.zenika.adventure.presentation.montreal.library.LibraryRoute
+import com.zenika.adventure.presentation.montreal.meetingroom.MontrealMeetingRoomRoute
+import com.zenika.adventure.presentation.montreal.meetingroom.code.MontrealCodeRoute
+import com.zenika.adventure.presentation.montreal.office.MontrealOfficeRoute
+import com.zenika.adventure.presentation.montreal.rooftop.RooftopRoute
 import com.zenika.adventure.presentation.montreal.simonsays.SimonSaysRoute
 import com.zenika.adventure.presentation.penalty.AdventurePenaltyRoute
 import com.zenika.adventure.presentation.portal.PortalRoute
@@ -81,8 +85,12 @@ private const val ROUTE_CASABLANCA_OFFICES = "adventureCasablancaOffices"
 private const val ROUTE_CASABLANCA_MEETING_ROOM = "adventureCasablancaMeetingRoom"
 private const val ROUTE_MONTREAL_AGENCY = "adventureMontrealAgency"
 private const val ROUTE_MONTREAL_AGENCY_DIALOG = "adventureMontrealAgencyDialog"
+private const val ROUTE_MONTREAL_CODE = "adventureMontrealCode"
 private const val ROUTE_MONTREAL_INSTRUCTION = "adventureMontrealInstruction"
 private const val ROUTE_MONTREAL_LIBRARY = "adventureMontrealLibrary"
+private const val ROUTE_MONTREAL_MEETING_ROOM = "adventureMontrealMeetingRoom"
+private const val ROUTE_MONTREAL_OFFICE = "adventureMontrealOffice"
+private const val ROUTE_MONTREAL_ROOFTOP = "adventureMontrealRooftop"
 private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
 private const val ROUTE_SIMON_SAYS_GAME = "adventureSimonSaysGame"
 
@@ -101,7 +109,7 @@ fun NavGraphBuilder.adventureNavigation(
 ) {
     navigation(
         route = route,
-        startDestination = ROUTE_HOME
+        startDestination = ROUTE_MONTREAL_MEETING_ROOM
     ) {
         composable(ROUTE_HOME) {
             AdventureHomeRoute(
@@ -483,6 +491,46 @@ fun NavGraphBuilder.adventureNavigation(
                 },
                 openHintValidation = { hint -> navController.navigateToHint(hint) },
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) }
+            )
+        }
+        composable(ROUTE_MONTREAL_LIBRARY) {
+            LibraryRoute(
+                goBack = { navController.popBackStack() },
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                goToRooftop = { navController.navigate(ROUTE_MONTREAL_ROOFTOP) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) }
+            )
+        }
+        composable(ROUTE_MONTREAL_ROOFTOP) {
+            RooftopRoute(
+                goBack = { navController.popBackStack() },
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) }
+            )
+        }
+        composable(ROUTE_MONTREAL_MEETING_ROOM) {
+            MontrealMeetingRoomRoute(
+                goBack = { navController.popBackStack() },
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openCode = { navController.navigate(ROUTE_MONTREAL_CODE) },
+                goToOffice = { navController.navigate(ROUTE_MONTREAL_OFFICE) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) }
+            )
+        }
+        dialog(ROUTE_MONTREAL_CODE) {
+            MontrealCodeRoute(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
+        composable(ROUTE_MONTREAL_OFFICE) {
+            MontrealOfficeRoute(
+                goBack = { navController.popBackStack() },
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) }
             )
         }
     }

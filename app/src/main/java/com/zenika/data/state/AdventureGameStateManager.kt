@@ -79,7 +79,8 @@ class AdventureGameStateManager @Inject constructor() {
     fun collectCasablancaKey() {
         _state.update {
             it.copy(
-                isCasablancaKeyCollected = true
+                isCasablancaKeyCollected = true,
+                newItem = true
             )
         }
     }
@@ -87,7 +88,8 @@ class AdventureGameStateManager @Inject constructor() {
     fun collectCasablancaPaper() {
         _state.update {
             it.copy(
-                isCasablancaPaperCollected = true
+                isCasablancaPaperCollected = true,
+                newItem = true
             )
         }
     }
@@ -104,6 +106,14 @@ class AdventureGameStateManager @Inject constructor() {
         _state.update {
             it.copy(
                 hintCount = it.hintCount + 1
+            )
+        }
+    }
+
+    fun openMontrealDoor() {
+        _state.update {
+            it.copy(
+                isMontrealDoorOpen = true
             )
         }
     }

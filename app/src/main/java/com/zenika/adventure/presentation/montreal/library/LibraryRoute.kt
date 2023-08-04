@@ -8,6 +8,7 @@ import com.zenika.data.AdventureHint
 
 @Composable
 fun LibraryRoute(
+    goBack: () -> Unit,
     goToSettings: () -> Unit,
     goToRooftop: () -> Unit,
     openWorldMap: () -> Unit,
@@ -20,10 +21,10 @@ fun LibraryRoute(
     LibraryScreen(
         remainingTime = state.remainingTime,
         newItem = state.newItem,
+        goBack = goBack,
         goToSettings = goToSettings,
         goToRooftop = goToRooftop,
         openWorldMap = openWorldMap,
-        openInventory = openInventory,
-        openHintValidation = openHintValidation
+        openInventory = openInventory
     )
 }
