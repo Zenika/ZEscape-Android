@@ -29,7 +29,7 @@
         \nLes missions qui vous attendent ne sont pas sans danger…</string>
     <string name="end_parchment2">Vous sentirez-vous capable de les accomplir ?\n\nProfesseur Z</string>
     <string name="penalty_key">Pénalité\nBien tenté… Mais la clé rouillée s\'est cassée dans la serrure…</string>
-    <string name="penalty_game">Pénalité\nCe n\'est pas le bon code…</string>
+    <string name="penalty_wrong_code">Pénalité\nCe n\'est pas le bon code…</string>
     <string name="returnToHome">Quitter</string>
     <string name="score">Score</string>
     <string name="penalty_count">Pénalité(s) : %1$d</string>

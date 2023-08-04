@@ -20,8 +20,7 @@ fun MontrealMeetingRoomScreen(
     state: MontrealMeetingRoomUiState,
     goBack: () -> Unit,
     goToSettings: () -> Unit,
-    openCode: () -> Unit,
-    discoverMontrealOffice: () -> Unit,
+    onButtonClick: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     removeNewItemBadge: () -> Unit,
@@ -35,7 +34,7 @@ fun MontrealMeetingRoomScreen(
         background = R.mipmap.montreal_meetingroom
     ) {
         Button(
-            onClick = if (state.isDoorOpen) discoverMontrealOffice else openCode,
+            onClick = onButtonClick,
             modifier = Modifier.align(Alignment.CenterStart)
         ) {
             Text(text = stringResource(R.string.desk))
@@ -68,8 +67,7 @@ private fun MontrealMeetingRoomScreenPreview() {
         ),
         goBack = {},
         goToSettings = {},
-        openCode = {},
-        discoverMontrealOffice = {},
+        onButtonClick = {},
         openWorldMap = {},
         openInventory = {},
         removeNewItemBadge = {}

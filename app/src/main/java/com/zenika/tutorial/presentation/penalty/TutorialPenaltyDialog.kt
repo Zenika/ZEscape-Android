@@ -25,7 +25,7 @@ fun TutorialPenaltyDialog(
         val text = if (penalty == "key") {
             stringResource(R.string.penalty_key)
         } else {
-            stringResource(R.string.penalty_game)
+            stringResource(R.string.penalty_wrong_code)
         }
         Text(
             text = text,

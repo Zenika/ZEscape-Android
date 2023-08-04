@@ -3,6 +3,7 @@ package com.zenika.adventure.presentation.montreal.meetingroom.code
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zenika.adventure.domain.ApplyPenaltyUseCase
 import com.zenika.adventure.domain.OpenMontrealDoorUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -19,7 +20,8 @@ private const val MAX_SIZE_CODE = 4
 
 @HiltViewModel
 class MontrealCodeViewModel @Inject constructor(
-    private val openMontrealDoor: OpenMontrealDoorUseCase
+    private val openMontrealDoor: OpenMontrealDoorUseCase,
+    private val applyPenaltyUseCase: ApplyPenaltyUseCase
 ) : ViewModel() {
     private val _events = MutableSharedFlow<MontrealCodeEvent>()
     val events = _events.asSharedFlow()
@@ -57,12 +59,22 @@ class MontrealCodeViewModel @Inject constructor(
         viewModelScope.launch {
             if (code.value == "7439") {
                 openMontrealDoor()
-                _events.emit(MontrealCodeEvent.DISMISS)
+                _events.emit(MontrealCodeEvent.GO_TO_OFFICE)
+            } else {
+                applyPenalty()
             }
+        }
+    }
+
+    fun applyPenalty() {
+        viewModelScope.launch {
+            _events.emit(MontrealCodeEvent.APPLY_PENALTY)
+            applyPenaltyUseCase()
         }
     }
 }
 
 enum class MontrealCodeEvent {
-    DISMISS
+    APPLY_PENALTY,
+    GO_TO_OFFICE
 }

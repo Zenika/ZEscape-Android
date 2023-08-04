@@ -109,7 +109,7 @@ fun NavGraphBuilder.adventureNavigation(
 ) {
     navigation(
         route = route,
-        startDestination = ROUTE_MONTREAL_MEETING_ROOM
+        startDestination = ROUTE_HOME
     ) {
         composable(ROUTE_HOME) {
             AdventureHomeRoute(
@@ -434,7 +434,17 @@ fun NavGraphBuilder.adventureNavigation(
         }
         dialog(ROUTE_CASABLANCA_SAFE) {
             SafeRoute(
-                onDismissRequest = { navController.popBackStack() }
+                onDismissRequest = { navController.popBackStack() },
+                openPenalty = {
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            "code"
+                        )
+                    ) {
+                        popUpTo(ROUTE_CASABLANCA_SAFE) { inclusive = true }
+                    }
+                }
             )
         }
         composable(ROUTE_CASABLANCA_RESTROOM) {
@@ -522,7 +532,18 @@ fun NavGraphBuilder.adventureNavigation(
         }
         dialog(ROUTE_MONTREAL_CODE) {
             MontrealCodeRoute(
-                onDismissRequest = { navController.popBackStack() }
+                onDismissRequest = { navController.popBackStack() },
+                goToOffice = { navController.navigate(ROUTE_MONTREAL_OFFICE) },
+                openPenalty = {
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            "code"
+                        )
+                    ) {
+                        popUpTo(ROUTE_MONTREAL_CODE) { inclusive = true }
+                    }
+                }
             )
         }
         composable(ROUTE_MONTREAL_OFFICE) {

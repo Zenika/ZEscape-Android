@@ -9,13 +9,16 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 @Composable
 fun MontrealCodeRoute(
     onDismissRequest: () -> Unit,
+    goToOffice: () -> Unit,
+    openPenalty: () -> Unit,
     viewModel: MontrealCodeViewModel = hiltViewModel()
 ) {
     val code by viewModel.code.collectAsStateWithLifecycle()
     val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
     LaunchedEffect(event) {
         when (event) {
-            MontrealCodeEvent.DISMISS -> onDismissRequest()
+            MontrealCodeEvent.APPLY_PENALTY -> openPenalty()
+            MontrealCodeEvent.GO_TO_OFFICE -> goToOffice()
             null -> Unit
         }
     }

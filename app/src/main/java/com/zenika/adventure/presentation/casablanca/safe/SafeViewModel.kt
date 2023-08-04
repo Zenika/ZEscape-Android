@@ -3,6 +3,7 @@ package com.zenika.adventure.presentation.casablanca.safe
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zenika.adventure.domain.ApplyPenaltyUseCase
 import com.zenika.adventure.domain.OpenSafeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -20,7 +21,8 @@ private const val EXPECTED_CODE = "531296"
 
 @HiltViewModel
 class SafeViewModel @Inject constructor(
-    private val openSafe: OpenSafeUseCase
+    private val openSafe: OpenSafeUseCase,
+    private val applyPenaltyUseCase: ApplyPenaltyUseCase
 ) : ViewModel() {
     private val _events = MutableSharedFlow<SafeEvent>()
     val events = _events.asSharedFlow()
@@ -59,11 +61,21 @@ class SafeViewModel @Inject constructor(
             if (code.value == EXPECTED_CODE) {
                 openSafe()
                 _events.emit(SafeEvent.DISMISS)
+            } else {
+                applyPenalty()
             }
+        }
+    }
+
+    fun applyPenalty() {
+        viewModelScope.launch {
+            _events.emit(SafeEvent.APPLY_PENALTY)
+            applyPenaltyUseCase()
         }
     }
 }
 
 enum class SafeEvent {
+    APPLY_PENALTY,
     DISMISS
 }

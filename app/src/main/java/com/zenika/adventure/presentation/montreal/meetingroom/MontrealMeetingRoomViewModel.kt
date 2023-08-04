@@ -2,7 +2,6 @@ package com.zenika.adventure.presentation.montreal.meetingroom
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zenika.adventure.domain.DiscoverMontrealOfficeUseCase
 import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import com.zenika.adventure.domain.RemoveNewItemBadgeUseCase
@@ -20,8 +19,7 @@ import javax.inject.Inject
 class MontrealMeetingRoomViewModel @Inject constructor(
     observeAdventureState: ObserveAdventureStateUseCase,
     observeRemainingTime: ObserveRemainingTimeUseCase,
-    private val removeNewItemBadgeUseCase: RemoveNewItemBadgeUseCase,
-    private val discoverMontrealOfficeUseCase: DiscoverMontrealOfficeUseCase
+    private val removeNewItemBadgeUseCase: RemoveNewItemBadgeUseCase
 ) : ViewModel() {
     val state: StateFlow<MontrealMeetingRoomUiState> = combine(
         observeAdventureState(), observeRemainingTime()
@@ -49,10 +47,13 @@ class MontrealMeetingRoomViewModel @Inject constructor(
         removeNewItemBadgeUseCase()
     }
 
-    fun discoverMontrealOffice() {
+    fun onButtonClick() {
         viewModelScope.launch {
-            discoverMontrealOfficeUseCase()
-            _events.emit(MeetingRoomEvent.GO_TO_OFFICE)
+            if (state.value.isDoorOpen) {
+                _events.emit(MeetingRoomEvent.GO_TO_OFFICE)
+            } else {
+                _events.emit(MeetingRoomEvent.OPEN_CODE)
+            }
         }
     }
 }
@@ -64,5 +65,6 @@ class MontrealMeetingRoomUiState(
 )
 
 enum class MeetingRoomEvent {
+    OPEN_CODE,
     GO_TO_OFFICE
 }

@@ -6,5 +6,8 @@ import javax.inject.Inject
 class OpenMontrealDoorUseCase @Inject constructor(
     private val gameStateManager: AdventureGameStateManager
 ) {
-    operator fun invoke() = gameStateManager.openMontrealDoor()
+    operator fun invoke() {
+        gameStateManager.discoverOffice()
+        gameStateManager.openMontrealDoor()
+    }
 }

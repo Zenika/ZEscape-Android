@@ -26,6 +26,7 @@ fun AdventurePenaltyDialog(
         "hotel" -> R.string.penalty_sleep_hotel
         "intercom" -> R.string.penalty_ring_intercom
         "agency" -> R.string.penalty_wrong_agency
+        "code" -> R.string.penalty_wrong_code
         else -> R.string.penalty
     }
 

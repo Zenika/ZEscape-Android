@@ -21,6 +21,7 @@ fun MontrealMeetingRoomRoute(
     LaunchedEffect(viewModel) {
         viewModel.events.collect { event ->
             when (event) {
+                MeetingRoomEvent.OPEN_CODE -> openCode()
                 MeetingRoomEvent.GO_TO_OFFICE -> goToOffice()
             }
         }
@@ -30,8 +31,7 @@ fun MontrealMeetingRoomRoute(
         state,
         goBack,
         goToSettings,
-        openCode,
-        viewModel::discoverMontrealOffice,
+        viewModel::onButtonClick,
         openWorldMap,
         openInventory,
         viewModel::removeNewItemBadge
