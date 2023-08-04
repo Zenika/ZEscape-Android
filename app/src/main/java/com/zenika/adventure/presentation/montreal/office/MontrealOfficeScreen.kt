@@ -69,7 +69,7 @@ private fun MontrealOfficeScreenPreview() {
         state = MontrealOfficeUiState(
             newItem = false,
             isMontrealKeyCollected = false,
-            remainingTime = 3_600_600
+            remainingTime = 0
         ),
         goBack = {},
         goToSettings = {},
