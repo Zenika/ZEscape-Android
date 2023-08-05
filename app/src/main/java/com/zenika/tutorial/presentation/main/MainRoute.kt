@@ -27,6 +27,7 @@ fun MainRoute(
     LaunchedEffect(event) {
         when(event) {
             MainEvent.OPEN_INVENTORY -> openInventory()
+            MainEvent.SHOW_HINT -> showHint()
             MainEvent.NONE -> Unit
         }
         viewModel.onEventHandled()
@@ -38,9 +39,8 @@ fun MainRoute(
         goToSettings,
         openMiniGame,
         openInventory = viewModel::openInventory,
-        showHint,
-        viewModel::collectKey,
-        viewModel::collectMap,
-        viewModel::incrementHintCount
+        showHint = viewModel::showHint,
+        collectKey = viewModel::collectKey,
+        collectMap = viewModel::collectMap
     )
 }

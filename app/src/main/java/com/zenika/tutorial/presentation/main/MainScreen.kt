@@ -42,8 +42,7 @@ fun MainScreen(
     openInventory: () -> Unit,
     showHint: () -> Unit,
     collectKey: () -> Unit,
-    collectMap: () -> Unit,
-    incrementHintCount: () -> Unit
+    collectMap: () -> Unit
 ) {
     Scaffold(modifier = modifier,
         topBar = {
@@ -127,8 +126,7 @@ private fun TutorialScreenPreview() {
             openInventory = {},
             showHint = {},
             collectKey = {},
-            collectMap = {},
-            incrementHintCount = {}
+            collectMap = {}
         )
     }
 }

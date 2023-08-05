@@ -63,14 +63,17 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun incrementHintCount() {
-        updateGameState.incrementHintCount()
-    }
-
     fun openInventory() {
         viewModelScope.launch {
             updateGameState.removeNewItemBadge()
             _event.emit(MainEvent.OPEN_INVENTORY)
+        }
+    }
+
+    fun showHint() {
+        viewModelScope.launch {
+            updateGameState.incrementHintCount()
+            _event.emit(MainEvent.SHOW_HINT)
         }
     }
 
@@ -91,6 +94,7 @@ class MainUiState(
 
 enum class MainEvent {
     OPEN_INVENTORY,
+    SHOW_HINT,
     NONE
 }
 
