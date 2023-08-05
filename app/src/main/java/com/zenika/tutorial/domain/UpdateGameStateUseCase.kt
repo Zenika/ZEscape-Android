@@ -6,9 +6,6 @@ import javax.inject.Inject
 class UpdateGameStateUseCase @Inject constructor(
     private val gameStateManager: TutorialGameStateManager
 ) {
-    fun openChest() {
-        gameStateManager.openChest()
-    }
 
     fun removeNewItemBadge() {
         gameStateManager.removeNewItemBadge()
