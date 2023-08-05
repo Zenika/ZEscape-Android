@@ -7,7 +7,7 @@ import androidx.navigation.compose.navigation
 import com.google.accompanist.navigation.animation.composable
 import com.zenika.adventure.presentation.singapore.on_off_game.OnOffRoute
 import com.zenika.data.Game
-import com.zenika.presentation.qrcode_scan.QrCodeScanRoute
+import com.zenika.presentation.qrcodescan.QrCodeScanRoute
 import kotlinx.collections.immutable.persistentListOf
 
 private const val ROUTE_HOME = "adventureHome"
