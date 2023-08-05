@@ -54,12 +54,7 @@ fun MainScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = {
-                        showHint()
-                        incrementHintCount()
-                    }) {
-                        Icon(Icons.Filled.Search, stringResource(R.string.hint))
-                    }
+                    HintIcon(onClick = showHint)
                 },
                 actions = {
                     SettingsButton(goToSettings)
@@ -104,6 +99,19 @@ fun MainScreen(
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun HintIcon(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    IconButton(
+        modifier = modifier,
+        onClick = onClick
+    ) {
+        Icon(Icons.Filled.Search, stringResource(R.string.hint))
     }
 }
 
