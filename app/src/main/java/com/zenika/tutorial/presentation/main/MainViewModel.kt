@@ -6,7 +6,8 @@ import com.zenika.tutorial.domain.CollectKeyUseCase
 import com.zenika.tutorial.domain.CollectMapUseCase
 import com.zenika.tutorial.domain.ObserveRemainingTimeUseCase
 import com.zenika.tutorial.domain.ObserveTutorialStateUseCase
-import com.zenika.tutorial.domain.UpdateGameStateUseCase
+import com.zenika.tutorial.domain.OpenInventoryUseCase
+import com.zenika.tutorial.domain.ShowHintUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,9 +20,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val updateGameState: UpdateGameStateUseCase,
     private val collectKeyUseCase: CollectKeyUseCase,
     private val collectMapUseCase: CollectMapUseCase,
+    private val onInventoryOpened: OpenInventoryUseCase,
+    private val onHintShown: ShowHintUseCase,
     observeTutorialState: ObserveTutorialStateUseCase,
     observeRemainingTime: ObserveRemainingTimeUseCase
 ) : ViewModel() {
@@ -65,14 +67,14 @@ class MainViewModel @Inject constructor(
 
     fun openInventory() {
         viewModelScope.launch {
-            updateGameState.removeNewItemBadge()
+            onInventoryOpened()
             _event.emit(MainEvent.OPEN_INVENTORY)
         }
     }
 
     fun showHint() {
         viewModelScope.launch {
-            updateGameState.incrementHintCount()
+            onHintShown()
             _event.emit(MainEvent.SHOW_HINT)
         }
     }
