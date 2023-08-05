@@ -18,10 +18,6 @@ class RestartAdventureGameUseCase @Inject constructor(
     }
 
     private suspend fun initInventory() {
-        deleteAllItemsFromInventory()
-    }
-
-    private suspend fun deleteAllItemsFromInventory() {
         itemDao.deleteAll()
     }
 }

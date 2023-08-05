@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -19,14 +20,14 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun MiniGameCard(
     game: Game,
-    goTo: () -> Unit,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
             .semantics(mergeDescendants = true) {}
-            .clickable(onClick = goTo)
+            .clickable(onClick = onClick, role = Role.Button)
     ) {
         Text(
             text = game.toString(),
@@ -46,7 +47,7 @@ fun MiniGameCardPreview() {
     ZEscapeThemePreview {
         MiniGameCard(
             game = Game.ON_OFF,
-            goTo = {}
+            onClick = {}
         )
     }
 }

@@ -1,7 +1,6 @@
 package com.zenika.presentation.debug
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -58,27 +57,28 @@ fun DebugScreen(
             )
         }
     ) { paddingValues ->
-        Column(
+        LazyColumn(
             modifier = modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(screenPadding),
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            state = rememberLazyListState()
         ) {
-            Button(onClick = initGameState) {
-                Text(
-                    text = stringResource(R.string.init_game),
-                    style = MaterialTheme.typography.headlineSmall
-                )
-            }
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                state = rememberLazyListState()
-            ) {
-                items(items = games) { item ->
-                    MiniGameCard(item.first, item.second)
+            item {
+                Button(onClick = initGameState) {
+                    Text(
+                        text = stringResource(R.string.init_game),
+                        style = MaterialTheme.typography.headlineSmall
+                    )
                 }
+            }
+            items(items = games) { item ->
+                MiniGameCard(
+                    game = item.first,
+                    onClick = item.second
+                )
             }
         }
     }

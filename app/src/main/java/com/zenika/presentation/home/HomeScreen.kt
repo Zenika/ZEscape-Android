@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -68,7 +67,7 @@ fun HomeScreen(
         }
     ) { paddingValues ->
         HomeContent(
-            paddingValues = paddingValues,
+            modifier = Modifier.padding(paddingValues),
             tapCount = tapCount,
             goToTutorial = goToTutorial,
             goToAdventure = goToAdventure,
@@ -79,16 +78,15 @@ fun HomeScreen(
 
 @Composable
 private fun HomeContent(
-    paddingValues: PaddingValues,
     tapCount: Int,
     goToTutorial: () -> Unit,
     goToAdventure: () -> Unit,
-    goToDebug: () -> Unit
+    goToDebug: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
-            .padding(paddingValues)
             .padding(screenPadding),
         verticalArrangement = Arrangement.spacedBy(
             buttonPadding,
@@ -135,6 +133,19 @@ private fun HomeScreenPreview() {
             goToTutorial = {},
             goToAdventure = {},
             goToDebug = {}
+        )
+    }
+}
+
+@ScreenPreview
+@Composable
+private fun DebugHomeContentPreview() {
+    ZEscapeThemePreview {
+        HomeContent(
+            goToTutorial = {},
+            goToAdventure = {},
+            goToDebug = {},
+            tapCount = 15
         )
     }
 }
