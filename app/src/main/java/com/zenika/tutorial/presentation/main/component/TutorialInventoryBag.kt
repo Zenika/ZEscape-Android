@@ -17,8 +17,7 @@ import com.zenika.utils.ZEscapeThemePreview
 fun TutorialInventoryBag(
     modifier: Modifier,
     newItem: Boolean,
-    openInventory: () -> Unit,
-    removeNewItemBadge: () -> Unit
+    openInventory: () -> Unit
 ) {
     val imageRes = if (newItem) {
         R.mipmap.inventory_with_badge
@@ -32,10 +31,7 @@ fun TutorialInventoryBag(
         contentScale = ContentScale.Fit,
         modifier = modifier
             .padding(screenPadding)
-            .clickable {
-                openInventory()
-                removeNewItemBadge()
-            },
+            .clickable(onClick = openInventory),
     )
 }
 
@@ -46,8 +42,7 @@ private fun InventoryBagPreview() {
         TutorialInventoryBag(
             modifier = Modifier,
             newItem = false,
-            openInventory = {},
-            removeNewItemBadge = {}
+            openInventory = {}
         )
     }
 }
@@ -59,8 +54,7 @@ private fun InventoryBagWithBadgePreview() {
         TutorialInventoryBag(
             modifier = Modifier,
             newItem = true,
-            openInventory = {},
-            removeNewItemBadge = {}
+            openInventory = {}
         )
     }
 }

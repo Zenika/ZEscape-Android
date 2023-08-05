@@ -43,7 +43,6 @@ fun MainScreen(
     showHint: () -> Unit,
     collectKey: () -> Unit,
     collectMap: () -> Unit,
-    removeNewItemBadge: () -> Unit,
     incrementHintCount: () -> Unit
 ) {
     Scaffold(modifier = modifier,
@@ -95,8 +94,7 @@ fun MainScreen(
                 Modifier
                     .align(Alignment.BottomEnd),
                 mainUiState.newItem,
-                openInventory,
-                removeNewItemBadge
+                openInventory
             )
             if (!mainUiState.isKeyCollected) {
                 Key(
@@ -130,7 +128,6 @@ private fun TutorialScreenPreview() {
             showHint = {},
             collectKey = {},
             collectMap = {},
-            removeNewItemBadge = {},
             incrementHintCount = {}
         )
     }

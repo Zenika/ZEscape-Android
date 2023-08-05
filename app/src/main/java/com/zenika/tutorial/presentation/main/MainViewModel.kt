@@ -8,8 +8,10 @@ import com.zenika.tutorial.domain.ObserveRemainingTimeUseCase
 import com.zenika.tutorial.domain.ObserveTutorialStateUseCase
 import com.zenika.tutorial.domain.UpdateGameStateUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -46,6 +48,9 @@ class MainViewModel @Inject constructor(
             )
         )
 
+    private val _event = MutableStateFlow(MainEvent.NONE)
+    val event = _event.asStateFlow()
+
     fun collectKey() {
         viewModelScope.launch {
             collectKeyUseCase()
@@ -58,12 +63,21 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun removeNewItemBadge() {
-        updateGameState.removeNewItemBadge()
-    }
-
     fun incrementHintCount() {
         updateGameState.incrementHintCount()
+    }
+
+    fun openInventory() {
+        viewModelScope.launch {
+            updateGameState.removeNewItemBadge()
+            _event.emit(MainEvent.OPEN_INVENTORY)
+        }
+    }
+
+    fun onEventHandled() {
+        viewModelScope.launch {
+            _event.emit(MainEvent.NONE)
+        }
     }
 }
 
@@ -74,4 +88,9 @@ class MainUiState(
     val newItem: Boolean,
     val remainingTime: Int
 )
+
+enum class MainEvent {
+    OPEN_INVENTORY,
+    NONE
+}
 

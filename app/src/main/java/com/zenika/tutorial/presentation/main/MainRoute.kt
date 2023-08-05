@@ -3,6 +3,7 @@ package com.zenika.tutorial.presentation.main
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -21,17 +22,25 @@ fun MainRoute(
     }
 
     val mainUiState by viewModel.state.collectAsStateWithLifecycle()
+    val event by viewModel.event.collectAsStateWithLifecycle()
+
+    LaunchedEffect(event) {
+        when(event) {
+            MainEvent.OPEN_INVENTORY -> openInventory()
+            MainEvent.NONE -> Unit
+        }
+        viewModel.onEventHandled()
+    }
 
     MainScreen(
         Modifier.fillMaxSize(),
         mainUiState,
         goToSettings,
         openMiniGame,
-        openInventory,
+        openInventory = viewModel::openInventory,
         showHint,
         viewModel::collectKey,
         viewModel::collectMap,
-        viewModel::removeNewItemBadge,
         viewModel::incrementHintCount
     )
 }
