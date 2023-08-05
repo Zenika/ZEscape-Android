@@ -8,7 +8,7 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.composable
-import com.zenika.presentation.qrcode_scan.QrCodeScanRoute
+import com.zenika.presentation.qrcodescan.QrCodeScanRoute
 import com.zenika.presentation.settings.SettingsRoute
 import com.zenika.tutorial.presentation.color_buttons_order_game.ColorButtonsOrderGameRoute
 import com.zenika.tutorial.presentation.hint.TutorialHintRoute
@@ -23,7 +23,7 @@ import com.zenika.tutorial.presentation.penalty.TutorialPenaltyRoute
 import com.zenika.tutorial.presentation.score.TutorialScoreRoute
 
 private const val ROUTE_HOME = "tutorialHome"
-private const val ROUTE_QRCODE_SCAN = "tutorialQrCodeScan"
+private const val ROUTE_QRCODE_SCAN = "tutorialQrCodeScan/{qrcode}"
 private const val ROUTE_END_PARCHMENT = "tutorialEndParchment"
 private const val ROUTE_INSTRUCTION = "tutorialInstruction"
 private const val ROUTE_INVENTORY = "tutorialInventory"
@@ -48,10 +48,22 @@ fun NavGraphBuilder.tutorialNavigation(
         composable(ROUTE_HOME) {
             TutorialHomeRoute(
                 goBack = { navController.popBackStack() },
-                goToScan = { navController.navigate(ROUTE_QRCODE_SCAN) }
+                goToScan = {
+                    navController.navigate(
+                        ROUTE_QRCODE_SCAN.replace(
+                            "{qrcode}",
+                            "trigger-001"
+                        )
+                    )
+                }
             )
         }
-        composable(ROUTE_QRCODE_SCAN) {
+        composable(
+            ROUTE_QRCODE_SCAN,
+            arguments = listOf(navArgument("qrcode") {
+                type = NavType.StringType
+            })
+        ) {
             QrCodeScanRoute(
                 goBack = { navController.popBackStack() },
                 goToNextScreen = { navController.navigate(ROUTE_INTRODUCTION) }

@@ -222,7 +222,7 @@
     <ID>NewLineAtEndOfFile:OnOffScreen.kt$com.zenika.adventure.presentation.singapore.on_off_game.OnOffScreen.kt</ID>
     <ID>NewLineAtEndOfFile:PortalMessageRoute.kt$com.zenika.adventure.presentation.portal_message.PortalMessageRoute.kt</ID>
     <ID>NewLineAtEndOfFile:PortalScreen.kt$com.zenika.adventure.presentation.portal.PortalScreen.kt</ID>
-    <ID>NewLineAtEndOfFile:QrCodeAnalyzer.kt$com.zenika.presentation.qrcode_scan.QrCodeAnalyzer.kt</ID>
+    <ID>NewLineAtEndOfFile:QrCodeAnalyzer.kt$com.zenika.presentation.qrcodescan.QrCodeAnalyzer.kt</ID>
     <ID>NewLineAtEndOfFile:SettingsViewModel.kt$com.zenika.presentation.settings.SettingsViewModel.kt</ID>
     <ID>NewLineAtEndOfFile:SingaporeAgencyDialog.kt$com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyDialog.kt</ID>
     <ID>NewLineAtEndOfFile:SingaporeAgencyScreen.kt$com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyScreen.kt</ID>
@@ -252,9 +252,9 @@
     <ID>PackageNaming:OnOffViewModel.kt$package com.zenika.adventure.presentation.singapore.on_off_game</ID>
     <ID>PackageNaming:PortalMessageDialog.kt$package com.zenika.adventure.presentation.portal_message</ID>
     <ID>PackageNaming:PortalMessageRoute.kt$package com.zenika.adventure.presentation.portal_message</ID>
-    <ID>PackageNaming:QrCodeAnalyzer.kt$package com.zenika.presentation.qrcode_scan</ID>
-    <ID>PackageNaming:QrCodeScanRoute.kt$package com.zenika.presentation.qrcode_scan</ID>
-    <ID>PackageNaming:QrCodeScanScreen.kt$package com.zenika.presentation.qrcode_scan</ID>
+    <ID>PackageNaming:QrCodeAnalyzer.kt$package com.zenika.presentation.qrcodescan</ID>
+    <ID>PackageNaming:QrCodeScanRoute.kt$package com.zenika.presentation.qrcodescan</ID>
+    <ID>PackageNaming:QrCodeScanScreen.kt$package com.zenika.presentation.qrcodescan</ID>
     <ID>PackageNaming:Stage.kt$package com.zenika.tutorial.presentation.color_buttons_order_game.component</ID>
     <ID>PackageNaming:TextRecognizer.kt$package com.zenika.adventure.presentation.agency_recognition</ID>
     <ID>PackageNaming:WelcomeParchmentRoute.kt$package com.zenika.tutorial.presentation.parchment.welcome_parchment</ID>
