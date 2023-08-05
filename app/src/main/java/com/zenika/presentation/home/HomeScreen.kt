@@ -1,5 +1,9 @@
 package com.zenika.presentation.home
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +17,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -27,15 +35,27 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun HomeScreen(
     goToTutorial: () -> Unit,
-    goToAdventure: () -> Unit
+    goToAdventure: () -> Unit,
+    goToDebug: () -> Unit
 ) {
+    var tapCount by remember {
+        mutableStateOf(0)
+    }
+    val interactionSource = remember { MutableInteractionSource() }
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
                     Text(
                         text = stringResource(R.string.app_name),
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable(
+                                interactionSource = interactionSource,
+                                indication = null,
+                                onClick = { tapCount++ }
+                            ),
                         textAlign = TextAlign.Center
                     )
                 },
@@ -46,31 +66,58 @@ fun HomeScreen(
             )
         }
     ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(screenPadding),
-            verticalArrangement = Arrangement.spacedBy(
-                buttonPadding,
-                alignment = Alignment.CenterVertically
-            ),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+        HomeContent(
+            modifier = Modifier.padding(paddingValues),
+            tapCount = tapCount,
+            goToTutorial = goToTutorial,
+            goToAdventure = goToAdventure,
+            goToDebug = goToDebug
+        )
+    }
+}
+
+@Composable
+private fun HomeContent(
+    tapCount: Int,
+    goToTutorial: () -> Unit,
+    goToAdventure: () -> Unit,
+    goToDebug: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(screenPadding),
+        verticalArrangement = Arrangement.spacedBy(
+            buttonPadding,
+            alignment = Alignment.CenterVertically
+        ),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(R.string.home_text),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyLarge
+        )
+        Button(onClick = goToTutorial) {
             Text(
-                text = stringResource(R.string.home_text),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyLarge
+                text = stringResource(R.string.tutorial),
+                style = MaterialTheme.typography.headlineLarge
             )
-            Button(onClick = goToTutorial) {
+        }
+        Button(onClick = goToAdventure) {
+            Text(
+                text = stringResource(R.string.adventure),
+                style = MaterialTheme.typography.headlineSmall
+            )
+        }
+        AnimatedVisibility(
+            visible = tapCount >= 10,
+            enter = fadeIn()
+        ) {
+            Button(onClick = goToDebug) {
                 Text(
-                    text = stringResource(R.string.tutorial),
-                    style = MaterialTheme.typography.headlineLarge
-                )
-            }
-            Button(onClick = goToAdventure) {
-                Text(
-                    text = stringResource(R.string.adventure),
+                    text = stringResource(R.string.debug),
                     style = MaterialTheme.typography.headlineSmall
                 )
             }
@@ -84,7 +131,21 @@ private fun HomeScreenPreview() {
     ZEscapeThemePreview {
         HomeScreen(
             goToTutorial = {},
-            goToAdventure = {}
+            goToAdventure = {},
+            goToDebug = {}
+        )
+    }
+}
+
+@ScreenPreview
+@Composable
+private fun DebugHomeContentPreview() {
+    ZEscapeThemePreview {
+        HomeContent(
+            goToTutorial = {},
+            goToAdventure = {},
+            goToDebug = {},
+            tapCount = 15
         )
     }
 }

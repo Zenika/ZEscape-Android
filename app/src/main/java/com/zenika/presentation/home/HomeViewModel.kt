@@ -31,9 +31,17 @@ class HomeViewModel @Inject constructor(
             startAdventureGame()
         }
     }
+
+    fun goToDebug() {
+        viewModelScope.launch {
+            _events.emit(HomeEvent.DEBUG)
+            startAdventureGame()
+        }
+    }
 }
 
 enum class HomeEvent {
     TUTORIAL,
-    ADVENTURE
+    ADVENTURE,
+    DEBUG
 }
