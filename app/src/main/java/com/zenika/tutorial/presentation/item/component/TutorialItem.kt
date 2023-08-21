@@ -1,5 +1,6 @@
 package com.zenika.tutorial.presentation.item.component
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
@@ -10,6 +11,7 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun TutorialItem(
+    @DrawableRes
     item: Int
 ) {
     Image(

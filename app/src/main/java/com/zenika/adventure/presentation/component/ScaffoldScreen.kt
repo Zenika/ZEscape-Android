@@ -1,5 +1,6 @@
 package com.zenika.adventure.presentation.component
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
@@ -35,6 +36,7 @@ fun ScaffoldScreen(
     modifier: Modifier = Modifier,
     remainingTime: Int,
     goToSettings: () -> Unit,
+    @DrawableRes
     background: Int,
     content: @Composable BoxScope.() -> Unit
 ) {

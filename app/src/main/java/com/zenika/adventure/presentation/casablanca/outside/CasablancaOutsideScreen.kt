@@ -31,45 +31,19 @@ fun CasablancaOutsideScreen(
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     enterInAgency: () -> Unit,
+    applyPenalty: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val buttonTexts = listOf(
-        R.string.force_door,
-        R.string.ring_intercom,
-        R.string.go_through_window,
-        R.string.sleep_hotel
-    )
-
     ScaffoldScreen(
         modifier = modifier,
         remainingTime = remainingTime,
         goToSettings = goToSettings,
         background = R.mipmap.casablanca_outside
     ) {
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
-            horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally)
-        ) {
-            item(span = { GridItemSpan(2) }) {
-                Text(
-                    text = stringResource(R.string.casablanca_outside_text),
-                    color = Color.White,
-                    textAlign = TextAlign.Center
-                )
-            }
-            items(buttonTexts) { buttonText ->
-                Button(
-                    onClick = { if (buttonText == R.string.go_through_window) enterInAgency() },
-                    modifier = Modifier.height(80.dp)
-                ) {
-                    Text(
-                        text = stringResource(buttonText),
-                        textAlign = TextAlign.Center
-                    )
-                }
-            }
-        }
+        CasablancaOutsideContent(
+            enterInAgency = enterInAgency,
+            applyPenalty = applyPenalty
+        )
         ContinentsMap(
             modifier = Modifier
                 .size(80.dp)
@@ -85,16 +59,62 @@ fun CasablancaOutsideScreen(
     }
 }
 
+@Composable
+private fun CasablancaOutsideContent(
+    enterInAgency: () -> Unit,
+    applyPenalty: (String) -> Unit
+) {
+    val buttonTexts = listOf(
+        R.string.force_door,
+        R.string.ring_intercom,
+        R.string.go_through_window,
+        R.string.sleep_hotel
+    )
+
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
+        horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally)
+    ) {
+        item(span = { GridItemSpan(2) }) {
+            Text(
+                text = stringResource(R.string.casablanca_outside_text),
+                color = Color.White,
+                textAlign = TextAlign.Center
+            )
+        }
+        items(buttonTexts) { buttonText ->
+            Button(
+                onClick = {
+                    when (buttonText) {
+                        R.string.go_through_window -> enterInAgency()
+                        R.string.force_door -> applyPenalty("door")
+                        R.string.ring_intercom -> applyPenalty("intercom")
+                        R.string.sleep_hotel -> applyPenalty("hotel")
+                    }
+                },
+                modifier = Modifier.height(80.dp)
+            ) {
+                Text(
+                    text = stringResource(buttonText),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+    }
+}
+
 @ScreenPreview
 @Composable
 private fun CasablancaOutsideScreenPreview() {
     ZEscapeThemePreview {
         CasablancaOutsideScreen(
-            remainingTime = 60,
+            remainingTime = 0,
             goToSettings = {},
             openWorldMap = {},
             openInventory = {},
-            enterInAgency = {}
+            enterInAgency = {},
+            applyPenalty = {}
         )
     }
 }

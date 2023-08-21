@@ -1,5 +1,6 @@
 package com.zenika.tutorial.presentation.item
 
+import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
 import com.zenika.R
 import com.zenika.tutorial.presentation.component.TutorialDialog
@@ -10,6 +11,7 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun TutorialItemDialog(
+    @DrawableRes
     item: Int,
     onDismissRequest: () -> Unit
 ) {

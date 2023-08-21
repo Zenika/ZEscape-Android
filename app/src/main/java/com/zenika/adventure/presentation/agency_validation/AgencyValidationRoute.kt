@@ -10,6 +10,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 fun AgencyValidationRoute(
     onDismissRequest: () -> Unit,
     goBackToWorldMap: () -> Unit,
+    openPenalty: (String) -> Unit,
     viewModel: AgencyValidationViewModel = hiltViewModel()
 ) {
     val agency by viewModel.agency.collectAsStateWithLifecycle()
@@ -17,6 +18,7 @@ fun AgencyValidationRoute(
     LaunchedEffect(event) {
         when (event) {
             AgencyValidationEvent.OPEN_MAP -> goBackToWorldMap()
+            AgencyValidationEvent.PENALTY -> openPenalty("agency")
             null -> Unit
         }
     }

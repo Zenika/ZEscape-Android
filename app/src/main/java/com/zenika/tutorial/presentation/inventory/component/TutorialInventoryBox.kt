@@ -1,5 +1,6 @@
 package com.zenika.tutorial.presentation.inventory.component
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,6 +29,7 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun TutorialInventoryBox(
+    @DrawableRes
     item: Int,
     showItem: (Int) -> Unit
 ) {

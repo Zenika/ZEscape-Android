@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.AddAgencyUseCase
+import com.zenika.adventure.domain.ApplyPenaltyUseCase
 import com.zenika.data.Agency
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,17 +19,18 @@ import javax.inject.Inject
 @HiltViewModel
 class AgencyValidationViewModel @Inject constructor(
     private val addAgency: AddAgencyUseCase,
+    private val applyPenalty: ApplyPenaltyUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    private var _agencyName: String =
+    private var agencyName: String =
         savedStateHandle.get<String>("agency") ?: error("Agency is required")
 
-    private var _agency = MutableStateFlow(_agencyName)
+    private var _agency = MutableStateFlow(agencyName)
     val agency: StateFlow<String> = _agency
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = _agencyName
+            initialValue = agencyName
         )
 
     private val _events = MutableSharedFlow<AgencyValidationEvent>()
@@ -48,12 +50,23 @@ class AgencyValidationViewModel @Inject constructor(
     }
 
     private fun addAgency() {
-        Agency.values()
-            .firstOrNull { it.name == agency.value }
-            ?.let { addAgency(it) }
+        val agencyIsValid = Agency.values().any { it.name == agencyName }
+        viewModelScope.launch {
+            if (agencyIsValid) {
+                addAgency(Agency.valueOf(agencyName))
+            } else {
+                onWrongAgencyAdded()
+            }
+        }
+    }
+
+    private suspend fun onWrongAgencyAdded() {
+        applyPenalty()
+        _events.emit(AgencyValidationEvent.PENALTY)
     }
 }
 
 enum class AgencyValidationEvent {
-    OPEN_MAP
+    OPEN_MAP,
+    PENALTY
 }

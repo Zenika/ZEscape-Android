@@ -1,5 +1,6 @@
 package com.zenika.adventure.presentation.inventory.component
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -29,8 +30,9 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun AdventureInventoryBox(
+    @DrawableRes
     item: Int,
-    showItem: (Int) -> Unit,
+    onItemClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
     size: Dp = 100.dp
 ) {
@@ -45,7 +47,7 @@ fun AdventureInventoryBox(
             )
             .padding(1.dp)
             .background(MaterialTheme.colorScheme.primary)
-            .clickable(enabled = item != 0) { showItem(item) }
+            .clickable(enabled = item != 0) { onItemClick(item) }
             .wrapContentSize(Alignment.Center)
             .padding(dialogPadding)
     ) {
@@ -65,11 +67,11 @@ private fun AdventureInventoryBoxPreview() {
         Row {
             AdventureInventoryBox(
                 item = R.mipmap.hook,
-                showItem = {}
+                onItemClick = {}
             )
             AdventureInventoryBox(
                 item = 0,
-                showItem = {}
+                onItemClick = {}
             )
         }
     }

@@ -19,6 +19,7 @@ import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
 import com.zenika.adventure.presentation.inventory.AdventureInventoryRoute
 import com.zenika.adventure.presentation.item.AdventureItemRoute
+import com.zenika.adventure.presentation.penalty.AdventurePenaltyRoute
 import com.zenika.adventure.presentation.portal.PortalRoute
 import com.zenika.adventure.presentation.portal_message.PortalMessageRoute
 import com.zenika.adventure.presentation.score.AdventureScoreDialog
@@ -53,6 +54,7 @@ private const val ROUTE_CASABLANCA_INSTRUCTION = "adventureCasablancaInstruction
 private const val ROUTE_CASABLANCA_OUTSIDE = "adventureCasablancaOutside"
 private const val ROUTE_CASABLANCA_AGENCY = "adventureCasablancaAgency"
 private const val ROUTE_CASABLANCA_AGENCY_DIALOG = "adventureCasablancaAgencyDialog"
+private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.adventureNavigation(
@@ -135,6 +137,14 @@ fun NavGraphBuilder.adventureNavigation(
                             item.toString()
                         )
                     )
+                },
+                openPenalty = { item ->
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            item
+                        )
+                    )
                 }
             )
         }
@@ -148,16 +158,29 @@ fun NavGraphBuilder.adventureNavigation(
                 onDismissRequest = { navController.popBackStack() }
             )
         }
+        dialog(
+            ROUTE_PATTERN_PENALTY,
+            arguments = listOf(navArgument("penalty") {
+                type = NavType.StringType
+            })
+        ) {
+            AdventurePenaltyRoute(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
         dialog(ROUTE_WORLD_MAP) {
             WorldMapRoute(
                 onDismissRequest = { navController.popBackStack() },
-
-                openTextRecognition = { navController.navigate(ROUTE_AGENCY_RECOGNITION) },
-                goBackToPortal = {
-                    navController.popBackStack(route = ROUTE_PORTAL, inclusive = false)
+                openTextRecognition = {
+                    navController.navigate(ROUTE_AGENCY_RECOGNITION)
                 },
-                goInsideSingaporeAgency = { navController.navigate(route = ROUTE_SINGAPORE_AGENCY) },
-                openOnOffGame = {
+                goBackToPortal = {
+                    navController.popBackStack(ROUTE_PORTAL, inclusive = false)
+                },
+                goInsideSingaporeAgency = {
+                    navController.navigate(ROUTE_SINGAPORE_AGENCY)
+                },
+                goOutsideSingaporeAgency = {
                     navController.navigate(ROUTE_ON_OFF_GAME)
                     navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
                 },
@@ -192,6 +215,16 @@ fun NavGraphBuilder.adventureNavigation(
                 onDismissRequest = { navController.popBackStack() },
                 goBackToWorldMap = {
                     navController.navigate(ROUTE_WORLD_MAP) {
+                        popUpTo(ROUTE_PATTERN_AGENCY_VALIDATION) { inclusive = true }
+                    }
+                },
+                openPenalty = { item ->
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            item
+                        )
+                    ) {
                         popUpTo(ROUTE_PATTERN_AGENCY_VALIDATION) { inclusive = true }
                     }
                 }
@@ -255,6 +288,16 @@ fun NavGraphBuilder.adventureNavigation(
                 enterInAgency = {
                     navController.navigate(ROUTE_CASABLANCA_AGENCY)
                     navController.navigate(ROUTE_CASABLANCA_AGENCY_DIALOG)
+                },
+                openPenalty = { item ->
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            item
+                        )
+                    ) {
+                        popUpTo(ROUTE_SINGAPORE_AGENCY) { inclusive = false }
+                    }
                 }
             )
         }

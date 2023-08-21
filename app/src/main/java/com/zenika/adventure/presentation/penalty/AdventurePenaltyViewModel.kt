@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.item
+package com.zenika.adventure.presentation.penalty
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -11,17 +11,17 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class AdventureItemViewModel @Inject constructor(
+class AdventurePenaltyViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    private var itemRes: Int =
-        savedStateHandle.get<Int>("item") ?: error("Item is required")
+    private var penaltyName: String =
+        savedStateHandle.get<String>("penalty") ?: error("Penalty is required")
 
-    private var _item = MutableStateFlow(itemRes)
-    val item: StateFlow<Int?> = _item
+    private var _penalty = MutableStateFlow(penaltyName)
+    val penalty: StateFlow<String> = _penalty
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = null
+            initialValue = penaltyName
         )
 }
