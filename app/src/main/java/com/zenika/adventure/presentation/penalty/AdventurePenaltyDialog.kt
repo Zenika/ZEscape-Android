@@ -16,7 +16,6 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun AdventurePenaltyDialog(
     onDismissRequest: () -> Unit,
-    goBackToSingaporeAgency: () -> Unit,
     penalty: String,
     modifier: Modifier = Modifier
 ) {
@@ -30,13 +29,8 @@ fun AdventurePenaltyDialog(
         else -> R.string.penalty
     }
 
-    val onDismiss = when (penalty) {
-        "hook", "sword" -> goBackToSingaporeAgency
-        else -> onDismissRequest
-    }
-
     AdventureDialog(
-        onDismissRequest = onDismiss,
+        onDismissRequest = onDismissRequest,
         backgroundColor = MaterialTheme.colorScheme.errorContainer
     ) {
         Text(
@@ -55,7 +49,6 @@ private fun AdventurePenaltyDialogPreview() {
     ZEscapeThemePreview {
         AdventurePenaltyDialog(
             onDismissRequest = {},
-            goBackToSingaporeAgency = {},
             penalty = "null"
         )
     }

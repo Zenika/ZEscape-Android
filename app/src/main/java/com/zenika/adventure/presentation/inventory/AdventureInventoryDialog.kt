@@ -23,8 +23,8 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun AdventureInventoryDialog(
-    items: InventoryState,
-    showItem: (Int) -> Unit,
+    inventory: InventoryState,
+    onItemClick: (Int) -> Unit,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -45,9 +45,9 @@ fun AdventureInventoryDialog(
                 columns = GridCells.Fixed(2)
             ) {
                 items(
-                    items.items
+                    inventory.items
                 ) { item ->
-                    AdventureInventoryBox(item = item.resource, showItem = showItem)
+                    AdventureInventoryBox(item = item.resource, onItemClick = onItemClick)
                 }
             }
         }
@@ -59,7 +59,7 @@ fun AdventureInventoryDialog(
 private fun AdventureInventoryDialogPreview() {
     ZEscapeThemePreview {
         AdventureInventoryDialog(
-            items = InventoryState(
+            inventory = InventoryState(
                 listOf(
                     ItemDto("hook", R.mipmap.hook),
                     ItemDto("singaporeKey", R.mipmap.singapore_key),
@@ -73,7 +73,7 @@ private fun AdventureInventoryDialogPreview() {
                     ItemDto("", 0)
                 )
             ),
-            showItem = {},
+            onItemClick = {},
             onDismissRequest = {}
         )
     }
