@@ -1,6 +1,5 @@
 package com.zenika.tutorial.presentation.main
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,7 +30,6 @@ import com.zenika.ui.theme.screenPadding
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
@@ -42,9 +40,7 @@ fun MainScreen(
     openInventory: () -> Unit,
     showHint: () -> Unit,
     collectKey: () -> Unit,
-    collectMap: () -> Unit,
-    removeNewItemBadge: () -> Unit,
-    incrementHintCount: () -> Unit
+    collectMap: () -> Unit
 ) {
     Scaffold(modifier = modifier,
         topBar = {
@@ -56,12 +52,7 @@ fun MainScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = {
-                        showHint()
-                        incrementHintCount()
-                    }) {
-                        Icon(Icons.Filled.Search, stringResource(R.string.hint))
-                    }
+                    HintIcon(onClick = showHint)
                 },
                 actions = {
                     SettingsButton(goToSettings)
@@ -95,8 +86,7 @@ fun MainScreen(
                 Modifier
                     .align(Alignment.BottomEnd),
                 mainUiState.newItem,
-                openInventory,
-                removeNewItemBadge
+                openInventory
             )
             if (!mainUiState.isKeyCollected) {
                 Key(
@@ -107,6 +97,19 @@ fun MainScreen(
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun HintIcon(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    IconButton(
+        modifier = modifier,
+        onClick = onClick
+    ) {
+        Icon(Icons.Filled.Search, stringResource(R.string.hint))
     }
 }
 
@@ -129,9 +132,7 @@ private fun TutorialScreenPreview() {
             openInventory = {},
             showHint = {},
             collectKey = {},
-            collectMap = {},
-            removeNewItemBadge = {},
-            incrementHintCount = {}
+            collectMap = {}
         )
     }
 }
