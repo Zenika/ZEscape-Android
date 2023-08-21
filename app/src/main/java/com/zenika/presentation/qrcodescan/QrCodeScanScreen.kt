@@ -15,7 +15,6 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.scaleIn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -79,7 +78,7 @@ fun QrCodeScanScreen(
         }
     ) { paddingValues ->
         QrCodeScanContent(
-            paddingValues = paddingValues,
+            modifier = Modifier.padding(paddingValues),
             qrcode = qrcode,
             goToNextScreen = goToNextScreen
         )
@@ -88,9 +87,9 @@ fun QrCodeScanScreen(
 
 @Composable
 private fun QrCodeScanContent(
-    paddingValues: PaddingValues,
     qrcode: String,
-    goToNextScreen: () -> Unit
+    goToNextScreen: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
 
@@ -111,19 +110,16 @@ private fun QrCodeScanContent(
     LaunchedEffect(Unit) {
         launcher.launch(Manifest.permission.CAMERA)
     }
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
+
+    Scan(
+        hasCamPermission,
+        context,
+        qrcode,
+        goToNextScreen,
+        modifier = modifier
+            .fillMaxSize()
             .background(Color.Black)
-            .padding(paddingValues)
-    ) {
-        Scan(
-            hasCamPermission,
-            context,
-            qrcode,
-            goToNextScreen
-        )
-    }
+    )
 }
 
 @Composable
@@ -131,7 +127,8 @@ private fun Scan(
     hasCamPermission: Boolean,
     currentContext: Context,
     qrcode: String,
-    goToNextScreen: () -> Unit
+    goToNextScreen: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     var code by remember {
         mutableStateOf("")
@@ -141,43 +138,47 @@ private fun Scan(
         ProcessCameraProvider.getInstance(currentContext)
     }
 
-    if (hasCamPermission) {
-        AndroidView(
-            factory = { context ->
-                val previewView = PreviewView(context)
-                val preview = Preview.Builder().build()
-                val selector = CameraSelector.Builder()
-                    .requireLensFacing(CameraSelector.LENS_FACING_BACK)
-                    .build()
-                preview.setSurfaceProvider(previewView.surfaceProvider)
-                val imageAnalysis = ImageAnalysis.Builder()
-                    .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                    .build()
-                imageAnalysis.setAnalyzer(
-                    ContextCompat.getMainExecutor(context),
-                    QrCodeAnalyzer { result ->
-                        code = result
-                    }
-                )
-                try {
-                    cameraProviderFuture.get().bindToLifecycle(
-                        lifecycleOwner,
-                        selector,
-                        preview,
-                        imageAnalysis
+    Box(modifier) {
+        if (hasCamPermission) {
+            AndroidView(
+                factory = { context ->
+                    val previewView = PreviewView(context)
+                    val preview = Preview.Builder().build()
+                    val selector = CameraSelector.Builder()
+                        .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                        .build()
+                    preview.setSurfaceProvider(previewView.surfaceProvider)
+                    val imageAnalysis = ImageAnalysis.Builder()
+                        .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                        .build()
+                    imageAnalysis.setAnalyzer(
+                        ContextCompat.getMainExecutor(context),
+                        QrCodeAnalyzer { result ->
+                            code = result
+                        }
                     )
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-                previewView
-            },
-            modifier = Modifier.fillMaxSize()
+                    try {
+                        cameraProviderFuture.get().bindToLifecycle(
+                            lifecycleOwner,
+                            selector,
+                            preview,
+                            imageAnalysis
+                        )
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                    previewView
+                },
+                modifier = Modifier.fillMaxSize()
+            )
+        }
+        CheckValidationIcon(
+            code,
+            qrcode,
+            modifier = Modifier.align(Alignment.Center)
         )
     }
-    CheckValidationIcon(
-        code,
-        qrcode
-    )
+
     LaunchedEffect(code) {
         if (code == qrcode) {
             delay(1500)
@@ -190,22 +191,21 @@ private fun Scan(
 @Composable
 private fun CheckValidationIcon(
     code: String,
-    qrcode: String
+    qrcode: String,
+    modifier: Modifier = Modifier
 ) {
-    Box {
-        AnimatedVisibility(
-            visible = code == qrcode,
-            modifier = Modifier.align(Alignment.Center),
-            enter = scaleIn()
-        ) {
-            Icon(
-                imageVector = Icons.Filled.CheckCircle,
-                modifier = Modifier
-                    .size(52.dp),
-                contentDescription = stringResource(R.string.check),
-                tint = Color.Green
-            )
-        }
+    AnimatedVisibility(
+        visible = code == qrcode,
+        modifier = modifier,
+        enter = scaleIn()
+    ) {
+        Icon(
+            imageVector = Icons.Filled.CheckCircle,
+            modifier = Modifier
+                .size(52.dp),
+            contentDescription = stringResource(R.string.check),
+            tint = Color.Green
+        )
     }
 }
 
