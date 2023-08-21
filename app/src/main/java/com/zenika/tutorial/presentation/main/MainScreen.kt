@@ -72,7 +72,7 @@ fun MainScreen(
                 .padding(paddingValues)
                 .paint(
                     painterResource(R.mipmap.background1),
-                    contentScale = ContentScale.FillHeight
+                    contentScale = ContentScale.Crop
                 ),
             contentAlignment = Alignment.Center
         ) {
