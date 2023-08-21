@@ -10,9 +10,9 @@ import com.zenika.data.Game
 import com.zenika.presentation.qrcodescan.QrCodeScanRoute
 import kotlinx.collections.immutable.persistentListOf
 
-private const val ROUTE_HOME = "adventureHome"
-private const val ROUTE_QRCODE_SCAN = "adventureQrCodeScan"
-private const val ROUTE_ON_OFF_GAME = "adventureOnOffGame"
+private const val ROUTE_HOME = "debugHome"
+private const val ROUTE_QRCODE_SCAN = "debugQrCodeScan"
+private const val ROUTE_ON_OFF_GAME = "debugOnOffGame"
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.debugNavigation(
