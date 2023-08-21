@@ -19,18 +19,18 @@ import javax.inject.Inject
 @HiltViewModel
 class AgencyValidationViewModel @Inject constructor(
     private val addAgency: AddAgencyUseCase,
-    private val applyPenaltyUseCase: ApplyPenaltyUseCase,
+    private val applyPenalty: ApplyPenaltyUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    private var _agencyName: String =
+    private var agencyName: String =
         savedStateHandle.get<String>("agency") ?: error("Agency is required")
 
-    private var _agency = MutableStateFlow(_agencyName)
+    private var _agency = MutableStateFlow(agencyName)
     val agency: StateFlow<String> = _agency
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = _agencyName
+            initialValue = agencyName
         )
 
     private val _events = MutableSharedFlow<AgencyValidationEvent>()
@@ -50,21 +50,19 @@ class AgencyValidationViewModel @Inject constructor(
     }
 
     private fun addAgency() {
-        val agencyExists = Agency.values().any { it.name == agency.value }
+        val agencyIsValid = Agency.values().any { it.name == agencyName }
         viewModelScope.launch {
-            if (agencyExists) {
-                addAgency(Agency.valueOf(agency.value))
+            if (agencyIsValid) {
+                addAgency(Agency.valueOf(agencyName))
             } else {
-                applyPenalty()
+                onWrongAgencyAdded()
             }
         }
     }
 
-    private fun applyPenalty() {
-        viewModelScope.launch {
-            _events.emit(AgencyValidationEvent.PENALTY)
-            applyPenaltyUseCase()
-        }
+    private suspend fun onWrongAgencyAdded() {
+        applyPenalty()
+        _events.emit(AgencyValidationEvent.PENALTY)
     }
 }
 
