@@ -146,169 +146,172 @@ fun NavGraphBuilder.adventureNavigation(
                         )
                     )
                 }
-        )
-    }
-    dialog(
-        ROUTE_PATTERN_ITEM,
-        arguments = listOf(navArgument("item") {
-            type = NavType.IntType
-        })
-    ) {
-        AdventureItemRoute(
-            onDismissRequest = { navController.popBackStack() }
-        )
-    }
-    dialog(
-        ROUTE_PATTERN_PENALTY,
-        arguments = listOf(navArgument("penalty") {
-            type = NavType.StringType
-        })
-    ) {
-        AdventurePenaltyRoute(
-            onDismissRequest = { navController.popBackStack() }
-        )
-    }
-    dialog(ROUTE_WORLD_MAP) {
-        WorldMapRoute(
-            onDismissRequest = { navController.popBackStack() },
-
-            openTextRecognition = { navController.navigate(ROUTE_AGENCY_RECOGNITION) },
-            goBackToPortal = {
-                navController.popBackStack(route = ROUTE_PORTAL, inclusive = false)
-            },
-            goInsideSingaporeAgency = { navController.navigate(route = ROUTE_SINGAPORE_AGENCY) },
-            openOnOffGame = {
-                navController.navigate(ROUTE_ON_OFF_GAME)
-                navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
-            },
-            goToCasablanca = {
-                navController.navigate(ROUTE_CASABLANCA_OUTSIDE)
-                navController.navigate(ROUTE_CASABLANCA_INSTRUCTION)
-            }
-        )
-    }
-    composable(ROUTE_AGENCY_RECOGNITION) {
-        AgencyRecognitionRoute(
-            goBack = { navController.popBackStack() },
-            onTextRecognized = { agency ->
-                navController.navigate(
-                    ROUTE_PATTERN_AGENCY_VALIDATION.replace(
-                        "{agency}",
-                        agency
-                    )
-                ) {
-                    popUpTo(ROUTE_AGENCY_RECOGNITION) { inclusive = true }
+            )
+        }
+        dialog(
+            ROUTE_PATTERN_ITEM,
+            arguments = listOf(navArgument("item") {
+                type = NavType.IntType
+            })
+        ) {
+            AdventureItemRoute(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
+        dialog(
+            ROUTE_PATTERN_PENALTY,
+            arguments = listOf(navArgument("penalty") {
+                type = NavType.StringType
+            })
+        ) {
+            AdventurePenaltyRoute(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
+        dialog(ROUTE_WORLD_MAP) {
+            WorldMapRoute(
+                onDismissRequest = { navController.popBackStack() },
+                openTextRecognition = {
+                    navController.navigate(ROUTE_AGENCY_RECOGNITION)
+                },
+                goBackToPortal = {
+                    navController.popBackStack(ROUTE_PORTAL, inclusive = false)
+                },
+                goInsideSingaporeAgency = {
+                    navController.navigate(ROUTE_SINGAPORE_AGENCY)
+                },
+                goOutsideSingaporeAgency = {
+                    navController.navigate(ROUTE_ON_OFF_GAME)
+                    navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
+                },
+                goToCasablanca = {
+                    navController.navigate(ROUTE_CASABLANCA_OUTSIDE)
+                    navController.navigate(ROUTE_CASABLANCA_INSTRUCTION)
                 }
-            },
-        )
-    }
-    dialog(
-        ROUTE_PATTERN_AGENCY_VALIDATION,
-        arguments = listOf(navArgument("agency") {
-            type = NavType.StringType
-        })
-    ) {
-        AgencyValidationRoute(
-            onDismissRequest = { navController.popBackStack() },
-            goBackToWorldMap = {
-                navController.navigate(ROUTE_WORLD_MAP) {
-                    popUpTo(ROUTE_PATTERN_AGENCY_VALIDATION) { inclusive = true }
-                }
-            },
-            openPenalty = { item ->
-                navController.navigate(
-                    ROUTE_PATTERN_PENALTY.replace(
-                        "{penalty}",
-                        item
-                    )
-                ) {
-                    popUpTo(ROUTE_PATTERN_AGENCY_VALIDATION) { inclusive = true }
-                }
-            }
-        )
-    }
-    dialog(ROUTE_SINGAPORE_INSTRUCTION) {
-        InstructionSingaporeRoute(
-            onDismissRequest = { navController.popBackStack() }
-        )
-    }
-    composable(ROUTE_ON_OFF_GAME) {
-        OnOffRoute(
-            winGame = {
-                navController.navigate(ROUTE_SINGAPORE_AGENCY) {
-                    popUpTo(ROUTE_ON_OFF_GAME) {
-                        inclusive = true
+            )
+        }
+        composable(ROUTE_AGENCY_RECOGNITION) {
+            AgencyRecognitionRoute(
+                goBack = { navController.popBackStack() },
+                onTextRecognized = { agency ->
+                    navController.navigate(
+                        ROUTE_PATTERN_AGENCY_VALIDATION.replace(
+                            "{agency}",
+                            agency
+                        )
+                    ) {
+                        popUpTo(ROUTE_AGENCY_RECOGNITION) { inclusive = true }
+                    }
+                },
+            )
+        }
+        dialog(
+            ROUTE_PATTERN_AGENCY_VALIDATION,
+            arguments = listOf(navArgument("agency") {
+                type = NavType.StringType
+            })
+        ) {
+            AgencyValidationRoute(
+                onDismissRequest = { navController.popBackStack() },
+                goBackToWorldMap = {
+                    navController.navigate(ROUTE_WORLD_MAP) {
+                        popUpTo(ROUTE_PATTERN_AGENCY_VALIDATION) { inclusive = true }
+                    }
+                },
+                openPenalty = { item ->
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            item
+                        )
+                    ) {
+                        popUpTo(ROUTE_PATTERN_AGENCY_VALIDATION) { inclusive = true }
                     }
                 }
-                navController.navigate(ROUTE_SINGAPORE_AGENCY_DIALOG)
-            },
-            goToSettings = { navController.navigate(ROUTE_SETTINGS) }
-        )
-    }
-    composable(ROUTE_SINGAPORE_AGENCY) {
-        SingaporeAgencyRoute(
-            goToSettings = { navController.navigate(ROUTE_SETTINGS) },
-            openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
-            openInventory = { navController.navigate(ROUTE_INVENTORY) }
-        )
-    }
-    dialog(ROUTE_SINGAPORE_AGENCY_DIALOG) {
-        SingaporeAgencyDialog(
-            onDismissRequest = { navController.popBackStack() }
-        )
-    }
-    composable(ROUTE_SCORE) {
-        AdventureScoreRoute(
-            goBackToHome = {
-                navController.popBackStack(
-                    route = ROUTE_HOME,
-                    inclusive = true
-                )
-            }
-        )
-    }
-    dialog(ROUTE_SCORE_DIALOG) {
-        AdventureScoreDialog(
-            onDismissRequest = { navController.popBackStack() }
-        )
-    }
-    dialog(ROUTE_CASABLANCA_INSTRUCTION) {
-        InstructionCasablancaRoute(
-            onDismissRequest = { navController.popBackStack() }
-        )
-    }
-    composable(ROUTE_CASABLANCA_OUTSIDE) {
-        CasablancaOutsideRoute(
-            goToSettings = { navController.navigate(ROUTE_SETTINGS) },
-            openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
-            openInventory = { navController.navigate(ROUTE_INVENTORY) },
-            enterInAgency = {
-                navController.navigate(ROUTE_CASABLANCA_AGENCY)
-                navController.navigate(ROUTE_CASABLANCA_AGENCY_DIALOG)
-            },
-            openPenalty = { item ->
-                navController.navigate(
-                    ROUTE_PATTERN_PENALTY.replace(
-                        "{penalty}",
-                        item
+            )
+        }
+        dialog(ROUTE_SINGAPORE_INSTRUCTION) {
+            InstructionSingaporeRoute(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
+        composable(ROUTE_ON_OFF_GAME) {
+            OnOffRoute(
+                winGame = {
+                    navController.navigate(ROUTE_SINGAPORE_AGENCY) {
+                        popUpTo(ROUTE_ON_OFF_GAME) {
+                            inclusive = true
+                        }
+                    }
+                    navController.navigate(ROUTE_SINGAPORE_AGENCY_DIALOG)
+                },
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) }
+            )
+        }
+        composable(ROUTE_SINGAPORE_AGENCY) {
+            SingaporeAgencyRoute(
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) }
+            )
+        }
+        dialog(ROUTE_SINGAPORE_AGENCY_DIALOG) {
+            SingaporeAgencyDialog(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
+        composable(ROUTE_SCORE) {
+            AdventureScoreRoute(
+                goBackToHome = {
+                    navController.popBackStack(
+                        route = ROUTE_HOME,
+                        inclusive = true
                     )
-                ) {
-                    popUpTo(ROUTE_SINGAPORE_AGENCY) { inclusive = false }
                 }
-            }
-        )
+            )
+        }
+        dialog(ROUTE_SCORE_DIALOG) {
+            AdventureScoreDialog(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
+        dialog(ROUTE_CASABLANCA_INSTRUCTION) {
+            InstructionCasablancaRoute(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
+        composable(ROUTE_CASABLANCA_OUTSIDE) {
+            CasablancaOutsideRoute(
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) },
+                enterInAgency = {
+                    navController.navigate(ROUTE_CASABLANCA_AGENCY)
+                    navController.navigate(ROUTE_CASABLANCA_AGENCY_DIALOG)
+                },
+                openPenalty = { item ->
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            item
+                        )
+                    ) {
+                        popUpTo(ROUTE_SINGAPORE_AGENCY) { inclusive = false }
+                    }
+                }
+            )
+        }
+        composable(ROUTE_CASABLANCA_AGENCY) {
+            CasablancaAgencyRoute(
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) }
+            )
+        }
+        dialog(ROUTE_CASABLANCA_AGENCY_DIALOG) {
+            CasablancaAgencyDialog(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
     }
-    composable(ROUTE_CASABLANCA_AGENCY) {
-        CasablancaAgencyRoute(
-            goToSettings = { navController.navigate(ROUTE_SETTINGS) },
-            openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
-            openInventory = { navController.navigate(ROUTE_INVENTORY) }
-        )
-    }
-    dialog(ROUTE_CASABLANCA_AGENCY_DIALOG) {
-        CasablancaAgencyDialog(
-            onDismissRequest = { navController.popBackStack() }
-        )
-    }
-}
 }

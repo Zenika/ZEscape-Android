@@ -11,7 +11,7 @@ fun WorldMapRoute(
     openTextRecognition: () -> Unit,
     goBackToPortal: () -> Unit,
     goInsideSingaporeAgency: () -> Unit,
-    openOnOffGame: () -> Unit,
+    goOutsideSingaporeAgency: () -> Unit,
     goToCasablanca: () -> Unit,
     viewModel: WorldMapViewModel = hiltViewModel()
 ) {
@@ -21,7 +21,7 @@ fun WorldMapRoute(
     val goToSingaporeAgency = if (isSingaporeAgencyOpen) {
         goInsideSingaporeAgency
     } else {
-        openOnOffGame
+        goOutsideSingaporeAgency
     }
 
     WorldMapDialog(
