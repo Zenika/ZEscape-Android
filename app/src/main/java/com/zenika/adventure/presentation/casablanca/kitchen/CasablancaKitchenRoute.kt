@@ -7,6 +7,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun CasablancaKitchenRoute(
+    goBack: () -> Unit,
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
@@ -16,6 +17,7 @@ fun CasablancaKitchenRoute(
 
     CasablancaKitchenScreen(
         remainingTime,
+        goBack,
         goToSettings,
         openWorldMap,
         openInventory

@@ -7,6 +7,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun CasablancaGameRoomRoute(
+    goBack: () -> Unit,
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
@@ -16,6 +17,7 @@ fun CasablancaGameRoomRoute(
 
     CasablancaGameRoomScreen(
         remainingTime,
+        goBack,
         goToSettings,
         openWorldMap,
         openInventory

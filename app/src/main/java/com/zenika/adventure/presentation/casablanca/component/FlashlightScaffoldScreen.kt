@@ -1,5 +1,7 @@
 package com.zenika.adventure.presentation.casablanca.component
 
+import android.content.Context
+import android.hardware.camera2.CameraManager
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
@@ -9,11 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -35,10 +33,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.zenika.R
 import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
 import com.zenika.presentation.component.SettingsButton
@@ -54,6 +51,7 @@ fun FlashlightScaffoldScreen(
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     modifier: Modifier = Modifier,
+    navigationIcon: @Composable () -> Unit = {},
     content: @Composable (BoxScope.() -> Unit)? = null
 ) {
     Scaffold(
@@ -66,11 +64,7 @@ fun FlashlightScaffoldScreen(
                         Modifier.fillMaxWidth()
                     )
                 },
-                navigationIcon = {
-                    IconButton(onClick = {}) {
-                        Icon(Icons.Filled.Search, stringResource(R.string.hint))
-                    }
-                },
+                navigationIcon = navigationIcon,
                 actions = {
                     SettingsButton(goToSettings)
                 },
@@ -105,6 +99,28 @@ private fun FlashlightContent(
         mutableStateOf(Offset(0f, 0f))
     }
 
+    var isFlashLightOn by remember {
+        mutableStateOf(false)
+    }
+
+    val context = LocalContext.current
+    val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+
+    val torchCallback: CameraManager.TorchCallback =
+        object : CameraManager.TorchCallback() {
+            override fun onTorchModeChanged(cameraId: String, enabled: Boolean) {
+                super.onTorchModeChanged(cameraId, enabled)
+                isFlashLightOn = enabled
+            }
+        }
+    cameraManager.registerTorchCallback(torchCallback, null)
+
+    val colors = if (isFlashLightOn) {
+        listOf(Color.Transparent, Color.Black)
+    } else {
+        listOf(Color.Black, Color.Black)
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -124,7 +140,7 @@ private fun FlashlightContent(
                 drawContent()
                 drawRect(
                     Brush.radialGradient(
-                        listOf(Color.Transparent, Color.Black),
+                        colors,
                         center = pointerOffset,
                         radius = 100.dp.toPx(),
                     )
@@ -134,7 +150,7 @@ private fun FlashlightContent(
             .padding(screenPadding)
     ) {
         CompositionLocalProvider(LocalContentColor provides Color.Black) {
-            if (content != null) {
+            if (content != null && isFlashLightOn) {
                 content()
             }
         }

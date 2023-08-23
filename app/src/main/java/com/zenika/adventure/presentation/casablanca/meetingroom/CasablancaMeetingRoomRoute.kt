@@ -7,17 +7,21 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun CasablancaMeetingRoomRoute(
+    goBack: () -> Unit,
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     viewModel: CasablancaMeetingRoomViewModel = hiltViewModel()
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     CasablancaMeetingRoomScreen(
-        remainingTime,
+        state,
+        goBack,
         goToSettings,
         openWorldMap,
-        openInventory
+        openInventory,
+        viewModel::collectPaper
     )
 }
+

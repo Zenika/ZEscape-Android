@@ -1,5 +1,7 @@
 package com.zenika.presentation.debug
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -27,7 +29,9 @@ fun NavGraphBuilder.debugNavigation(
             DebugRoute(
                 goBack = { navController.popBackStack() },
                 games = persistentListOf(
-                    Game.ON_OFF to { navController.navigate(ROUTE_ON_OFF_GAME) }
+                    Game.ON_OFF to { navController.navigate(ROUTE_ON_OFF_GAME) },
+                    Game.CASABLANCA to { navController.handleDeepLink(deeplinkIntent("app://zescape/casablanca/outside")) },
+                    Game.SINGAPORE to { navController.handleDeepLink(deeplinkIntent("app://zescape/singapore/outside")) },
                 )
             )
         }
@@ -45,3 +49,5 @@ fun NavGraphBuilder.debugNavigation(
         }
     }
 }
+
+private fun deeplinkIntent(uri: String): Intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
