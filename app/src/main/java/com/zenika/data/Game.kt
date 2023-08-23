@@ -1,5 +1,7 @@
 package com.zenika.data
 
 enum class Game {
-    ON_OFF
+    ON_OFF,
+    CASABLANCA,
+    SINGAPORE
 }

@@ -9,18 +9,19 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import com.google.accompanist.navigation.animation.composable
 import com.zenika.adventure.presentation.agency_recognition.AgencyRecognitionRoute
 import com.zenika.adventure.presentation.agency_validation.AgencyValidationRoute
 import com.zenika.adventure.presentation.casablanca.agency.CasablancaAgencyDialog
 import com.zenika.adventure.presentation.casablanca.agency.CasablancaAgencyRoute
 import com.zenika.adventure.presentation.casablanca.component.CasablancaAgencyMapDialog
+import com.zenika.adventure.presentation.casablanca.gameroom.CasablancaGameRoomRoute
 import com.zenika.adventure.presentation.casablanca.instruction.InstructionCasablancaRoute
 import com.zenika.adventure.presentation.casablanca.kitchen.CasablancaKitchenRoute
 import com.zenika.adventure.presentation.casablanca.meetingroom.CasablancaMeetingRoomRoute
 import com.zenika.adventure.presentation.casablanca.offices.CasablancaOfficesRoute
 import com.zenika.adventure.presentation.casablanca.outside.CasablancaOutsideRoute
-import com.zenika.adventure.presentation.casablanca.gameroom.CasablancaGameRoomRoute
 import com.zenika.adventure.presentation.computer.ComputerRoute
 import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
@@ -67,6 +68,9 @@ private const val ROUTE_CASABLANCA_KITCHEN = "adventureCasablancaKitchen"
 private const val ROUTE_CASABLANCA_OFFICES = "adventureCasablancaOffices"
 private const val ROUTE_CASABLANCA_MEETING_ROOM = "adventureCasablancaMeetingRoom"
 private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
+
+private val casablancaOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/casablanca/outside" })
+private val singaporeOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/singapore/outside" })
 
 @RequiresApi(Build.VERSION_CODES.M)
 @OptIn(ExperimentalAnimationApi::class)
@@ -248,7 +252,7 @@ fun NavGraphBuilder.adventureNavigation(
                 onDismissRequest = { navController.popBackStack() }
             )
         }
-        composable(ROUTE_ON_OFF_GAME) {
+        composable(ROUTE_ON_OFF_GAME, deepLinks = casablancaOutsideDeeplink) {
             OnOffRoute(
                 winGame = {
                     navController.navigate(ROUTE_SINGAPORE_AGENCY) {
@@ -293,7 +297,7 @@ fun NavGraphBuilder.adventureNavigation(
                 onDismissRequest = { navController.popBackStack() }
             )
         }
-        composable(ROUTE_CASABLANCA_OUTSIDE) {
+        composable(ROUTE_CASABLANCA_OUTSIDE, deepLinks = singaporeOutsideDeeplink) {
             CasablancaOutsideRoute(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
