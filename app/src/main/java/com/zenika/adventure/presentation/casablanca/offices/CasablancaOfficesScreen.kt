@@ -1,7 +1,5 @@
 package com.zenika.adventure.presentation.casablanca.offices
 
-import android.os.Build.VERSION_CODES
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.zenika.R
@@ -9,7 +7,6 @@ import com.zenika.adventure.presentation.casablanca.component.FlashlightScaffold
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
-@RequiresApi(VERSION_CODES.M)
 @Composable
 fun CasablancaOfficesScreen(
     remainingTime: Int,
@@ -30,7 +27,6 @@ fun CasablancaOfficesScreen(
     )
 }
 
-@RequiresApi(VERSION_CODES.M)
 @ScreenPreview
 @Composable
 private fun CasablancaOfficesScreenPreview() {

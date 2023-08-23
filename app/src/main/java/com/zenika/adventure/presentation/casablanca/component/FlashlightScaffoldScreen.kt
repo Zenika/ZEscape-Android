@@ -2,8 +2,6 @@ package com.zenika.adventure.presentation.casablanca.component
 
 import android.content.Context
 import android.hardware.camera2.CameraManager
-import android.os.Build.VERSION_CODES
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
@@ -51,7 +49,6 @@ import com.zenika.presentation.component.SettingsButton
 import com.zenika.presentation.component.Timer
 import com.zenika.ui.theme.screenPadding
 
-@RequiresApi(VERSION_CODES.M)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FlashlightScaffoldScreen(
@@ -106,7 +103,6 @@ fun FlashlightScaffoldScreen(
     }
 }
 
-@RequiresApi(VERSION_CODES.M)
 @Composable
 private fun FlashlightContent(
     paddingValues: PaddingValues,

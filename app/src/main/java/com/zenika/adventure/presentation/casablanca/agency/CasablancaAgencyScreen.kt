@@ -1,12 +1,11 @@
 package com.zenika.adventure.presentation.casablanca.agency
 
-import android.os.Build.VERSION_CODES
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -16,7 +15,6 @@ import com.zenika.adventure.presentation.casablanca.component.FlashlightScaffold
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
-@RequiresApi(VERSION_CODES.M)
 @Composable
 fun CasablancaAgencyScreen(
     remainingTime: Int,
@@ -40,7 +38,7 @@ fun CasablancaAgencyScreen(
                 .align(Alignment.TopCenter)
                 .padding(top = 100.dp)
                 .clickable(
-                    interactionSource = MutableInteractionSource(),
+                    interactionSource = remember { MutableInteractionSource() },
                     indication = null,
                     onClick = openAgencyMap
                 )
@@ -48,7 +46,6 @@ fun CasablancaAgencyScreen(
     }
 }
 
-@RequiresApi(VERSION_CODES.M)
 @ScreenPreview
 @Composable
 private fun CasablancaAgencyScreenPreview() {

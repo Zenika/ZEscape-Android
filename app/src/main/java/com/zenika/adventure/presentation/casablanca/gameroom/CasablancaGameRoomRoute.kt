@@ -1,13 +1,10 @@
 package com.zenika.adventure.presentation.casablanca.gameroom
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
-@RequiresApi(Build.VERSION_CODES.M)
 @Composable
 fun CasablancaGameRoomRoute(
     goBack: () -> Unit,

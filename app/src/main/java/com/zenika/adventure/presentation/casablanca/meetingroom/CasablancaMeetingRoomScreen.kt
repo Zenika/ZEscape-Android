@@ -1,12 +1,11 @@
 package com.zenika.adventure.presentation.casablanca.meetingroom
 
-import android.os.Build.VERSION_CODES
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -17,7 +16,6 @@ import com.zenika.adventure.presentation.casablanca.component.FlashlightScaffold
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
-@RequiresApi(VERSION_CODES.M)
 @Composable
 fun CasablancaMeetingRoomScreen(
     state: MeetingRoomUiState,
@@ -45,7 +43,7 @@ fun CasablancaMeetingRoomScreen(
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 100.dp)
                     .clickable(
-                        interactionSource = MutableInteractionSource(),
+                        interactionSource = remember { MutableInteractionSource() },
                         indication = null,
                         onClick = collectPaper
                     )
@@ -54,7 +52,6 @@ fun CasablancaMeetingRoomScreen(
     }
 }
 
-@RequiresApi(VERSION_CODES.M)
 @ScreenPreview
 @Composable
 private fun CasablancaMeetingRoomScreenPreview() {
