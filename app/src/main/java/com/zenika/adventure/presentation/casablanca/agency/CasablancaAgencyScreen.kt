@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.adventure.presentation.casablanca.component.CasablancaMap
 import com.zenika.adventure.presentation.casablanca.component.FlashlightScaffoldScreen
+import com.zenika.presentation.component.HintButton
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -30,7 +31,8 @@ fun CasablancaAgencyScreen(
         goToSettings = goToSettings,
         background = R.mipmap.casablanca_agency,
         openWorldMap = openWorldMap,
-        openInventory = openInventory
+        openInventory = openInventory,
+        navigationIcon = { HintButton(onClick = {}) }
     ) {
         CasablancaMap(
             modifier = Modifier

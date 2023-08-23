@@ -11,11 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -39,12 +35,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.zenika.R
 import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
-import com.zenika.presentation.component.ReturnButton
 import com.zenika.presentation.component.SettingsButton
 import com.zenika.presentation.component.Timer
 import com.zenika.ui.theme.screenPadding
@@ -58,7 +51,7 @@ fun FlashlightScaffoldScreen(
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     modifier: Modifier = Modifier,
-    goBack: (() -> Unit)? = null,
+    navigationIcon: @Composable () -> Unit = {},
     content: @Composable (BoxScope.() -> Unit)? = null
 ) {
     Scaffold(
@@ -71,14 +64,7 @@ fun FlashlightScaffoldScreen(
                         Modifier.fillMaxWidth()
                     )
                 },
-                navigationIcon = {
-                    if (goBack != null) ReturnButton(goBack = goBack)
-                    else {
-                        IconButton(onClick = {}) {
-                            Icon(Icons.Filled.Search, stringResource(R.string.hint))
-                        }
-                    }
-                },
+                navigationIcon = navigationIcon,
                 actions = {
                     SettingsButton(goToSettings)
                 },

@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.adventure.presentation.casablanca.component.FlashlightScaffoldScreen
+import com.zenika.presentation.component.ReturnButton
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -33,7 +34,7 @@ fun CasablancaMeetingRoomScreen(
         background = R.mipmap.casablanca_meeting_room,
         openWorldMap = openWorldMap,
         openInventory = openInventory,
-        goBack = goBack
+        navigationIcon = { ReturnButton(goBack = goBack) }
     ) {
         if (!state.isCasablancaPaperCollected) {
             Image(

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.zenika.R
 import com.zenika.adventure.presentation.casablanca.component.FlashlightScaffoldScreen
+import com.zenika.presentation.component.ReturnButton
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -23,7 +24,7 @@ fun CasablancaKitchenScreen(
         background = R.mipmap.casablanca_kitchen,
         openWorldMap = openWorldMap,
         openInventory = openInventory,
-        goBack = goBack
+        navigationIcon = { ReturnButton(goBack = goBack) }
     )
 }
 
