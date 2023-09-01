@@ -30,8 +30,16 @@ fun NavGraphBuilder.debugNavigation(
                 goBack = { navController.popBackStack() },
                 games = persistentListOf(
                     Game.ON_OFF to { navController.navigate(ROUTE_ON_OFF_GAME) },
-                    Game.CASABLANCA to { navController.handleDeepLink(deeplinkIntent("app://zescape/casablanca/outside")) },
-                    Game.SINGAPORE to { navController.handleDeepLink(deeplinkIntent("app://zescape/singapore/outside")) },
+                    Game.CASABLANCA to {
+                        navController.handleDeepLink(
+                            deeplinkIntent("app://zescape/casablanca/outside")
+                        )
+                    },
+                    Game.SINGAPORE to {
+                        navController.handleDeepLink(
+                            deeplinkIntent("app://zescape/singapore/outside")
+                        )
+                    },
                 )
             )
         }

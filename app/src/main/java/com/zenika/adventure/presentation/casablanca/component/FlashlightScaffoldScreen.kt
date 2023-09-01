@@ -38,6 +38,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
+import com.zenika.presentation.component.ReturnButton
 import com.zenika.presentation.component.SettingsButton
 import com.zenika.presentation.component.Timer
 import com.zenika.ui.theme.screenPadding

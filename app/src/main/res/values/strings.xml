@@ -86,7 +86,7 @@
     <string name="goBackToPortal">Retour au portail</string>
     <string name="final_text">Vous avez réussi à sortir de cet ordinateur, félicitations ! Vous êtes maintenant prêt(e) à reprendre votre journée de travail, en espérant que cela ne se reproduise pas…</string>
     <string name="instruction_casablanca">Vous êtes arrivé(e) à Casablanca mais il fait nuit, l\'agence est fermée… Comment allez-vous pouvoir entrer ?</string>
-    <string name="instruction_casablanca_agency">Par chance, une fenêtre était entre-ouverte et vous réussissez à entrer. Par contre, il fait drôlement sombre…</string>
+    <string name="instruction_casablanca_agency">Par chance, une fenêtre était entre-ouverte et vous réussissez à entrer. Par contre, il fait drôlement sombre… Si seulement nous avions un moyen d\'éclairer cette pièce…</string>
     <string name="force_door">Forcer la porte d\'entrée</string>
     <string name="ring_intercom">Sonner à interphone</string>
     <string name="go_through_window">Passer par la fenêtre</string>
@@ -108,5 +108,10 @@
     <string name="debug">Debug</string>
     <string name="init_game">Initialiser l\'état du jeu</string>
     <string name="casablanca_map">Plan de l\'agence de Casablanca</string>
+    <string name="close_safe">Coffre fort fermé</string>
+    <string name="clear">effacer</string>
     <string name="casablanca_paper">Papier posé sur le bureau</string>
+    <string name="ok">OK</string>
+    <string name="open_safe">Coffre fort ouvert</string>
+    <string name="safe">Coffre fort</string>
 </resources>
