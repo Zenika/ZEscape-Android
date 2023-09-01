@@ -34,7 +34,7 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun OnOffScreen(
     goToSettings: () -> Unit,
-    openHintValidation: (String) -> Unit,
+    openHintValidation: (AdventureHint) -> Unit,
     remainingTime: Int,
     buttonsList: List<Boolean>,
     switchColor: (Int) -> Unit
@@ -42,13 +42,12 @@ fun OnOffScreen(
     ScaffoldScreen(
         remainingTime = remainingTime,
         goToSettings = goToSettings,
-        openHintValidation = { openHintValidation(AdventureHint.ON_OFF_HINT.name) },
+        openHintValidation = { openHintValidation(AdventureHint.ON_OFF_HINT) },
         background = R.mipmap.singapore_outside
     ) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(4),
-            modifier = Modifier
-                .fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(space = 12.dp, Alignment.CenterVertically),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {

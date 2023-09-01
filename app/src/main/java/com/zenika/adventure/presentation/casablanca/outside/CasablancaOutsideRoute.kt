@@ -5,6 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.zenika.data.AdventureHint
 
 @Composable
 fun CasablancaOutsideRoute(
@@ -13,6 +14,7 @@ fun CasablancaOutsideRoute(
     openInventory: () -> Unit,
     enterInAgency: () -> Unit,
     openPenalty: (String) -> Unit,
+    openHintValidation: (AdventureHint) -> Unit,
     viewModel: CasablancaOutsideViewModel = hiltViewModel(),
 ) {
     val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
@@ -33,6 +35,7 @@ fun CasablancaOutsideRoute(
         goToSettings,
         openWorldMap,
         openInventory,
+        openHintValidation,
         viewModel::enterInAgency,
         viewModel::applyPenalty
     )

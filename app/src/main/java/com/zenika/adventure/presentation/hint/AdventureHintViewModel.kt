@@ -15,7 +15,7 @@ class AdventureHintViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private var _hintName: String =
-        savedStateHandle.get<String>("hint") ?: error("Penalty is required")
+        savedStateHandle.get<String>("hint") ?: error("Hint is required")
 
     private var _hint = MutableStateFlow(_hintName)
     val hint: StateFlow<String?> = _hint

@@ -5,12 +5,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.zenika.data.AdventureHint
 
 @Composable
 fun OnOffRoute(
     winGame: () -> Unit,
     goToSettings: () -> Unit,
-    openHintValidation: (String) -> Unit,
+    openHintValidation: (AdventureHint) -> Unit,
     viewModel: OnOffViewModel = hiltViewModel()
 ) {
     val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()

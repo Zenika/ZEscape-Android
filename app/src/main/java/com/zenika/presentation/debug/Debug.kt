@@ -55,12 +55,14 @@ fun NavGraphBuilder.debugNavigation(
         composable(ROUTE_ON_OFF_GAME) {
             OnOffRoute(
                 winGame = { navController.popBackStack() },
+                openHintValidation = {},
                 goToSettings = {}
             )
         }
         composable(ROUTE_SIMON_SAYS) {
             SimonSaysRoute(
                 winGame = { navController.popBackStack() },
+                openHintValidation = {},
                 goToSettings = {}
             )
         }

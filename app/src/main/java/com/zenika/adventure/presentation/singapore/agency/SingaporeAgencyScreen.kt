@@ -31,7 +31,7 @@ fun SingaporeAgencyScreen(
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
-    openHintValidation: (String) -> Unit,
+    openHintValidation: (AdventureHint) -> Unit,
     collectKey: () -> Unit,
     collectSword: () -> Unit,
     collectHook: () -> Unit,
@@ -41,7 +41,7 @@ fun SingaporeAgencyScreen(
         modifier = modifier,
         remainingTime = state.remainingTime,
         goToSettings = goToSettings,
-        openHintValidation = { openHintValidation(AdventureHint.SINGAPORE_AGENCY_HINT.name) },
+        openHintValidation = { openHintValidation(AdventureHint.SINGAPORE_AGENCY_HINT) },
         background = R.mipmap.singapore_agency
     ) {
         Balloon(

@@ -40,6 +40,7 @@ import com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyRoute
 import com.zenika.adventure.presentation.singapore.instruction.InstructionSingaporeRoute
 import com.zenika.adventure.presentation.singapore.on_off_game.OnOffRoute
 import com.zenika.adventure.presentation.world_map.WorldMapRoute
+import com.zenika.data.AdventureHint
 import com.zenika.presentation.qrcodescan.QrCodeScanRoute
 import com.zenika.presentation.settings.SettingsRoute
 
@@ -139,14 +140,7 @@ fun NavGraphBuilder.adventureNavigation(
                 },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) },
-                openHintValidation = { hint ->
-                    navController.navigate(
-                        ROUTE_HINT_VALIDATION.replace(
-                            "{hint}",
-                            hint
-                        )
-                    )
-                }
+                openHintValidation = { hint -> navController.navigateToHint(hint) }
             )
         }
         dialog(ROUTE_PORTAL_MESSAGE) {
@@ -313,14 +307,7 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.navigate(ROUTE_SINGAPORE_AGENCY_DIALOG)
                 },
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
-                openHintValidation = { hint ->
-                    navController.navigate(
-                        ROUTE_HINT_VALIDATION.replace(
-                            "{hint}",
-                            hint
-                        )
-                    )
-                }
+                openHintValidation = { hint -> navController.navigateToHint(hint) }
             )
         }
         composable(ROUTE_SINGAPORE_AGENCY) {
@@ -328,14 +315,7 @@ fun NavGraphBuilder.adventureNavigation(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) },
-                openHintValidation = { hint ->
-                    navController.navigate(
-                        ROUTE_HINT_VALIDATION.replace(
-                            "{hint}",
-                            hint
-                        )
-                    )
-                }
+                openHintValidation = { hint -> navController.navigateToHint(hint) }
             )
         }
         dialog(ROUTE_SINGAPORE_AGENCY_DIALOG) {
@@ -372,6 +352,7 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.navigate(ROUTE_CASABLANCA_AGENCY)
                     navController.navigate(ROUTE_CASABLANCA_AGENCY_DIALOG)
                 },
+                openHintValidation = { hint -> navController.navigateToHint(hint) },
                 openPenalty = { item ->
                     navController.navigate(
                         ROUTE_PATTERN_PENALTY.replace(
@@ -454,8 +435,16 @@ fun NavGraphBuilder.adventureNavigation(
                 winGame = {
                     navController.popBackStack(ROUTE_PORTAL, inclusive = false)
                 },
+                openHintValidation = { hint -> navController.navigateToHint(hint) },
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) }
             )
         }
     }
+}
+
+private fun NavHostController.navigateToHint(hint: AdventureHint) {
+    this.navigate(ROUTE_HINT_VALIDATION.replace(
+        "{hint}",
+        hint.name
+    ))
 }
