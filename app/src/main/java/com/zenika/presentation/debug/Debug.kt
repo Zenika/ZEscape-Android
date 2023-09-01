@@ -43,6 +43,11 @@ fun NavGraphBuilder.debugNavigation(
                             deeplinkIntent("app://zescape/singapore/outside")
                         )
                     },
+                    Game.MONTREAL to {
+                        navController.handleDeepLink(
+                            deeplinkIntent("app://zescape/montreal/outside")
+                        )
+                    },
                 )
             )
         }

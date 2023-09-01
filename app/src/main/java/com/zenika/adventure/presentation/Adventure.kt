@@ -80,6 +80,7 @@ private const val ROUTE_SIMON_SAYS_GAME = "adventureSimonSaysGame"
 
 private val casablancaOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/casablanca/outside" })
 private val singaporeOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/singapore/outside" })
+private val montrealOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/montreal/outside" })
 
 @Suppress("LongMethod")
 @OptIn(ExperimentalAnimationApi::class)
@@ -430,7 +431,7 @@ fun NavGraphBuilder.adventureNavigation(
                 onDismissRequest = { navController.popBackStack() }
             )
         }
-        composable(ROUTE_SIMON_SAYS_GAME) {
+        composable(ROUTE_SIMON_SAYS_GAME, deepLinks = montrealOutsideDeeplink) {
             SimonSaysRoute(
                 winGame = {
                     navController.popBackStack(ROUTE_PORTAL, inclusive = false)
