@@ -11,6 +11,7 @@ fun HomeRoute(
     goToTutorial: () -> Unit,
     goToAdventure: () -> Unit,
     goToDebug: () -> Unit,
+    goToCredit: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
@@ -26,6 +27,7 @@ fun HomeRoute(
     HomeScreen(
         viewModel::goToTutorial,
         viewModel::goToAdventure,
-        viewModel::goToDebug
+        viewModel::goToDebug,
+        goToCredit
     )
 }

@@ -5,6 +5,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,6 +16,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,7 +38,8 @@ import com.zenika.utils.ZEscapeThemePreview
 fun HomeScreen(
     goToTutorial: () -> Unit,
     goToAdventure: () -> Unit,
-    goToDebug: () -> Unit
+    goToDebug: () -> Unit,
+    goToCredit: () -> Unit
 ) {
     var tapCount by remember {
         mutableStateOf(0)
@@ -66,13 +69,20 @@ fun HomeScreen(
             )
         }
     ) { paddingValues ->
-        HomeContent(
-            modifier = Modifier.padding(paddingValues),
-            tapCount = tapCount,
-            goToTutorial = goToTutorial,
-            goToAdventure = goToAdventure,
-            goToDebug = goToDebug
-        )
+        Box(modifier = Modifier.padding(paddingValues)) {
+            HomeContent(
+                tapCount = tapCount,
+                goToTutorial = goToTutorial,
+                goToAdventure = goToAdventure,
+                goToDebug = goToDebug
+            )
+            TextButton(
+                onClick = goToCredit,
+                modifier = Modifier.align(Alignment.BottomCenter)
+            ) {
+                Text(stringResource(R.string.credit))
+            }
+        }
     }
 }
 
@@ -132,7 +142,8 @@ private fun HomeScreenPreview() {
         HomeScreen(
             goToTutorial = {},
             goToAdventure = {},
-            goToDebug = {}
+            goToDebug = {},
+            goToCredit = {}
         )
     }
 }

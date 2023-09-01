@@ -6,6 +6,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.zenika.adventure.presentation.adventureNavigation
+import com.zenika.presentation.credit.CreditRoute
 import com.zenika.presentation.debug.debugNavigation
 import com.zenika.presentation.home.HomeRoute
 import com.zenika.tutorial.presentation.tutorialNavigation
@@ -13,6 +14,7 @@ import com.zenika.tutorial.presentation.tutorialNavigation
 private const val ROUTE_HOME = "home"
 private const val ROUTE_ADVENTURE = "adventure"
 private const val ROUTE_TUTORIAL = "tutorial"
+private const val ROUTE_CREDIT = "credit"
 private const val ROUTE_DEBUG = "debug"
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -27,6 +29,7 @@ fun ZEscape() {
             HomeRoute(
                 goToTutorial = { navController.navigate(ROUTE_TUTORIAL) },
                 goToAdventure = { navController.navigate(ROUTE_ADVENTURE) },
+                goToCredit = { navController.navigate(ROUTE_CREDIT) },
                 goToDebug = { navController.navigate(ROUTE_DEBUG) }
             )
         }
@@ -42,5 +45,8 @@ fun ZEscape() {
             route = ROUTE_DEBUG,
             navController = navController
         )
+        composable(ROUTE_CREDIT) {
+            CreditRoute(goBack = { navController.popBackStack() })
+        }
     }
 }
