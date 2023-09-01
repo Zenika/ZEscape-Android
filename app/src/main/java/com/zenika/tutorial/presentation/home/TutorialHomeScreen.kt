@@ -61,7 +61,7 @@ fun TutorialHomeScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .paint(
-                    painterResource(R.mipmap.background1),
+                    painterResource(R.mipmap.background_tutorial),
                     contentScale = ContentScale.Crop,
                     alpha = 0.4F
                 )

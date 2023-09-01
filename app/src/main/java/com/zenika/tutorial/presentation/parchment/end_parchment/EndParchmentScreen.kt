@@ -50,7 +50,7 @@ fun EndParchmentScreen(
             .fillMaxSize()
             .padding()
             .paint(
-                painterResource(R.mipmap.background1),
+                painterResource(R.mipmap.background_tutorial),
                 contentScale = ContentScale.Crop
             )
     ) {
