@@ -23,7 +23,7 @@ fun SimonSaysRoute(
         }
     }
 
-    SimonCase(
+    SimonScreen(
         goToSettings,
         remainingTime,
         state,

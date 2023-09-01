@@ -23,7 +23,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 
 @Composable
-fun SimonCase(
+fun SimonScreen(
     goToSettings: () -> Unit,
     remainingTime: Int,
     state: SimonState,
@@ -75,7 +75,7 @@ private fun SimonIncentive(
 @Composable
 private fun SimonCasePlayerPreview() {
     ZEscapeThemePreview {
-        SimonCase(
+        SimonScreen(
             goToSettings = {},
             remainingTime = 3600,
             state = SimonState(
@@ -98,7 +98,7 @@ private fun SimonCasePlayerPreview() {
 @Composable
 private fun SimonCaseSystemPreview() {
     ZEscapeThemePreview {
-        SimonCase(
+        SimonScreen(
             goToSettings = {},
             remainingTime = 3600,
             state = SimonState(

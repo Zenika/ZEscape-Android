@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.zenika.utils.ZEscapeThemePreview
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -59,6 +60,7 @@ fun SimonGrid(
                 Text(
                     text = text.toString(),
                     fontWeight = if (text == lightButton) FontWeight.Bold else FontWeight.Normal,
+                    fontSize = 24.sp,
                     color = if (mode == SimonGridMode.PLAYER) {
                         MaterialTheme.colorScheme.onPrimary
                     } else {

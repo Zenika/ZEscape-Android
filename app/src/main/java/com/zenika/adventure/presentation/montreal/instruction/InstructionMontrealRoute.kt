@@ -1,10 +1,15 @@
 package com.zenika.adventure.presentation.montreal.instruction
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 @Composable
 fun InstructionMontrealRoute(
-    onDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    InstructionMontrealDialog(onDismissRequest)
+    InstructionMontrealDialog(
+        onDismissRequest = onDismissRequest,
+        modifier = modifier
+    )
 }

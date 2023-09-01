@@ -47,8 +47,8 @@ class SimonsSaysViewModel @Inject constructor(
             mode = SimonGridMode.SYSTEM,
             lightButton = null,
             buttonsText = ('A'..'P').toImmutableList(),
-            systemSequence = mutableListOf(),
-            playerSequence = mutableListOf(),
+            systemSequence = listOf(),
+            playerSequence = listOf(),
             indicationText = R.string.ready
         )
     )
@@ -62,8 +62,8 @@ class SimonsSaysViewModel @Inject constructor(
     private fun initGame(indicationText: Int) {
         _state.update {
             it.copy(
-                systemSequence = mutableListOf(),
-                playerSequence = mutableListOf(),
+                systemSequence = listOf(),
+                playerSequence = listOf(),
                 mode = SimonGridMode.SYSTEM,
                 indicationText = indicationText
             )
@@ -74,7 +74,7 @@ class SimonsSaysViewModel @Inject constructor(
         delay(MEDIUM_DELAY)
         _state.update {
             it.copy(
-                playerSequence = mutableListOf(),
+                playerSequence = listOf(),
                 mode = SimonGridMode.SYSTEM,
                 indicationText = R.string.systemGame
             )
@@ -102,8 +102,7 @@ class SimonsSaysViewModel @Inject constructor(
         val random = Random.nextInt(GAME_SIZE)
         val randomChar = _state.value.buttonsText[random]
         _state.update {
-            it.systemSequence.add(randomChar)
-            it
+            it.copy(systemSequence = it.systemSequence + randomChar)
         }
     }
 
@@ -121,23 +120,28 @@ class SimonsSaysViewModel @Inject constructor(
     fun onButtonClick(char: Char) {
         viewModelScope.launch {
             _state.update {
-                it.playerSequence.add(char)
-                it
+                it.copy(playerSequence = it.playerSequence + char)
             }
-            checkSequence()
+            checkSequence(
+                playerSequence = _state.value.playerSequence,
+                systemSequence = _state.value.systemSequence
+            )
         }
     }
 
-    private suspend fun checkSequence() {
-        if (_state.value.playerSequence.size == _state.value.systemSequence.size) {
-            if (_state.value.playerSequence.last() == _state.value.systemSequence.last()) {
+    private suspend fun checkSequence(
+        playerSequence: List<Char>,
+        systemSequence: List<Char>
+    ) {
+        if (playerSequence.size == systemSequence.size) {
+            if (playerSequence.last() == systemSequence.last()) {
                 checkWin()
             } else {
                 initGame(R.string.loseGame)
             }
         } else {
-            val lastButtonClick = _state.value.playerSequence.last()
-            val goodButton = _state.value.systemSequence[_state.value.playerSequence.size - 1]
+            val lastButtonClick = playerSequence.last()
+            val goodButton = systemSequence[playerSequence.size - 1]
             if (lastButtonClick != goodButton) {
                 initGame(R.string.loseGame)
             }
@@ -157,8 +161,8 @@ data class SimonState(
     val mode: SimonGridMode,
     val lightButton: Char?,
     val buttonsText: ImmutableList<Char>,
-    var systemSequence: MutableList<Char>,
-    var playerSequence: MutableList<Char>,
+    val systemSequence: List<Char>,
+    val playerSequence: List<Char>,
     @StringRes val indicationText: Int
 )
 

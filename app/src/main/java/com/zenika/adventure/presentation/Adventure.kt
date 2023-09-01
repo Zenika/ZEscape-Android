@@ -76,6 +76,7 @@ private const val ROUTE_SIMON_SAYS_GAME = "adventureSimonSaysGame"
 private val casablancaOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/casablanca/outside" })
 private val singaporeOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/singapore/outside" })
 
+@Suppress("LongMethod")
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.adventureNavigation(
     route: String,
