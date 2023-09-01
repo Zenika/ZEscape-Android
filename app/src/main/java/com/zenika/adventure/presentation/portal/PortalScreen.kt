@@ -10,6 +10,7 @@ import com.zenika.R
 import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
 import com.zenika.adventure.presentation.component.ScaffoldScreen
+import com.zenika.data.AdventureHint
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -20,11 +21,13 @@ fun PortalScreen(
     onPortalClick: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
+    openHintValidation: (AdventureHint) -> Unit
 ) {
     ScaffoldScreen(
         modifier = Modifier.clickable(onClick = onPortalClick),
         remainingTime = state.remainingTime,
         goToSettings = goToSettings,
+        openHintValidation = { openHintValidation(AdventureHint.PORTAL_HINT) },
         background = R.mipmap.background_neon
     ) {
         ContinentsMap(
@@ -54,7 +57,8 @@ private fun PortalScreenPreview() {
             goToSettings = {},
             onPortalClick = {},
             openWorldMap = {},
-            openInventory = {}
+            openInventory = {},
+            openHintValidation = {}
         )
     }
 }

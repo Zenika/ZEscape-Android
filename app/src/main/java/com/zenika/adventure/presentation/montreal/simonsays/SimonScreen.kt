@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.adventure.presentation.component.ScaffoldScreen
+import com.zenika.data.AdventureHint
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 import kotlinx.collections.immutable.persistentListOf
@@ -27,6 +28,7 @@ fun SimonScreen(
     goToSettings: () -> Unit,
     remainingTime: Int,
     state: SimonState,
+    openHintValidation: (AdventureHint) -> Unit,
     startGame: () -> Unit,
     onButtonClick: (Char) -> Unit,
     modifier: Modifier = Modifier
@@ -34,6 +36,7 @@ fun SimonScreen(
     ScaffoldScreen(
         remainingTime = remainingTime,
         goToSettings = goToSettings,
+        openHintValidation = { openHintValidation(AdventureHint.SIMON_SAYS_HINT) },
         background = R.mipmap.montreal_outside
     ) {
         Column(
@@ -87,7 +90,8 @@ private fun SimonCasePlayerPreview() {
                 indicationText = R.string.ready
             ),
             startGame = {},
-            onButtonClick = { },
+            onButtonClick = {},
+            openHintValidation = {},
             modifier = Modifier
                 .background(Color.White)
         )
@@ -110,7 +114,8 @@ private fun SimonCaseSystemPreview() {
                 indicationText = R.string.ready
             ),
             startGame = {},
-            onButtonClick = { },
+            onButtonClick = {},
+            openHintValidation = {},
             modifier = Modifier
                 .background(Color.White)
         )

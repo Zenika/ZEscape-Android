@@ -21,6 +21,7 @@ import com.zenika.R
 import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
 import com.zenika.adventure.presentation.component.ScaffoldScreen
+import com.zenika.data.AdventureHint
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -30,6 +31,7 @@ fun CasablancaOutsideScreen(
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
+    openHintValidation: (AdventureHint) -> Unit,
     enterInAgency: () -> Unit,
     applyPenalty: (String) -> Unit,
     modifier: Modifier = Modifier
@@ -38,6 +40,7 @@ fun CasablancaOutsideScreen(
         modifier = modifier,
         remainingTime = remainingTime,
         goToSettings = goToSettings,
+        openHintValidation = { openHintValidation(AdventureHint.CASABLANCA_OUTSIDE_HINT) },
         background = R.mipmap.casablanca_outside
     ) {
         CasablancaOutsideContent(
@@ -113,6 +116,7 @@ private fun CasablancaOutsideScreenPreview() {
             goToSettings = {},
             openWorldMap = {},
             openInventory = {},
+            openHintValidation = {},
             enterInAgency = {},
             applyPenalty = {}
         )

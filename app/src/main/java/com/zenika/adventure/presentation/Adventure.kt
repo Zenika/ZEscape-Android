@@ -22,6 +22,8 @@ import com.zenika.adventure.presentation.casablanca.offices.CasablancaOfficesRou
 import com.zenika.adventure.presentation.casablanca.outside.CasablancaOutsideRoute
 import com.zenika.adventure.presentation.casablanca.safe.SafeRoute
 import com.zenika.adventure.presentation.computer.ComputerRoute
+import com.zenika.adventure.presentation.hint.AdventureHintRoute
+import com.zenika.adventure.presentation.hintvalidation.AdventureHintValidationRoute
 import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
 import com.zenika.adventure.presentation.inventory.AdventureInventoryRoute
@@ -38,6 +40,7 @@ import com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyRoute
 import com.zenika.adventure.presentation.singapore.instruction.InstructionSingaporeRoute
 import com.zenika.adventure.presentation.singapore.on_off_game.OnOffRoute
 import com.zenika.adventure.presentation.world_map.WorldMapRoute
+import com.zenika.data.AdventureHint
 import com.zenika.presentation.qrcodescan.QrCodeScanRoute
 import com.zenika.presentation.settings.SettingsRoute
 
@@ -47,6 +50,8 @@ private const val ROUTE_QRCODE_SCAN = "adventureQrCodeScan/{qrcode}"
 private const val ROUTE_PORTAL = "adventurePortal"
 private const val ROUTE_INSTRUCTION = "adventureInstruction"
 private const val ROUTE_SETTINGS = "adventureSettings"
+private const val ROUTE_HINT_VALIDATION = "adventureHintValidation/{hint}"
+private const val ROUTE_HINT = "adventureHint/{hint}"
 private const val ROUTE_PORTAL_MESSAGE = "adventurePortalMessage"
 private const val ROUTE_INVENTORY = "adventureInventory"
 private const val ROUTE_PATTERN_ITEM = "adventureItem/{item}"
@@ -75,6 +80,7 @@ private const val ROUTE_SIMON_SAYS_GAME = "adventureSimonSaysGame"
 
 private val casablancaOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/casablanca/outside" })
 private val singaporeOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/singapore/outside" })
+private val montrealOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/montreal/outside" })
 
 @Suppress("LongMethod")
 @OptIn(ExperimentalAnimationApi::class)
@@ -134,7 +140,8 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.navigate(ROUTE_SCORE_DIALOG)
                 },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
-                openInventory = { navController.navigate(ROUTE_INVENTORY) }
+                openInventory = { navController.navigate(ROUTE_INVENTORY) },
+                openHintValidation = { hint -> navController.navigateToHint(hint) }
             )
         }
         dialog(ROUTE_PORTAL_MESSAGE) {
@@ -146,6 +153,36 @@ fun NavGraphBuilder.adventureNavigation(
             SettingsRoute(
                 goBack = { navController.popBackStack() },
                 goBackToHome = { navController.popBackStack(ROUTE_HOME, inclusive = true) }
+            )
+        }
+        dialog(
+            ROUTE_HINT_VALIDATION,
+            arguments = listOf(navArgument("hint") {
+                type = NavType.StringType
+            })
+        ) {
+            AdventureHintValidationRoute(
+                onDismissRequest = { navController.popBackStack() },
+                showHint = { hint ->
+                    navController.navigate(
+                        ROUTE_HINT.replace(
+                            "{hint}",
+                            hint
+                        )
+                    ) {
+                        popUpTo(ROUTE_HINT_VALIDATION) { inclusive = true }
+                    }
+                }
+            )
+        }
+        dialog(
+            ROUTE_HINT,
+            arguments = listOf(navArgument("hint") {
+                type = NavType.StringType
+            })
+        ) {
+            AdventureHintRoute(
+                onDismissRequest = { navController.popBackStack() }
             )
         }
         dialog(ROUTE_INVENTORY) {
@@ -270,14 +307,16 @@ fun NavGraphBuilder.adventureNavigation(
                     }
                     navController.navigate(ROUTE_SINGAPORE_AGENCY_DIALOG)
                 },
-                goToSettings = { navController.navigate(ROUTE_SETTINGS) }
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openHintValidation = { hint -> navController.navigateToHint(hint) }
             )
         }
         composable(ROUTE_SINGAPORE_AGENCY) {
             SingaporeAgencyRoute(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
-                openInventory = { navController.navigate(ROUTE_INVENTORY) }
+                openInventory = { navController.navigate(ROUTE_INVENTORY) },
+                openHintValidation = { hint -> navController.navigateToHint(hint) }
             )
         }
         dialog(ROUTE_SINGAPORE_AGENCY_DIALOG) {
@@ -314,6 +353,7 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.navigate(ROUTE_CASABLANCA_AGENCY)
                     navController.navigate(ROUTE_CASABLANCA_AGENCY_DIALOG)
                 },
+                openHintValidation = { hint -> navController.navigateToHint(hint) },
                 openPenalty = { item ->
                     navController.navigate(
                         ROUTE_PATTERN_PENALTY.replace(
@@ -391,13 +431,21 @@ fun NavGraphBuilder.adventureNavigation(
                 onDismissRequest = { navController.popBackStack() }
             )
         }
-        composable(ROUTE_SIMON_SAYS_GAME) {
+        composable(ROUTE_SIMON_SAYS_GAME, deepLinks = montrealOutsideDeeplink) {
             SimonSaysRoute(
                 winGame = {
                     navController.popBackStack(ROUTE_PORTAL, inclusive = false)
                 },
+                openHintValidation = { hint -> navController.navigateToHint(hint) },
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) }
             )
         }
     }
+}
+
+private fun NavHostController.navigateToHint(hint: AdventureHint) {
+    this.navigate(ROUTE_HINT_VALIDATION.replace(
+        "{hint}",
+        hint.name
+    ))
 }
