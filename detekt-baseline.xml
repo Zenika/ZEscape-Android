@@ -5,7 +5,6 @@
     <ID>ComposableParamOrder:AdventureDialog.kt$AdventureDialog</ID>
     <ID>ComposableParamOrder:ScaffoldScreen.kt$ScaffoldScreen</ID>
     <ID>ComposableParamOrder:TutorialDialog.kt$TutorialDialog</ID>
-    <ID>LongMethod:Adventure.kt$@RequiresApi(Build.VERSION_CODES.M) @OptIn(ExperimentalAnimationApi::class) fun NavGraphBuilder.adventureNavigation( route: String, navController: NavHostController )</ID>
     <ID>LongMethod:AgencyRecognitionScreen.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun AgencyRecognitionScreen( goBack: () -&gt; Unit, onTextRecognized: (String) -&gt; Unit )</ID>
     <ID>LongMethod:EndParchmentScreen.kt$@OptIn(ExperimentalFoundationApi::class) @Composable fun EndParchmentScreen( goToScore: () -&gt; Unit )</ID>
     <ID>LongMethod:MainScreen.kt$@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter") @OptIn(ExperimentalMaterial3Api::class) @Composable fun MainScreen( modifier: Modifier, mainUiState: MainUiState, goToSettings: () -&gt; Unit, openMiniGame: () -&gt; Unit, openInventory: () -&gt; Unit, showHint: () -&gt; Unit, collectKey: () -&gt; Unit, collectMap: () -&gt; Unit, removeNewItemBadge: () -&gt; Unit, incrementHintCount: () -&gt; Unit )</ID>

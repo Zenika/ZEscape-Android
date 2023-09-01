@@ -2,12 +2,10 @@ package com.zenika.adventure.presentation.casablanca.agency
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zenika.R
 import com.zenika.adventure.domain.CollectCasablancaKeyUseCase
 import com.zenika.adventure.domain.ObserveCasablancaKeyStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import com.zenika.adventure.domain.ObserveSafeStateUseCase
-import com.zenika.data.repository.ItemRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +16,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CasablancaAgencyViewModel @Inject constructor(
-    private val itemRepository: ItemRepository,
     observeRemainingTime: ObserveRemainingTimeUseCase,
     observeSafeStateUseCase: ObserveSafeStateUseCase,
     observeCasablancaKeyStateUseCase: ObserveCasablancaKeyStateUseCase,
@@ -48,13 +45,12 @@ class CasablancaAgencyViewModel @Inject constructor(
 
     fun collectKey() {
         viewModelScope.launch {
-            itemRepository.addItem("casablancaKey", R.mipmap.casablanca_key)
             collectCasablancaKey()
         }
     }
 }
 
-class CasablancaUiState(
+data class CasablancaUiState(
     val isSafeOpen: Boolean,
     val isKeyCollected: Boolean
 )

@@ -2,6 +2,7 @@ package com.zenika.adventure.presentation.portal
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -10,7 +11,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 fun PortalRoute(
     goToSettings: () -> Unit,
     accessToClosePortal: () -> Unit,
-    accessToOpenPortal: () -> Unit,
+    onGameFinished: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     viewModel: PortalViewModel = hiltViewModel(),
@@ -20,13 +21,20 @@ fun PortalRoute(
     }
 
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
+
+    LaunchedEffect(event) {
+        when (event) {
+            PortalEvent.SHOW_CLOSED_PORTAL -> accessToClosePortal()
+            PortalEvent.FINISH_GAME -> onGameFinished()
+            null -> Unit
+        }
+    }
 
     PortalScreen(
         state,
         goToSettings,
-        accessToClosePortal,
-        accessToOpenPortal,
-        viewModel::finishGame,
+        viewModel::onPortalClick,
         openWorldMap,
         openInventory
     )

@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 private const val MAX_SIZE_CODE = 6
+private const val EXPECTED_CODE = "531296"
 
 @HiltViewModel
 class SafeViewModel @Inject constructor(
@@ -34,28 +35,28 @@ class SafeViewModel @Inject constructor(
 
     fun addNumber(number: String) {
         _code.update { code ->
-            var newCode = code
             if (code.length < MAX_SIZE_CODE) {
                 Log.d("code", code)
-                newCode = code + number
+                code + number
+            } else {
+                code
             }
-            newCode
         }
     }
 
     fun clearNumber() {
         _code.update { code ->
-            var newCode = code
             if (code.isNotEmpty()) {
-                newCode = code.dropLast(1)
+                code.dropLast(1)
+            } else {
+                code
             }
-            newCode
         }
     }
 
     fun checkCode() {
         viewModelScope.launch {
-            if (code.value == "531296") {
+            if (code.value == EXPECTED_CODE) {
                 openSafe()
                 _events.emit(SafeEvent.DISMISS)
             }

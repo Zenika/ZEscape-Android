@@ -1,7 +1,5 @@
 package com.zenika.adventure.presentation
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -23,7 +21,6 @@ import com.zenika.adventure.presentation.casablanca.meetingroom.CasablancaMeetin
 import com.zenika.adventure.presentation.casablanca.offices.CasablancaOfficesRoute
 import com.zenika.adventure.presentation.casablanca.outside.CasablancaOutsideRoute
 import com.zenika.adventure.presentation.casablanca.safe.SafeRoute
-import com.zenika.adventure.presentation.casablanca.gameroom.CasablancaGameRoomRoute
 import com.zenika.adventure.presentation.computer.ComputerRoute
 import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
@@ -75,7 +72,6 @@ private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
 private val casablancaOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/casablanca/outside" })
 private val singaporeOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/singapore/outside" })
 
-@RequiresApi(Build.VERSION_CODES.M)
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.adventureNavigation(
     route: String,
@@ -128,7 +124,7 @@ fun NavGraphBuilder.adventureNavigation(
             PortalRoute(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 accessToClosePortal = { navController.navigate(ROUTE_PORTAL_MESSAGE) },
-                accessToOpenPortal = {
+                onGameFinished = {
                     navController.navigate(ROUTE_SCORE)
                     navController.navigate(ROUTE_SCORE_DIALOG)
                 },
