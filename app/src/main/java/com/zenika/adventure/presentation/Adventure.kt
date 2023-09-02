@@ -130,7 +130,7 @@ fun NavGraphBuilder.adventureNavigation(
                             navController.navigate(ROUTE_PORTAL)
                             navController.navigate(ROUTE_INSTRUCTION)
                         }
-                        "montreal-library" -> {
+                        "library" -> {
                             navController.navigate(ROUTE_MONTREAL_LIBRARY)
                         }
                     }

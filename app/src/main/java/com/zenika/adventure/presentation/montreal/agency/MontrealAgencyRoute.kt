@@ -15,10 +15,12 @@ fun MontrealAgencyRoute(
     openHintValidation: (AdventureHint) -> Unit,
     viewModel: MontrealAgencyViewModel = hiltViewModel(),
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     MontrealAgencyScreen(
-        remainingTime,
+        state.remainingTime,
+        state.isRooftopDiscovered,
+        state.isMeetingRoomDiscovered,
         goToSettings,
         openWorldMap,
         openInventory,

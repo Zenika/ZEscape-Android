@@ -10,7 +10,6 @@ import com.zenika.R
 import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
 import com.zenika.adventure.presentation.component.ScaffoldScreen
-import com.zenika.adventure.presentation.montreal.agencymap.MontrealAgencyMapRoute
 import com.zenika.data.AdventureHint
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
@@ -18,6 +17,8 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun MontrealAgencyScreen(
     remainingTime: Int,
+    isRooftopDiscovered: Boolean,
+    isMeetingRoomDiscovered: Boolean,
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
@@ -32,7 +33,11 @@ fun MontrealAgencyScreen(
         background = R.mipmap.montreal_agency,
         modifier = modifier
     ) {
-        MontrealAgencyMapRoute(goToScan)
+        MontrealAgencyMap(
+            isRooftopDiscovered,
+            isMeetingRoomDiscovered,
+            goToScan
+        )
         ContinentsMap(
             modifier = Modifier
                 .size(80.dp)
@@ -54,6 +59,8 @@ private fun MontrealAgencyScreenPreview() {
     ZEscapeThemePreview {
         MontrealAgencyScreen(
             remainingTime = 0,
+            isRooftopDiscovered = false,
+            isMeetingRoomDiscovered = false,
             goToSettings = {},
             openWorldMap = {},
             openInventory = {},

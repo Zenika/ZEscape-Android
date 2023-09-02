@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.montreal.agencymap
+package com.zenika.adventure.presentation.montreal.agency
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -19,7 +19,8 @@ import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun MontrealAgencyMap(
-    state: MontrealAgencyUiState,
+    isRooftopDiscovered: Boolean,
+    isMeetingRoomDiscovered: Boolean,
     goToScan: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -38,7 +39,7 @@ fun MontrealAgencyMap(
                 .clickable(onClick = {})
         ) {
             drawRect(
-                color = if (state.isRooftopDiscovered) Color.Transparent else Color.Gray
+                color = if (isRooftopDiscovered) Color.Transparent else Color.Gray
             )
         }
         Canvas(
@@ -48,14 +49,14 @@ fun MontrealAgencyMap(
                 .clickable(onClick = {})
         ) {
             drawRect(
-                color = if (state.isMeetingRoomDiscovered) Color.Transparent else Color.Gray
+                color = if (isMeetingRoomDiscovered) Color.Transparent else Color.Gray
             )
         }
         Canvas(
             modifier = Modifier
                 .padding(start = 23.dp, top = 175.dp)
                 .size(132.dp, 38.dp)
-                .clickable(onClick = { goToScan("montreal-library") })
+                .clickable(onClick = { goToScan("library") })
         ) {
             drawRect(
                 color = Color.Transparent
@@ -79,10 +80,8 @@ fun MontrealAgencyMap(
 fun MontrealAgencyMapPreview() {
     ZEscapeThemePreview {
         MontrealAgencyMap(
-            MontrealAgencyUiState(
-                isRooftopDiscovered = true,
-                isMeetingRoomDiscovered = false
-            ),
+            isRooftopDiscovered = true,
+            isMeetingRoomDiscovered = false,
             goToScan = {}
         )
     }
