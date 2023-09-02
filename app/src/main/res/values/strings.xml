@@ -137,5 +137,5 @@
     <string name="casablanca_safe_hint">Entrez le code 531296 pour ouvrir le coffre-fort.</string>
     <string name="casablanca_code_hint">Récupérez le papier posé sur le bureau de la salle de réunion et associez les chiffres cachés des autres pièces dans l\'ordre indiqué sur celui-ci.</string>
     <string name="montreal_library_hint">Faites glisser la bibliothèque afin d\'accéder à la pièce cachée.</string>
-    <string name="agency_teaser">Prochainement…</string>
+    <string name="agency_teaser">Prochainement…\n\nCette partie de l\'histoire n\'a pas encore été écrite.</string>
 </resources>
