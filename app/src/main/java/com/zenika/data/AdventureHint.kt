@@ -16,6 +16,6 @@ enum class AdventureHint(
     CASABLANCA_CODE_HINT(R.string.casablanca_code_hint),
     CASABLANCA_SAFE_HINT(R.string.casablanca_safe_hint),
     SIMON_SAYS_HINT(R.string.simon_says_hint),
-    MONTREAL_LIBRARY_HINT(R.string.montreal_library_hint),
+    MONTREAL_AGENCY_HINT(R.string.montreal_agency_hint),
     NO_HINT(R.string.no_hint)
 }

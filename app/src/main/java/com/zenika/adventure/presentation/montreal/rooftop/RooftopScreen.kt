@@ -50,7 +50,6 @@ fun RooftopScreen(
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
-    removeNewItemBadge: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     var offsetX by remember { mutableStateOf(0f) }
@@ -117,8 +116,7 @@ fun RooftopScreen(
             )
             AdventureInventoryBag(
                 newItem = state.newItem,
-                openInventory,
-                removeNewItemBadge,
+                openInventory = openInventory,
                 modifier = Modifier
                     .size(80.dp)
                     .align(Alignment.BottomEnd)
@@ -135,7 +133,6 @@ private fun RooftopScreenPreview() {
         goBack = {},
         goToSettings = {},
         openWorldMap = {},
-        openInventory = {},
-        removeNewItemBadge = {}
+        openInventory = {}
     )
 }

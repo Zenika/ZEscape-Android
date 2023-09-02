@@ -6,7 +6,6 @@ import com.zenika.adventure.domain.ApplyPenaltyUseCase
 import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import com.zenika.adventure.domain.OpenCasablancaAgencyUseCase
-import com.zenika.adventure.domain.RemoveNewItemBadgeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted

@@ -134,6 +134,22 @@ class AdventureGameStateManager @Inject constructor() {
         }
     }
 
+    fun discoverMeetingRoom() {
+        _state.update {
+            it.copy(
+                isMeetingRoomDiscovered = true
+            )
+        }
+    }
+
+    fun discoverOffice() {
+        _state.update {
+            it.copy(
+                isOfficeDiscovered = true
+            )
+        }
+    }
+
     fun discoverRooftop() {
         _state.update {
             it.copy(
@@ -142,10 +158,11 @@ class AdventureGameStateManager @Inject constructor() {
         }
     }
 
-    fun discoverMeetingRoom() {
+    fun collectMontrealKey() {
         _state.update {
             it.copy(
-                isMeetingRoomDiscovered = true
+                isMontrealKeyCollected = true,
+                newItem = true
             )
         }
     }

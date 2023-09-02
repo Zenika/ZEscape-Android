@@ -21,7 +21,6 @@ fun MontrealOfficeRoute(
         goToSettings,
         openWorldMap,
         openInventory,
-        viewModel::collectKey,
-        viewModel::removeNewItemBadge
+        viewModel::collectKey
     )
 }

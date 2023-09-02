@@ -24,7 +24,6 @@ fun MontrealOfficeScreen(
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     collectKey: () -> Unit,
-    removeNewItemBadge: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     MontrealScaffoldScreen(
@@ -54,7 +53,6 @@ fun MontrealOfficeScreen(
         AdventureInventoryBag(
             newItem = state.newItem,
             openInventory,
-            removeNewItemBadge,
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
@@ -75,7 +73,6 @@ private fun MontrealOfficeScreenPreview() {
         goToSettings = {},
         openWorldMap = {},
         openInventory = {},
-        collectKey = {},
-        removeNewItemBadge = {}
+        collectKey = {}
     )
 }

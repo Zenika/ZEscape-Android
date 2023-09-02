@@ -25,7 +25,7 @@ fun MainRoute(
     val event by viewModel.event.collectAsStateWithLifecycle()
 
     LaunchedEffect(event) {
-        when(event) {
+        when (event) {
             MainEvent.OPEN_INVENTORY -> openInventory()
             MainEvent.SHOW_HINT -> showHint()
             MainEvent.NONE -> Unit

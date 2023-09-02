@@ -33,7 +33,6 @@ fun MontrealMeetingRoomRoute(
         goToSettings,
         viewModel::onButtonClick,
         openWorldMap,
-        openInventory,
-        viewModel::removeNewItemBadge
+        openInventory
     )
 }

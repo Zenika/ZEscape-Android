@@ -23,7 +23,6 @@ fun MontrealMeetingRoomScreen(
     onButtonClick: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
-    removeNewItemBadge: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     MontrealScaffoldScreen(
@@ -47,8 +46,7 @@ fun MontrealMeetingRoomScreen(
         )
         AdventureInventoryBag(
             newItem = state.newItem,
-            openInventory,
-            removeNewItemBadge,
+            openInventory = openInventory,
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
@@ -69,7 +67,6 @@ private fun MontrealMeetingRoomScreenPreview() {
         goToSettings = {},
         onButtonClick = {},
         openWorldMap = {},
-        openInventory = {},
-        removeNewItemBadge = {}
+        openInventory = {}
     )
 }

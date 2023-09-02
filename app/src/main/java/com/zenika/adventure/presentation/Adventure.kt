@@ -138,6 +138,7 @@ fun NavGraphBuilder.adventureNavigation(
                             navController.navigate(ROUTE_PORTAL)
                             navController.navigate(ROUTE_INSTRUCTION)
                         }
+
                         "library" -> {
                             navController.navigate(ROUTE_MONTREAL_LIBRARY)
                         }
@@ -486,15 +487,6 @@ fun NavGraphBuilder.adventureNavigation(
         dialog(ROUTE_MONTREAL_INSTRUCTION) {
             InstructionMontrealRoute(
                 onDismissRequest = { navController.popBackStack() }
-            )
-        }
-        composable(ROUTE_MONTREAL_LIBRARY) {
-            LibraryRoute(
-                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
-                goToRooftop = { },
-                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
-                openInventory = { navController.navigate(ROUTE_INVENTORY) },
-                openHintValidation = { hint -> navController.navigateToHint(hint) },
             )
         }
         composable(ROUTE_SIMON_SAYS_GAME, deepLinks = montrealOutsideDeeplink) {

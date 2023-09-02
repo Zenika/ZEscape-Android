@@ -20,7 +20,6 @@ fun RooftopRoute(
         goBack,
         goToSettings,
         openWorldMap,
-        openInventory,
-        viewModel::removeNewItemBadge
+        openInventory
     )
 }
