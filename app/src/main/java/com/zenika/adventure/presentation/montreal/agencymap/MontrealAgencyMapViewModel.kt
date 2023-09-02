@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.montreal.agency_map
+package com.zenika.adventure.presentation.montreal.agencymap
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

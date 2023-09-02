@@ -13,11 +13,14 @@ import com.zenika.ui.theme.adventureBodyMedium
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
-fun MontrealAgencyDialog(onDismissRequest: () -> Unit) {
+fun MontrealAgencyDialog(
+    onDismissRequest: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     AdventureDialog(onDismissRequest = onDismissRequest) {
         Text(
             text = stringResource(R.string.instruction_montreal_agency),
-            modifier = Modifier.fillMaxWidth(),
+            modifier = modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = adventureBodyMedium
         )

@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.montreal.agency_map
+package com.zenika.adventure.presentation.montreal.agencymap
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -20,9 +20,10 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun MontrealAgencyMap(
     state: MontrealAgencyUiState,
-    goToScan: (String) -> Unit
+    goToScan: (String) -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    Box {
+    Box(modifier) {
         Image(
             painter = painterResource(R.mipmap.montreal_map),
             contentDescription = stringResource(R.string.montreal_map),
