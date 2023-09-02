@@ -35,7 +35,6 @@ fun SingaporeAgencyScreen(
     collectKey: () -> Unit,
     collectSword: () -> Unit,
     collectHook: () -> Unit,
-    removeNewItemBadge: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     ScaffoldScreen(
@@ -81,7 +80,6 @@ fun SingaporeAgencyScreen(
         AdventureInventoryBag(
             newItem = state.newItem,
             openInventory = openInventory,
-            removeNewItemBadge = removeNewItemBadge,
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
@@ -133,8 +131,7 @@ private fun SingaporeAgencyScreenPreview() {
             openHintValidation = {},
             collectKey = {},
             collectSword = {},
-            collectHook = {},
-            removeNewItemBadge = {}
+            collectHook = {}
         )
     }
 }

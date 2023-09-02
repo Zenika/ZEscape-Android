@@ -13,13 +13,17 @@ fun CasablancaGameRoomRoute(
     openInventory: () -> Unit,
     viewModel: CasablancaGameRoomViewModel = hiltViewModel()
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     CasablancaGameRoomScreen(
-        remainingTime,
-        goBack,
-        goToSettings,
-        openWorldMap,
-        openInventory
+        remainingTime = state.remainingTime,
+        newItem = state.newItem,
+        goBack = goBack,
+        goToSettings = goToSettings,
+        openWorldMap = openWorldMap,
+        openInventory = {
+            viewModel.removeNewItemBadge()
+            openInventory()
+        }
     )
 }

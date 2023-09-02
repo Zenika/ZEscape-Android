@@ -21,8 +21,7 @@ fun PortalScreen(
     onPortalClick: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
-    openHintValidation: (AdventureHint) -> Unit,
-    removeNewItemBadge: () -> Unit
+    openHintValidation: (AdventureHint) -> Unit
 ) {
     ScaffoldScreen(
         modifier = Modifier.clickable(onClick = onPortalClick),
@@ -40,7 +39,6 @@ fun PortalScreen(
         AdventureInventoryBag(
             state.newItem,
             openInventory,
-            removeNewItemBadge,
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
@@ -62,8 +60,7 @@ private fun PortalScreenPreview() {
             onPortalClick = {},
             openWorldMap = {},
             openInventory = {},
-            openHintValidation = {},
-            removeNewItemBadge = {}
+            openHintValidation = {}
         )
     }
 }

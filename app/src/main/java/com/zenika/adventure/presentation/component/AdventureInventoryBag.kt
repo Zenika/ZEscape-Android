@@ -15,7 +15,6 @@ import com.zenika.utils.ZEscapeThemePreview
 fun AdventureInventoryBag(
     newItem: Boolean,
     openInventory: () -> Unit,
-    removeNewItemBadge: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val imageRes = if (newItem) {
@@ -28,10 +27,7 @@ fun AdventureInventoryBag(
         painter = painterResource(imageRes),
         contentDescription = stringResource(R.string.inventory_bag_image),
         contentScale = ContentScale.Fit,
-        modifier = modifier.clickable(onClick = {
-            removeNewItemBadge()
-            openInventory()
-        })
+        modifier = modifier.clickable(onClick = openInventory)
     )
 }
 
@@ -41,8 +37,7 @@ private fun AdventureInventoryBagPreview() {
     ZEscapeThemePreview {
         AdventureInventoryBag(
             newItem = false,
-            openInventory = {},
-            removeNewItemBadge = {}
+            openInventory = {}
         )
     }
 }

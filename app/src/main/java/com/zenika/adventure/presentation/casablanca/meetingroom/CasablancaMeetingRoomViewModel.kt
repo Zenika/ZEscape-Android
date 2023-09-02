@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.CollectCasablancaPaperUseCase
 import com.zenika.adventure.domain.GetCasablancaPaperStateUseCase
+import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -16,15 +17,19 @@ import javax.inject.Inject
 @HiltViewModel
 class CasablancaMeetingRoomViewModel @Inject constructor(
     observeRemainingTime: ObserveRemainingTimeUseCase,
+    observeGameState: ObserveAdventureStateUseCase,
     getCasablancaPaperState: GetCasablancaPaperStateUseCase,
     private val collectCasablancaPaper: CollectCasablancaPaperUseCase
 ) : ViewModel() {
     val state: StateFlow<MeetingRoomUiState> = combine(
-        getCasablancaPaperState(), observeRemainingTime()
-    ) { casablancaPaperCollected, remainingTime ->
+        getCasablancaPaperState(),
+        observeGameState(),
+        observeRemainingTime()
+    ) { casablancaPaperCollected, gameState, remainingTime ->
         MeetingRoomUiState(
             casablancaPaperCollected,
-            remainingTime
+            remainingTime,
+            gameState.newItem
         )
     }
         .stateIn(
@@ -32,7 +37,8 @@ class CasablancaMeetingRoomViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
             initialValue = MeetingRoomUiState(
                 isCasablancaPaperCollected = false,
-                remainingTime = 0
+                remainingTime = 0,
+                newItem = false
             )
         )
 
@@ -45,5 +51,6 @@ class CasablancaMeetingRoomViewModel @Inject constructor(
 
 class MeetingRoomUiState(
     val isCasablancaPaperCollected: Boolean,
-    val remainingTime: Int
+    val remainingTime: Int,
+    val newItem: Boolean
 )

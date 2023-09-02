@@ -3,6 +3,7 @@ package com.zenika.adventure.presentation.casablanca.agency
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.CollectCasablancaKeyUseCase
+import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveCasablancaKeyStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import com.zenika.adventure.domain.ObserveSafeStateUseCase
@@ -18,29 +19,33 @@ import javax.inject.Inject
 class CasablancaAgencyViewModel @Inject constructor(
     observeRemainingTime: ObserveRemainingTimeUseCase,
     observeSafeStateUseCase: ObserveSafeStateUseCase,
-    observeCasablancaKeyStateUseCase: ObserveCasablancaKeyStateUseCase,
+    observeCasablancaKeyState: ObserveCasablancaKeyStateUseCase,
+    observeAdventureState: ObserveAdventureStateUseCase,
     private val collectCasablancaKey: CollectCasablancaKeyUseCase
 ) : ViewModel() {
-    val remainingTime: StateFlow<Int> =
-        observeRemainingTime()
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-                initialValue = 0
-            )
 
-    val safeState: StateFlow<CasablancaUiState> = combine(
-        observeSafeStateUseCase(), observeCasablancaKeyStateUseCase()
-    ) { safeState, keyState ->
+    val state: StateFlow<CasablancaUiState> = combine(
+        observeRemainingTime(),
+        observeSafeStateUseCase(),
+        observeCasablancaKeyState(),
+        observeAdventureState()
+    ) { remainingTime, safeState, keyState, gameState ->
         CasablancaUiState(
-            isSafeOpen = safeState,
-            isKeyCollected = keyState
+            isSafeOpened = safeState,
+            isKeyCollected = keyState,
+            newItem = gameState.newItem,
+            remainingTime = remainingTime
         )
     }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = CasablancaUiState(isSafeOpen = false, isKeyCollected = false)
+            initialValue = CasablancaUiState(
+                isSafeOpened = false,
+                isKeyCollected = false,
+                newItem = false,
+                remainingTime = 0
+            )
         )
 
     fun collectKey() {
@@ -51,6 +56,8 @@ class CasablancaAgencyViewModel @Inject constructor(
 }
 
 data class CasablancaUiState(
-    val isSafeOpen: Boolean,
-    val isKeyCollected: Boolean
+    val isSafeOpened: Boolean,
+    val isKeyCollected: Boolean,
+    val newItem: Boolean,
+    val remainingTime: Int
 )

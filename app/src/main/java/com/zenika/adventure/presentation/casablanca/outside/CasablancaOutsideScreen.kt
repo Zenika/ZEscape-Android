@@ -28,6 +28,7 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun CasablancaOutsideScreen(
     remainingTime: Int,
+    newItem: Boolean,
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
@@ -54,10 +55,11 @@ fun CasablancaOutsideScreen(
                 .clickable(onClick = openWorldMap)
         )
         AdventureInventoryBag(
+            newItem = newItem,
+            openInventory = openInventory,
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
-                .clickable(onClick = openInventory)
         )
     }
 }
@@ -113,6 +115,7 @@ private fun CasablancaOutsideScreenPreview() {
     ZEscapeThemePreview {
         CasablancaOutsideScreen(
             remainingTime = 0,
+            newItem = false,
             goToSettings = {},
             openWorldMap = {},
             openInventory = {},

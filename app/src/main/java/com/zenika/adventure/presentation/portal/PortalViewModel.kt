@@ -58,9 +58,12 @@ class PortalViewModel @Inject constructor(
                 _events.emit(PortalEvent.SHOW_CLOSED_PORTAL)
             }
         }
+    }
 
-        fun removeNewItemBadge() {
+    fun openInventory() {
+        viewModelScope.launch {
             removeNewItemBadgeUseCase()
+            _events.emit(PortalEvent.OPEN_INVENTORY)
         }
     }
 }
@@ -73,5 +76,6 @@ class PortalUiState(
 
 enum class PortalEvent {
     SHOW_CLOSED_PORTAL,
-    FINISH_GAME
+    FINISH_GAME,
+    OPEN_INVENTORY
 }

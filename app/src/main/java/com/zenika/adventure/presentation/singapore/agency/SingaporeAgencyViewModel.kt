@@ -9,8 +9,10 @@ import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import com.zenika.adventure.domain.RemoveNewItemBadgeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -49,6 +51,9 @@ class SingaporeAgencyViewModel @Inject constructor(
             )
         )
 
+    private val _event = MutableSharedFlow<SingaporeAgencyEvent>()
+    val event = _event.asSharedFlow()
+
     fun collectKey() {
         viewModelScope.launch {
             collectSingaporeKey()
@@ -67,8 +72,11 @@ class SingaporeAgencyViewModel @Inject constructor(
         }
     }
 
-    fun removeNewItemBadge() {
-        removeNewItemBadgeUseCase()
+    fun openInventory() {
+        viewModelScope.launch {
+            removeNewItemBadgeUseCase()
+            _event.emit(SingaporeAgencyEvent.OPEN_INVENTORY)
+        }
     }
 }
 
@@ -79,3 +87,7 @@ class SingaporeUiState(
     val newItem: Boolean,
     val remainingTime: Int
 )
+
+enum class SingaporeAgencyEvent {
+    OPEN_INVENTORY
+}

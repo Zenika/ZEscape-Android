@@ -11,6 +11,7 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun CasablancaKitchenScreen(
     remainingTime: Int,
+    newItem: Boolean,
     goBack: () -> Unit,
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
@@ -19,6 +20,7 @@ fun CasablancaKitchenScreen(
 ) {
     FlashlightScaffoldScreen(
         modifier = modifier,
+        newItem = newItem,
         remainingTime = remainingTime,
         goToSettings = goToSettings,
         background = R.mipmap.casablanca_kitchen,
@@ -34,6 +36,7 @@ private fun CasablancaKitchenScreenPreview() {
     ZEscapeThemePreview {
         CasablancaKitchenScreen(
             remainingTime = 3_600,
+            newItem = false,
             goBack = {},
             goToSettings = {},
             openWorldMap = {},

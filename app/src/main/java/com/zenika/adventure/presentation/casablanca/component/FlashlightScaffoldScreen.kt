@@ -2,6 +2,7 @@ package com.zenika.adventure.presentation.casablanca.component
 
 import android.content.Context
 import android.hardware.camera2.CameraManager
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
@@ -38,7 +39,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
-import com.zenika.presentation.component.ReturnButton
 import com.zenika.presentation.component.SettingsButton
 import com.zenika.presentation.component.Timer
 import com.zenika.ui.theme.screenPadding
@@ -48,7 +48,9 @@ import com.zenika.ui.theme.screenPadding
 fun FlashlightScaffoldScreen(
     remainingTime: Int,
     goToSettings: () -> Unit,
+    @DrawableRes
     background: Int,
+    newItem: Boolean,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     modifier: Modifier = Modifier,
@@ -84,6 +86,7 @@ fun FlashlightScaffoldScreen(
             content
         )
         BottomItems(
+            newItem,
             openWorldMap,
             openInventory
         )
@@ -160,6 +163,7 @@ private fun FlashlightContent(
 
 @Composable
 private fun BottomItems(
+    newItem: Boolean,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit
 ) {
@@ -176,10 +180,11 @@ private fun BottomItems(
                 .clickable { openWorldMap() }
         )
         AdventureInventoryBag(
+            newItem = newItem,
+            openInventory = openInventory,
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
-                .clickable { openInventory() }
         )
     }
 }

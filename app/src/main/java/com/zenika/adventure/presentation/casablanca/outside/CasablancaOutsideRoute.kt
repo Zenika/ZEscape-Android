@@ -17,7 +17,7 @@ fun CasablancaOutsideRoute(
     openHintValidation: (AdventureHint) -> Unit,
     viewModel: CasablancaOutsideViewModel = hiltViewModel(),
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(viewModel) {
         viewModel.events.collect { event ->
@@ -31,12 +31,13 @@ fun CasablancaOutsideRoute(
     }
 
     CasablancaOutsideScreen(
-        remainingTime,
-        goToSettings,
-        openWorldMap,
-        openInventory,
-        openHintValidation,
-        viewModel::enterInAgency,
-        viewModel::applyPenalty
+        remainingTime = state.remainingTime,
+        newItem = state.newItem,
+        goToSettings = goToSettings,
+        openWorldMap = openWorldMap,
+        openInventory = openInventory,
+        openHintValidation = openHintValidation,
+        enterInAgency = viewModel::enterInAgency,
+        applyPenalty = viewModel::applyPenalty
     )
 }

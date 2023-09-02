@@ -18,13 +18,17 @@ fun MontrealAgencyRoute(
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     MontrealAgencyScreen(
-        state.remainingTime,
-        state.isRooftopDiscovered,
-        state.isMeetingRoomDiscovered,
-        goToSettings,
-        openWorldMap,
-        openInventory,
-        goToScan,
-        openHintValidation
+        remainingTime = state.remainingTime,
+        newItem = state.newItem,
+        isRooftopDiscovered = state.isRooftopDiscovered,
+        isMeetingRoomDiscovered = state.isMeetingRoomDiscovered,
+        goToSettings = goToSettings,
+        openWorldMap = openWorldMap,
+        openInventory = {
+            viewModel.removeNewItemBadge()
+            openInventory()
+        },
+        goToScan = goToScan,
+        openHintValidation = openHintValidation
     )
 }
