@@ -39,6 +39,7 @@ fun LibraryScreen(
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     openHintValidation: (AdventureHint) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     var offsetX by remember { mutableStateOf(0f) }
     val screenWidth = LocalConfiguration.current.screenWidthDp
@@ -47,7 +48,8 @@ fun LibraryScreen(
         remainingTime = remainingTime,
         goToSettings = goToSettings,
         openHintValidation = { openHintValidation(AdventureHint.MONTREAL_LIBRARY_HINT) },
-        background = R.mipmap.montreal_library
+        background = R.mipmap.montreal_library,
+        modifier = modifier
     ) {
         Button(
             onClick = goToRooftop,

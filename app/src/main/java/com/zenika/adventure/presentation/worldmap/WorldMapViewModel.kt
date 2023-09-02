@@ -2,7 +2,7 @@ package com.zenika.adventure.presentation.worldmap
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zenika.adventure.domain.GetAdventureStateUseCase
+import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.GetAgenciesUseCase
 import com.zenika.data.Agency
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class WorldMapViewModel @Inject constructor(
     getAgencies: GetAgenciesUseCase,
-    getAdventureState: GetAdventureStateUseCase
+    getAdventureState: ObserveAdventureStateUseCase
 ) : ViewModel() {
     val agencies: StateFlow<Set<Agency>> = getAgencies()
         .stateIn(

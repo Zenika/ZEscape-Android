@@ -28,6 +28,8 @@ import com.zenika.adventure.presentation.home.AdventureHomeRoute
 import com.zenika.adventure.presentation.instruction.AdventureInstructionRoute
 import com.zenika.adventure.presentation.inventory.AdventureInventoryRoute
 import com.zenika.adventure.presentation.item.AdventureItemRoute
+import com.zenika.adventure.presentation.montreal.agency.MontrealAgencyDialog
+import com.zenika.adventure.presentation.montreal.agency.MontrealAgencyRoute
 import com.zenika.adventure.presentation.montreal.instruction.InstructionMontrealRoute
 import com.zenika.adventure.presentation.montreal.library.LibraryRoute
 import com.zenika.adventure.presentation.montreal.simonsays.SimonSaysRoute
@@ -77,14 +79,19 @@ private const val ROUTE_CASABLANCA_RESTROOM = "adventureCasablancaRestroom"
 private const val ROUTE_CASABLANCA_KITCHEN = "adventureCasablancaKitchen"
 private const val ROUTE_CASABLANCA_OFFICES = "adventureCasablancaOffices"
 private const val ROUTE_CASABLANCA_MEETING_ROOM = "adventureCasablancaMeetingRoom"
-private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
+private const val ROUTE_MONTREAL_AGENCY = "adventureMontrealAgency"
+private const val ROUTE_MONTREAL_AGENCY_DIALOG = "adventureMontrealAgencyDialog"
 private const val ROUTE_MONTREAL_INSTRUCTION = "adventureMontrealInstruction"
 private const val ROUTE_MONTREAL_LIBRARY = "adventureMontrealLibrary"
+private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
 private const val ROUTE_SIMON_SAYS_GAME = "adventureSimonSaysGame"
 
-private val casablancaOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/casablanca/outside" })
-private val singaporeOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/singapore/outside" })
-private val montrealOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/montreal/outside" })
+private val casablancaOutsideDeeplink =
+    listOf(navDeepLink { uriPattern = "app://zescape/casablanca/outside" })
+private val singaporeOutsideDeeplink =
+    listOf(navDeepLink { uriPattern = "app://zescape/singapore/outside" })
+private val montrealOutsideDeeplink =
+    listOf(navDeepLink { uriPattern = "app://zescape/montreal/outside" })
 
 @Suppress("LongMethod")
 @OptIn(ExperimentalAnimationApi::class)
@@ -105,14 +112,7 @@ fun NavGraphBuilder.adventureNavigation(
         composable(ROUTE_COMPUTER) {
             ComputerRoute(
                 goBack = { navController.popBackStack() },
-                goToScan = {
-                    navController.navigate(
-                        ROUTE_QRCODE_SCAN.replace(
-                            "{qrcode}",
-                            "trigger-002"
-                        )
-                    )
-                }
+                goToScan = { navController.navigateToQrCodeScan("trigger-002") }
             )
         }
         composable(
@@ -123,10 +123,17 @@ fun NavGraphBuilder.adventureNavigation(
         ) {
             QrCodeScanRoute(
                 goBack = { navController.popBackStack() },
-                goToNextScreen = {
-                    navController.popBackStack(ROUTE_HOME, inclusive = false)
-                    navController.navigate(ROUTE_PORTAL)
-                    navController.navigate(ROUTE_INSTRUCTION)
+                onCodeScanned = { scannedCode ->
+                    when (scannedCode) {
+                        "trigger-002" -> {
+                            navController.popBackStack(ROUTE_HOME, inclusive = false)
+                            navController.navigate(ROUTE_PORTAL)
+                            navController.navigate(ROUTE_INSTRUCTION)
+                        }
+                        "library" -> {
+                            navController.navigate(ROUTE_MONTREAL_LIBRARY)
+                        }
+                    }
                 }
             )
         }
@@ -338,6 +345,20 @@ fun NavGraphBuilder.adventureNavigation(
                 onDismissRequest = { navController.popBackStack() }
             )
         }
+        composable(ROUTE_MONTREAL_AGENCY) {
+            MontrealAgencyRoute(
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) },
+                goToScan = { searchedCode -> navController.navigateToQrCodeScan(searchedCode) },
+                openHintValidation = { hint -> navController.navigateToHint(hint) },
+            )
+        }
+        dialog(ROUTE_MONTREAL_AGENCY_DIALOG) {
+            MontrealAgencyDialog(
+                onDismissRequest = { navController.popBackStack() }
+            )
+        }
         composable(ROUTE_SCORE) {
             AdventureScoreRoute(
                 goBackToHome = {
@@ -457,7 +478,8 @@ fun NavGraphBuilder.adventureNavigation(
         composable(ROUTE_SIMON_SAYS_GAME, deepLinks = montrealOutsideDeeplink) {
             SimonSaysRoute(
                 winGame = {
-                    navController.popBackStack(ROUTE_PORTAL, inclusive = false)
+                    navController.navigate(ROUTE_MONTREAL_AGENCY)
+                    navController.navigate(ROUTE_MONTREAL_AGENCY_DIALOG)
                 },
                 openHintValidation = { hint -> navController.navigateToHint(hint) },
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) }
@@ -467,8 +489,19 @@ fun NavGraphBuilder.adventureNavigation(
 }
 
 private fun NavHostController.navigateToHint(hint: AdventureHint) {
-    this.navigate(ROUTE_HINT_VALIDATION.replace(
-        "{hint}",
-        hint.name
-    ))
+    this.navigate(
+        ROUTE_HINT_VALIDATION.replace(
+            "{hint}",
+            hint.name
+        )
+    )
+}
+
+private fun NavHostController.navigateToQrCodeScan(searchedCode: String) {
+    this.navigate(
+        ROUTE_QRCODE_SCAN.replace(
+            "{qrcode}",
+            searchedCode
+        )
+    )
 }

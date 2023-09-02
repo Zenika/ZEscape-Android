@@ -54,7 +54,7 @@ fun NavGraphBuilder.debugNavigation(
         composable(ROUTE_QRCODE_SCAN) {
             QrCodeScanRoute(
                 goBack = { navController.popBackStack() },
-                goToNextScreen = {}
+                onCodeScanned = {}
             )
         }
         composable(ROUTE_ON_OFF_GAME) {
