@@ -2,8 +2,8 @@ package com.zenika.adventure.presentation.worldmap
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.GetAgenciesUseCase
+import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.data.Agency
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
