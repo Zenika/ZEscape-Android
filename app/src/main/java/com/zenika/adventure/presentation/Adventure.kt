@@ -253,18 +253,14 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.navigate(ROUTE_MONTREAL_INSTRUCTION)
                 },
                 openAgencyTeaser = {
-                    navController.navigate(ROUTE_AGENCY_TEASER) {
-                        popUpTo(ROUTE_WORLD_MAP) { inclusive = true }
-                    }
+                    navController.navigate(ROUTE_AGENCY_TEASER)
                 }
             )
         }
         dialog(ROUTE_AGENCY_TEASER) {
             AgencyTeaserDialog(
                 onDismissRequest = {
-                    navController.navigate(ROUTE_WORLD_MAP) {
-                        popUpTo(ROUTE_AGENCY_TEASER) { inclusive = true }
-                    }
+                    navController.popBackStack()
                 }
             )
         }
