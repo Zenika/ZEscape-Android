@@ -15,14 +15,15 @@ fun LibraryRoute(
     openHintValidation: (AdventureHint) -> Unit,
     viewModel: LibraryViewModel = hiltViewModel()
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     LibraryScreen(
-        remainingTime,
-        goToSettings,
-        goToRooftop,
-        openWorldMap,
-        openInventory,
-        openHintValidation
+        remainingTime = state.remainingTime,
+        newItem = state.newItem,
+        goToSettings = goToSettings,
+        goToRooftop = goToRooftop,
+        openWorldMap = openWorldMap,
+        openInventory = openInventory,
+        openHintValidation = openHintValidation
     )
 }

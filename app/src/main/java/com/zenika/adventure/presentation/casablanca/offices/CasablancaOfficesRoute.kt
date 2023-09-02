@@ -13,13 +13,14 @@ fun CasablancaOfficesRoute(
     openInventory: () -> Unit,
     viewModel: CasablancaOfficesViewModel = hiltViewModel()
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     CasablancaOfficesScreen(
-        remainingTime,
-        goBack,
-        goToSettings,
-        openWorldMap,
-        openInventory
+        remainingTime = state.remainingTime,
+        newItem = state.newItem,
+        goBack = goBack,
+        goToSettings = goToSettings,
+        openWorldMap = openWorldMap,
+        openInventory = openInventory
     )
 }

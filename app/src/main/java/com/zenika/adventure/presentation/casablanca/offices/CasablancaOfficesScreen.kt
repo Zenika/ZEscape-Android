@@ -11,6 +11,7 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun CasablancaOfficesScreen(
     remainingTime: Int,
+    newItem: Boolean,
     goBack: () -> Unit,
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
@@ -20,6 +21,7 @@ fun CasablancaOfficesScreen(
     FlashlightScaffoldScreen(
         modifier = modifier,
         remainingTime = remainingTime,
+        newItem = newItem,
         goToSettings = goToSettings,
         background = R.mipmap.casablanca_offices,
         openWorldMap = openWorldMap,
@@ -34,6 +36,7 @@ private fun CasablancaOfficesScreenPreview() {
     ZEscapeThemePreview {
         CasablancaOfficesScreen(
             remainingTime = 3_600,
+            newItem = false,
             goBack = {},
             goToSettings = {},
             openWorldMap = {},

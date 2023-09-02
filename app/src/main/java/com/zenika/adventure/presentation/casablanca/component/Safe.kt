@@ -15,20 +15,20 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import com.zenika.R
-import com.zenika.adventure.presentation.casablanca.agency.CasablancaUiState
 import com.zenika.utils.ComposablePreview
 import com.zenika.utils.ZEscapeThemePreview
 
 @Composable
 fun Safe(
-    safeState: CasablancaUiState,
+    isSafeOpened: Boolean,
+    isKeyCollected: Boolean,
     goToSafe: () -> Unit,
     collectKey: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    if (!safeState.isSafeOpen) {
+    if (!isSafeOpened) {
         SafeItem(R.mipmap.close_safe, onClick = goToSafe, modifier)
-    } else if (!safeState.isKeyCollected) {
+    } else if (!isKeyCollected) {
         SafeItem(R.mipmap.key_safe, onClick = collectKey, modifier)
     } else {
         SafeItem(R.mipmap.open_safe, onClick = {}, modifier)
@@ -73,7 +73,8 @@ private fun SafeItem(
 fun SafePreview() {
     ZEscapeThemePreview {
         Safe(
-            safeState = CasablancaUiState(isSafeOpen = true, isKeyCollected = false),
+            isSafeOpened = true,
+            isKeyCollected = false,
             goToSafe = {},
             collectKey = {}
         )

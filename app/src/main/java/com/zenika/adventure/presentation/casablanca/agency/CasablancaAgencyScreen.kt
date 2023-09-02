@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.adventure.presentation.casablanca.component.CasablancaMap
-import com.zenika.adventure.presentation.casablanca.component.Safe
 import com.zenika.adventure.presentation.casablanca.component.FlashlightScaffoldScreen
+import com.zenika.adventure.presentation.casablanca.component.Safe
 import com.zenika.presentation.component.HintButton
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
@@ -20,7 +20,9 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun CasablancaAgencyScreen(
     remainingTime: Int,
-    safeState: CasablancaUiState,
+    newItem: Boolean,
+    isSafeOpened: Boolean,
+    isKeyCollected: Boolean,
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
@@ -31,6 +33,7 @@ fun CasablancaAgencyScreen(
 ) {
     FlashlightScaffoldScreen(
         modifier = modifier,
+        newItem = newItem,
         remainingTime = remainingTime,
         goToSettings = goToSettings,
         background = R.mipmap.casablanca_agency,
@@ -50,7 +53,8 @@ fun CasablancaAgencyScreen(
                 )
         )
         Safe(
-            safeState,
+            isSafeOpened,
+            isKeyCollected,
             goToSafe,
             collectKey,
             modifier = Modifier.align(Alignment.Center)
@@ -64,7 +68,9 @@ private fun CasablancaAgencyScreenPreview() {
     ZEscapeThemePreview {
         CasablancaAgencyScreen(
             remainingTime = 3_600,
-            safeState = CasablancaUiState(isSafeOpen = false, isKeyCollected = false),
+            newItem = false,
+            isSafeOpened = false,
+            isKeyCollected = false,
             goToSettings = {},
             openWorldMap = {},
             openInventory = {},

@@ -34,6 +34,7 @@ import kotlin.math.roundToInt
 @Composable
 fun LibraryScreen(
     remainingTime: Int,
+    newItem: Boolean,
     goToSettings: () -> Unit,
     goToRooftop: () -> Unit,
     openWorldMap: () -> Unit,
@@ -77,10 +78,11 @@ fun LibraryScreen(
                 .clickable(onClick = openWorldMap)
         )
         AdventureInventoryBag(
+            openInventory = openInventory,
+            newItem = newItem,
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
-                .clickable(onClick = openInventory)
         )
     }
 }
@@ -90,6 +92,7 @@ fun LibraryScreen(
 private fun LibraryScreenPreview() {
     LibraryScreen(
         remainingTime = 0,
+        newItem = false,
         goToSettings = {},
         goToRooftop = {},
         openWorldMap = {},

@@ -17,6 +17,7 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun MontrealAgencyScreen(
     remainingTime: Int,
+    newItem: Boolean,
     isRooftopDiscovered: Boolean,
     isMeetingRoomDiscovered: Boolean,
     goToSettings: () -> Unit,
@@ -45,10 +46,11 @@ fun MontrealAgencyScreen(
                 .clickable(onClick = openWorldMap)
         )
         AdventureInventoryBag(
+            openInventory = openInventory,
+            newItem = newItem,
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
-                .clickable(onClick = openInventory)
         )
     }
 }
@@ -59,6 +61,7 @@ private fun MontrealAgencyScreenPreview() {
     ZEscapeThemePreview {
         MontrealAgencyScreen(
             remainingTime = 0,
+            newItem = false,
             isRooftopDiscovered = false,
             isMeetingRoomDiscovered = false,
             goToSettings = {},

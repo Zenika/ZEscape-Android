@@ -78,10 +78,11 @@ fun SingaporeAgencyScreen(
                 .clickable(onClick = openWorldMap)
         )
         AdventureInventoryBag(
+            newItem = state.newItem,
+            openInventory = openInventory,
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
-                .clickable(onClick = openInventory)
         )
     }
 }
@@ -121,6 +122,7 @@ private fun SingaporeAgencyScreenPreview() {
                 isSingaporeKeyCollected = true,
                 isSwordCollected = false,
                 isHookCollected = false,
+                newItem = false,
                 remainingTime = 0
             ),
             goToSettings = {},

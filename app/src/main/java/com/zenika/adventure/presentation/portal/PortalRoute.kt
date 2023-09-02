@@ -23,13 +23,13 @@ fun PortalRoute(
     }
 
     val state by viewModel.state.collectAsStateWithLifecycle()
-    val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
 
-    LaunchedEffect(event) {
-        when (event) {
-            PortalEvent.SHOW_CLOSED_PORTAL -> accessToClosePortal()
-            PortalEvent.FINISH_GAME -> onGameFinished()
-            null -> Unit
+    LaunchedEffect(viewModel) {
+        viewModel.events.collect { event ->
+            when (event) {
+                PortalEvent.SHOW_CLOSED_PORTAL -> accessToClosePortal()
+                PortalEvent.FINISH_GAME -> onGameFinished()
+            }
         }
     }
 

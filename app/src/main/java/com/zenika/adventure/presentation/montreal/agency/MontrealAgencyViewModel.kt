@@ -13,13 +13,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MontrealAgencyViewModel @Inject constructor(
-    observeRemainingTime: ObserveRemainingTimeUseCase,
-    observeAdventureStateUseCase: ObserveAdventureStateUseCase
+    observeAdventureState: ObserveAdventureStateUseCase,
+    observeRemainingTime: ObserveRemainingTimeUseCase
 ) : ViewModel() {
     val state: StateFlow<MontrealAgencyUiState> = combine(
-        observeRemainingTime(), observeAdventureStateUseCase()
-    ) { remainingTime, gameState ->
+        observeAdventureState(),
+        observeRemainingTime(),
+    ) { gameState, remainingTime ->
         MontrealAgencyUiState(
+            newItem = gameState.newItem,
             remainingTime = remainingTime,
             isRooftopDiscovered = gameState.isRooftopDiscovered,
             isMeetingRoomDiscovered = gameState.isMeetingRoomDiscovered
@@ -28,6 +30,7 @@ class MontrealAgencyViewModel @Inject constructor(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
         initialValue = MontrealAgencyUiState(
+            newItem = false,
             remainingTime = 0,
             isRooftopDiscovered = false,
             isMeetingRoomDiscovered = false
@@ -36,6 +39,7 @@ class MontrealAgencyViewModel @Inject constructor(
 }
 
 class MontrealAgencyUiState(
+    val newItem: Boolean,
     val remainingTime: Int,
     val isRooftopDiscovered: Boolean,
     val isMeetingRoomDiscovered: Boolean

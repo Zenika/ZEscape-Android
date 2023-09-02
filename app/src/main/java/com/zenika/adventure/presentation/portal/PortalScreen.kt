@@ -37,10 +37,11 @@ fun PortalScreen(
                 .clickable(onClick = openWorldMap)
         )
         AdventureInventoryBag(
+            state.newItem,
+            openInventory,
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.BottomEnd)
-                .clickable(onClick = openInventory)
         )
     }
 }
@@ -52,6 +53,7 @@ private fun PortalScreenPreview() {
         PortalScreen(
             state = PortalUiState(
                 portalCanBeOpened = false,
+                newItem = false,
                 remainingTime = 0
             ),
             goToSettings = {},
@@ -62,3 +64,4 @@ private fun PortalScreenPreview() {
         )
     }
 }
+

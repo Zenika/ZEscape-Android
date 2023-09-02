@@ -3,6 +3,7 @@ package com.zenika.adventure.presentation.portal
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.FinishGameUseCase
+import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveKeyCollectionUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,27 +20,32 @@ import javax.inject.Inject
 class PortalViewModel @Inject constructor(
     observeRemainingTime: ObserveRemainingTimeUseCase,
     observeKeyCollection: ObserveKeyCollectionUseCase,
+    observeAdventureState: ObserveAdventureStateUseCase,
     private val finishGameUseCase: FinishGameUseCase
 ) : ViewModel() {
-    val state: StateFlow<PortalUiState> = combine(
-        observeKeyCollection(), observeRemainingTime()
-    ) { keyCollection, remainingTime ->
-        PortalUiState(
-            portalCanBeOpened = keyCollection.isSingaporeKeyCollected && keyCollection.isCasablancaKeyCollected,
-            remainingTime
-        )
-    }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = PortalUiState(
-                portalCanBeOpened = false,
-                remainingTime = 0
-            )
-        )
 
     private val _events = MutableSharedFlow<PortalEvent>()
     val events = _events.asSharedFlow()
+
+    val state: StateFlow<PortalUiState> = combine(
+        observeKeyCollection(),
+        observeAdventureState(),
+        observeRemainingTime()
+    ) { keyCollection, gameState, remainingTime ->
+        PortalUiState(
+            portalCanBeOpened = keyCollection.isSingaporeKeyCollected && keyCollection.isCasablancaKeyCollected,
+            newItem = gameState.newItem,
+            remainingTime = remainingTime
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+        initialValue = PortalUiState(
+            portalCanBeOpened = false,
+            newItem = false,
+            remainingTime = 0
+        )
+    )
 
     fun onPortalClick() {
         viewModelScope.launch {
@@ -55,6 +61,7 @@ class PortalViewModel @Inject constructor(
 
 class PortalUiState(
     val portalCanBeOpened: Boolean,
+    val newItem: Boolean,
     val remainingTime: Int
 )
 

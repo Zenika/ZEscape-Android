@@ -3,27 +3,41 @@ package com.zenika.adventure.presentation.casablanca.outside
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.ApplyPenaltyUseCase
+import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CasablancaOutsideViewModel @Inject constructor(
+    observeAdventureState: ObserveAdventureStateUseCase,
     observeRemainingTime: ObserveRemainingTimeUseCase,
     private val applyPenaltyUseCase: ApplyPenaltyUseCase
 ) : ViewModel() {
-    val remainingTime: StateFlow<Int> =
-        observeRemainingTime()
+    val state: StateFlow<CasablancaOutsideUiState> =
+        combine(
+            observeAdventureState(),
+            observeRemainingTime(),
+        ) { gameState, remainingTime ->
+            CasablancaOutsideUiState(
+                newItem = gameState.newItem,
+                remainingTime = remainingTime
+            )
+        }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-                initialValue = 3_600_600
+                initialValue = CasablancaOutsideUiState(
+                    newItem = false,
+                    remainingTime = 0
+                )
             )
 
     private val _events = MutableSharedFlow<CasablancaEvent>()
@@ -46,6 +60,11 @@ class CasablancaOutsideViewModel @Inject constructor(
         }
     }
 }
+
+class CasablancaOutsideUiState(
+    val newItem: Boolean,
+    val remainingTime: Int
+)
 
 enum class CasablancaEvent {
     ENTRY,

@@ -14,12 +14,13 @@ fun CasablancaAgencyRoute(
     goToSafe: () -> Unit,
     viewModel: CasablancaAgencyViewModel = hiltViewModel()
 ) {
-    val remainingTime by viewModel.remainingTime.collectAsStateWithLifecycle()
-    val safeState by viewModel.safeState.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     CasablancaAgencyScreen(
-        remainingTime,
-        safeState,
+        state.remainingTime,
+        state.newItem,
+        state.isSafeOpened,
+        state.isKeyCollected,
         goToSettings,
         openWorldMap,
         openInventory,

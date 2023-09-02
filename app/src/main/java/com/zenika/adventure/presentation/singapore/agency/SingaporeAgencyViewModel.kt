@@ -31,19 +31,20 @@ class SingaporeAgencyViewModel @Inject constructor(
             gameState.isSingaporeKeyCollected,
             gameState.isSwordCollected,
             gameState.isHookCollected,
+            gameState.newItem,
             remainingTime
         )
-    }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = SingaporeUiState(
-                isSingaporeKeyCollected = false,
-                isSwordCollected = false,
-                isHookCollected = false,
-                remainingTime = 0
-            )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+        initialValue = SingaporeUiState(
+            isSingaporeKeyCollected = false,
+            isSwordCollected = false,
+            isHookCollected = false,
+            newItem = false,
+            remainingTime = 0
         )
+    )
 
     fun collectKey() {
         viewModelScope.launch {
@@ -68,5 +69,7 @@ class SingaporeUiState(
     val isSingaporeKeyCollected: Boolean,
     val isSwordCollected: Boolean,
     val isHookCollected: Boolean,
+    val newItem: Boolean,
     val remainingTime: Int
 )
+
