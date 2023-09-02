@@ -11,6 +11,7 @@ import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
 import com.zenika.adventure.presentation.component.ScaffoldScreen
 import com.zenika.adventure.presentation.montreal.agency_map.MontrealAgencyMapRoute
+import com.zenika.data.AdventureHint
 import com.zenika.utils.ScreenPreview
 import com.zenika.utils.ZEscapeThemePreview
 
@@ -20,11 +21,13 @@ fun MontrealAgencyScreen(
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
-    goToScan: () -> Unit
+    goToScan: (String) -> Unit,
+    openHintValidation: (AdventureHint) -> Unit,
 ) {
     ScaffoldScreen(
         remainingTime = remainingTime,
         goToSettings = goToSettings,
+        openHintValidation = { openHintValidation(AdventureHint.MONTREAL_AGENCY_HINT) },
         background = R.mipmap.montreal_agency
     ) {
         MontrealAgencyMapRoute(goToScan)
@@ -52,7 +55,8 @@ private fun MontrealAgencyScreenPreview() {
             goToSettings = {},
             openWorldMap = {},
             openInventory = {},
-            goToScan = {}
+            goToScan = {},
+            openHintValidation = {}
         )
     }
 }

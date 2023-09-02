@@ -54,7 +54,7 @@ import kotlinx.coroutines.delay
 fun QrCodeScanScreen(
     qrcode: String,
     goBack: () -> Unit,
-    goToNextScreen: () -> Unit
+    onCodeScanned: (String) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -80,7 +80,7 @@ fun QrCodeScanScreen(
         QrCodeScanContent(
             modifier = Modifier.padding(paddingValues),
             qrcode = qrcode,
-            goToNextScreen = goToNextScreen
+            onCodeScanned = onCodeScanned
         )
     }
 }
@@ -88,7 +88,7 @@ fun QrCodeScanScreen(
 @Composable
 private fun QrCodeScanContent(
     qrcode: String,
-    goToNextScreen: () -> Unit,
+    onCodeScanned: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -115,7 +115,7 @@ private fun QrCodeScanContent(
         hasCamPermission,
         context,
         qrcode,
-        goToNextScreen,
+        onCodeScanned,
         modifier = modifier
             .fillMaxSize()
             .background(Color.Black)
@@ -127,7 +127,7 @@ private fun Scan(
     hasCamPermission: Boolean,
     currentContext: Context,
     qrcode: String,
-    goToNextScreen: () -> Unit,
+    onCodeScanned: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     var code by remember {
@@ -182,7 +182,7 @@ private fun Scan(
     LaunchedEffect(code) {
         if (code == qrcode) {
             delay(1500)
-            goToNextScreen()
+            onCodeScanned(code)
         }
     }
 }
@@ -216,7 +216,7 @@ private fun QrCodeScanScreenPreview() {
         QrCodeScanScreen(
             qrcode = "trigger-001",
             goBack = {},
-            goToNextScreen = {}
+            onCodeScanned = {}
         )
     }
 }

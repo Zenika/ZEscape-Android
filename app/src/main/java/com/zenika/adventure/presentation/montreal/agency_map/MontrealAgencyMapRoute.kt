@@ -7,7 +7,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun MontrealAgencyMapRoute(
-    goToScan: () -> Unit,
+    goToScan: (String) -> Unit,
     viewModel: MontrealAgencyMapViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()

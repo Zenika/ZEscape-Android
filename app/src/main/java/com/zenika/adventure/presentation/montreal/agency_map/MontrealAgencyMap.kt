@@ -20,7 +20,7 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun MontrealAgencyMap(
     state: MontrealAgencyUiState,
-    goToScan: () -> Unit
+    goToScan: (String) -> Unit
 ) {
     Box {
         Image(
@@ -54,7 +54,7 @@ fun MontrealAgencyMap(
             modifier = Modifier
                 .padding(start = 23.dp, top = 175.dp)
                 .size(132.dp, 38.dp)
-                .clickable(onClick = {})
+                .clickable(onClick = { goToScan("montreal-library") })
         ) {
             drawRect(
                 color = Color.Transparent

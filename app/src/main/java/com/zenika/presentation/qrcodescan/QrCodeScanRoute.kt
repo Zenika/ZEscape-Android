@@ -8,7 +8,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 @Composable
 fun QrCodeScanRoute(
     goBack: () -> Unit,
-    goToNextScreen: () -> Unit,
+    onCodeScanned: (String) -> Unit,
     viewModel: QrCodeScanViewModel = hiltViewModel()
 ) {
     val qrcode by viewModel.qrcode.collectAsStateWithLifecycle()
@@ -18,7 +18,7 @@ fun QrCodeScanRoute(
         else -> QrCodeScanScreen(
             qrcodeName,
             goBack,
-            goToNextScreen
+            onCodeScanned
         )
     }
 }

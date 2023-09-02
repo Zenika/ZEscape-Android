@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.CollectHookUseCase
 import com.zenika.adventure.domain.CollectSingaporeKeyUseCase
 import com.zenika.adventure.domain.CollectSwordUseCase
-import com.zenika.adventure.domain.GetAdventureStateUseCase
+import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SingaporeAgencyViewModel @Inject constructor(
-    getAdventureState: GetAdventureStateUseCase,
+    getAdventureState: ObserveAdventureStateUseCase,
     observeRemainingTime: ObserveRemainingTimeUseCase,
     private val collectSingaporeKey: CollectSingaporeKeyUseCase,
     private val collectSwordItem: CollectSwordUseCase,

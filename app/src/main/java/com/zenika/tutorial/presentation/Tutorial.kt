@@ -66,7 +66,7 @@ fun NavGraphBuilder.tutorialNavigation(
         ) {
             QrCodeScanRoute(
                 goBack = { navController.popBackStack() },
-                goToNextScreen = { navController.navigate(ROUTE_INTRODUCTION) }
+                onCodeScanned = { navController.navigate(ROUTE_INTRODUCTION) }
             )
         }
         composable(ROUTE_INTRODUCTION) {

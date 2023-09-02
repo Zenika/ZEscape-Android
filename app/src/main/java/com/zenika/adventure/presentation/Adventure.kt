@@ -86,9 +86,12 @@ private const val ROUTE_MONTREAL_LIBRARY = "adventureMontrealLibrary"
 private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
 private const val ROUTE_SIMON_SAYS_GAME = "adventureSimonSaysGame"
 
-private val casablancaOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/casablanca/outside" })
-private val singaporeOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/singapore/outside" })
-private val montrealOutsideDeeplink = listOf(navDeepLink { uriPattern = "app://zescape/montreal/outside" })
+private val casablancaOutsideDeeplink =
+    listOf(navDeepLink { uriPattern = "app://zescape/casablanca/outside" })
+private val singaporeOutsideDeeplink =
+    listOf(navDeepLink { uriPattern = "app://zescape/singapore/outside" })
+private val montrealOutsideDeeplink =
+    listOf(navDeepLink { uriPattern = "app://zescape/montreal/outside" })
 
 @Suppress("LongMethod")
 @OptIn(ExperimentalAnimationApi::class)
@@ -109,14 +112,7 @@ fun NavGraphBuilder.adventureNavigation(
         composable(ROUTE_COMPUTER) {
             ComputerRoute(
                 goBack = { navController.popBackStack() },
-                goToScan = {
-                    navController.navigate(
-                        ROUTE_QRCODE_SCAN.replace(
-                            "{qrcode}",
-                            "trigger-002"
-                        )
-                    )
-                }
+                goToScan = { navController.navigateToQrCodeScan("trigger-002") }
             )
         }
         composable(
@@ -127,10 +123,17 @@ fun NavGraphBuilder.adventureNavigation(
         ) {
             QrCodeScanRoute(
                 goBack = { navController.popBackStack() },
-                goToNextScreen = {
-                    navController.popBackStack(ROUTE_HOME, inclusive = false)
-                    navController.navigate(ROUTE_PORTAL)
-                    navController.navigate(ROUTE_INSTRUCTION)
+                onCodeScanned = { scannedCode ->
+                    when (scannedCode) {
+                        "trigger-002" -> {
+                            navController.popBackStack(ROUTE_HOME, inclusive = false)
+                            navController.navigate(ROUTE_PORTAL)
+                            navController.navigate(ROUTE_INSTRUCTION)
+                        }
+                        "montreal-library" -> {
+                            navController.navigate(ROUTE_MONTREAL_LIBRARY)
+                        }
+                    }
                 }
             )
         }
@@ -258,10 +261,6 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.navigate(ROUTE_SIMON_SAYS_GAME)
                     navController.navigate(ROUTE_MONTREAL_INSTRUCTION)
                 },
-                goToMontrealAgency = {
-                    navController.navigate(ROUTE_MONTREAL_AGENCY)
-                    navController.navigate(ROUTE_MONTREAL_AGENCY_DIALOG)
-                },
                 openAgencyTeaser = {
                     navController.navigate(ROUTE_AGENCY_TEASER)
                 }
@@ -351,7 +350,8 @@ fun NavGraphBuilder.adventureNavigation(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) },
-                goToScan = { navController.navigate(ROUTE_QRCODE_SCAN) }
+                goToScan = { searchedCode -> navController.navigateToQrCodeScan(searchedCode) },
+                openHintValidation = { hint -> navController.navigateToHint(hint) },
             )
         }
         dialog(ROUTE_MONTREAL_AGENCY_DIALOG) {
@@ -478,7 +478,8 @@ fun NavGraphBuilder.adventureNavigation(
         composable(ROUTE_SIMON_SAYS_GAME, deepLinks = montrealOutsideDeeplink) {
             SimonSaysRoute(
                 winGame = {
-                    navController.popBackStack(ROUTE_PORTAL, inclusive = false)
+                    navController.navigate(ROUTE_MONTREAL_AGENCY)
+                    navController.navigate(ROUTE_MONTREAL_AGENCY_DIALOG)
                 },
                 openHintValidation = { hint -> navController.navigateToHint(hint) },
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) }
@@ -488,8 +489,19 @@ fun NavGraphBuilder.adventureNavigation(
 }
 
 private fun NavHostController.navigateToHint(hint: AdventureHint) {
-    this.navigate(ROUTE_HINT_VALIDATION.replace(
-        "{hint}",
-        hint.name
-    ))
+    this.navigate(
+        ROUTE_HINT_VALIDATION.replace(
+            "{hint}",
+            hint.name
+        )
+    )
+}
+
+private fun NavHostController.navigateToQrCodeScan(searchedCode: String) {
+    this.navigate(
+        ROUTE_QRCODE_SCAN.replace(
+            "{qrcode}",
+            searchedCode
+        )
+    )
 }
