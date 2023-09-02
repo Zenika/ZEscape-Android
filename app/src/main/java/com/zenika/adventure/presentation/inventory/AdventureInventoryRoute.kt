@@ -14,13 +14,14 @@ fun AdventureInventoryRoute(
     viewModel: AdventureInventoryViewModel = hiltViewModel()
 ) {
     val items by viewModel.inventoryItems.collectAsStateWithLifecycle()
-    val event by viewModel.events.collectAsStateWithLifecycle(initialValue = ItemEvent.None)
 
-    LaunchedEffect(event) {
-        when (val theEvent = event) {
-            ItemEvent.None -> Unit
-            is ItemEvent.OpenPenalty -> openPenalty(theEvent.penalty)
-            is ItemEvent.ShowItem -> showItem(theEvent.item)
+    LaunchedEffect(viewModel) {
+        viewModel.init()
+        viewModel.events.collect { event ->
+            when (event) {
+                is ItemEvent.OpenPenalty -> openPenalty(event.penalty)
+                is ItemEvent.ShowItem -> showItem(event.item)
+            }
         }
     }
 

@@ -24,10 +24,7 @@ fun MontrealAgencyRoute(
         isMeetingRoomDiscovered = state.isMeetingRoomDiscovered,
         goToSettings = goToSettings,
         openWorldMap = openWorldMap,
-        openInventory = {
-            viewModel.removeNewItemBadge()
-            openInventory()
-        },
+        openInventory = openInventory,
         goToScan = goToScan,
         openHintValidation = openHintValidation
     )

@@ -29,7 +29,6 @@ fun PortalRoute(
             when (event) {
                 PortalEvent.SHOW_CLOSED_PORTAL -> accessToClosePortal()
                 PortalEvent.FINISH_GAME -> onGameFinished()
-                PortalEvent.OPEN_INVENTORY -> openInventory()
             }
         }
     }
@@ -39,7 +38,7 @@ fun PortalRoute(
         goToSettings,
         viewModel::onPortalClick,
         openWorldMap,
-        viewModel::openInventory,
+        openInventory,
         openHintValidation
     )
 }

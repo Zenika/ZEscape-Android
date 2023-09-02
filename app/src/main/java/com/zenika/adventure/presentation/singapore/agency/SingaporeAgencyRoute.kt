@@ -1,7 +1,6 @@
 package com.zenika.adventure.presentation.singapore.agency
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -17,19 +16,11 @@ fun SingaporeAgencyRoute(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    LaunchedEffect(viewModel) {
-        viewModel.event.collect {event->
-            when(event) {
-                SingaporeAgencyEvent.OPEN_INVENTORY -> openInventory()
-            }
-        }
-    }
-
     SingaporeAgencyScreen(
         state,
         goToSettings,
         openWorldMap,
-        viewModel::openInventory,
+        openInventory,
         openHintValidation,
         viewModel::collectKey,
         viewModel::collectSword,

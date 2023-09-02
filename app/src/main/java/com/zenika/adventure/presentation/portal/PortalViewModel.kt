@@ -6,7 +6,6 @@ import com.zenika.adventure.domain.FinishGameUseCase
 import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveKeyCollectionUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
-import com.zenika.adventure.domain.RemoveNewItemBadgeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -22,9 +21,12 @@ class PortalViewModel @Inject constructor(
     observeRemainingTime: ObserveRemainingTimeUseCase,
     observeKeyCollection: ObserveKeyCollectionUseCase,
     observeAdventureState: ObserveAdventureStateUseCase,
-    private val finishGameUseCase: FinishGameUseCase,
-    private val removeNewItemBadgeUseCase: RemoveNewItemBadgeUseCase
+    private val finishGameUseCase: FinishGameUseCase
 ) : ViewModel() {
+
+    private val _events = MutableSharedFlow<PortalEvent>()
+    val events = _events.asSharedFlow()
+
     val state: StateFlow<PortalUiState> = combine(
         observeKeyCollection(),
         observeAdventureState(),
@@ -35,19 +37,15 @@ class PortalViewModel @Inject constructor(
             newItem = gameState.newItem,
             remainingTime = remainingTime
         )
-    }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = PortalUiState(
-                portalCanBeOpened = false,
-                newItem = false,
-                remainingTime = 0
-            )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+        initialValue = PortalUiState(
+            portalCanBeOpened = false,
+            newItem = false,
+            remainingTime = 0
         )
-
-    private val _events = MutableSharedFlow<PortalEvent>()
-    val events = _events.asSharedFlow()
+    )
 
     fun onPortalClick() {
         viewModelScope.launch {
@@ -57,13 +55,6 @@ class PortalViewModel @Inject constructor(
             } else {
                 _events.emit(PortalEvent.SHOW_CLOSED_PORTAL)
             }
-        }
-    }
-
-    fun openInventory() {
-        viewModelScope.launch {
-            removeNewItemBadgeUseCase()
-            _events.emit(PortalEvent.OPEN_INVENTORY)
         }
     }
 }
@@ -76,6 +67,5 @@ class PortalUiState(
 
 enum class PortalEvent {
     SHOW_CLOSED_PORTAL,
-    FINISH_GAME,
-    OPEN_INVENTORY
+    FINISH_GAME
 }

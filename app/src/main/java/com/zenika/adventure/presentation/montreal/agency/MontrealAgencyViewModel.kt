@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
-import com.zenika.adventure.domain.RemoveNewItemBadgeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -15,8 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MontrealAgencyViewModel @Inject constructor(
     observeAdventureState: ObserveAdventureStateUseCase,
-    observeRemainingTime: ObserveRemainingTimeUseCase,
-    private val removeNewItemBadgeUseCase: RemoveNewItemBadgeUseCase
+    observeRemainingTime: ObserveRemainingTimeUseCase
 ) : ViewModel() {
     val state: StateFlow<MontrealAgencyUiState> = combine(
         observeAdventureState(),
@@ -38,10 +36,6 @@ class MontrealAgencyViewModel @Inject constructor(
             isMeetingRoomDiscovered = false
         )
     )
-
-    fun removeNewItemBadge() {
-        removeNewItemBadgeUseCase()
-    }
 }
 
 class MontrealAgencyUiState(

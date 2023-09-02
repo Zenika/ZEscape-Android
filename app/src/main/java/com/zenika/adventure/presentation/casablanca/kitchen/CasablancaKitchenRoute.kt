@@ -21,9 +21,6 @@ fun CasablancaKitchenRoute(
         goBack = goBack,
         goToSettings = goToSettings,
         openWorldMap = openWorldMap,
-        openInventory = {
-            viewModel.removeNewItemBadge()
-            openInventory()
-        }
+        openInventory = openInventory
     )
 }
