@@ -27,6 +27,7 @@ import com.zenika.R
 import com.zenika.adventure.presentation.component.AdventureInventoryBag
 import com.zenika.adventure.presentation.component.ContinentsMap
 import com.zenika.adventure.presentation.component.ScaffoldScreen
+import com.zenika.data.AdventureHint
 import com.zenika.utils.ScreenPreview
 import kotlin.math.roundToInt
 
@@ -36,7 +37,8 @@ fun LibraryScreen(
     goToSettings: () -> Unit,
     goToRooftop: () -> Unit,
     openWorldMap: () -> Unit,
-    openInventory: () -> Unit
+    openInventory: () -> Unit,
+    openHintValidation: (AdventureHint) -> Unit,
 ) {
     var offsetX by remember { mutableStateOf(0f) }
     val screenWidth = LocalConfiguration.current.screenWidthDp
@@ -44,6 +46,7 @@ fun LibraryScreen(
     ScaffoldScreen(
         remainingTime = remainingTime,
         goToSettings = goToSettings,
+        openHintValidation = { openHintValidation(AdventureHint.MONTREAL_LIBRARY_HINT) },
         background = R.mipmap.montreal_library
     ) {
         Button(
@@ -88,6 +91,7 @@ private fun LibraryScreenPreview() {
         goToSettings = {},
         goToRooftop = {},
         openWorldMap = {},
-        openInventory = {}
+        openInventory = {},
+        openHintValidation = {}
     )
 }

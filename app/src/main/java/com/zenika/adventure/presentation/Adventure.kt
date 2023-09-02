@@ -450,7 +450,8 @@ fun NavGraphBuilder.adventureNavigation(
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) },
                 goToRooftop = { },
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
-                openInventory = { navController.navigate(ROUTE_INVENTORY) }
+                openInventory = { navController.navigate(ROUTE_INVENTORY) },
+                openHintValidation = { hint -> navController.navigateToHint(hint) },
             )
         }
         composable(ROUTE_SIMON_SAYS_GAME, deepLinks = montrealOutsideDeeplink) {
