@@ -39,7 +39,8 @@ import com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyDialog
 import com.zenika.adventure.presentation.singapore.agency.SingaporeAgencyRoute
 import com.zenika.adventure.presentation.singapore.instruction.InstructionSingaporeRoute
 import com.zenika.adventure.presentation.singapore.on_off_game.OnOffRoute
-import com.zenika.adventure.presentation.world_map.WorldMapRoute
+import com.zenika.adventure.presentation.worldmap.AgencyTeaserDialog
+import com.zenika.adventure.presentation.worldmap.WorldMapRoute
 import com.zenika.data.AdventureHint
 import com.zenika.presentation.qrcodescan.QrCodeScanRoute
 import com.zenika.presentation.settings.SettingsRoute
@@ -56,6 +57,7 @@ private const val ROUTE_PORTAL_MESSAGE = "adventurePortalMessage"
 private const val ROUTE_INVENTORY = "adventureInventory"
 private const val ROUTE_PATTERN_ITEM = "adventureItem/{item}"
 private const val ROUTE_WORLD_MAP = "adventureWorldMap"
+private const val ROUTE_AGENCY_TEASER = "adventureAgencyTeaser"
 private const val ROUTE_AGENCY_RECOGNITION = "adventureAgencyRecognition"
 private const val ROUTE_PATTERN_AGENCY_VALIDATION = "adventureAgencyValidation/{agency}"
 private const val ROUTE_SINGAPORE_INSTRUCTION = "adventureSingaporeInstruction"
@@ -249,6 +251,16 @@ fun NavGraphBuilder.adventureNavigation(
                 goToMontrealAgency = {
                     navController.navigate(ROUTE_SIMON_SAYS_GAME)
                     navController.navigate(ROUTE_MONTREAL_INSTRUCTION)
+                },
+                openAgencyTeaser = {
+                    navController.navigate(ROUTE_AGENCY_TEASER)
+                }
+            )
+        }
+        dialog(ROUTE_AGENCY_TEASER) {
+            AgencyTeaserDialog(
+                onDismissRequest = {
+                    navController.popBackStack()
                 }
             )
         }

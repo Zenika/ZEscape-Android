@@ -7,8 +7,6 @@
     <ID>ComposableParamOrder:TutorialDialog.kt$TutorialDialog</ID>
     <ID>LongMethod:AgencyRecognitionScreen.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun AgencyRecognitionScreen( goBack: () -&gt; Unit, onTextRecognized: (String) -&gt; Unit )</ID>
     <ID>LongMethod:EndParchmentScreen.kt$@OptIn(ExperimentalFoundationApi::class) @Composable fun EndParchmentScreen( goToScore: () -&gt; Unit )</ID>
-    <ID>LongMethod:MainScreen.kt$@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter") @OptIn(ExperimentalMaterial3Api::class) @Composable fun MainScreen( modifier: Modifier, mainUiState: MainUiState, goToSettings: () -&gt; Unit, openMiniGame: () -&gt; Unit, openInventory: () -&gt; Unit, showHint: () -&gt; Unit, collectKey: () -&gt; Unit, collectMap: () -&gt; Unit, removeNewItemBadge: () -&gt; Unit, incrementHintCount: () -&gt; Unit )</ID>
-    <ID>LongMethod:QrCodeScanScreen.kt$@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class) @Composable fun QrCodeScanScreen( goBack: () -&gt; Unit, goToNextScreen: () -&gt; Unit )</ID>
     <ID>LongMethod:Tutorial.kt$@OptIn(ExperimentalAnimationApi::class) fun NavGraphBuilder.tutorialNavigation( route: String, navController: NavHostController )</ID>
     <ID>LongMethod:WelcomeParchmentScreen.kt$@OptIn(ExperimentalFoundationApi::class) @Composable fun WelcomeParchmentScreen( openInstruction: () -&gt; Unit )</ID>
     <ID>MagicNumber:Color.kt$0xFF2196F3</ID>
@@ -89,16 +87,12 @@
     <ID>NewLineAtEndOfFile:Key.kt$com.zenika.tutorial.presentation.main.component.Key.kt</ID>
     <ID>NewLineAtEndOfFile:MainActivity.kt$com.zenika.MainActivity.kt</ID>
     <ID>NewLineAtEndOfFile:ObserveRemainingTimeUseCase.kt$com.zenika.adventure.domain.ObserveRemainingTimeUseCase.kt</ID>
-    <ID>NewLineAtEndOfFile:OnOffRoute.kt$com.zenika.adventure.presentation.singapore.on_off_game.OnOffRoute.kt</ID>
-    <ID>NewLineAtEndOfFile:OnOffScreen.kt$com.zenika.adventure.presentation.singapore.on_off_game.OnOffScreen.kt</ID>
     <ID>NewLineAtEndOfFile:PortalMessageRoute.kt$com.zenika.adventure.presentation.portal_message.PortalMessageRoute.kt</ID>
-    <ID>NewLineAtEndOfFile:QrCodeAnalyzer.kt$com.zenika.presentation.qrcodescan.QrCodeAnalyzer.kt</ID>
     <ID>NewLineAtEndOfFile:SettingsViewModel.kt$com.zenika.presentation.settings.SettingsViewModel.kt</ID>
     <ID>NewLineAtEndOfFile:TutorialHint.kt$com.zenika.data.TutorialHint.kt</ID>
     <ID>NewLineAtEndOfFile:TutorialHomeViewModel.kt$com.zenika.tutorial.presentation.home.TutorialHomeViewModel.kt</ID>
     <ID>NewLineAtEndOfFile:TutorialInstructionRoute.kt$com.zenika.tutorial.presentation.instruction.TutorialInstructionRoute.kt</ID>
     <ID>NewLineAtEndOfFile:TutorialInventoryViewModel.kt$com.zenika.tutorial.presentation.inventory.TutorialInventoryViewModel.kt</ID>
-    <ID>NewLineAtEndOfFile:TutorialItemViewModel.kt$com.zenika.tutorial.presentation.item.TutorialItemViewModel.kt</ID>
     <ID>NewLineAtEndOfFile:TutorialPenaltyRoute.kt$com.zenika.tutorial.presentation.penalty.TutorialPenaltyRoute.kt</ID>
     <ID>NewLineAtEndOfFile:TutorialScoreRoute.kt$com.zenika.tutorial.presentation.score.TutorialScoreRoute.kt</ID>
     <ID>NewLineAtEndOfFile:Type.kt$com.zenika.ui.theme.Type.kt</ID>
@@ -119,21 +113,16 @@
     <ID>PackageNaming:OnOffViewModel.kt$package com.zenika.adventure.presentation.singapore.on_off_game</ID>
     <ID>PackageNaming:PortalMessageDialog.kt$package com.zenika.adventure.presentation.portal_message</ID>
     <ID>PackageNaming:PortalMessageRoute.kt$package com.zenika.adventure.presentation.portal_message</ID>
-    <ID>PackageNaming:QrCodeAnalyzer.kt$package com.zenika.presentation.qrcodescan</ID>
-    <ID>PackageNaming:QrCodeScanRoute.kt$package com.zenika.presentation.qrcodescan</ID>
-    <ID>PackageNaming:QrCodeScanScreen.kt$package com.zenika.presentation.qrcodescan</ID>
     <ID>PackageNaming:Stage.kt$package com.zenika.tutorial.presentation.color_buttons_order_game.component</ID>
     <ID>PackageNaming:TextRecognizer.kt$package com.zenika.adventure.presentation.agency_recognition</ID>
     <ID>PackageNaming:WelcomeParchmentRoute.kt$package com.zenika.tutorial.presentation.parchment.welcome_parchment</ID>
     <ID>PackageNaming:WelcomeParchmentScreen.kt$package com.zenika.tutorial.presentation.parchment.welcome_parchment</ID>
-    <ID>PackageNaming:WorldMapDialog.kt$package com.zenika.adventure.presentation.world_map</ID>
-    <ID>PackageNaming:WorldMapRoute.kt$package com.zenika.adventure.presentation.world_map</ID>
-    <ID>PackageNaming:WorldMapViewModel.kt$package com.zenika.adventure.presentation.world_map</ID>
     <ID>PreviewNaming:Previews.kt$ComposablePreview$ComposablePreview</ID>
     <ID>PreviewNaming:Previews.kt$ScreenPreview$ScreenPreview</ID>
     <ID>PrintStackTrace:QrCodeAnalyzer.kt$QrCodeAnalyzer$e</ID>
     <ID>TooGenericExceptionCaught:QrCodeAnalyzer.kt$QrCodeAnalyzer$e: Exception</ID>
     <ID>TooGenericExceptionCaught:QrCodeScanScreen.kt$e: Exception</ID>
+    <ID>TooManyFunctions:AdventureGameStateManager.kt$AdventureGameStateManager</ID>
     <ID>UnstableCollections:OnOffScreen.kt$List&lt;Boolean&gt;</ID>
     <ID>UnstableCollections:WelcomeParchmentItem.kt$List&lt;Int&gt;</ID>
     <ID>UnstableCollections:WorldMapDialog.kt$Set&lt;Agency&gt;</ID>
