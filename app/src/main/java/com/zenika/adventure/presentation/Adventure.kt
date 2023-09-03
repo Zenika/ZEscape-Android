@@ -301,7 +301,7 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.navigate(route = ROUTE_MONTREAL_AGENCY) {
                         popUpTo(ROUTE_PORTAL) { inclusive = false }
                     }
-                                         },
+                },
                 goOutsideMontrealAgency = {
                     navController.navigate(ROUTE_SIMON_SAYS_GAME) {
                         popUpTo(ROUTE_PORTAL) { inclusive = false }

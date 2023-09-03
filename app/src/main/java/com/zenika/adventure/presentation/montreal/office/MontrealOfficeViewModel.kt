@@ -30,14 +30,14 @@ class MontrealOfficeViewModel @Inject constructor(
             remainingTime
         )
     }.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = MontrealOfficeUiState(
-                newItem = false,
-                isMontrealKeyCollected = false,
-                remainingTime = 0
-            )
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+        initialValue = MontrealOfficeUiState(
+            newItem = false,
+            isMontrealKeyCollected = false,
+            remainingTime = 0
         )
+    )
 
     fun init() {
         discoverMontrealOffice()
