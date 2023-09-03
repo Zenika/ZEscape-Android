@@ -90,9 +90,8 @@ fun RooftopScreen(
                 .draggable(
                     orientation = Orientation.Horizontal,
                     state = rememberDraggableState { delta ->
-                        if (offsetX in (minOffset..maxOffset)) offsetX += delta
-                        else if (offsetX <= minOffset) offsetX = minOffset
-                        else if (offsetX >= maxOffset) offsetX = maxOffset
+                        if (delta < 0 && offsetX > minOffset) offsetX += delta
+                        if (delta > 0 && offsetX < maxOffset) offsetX += delta
                     }
                 )
                 .onGloballyPositioned {

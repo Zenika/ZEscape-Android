@@ -28,12 +28,12 @@ import com.zenika.ui.theme.screenPadding
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MontrealScaffoldScreen(
-    modifier: Modifier = Modifier,
     remainingTime: Int,
     goBack: () -> Unit,
     goToSettings: () -> Unit,
     @DrawableRes
     background: Int,
+    modifier: Modifier = Modifier,
     content: @Composable BoxScope.() -> Unit
 ) {
     Scaffold(
