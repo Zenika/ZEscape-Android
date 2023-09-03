@@ -7,6 +7,7 @@
     <ID>ComposableParamOrder:TutorialDialog.kt$TutorialDialog</ID>
     <ID>LongMethod:AgencyRecognitionScreen.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun AgencyRecognitionScreen( goBack: () -&gt; Unit, onTextRecognized: (String) -&gt; Unit )</ID>
     <ID>LongMethod:EndParchmentScreen.kt$@OptIn(ExperimentalFoundationApi::class) @Composable fun EndParchmentScreen( goToScore: () -&gt; Unit )</ID>
+    <ID>LongMethod:RooftopScreen.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun RooftopScreen( state: MontrealRooftopUiState, goBack: () -&gt; Unit, goToSettings: () -&gt; Unit, openWorldMap: () -&gt; Unit, openInventory: () -&gt; Unit, modifier: Modifier = Modifier )</ID>
     <ID>LongMethod:Tutorial.kt$@OptIn(ExperimentalAnimationApi::class) fun NavGraphBuilder.tutorialNavigation( route: String, navController: NavHostController )</ID>
     <ID>LongMethod:WelcomeParchmentScreen.kt$@OptIn(ExperimentalFoundationApi::class) @Composable fun WelcomeParchmentScreen( openInstruction: () -&gt; Unit )</ID>
     <ID>MagicNumber:Color.kt$0xFF2196F3</ID>
@@ -68,7 +69,6 @@
     <ID>ModifierMissing:WelcomeParchmentItem.kt$WelcomeParchmentItem</ID>
     <ID>ModifierMissing:WelcomeParchmentScreen.kt$WelcomeParchmentScreen</ID>
     <ID>ModifierMissing:WorldMapDialog.kt$WorldMapDialog</ID>
-    <ID>ModifierWithoutDefault:AdventureInventoryBag.kt$modifier</ID>
     <ID>ModifierWithoutDefault:ContinentsMap.kt$modifier</ID>
     <ID>ModifierWithoutDefault:Key.kt$modifier</ID>
     <ID>ModifierWithoutDefault:MainScreen.kt$modifier</ID>
@@ -77,7 +77,6 @@
     <ID>ModifierWithoutDefault:WorldMapDialog.kt$modifier</ID>
     <ID>NewLineAtEndOfFile:AdventureHomeViewModel.kt$com.zenika.adventure.presentation.home.AdventureHomeViewModel.kt</ID>
     <ID>NewLineAtEndOfFile:AdventureInstructionRoute.kt$com.zenika.adventure.presentation.instruction.AdventureInstructionRoute.kt</ID>
-    <ID>NewLineAtEndOfFile:AdventureInventoryBag.kt$com.zenika.adventure.presentation.component.AdventureInventoryBag.kt</ID>
     <ID>NewLineAtEndOfFile:AgencyValidationRoute.kt$com.zenika.adventure.presentation.agency_validation.AgencyValidationRoute.kt</ID>
     <ID>NewLineAtEndOfFile:Color.kt$com.zenika.ui.theme.Color.kt</ID>
     <ID>NewLineAtEndOfFile:ContinentsMap.kt$com.zenika.adventure.presentation.component.ContinentsMap.kt</ID>
@@ -86,7 +85,6 @@
     <ID>NewLineAtEndOfFile:InventoryState.kt$com.zenika.data.state.InventoryState.kt</ID>
     <ID>NewLineAtEndOfFile:Key.kt$com.zenika.tutorial.presentation.main.component.Key.kt</ID>
     <ID>NewLineAtEndOfFile:MainActivity.kt$com.zenika.MainActivity.kt</ID>
-    <ID>NewLineAtEndOfFile:ObserveRemainingTimeUseCase.kt$com.zenika.adventure.domain.ObserveRemainingTimeUseCase.kt</ID>
     <ID>NewLineAtEndOfFile:PortalMessageRoute.kt$com.zenika.adventure.presentation.portal_message.PortalMessageRoute.kt</ID>
     <ID>NewLineAtEndOfFile:SettingsViewModel.kt$com.zenika.presentation.settings.SettingsViewModel.kt</ID>
     <ID>NewLineAtEndOfFile:TutorialHint.kt$com.zenika.data.TutorialHint.kt</ID>
@@ -127,6 +125,5 @@
     <ID>UnstableCollections:WelcomeParchmentItem.kt$List&lt;Int&gt;</ID>
     <ID>UnstableCollections:WorldMapDialog.kt$Set&lt;Agency&gt;</ID>
     <ID>WildcardImport:ObserveInventoryUseCaseTest.kt$import org.junit.jupiter.api.Assertions.*</ID>
-    <ID>WildcardImport:QrCodeAnalyzer.kt$import com.google.zxing.*</ID>
   </CurrentIssues>
 </SmellBaseline>

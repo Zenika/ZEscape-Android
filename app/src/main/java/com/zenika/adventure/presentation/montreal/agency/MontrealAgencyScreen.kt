@@ -19,7 +19,7 @@ fun MontrealAgencyScreen(
     remainingTime: Int,
     newItem: Boolean,
     isRooftopDiscovered: Boolean,
-    isMeetingRoomDiscovered: Boolean,
+    isOfficeDiscovered: Boolean,
     goToSettings: () -> Unit,
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
@@ -36,7 +36,7 @@ fun MontrealAgencyScreen(
     ) {
         MontrealAgencyMap(
             isRooftopDiscovered,
-            isMeetingRoomDiscovered,
+            isOfficeDiscovered,
             goToScan
         )
         ContinentsMap(
@@ -63,7 +63,7 @@ private fun MontrealAgencyScreenPreview() {
             remainingTime = 0,
             newItem = false,
             isRooftopDiscovered = false,
-            isMeetingRoomDiscovered = false,
+            isOfficeDiscovered = false,
             goToSettings = {},
             openWorldMap = {},
             openInventory = {},

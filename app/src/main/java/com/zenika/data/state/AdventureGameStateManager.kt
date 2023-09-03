@@ -68,6 +68,14 @@ class AdventureGameStateManager @Inject constructor() {
         }
     }
 
+    fun openCasablancaAgency() {
+        _state.update {
+            it.copy(
+                isCasablancaAgencyOpen = true
+            )
+        }
+    }
+
     fun openSafe() {
         _state.update {
             it.copy(
@@ -79,7 +87,8 @@ class AdventureGameStateManager @Inject constructor() {
     fun collectCasablancaKey() {
         _state.update {
             it.copy(
-                isCasablancaKeyCollected = true
+                isCasablancaKeyCollected = true,
+                newItem = true
             )
         }
     }
@@ -87,7 +96,8 @@ class AdventureGameStateManager @Inject constructor() {
     fun collectCasablancaPaper() {
         _state.update {
             it.copy(
-                isCasablancaPaperCollected = true
+                isCasablancaPaperCollected = true,
+                newItem = true
             )
         }
     }
@@ -100,10 +110,34 @@ class AdventureGameStateManager @Inject constructor() {
         }
     }
 
+    fun openMontrealAgency() {
+        _state.update {
+            it.copy(
+                isMontrealAgencyOpen = true
+            )
+        }
+    }
+
     fun incrementHintCount() {
         _state.update {
             it.copy(
                 hintCount = it.hintCount + 1
+            )
+        }
+    }
+
+    fun openMontrealDoor() {
+        _state.update {
+            it.copy(
+                isMontrealDoorOpen = true
+            )
+        }
+    }
+
+    fun discoverOffice() {
+        _state.update {
+            it.copy(
+                isOfficeDiscovered = true
             )
         }
     }
@@ -116,10 +150,11 @@ class AdventureGameStateManager @Inject constructor() {
         }
     }
 
-    fun discoverMeetingRoom() {
+    fun collectMontrealKey() {
         _state.update {
             it.copy(
-                isMeetingRoomDiscovered = true
+                isMontrealKeyCollected = true,
+                newItem = true
             )
         }
     }

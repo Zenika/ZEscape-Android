@@ -24,11 +24,27 @@ class WorldMapViewModel @Inject constructor(
             initialValue = setOf()
         )
 
-    val isSingaporeAgencyOpen: StateFlow<Boolean> =
-        getAdventureState().map { state -> state.isSingaporeAgencyOpen }
+    val state: StateFlow<AgenciesUiState> =
+        getAdventureState().map { state ->
+            AgenciesUiState(
+                state.isSingaporeAgencyOpen,
+                state.isCasablancaAgencyOpen,
+                state.isMontrealAgencyOpen
+            )
+        }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-                initialValue = false
+                initialValue = AgenciesUiState(
+                    isSingaporeAgencyOpen = false,
+                    isCasablancaAgencyOpen = false,
+                    isMontrealAgencyOpen = false
+                )
             )
 }
+
+class AgenciesUiState(
+    val isSingaporeAgencyOpen: Boolean,
+    val isCasablancaAgencyOpen: Boolean,
+    val isMontrealAgencyOpen: Boolean
+)

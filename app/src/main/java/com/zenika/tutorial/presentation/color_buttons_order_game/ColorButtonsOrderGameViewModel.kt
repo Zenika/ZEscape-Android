@@ -62,7 +62,7 @@ class ColorButtonsOrderGameViewModel @Inject constructor(
 
     private fun checkSequence(): Boolean {
         return _colorsSequence.value[_colorsSequence.value.size - 1] ==
-            colorsResult[_colorsSequence.value.size - 1]
+                colorsResult[_colorsSequence.value.size - 1]
     }
 
     private suspend fun applyPenalty() {

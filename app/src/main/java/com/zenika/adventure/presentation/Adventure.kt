@@ -32,6 +32,10 @@ import com.zenika.adventure.presentation.montreal.agency.MontrealAgencyDialog
 import com.zenika.adventure.presentation.montreal.agency.MontrealAgencyRoute
 import com.zenika.adventure.presentation.montreal.instruction.InstructionMontrealRoute
 import com.zenika.adventure.presentation.montreal.library.LibraryRoute
+import com.zenika.adventure.presentation.montreal.meetingroom.MontrealMeetingRoomRoute
+import com.zenika.adventure.presentation.montreal.meetingroom.code.MontrealCodeRoute
+import com.zenika.adventure.presentation.montreal.office.MontrealOfficeRoute
+import com.zenika.adventure.presentation.montreal.rooftop.RooftopRoute
 import com.zenika.adventure.presentation.montreal.simonsays.SimonSaysRoute
 import com.zenika.adventure.presentation.penalty.AdventurePenaltyRoute
 import com.zenika.adventure.presentation.portal.PortalRoute
@@ -81,8 +85,12 @@ private const val ROUTE_CASABLANCA_OFFICES = "adventureCasablancaOffices"
 private const val ROUTE_CASABLANCA_MEETING_ROOM = "adventureCasablancaMeetingRoom"
 private const val ROUTE_MONTREAL_AGENCY = "adventureMontrealAgency"
 private const val ROUTE_MONTREAL_AGENCY_DIALOG = "adventureMontrealAgencyDialog"
+private const val ROUTE_MONTREAL_CODE = "adventureMontrealCode"
 private const val ROUTE_MONTREAL_INSTRUCTION = "adventureMontrealInstruction"
 private const val ROUTE_MONTREAL_LIBRARY = "adventureMontrealLibrary"
+private const val ROUTE_MONTREAL_MEETING_ROOM = "adventureMontrealMeetingRoom"
+private const val ROUTE_MONTREAL_OFFICE = "adventureMontrealOffice"
+private const val ROUTE_MONTREAL_ROOFTOP = "adventureMontrealRooftop"
 private const val ROUTE_PATTERN_PENALTY = "adventurePenalty/{penalty}"
 private const val ROUTE_SIMON_SAYS_GAME = "adventureSimonSaysGame"
 
@@ -130,8 +138,29 @@ fun NavGraphBuilder.adventureNavigation(
                             navController.navigate(ROUTE_PORTAL)
                             navController.navigate(ROUTE_INSTRUCTION)
                         }
+
                         "library" -> {
-                            navController.navigate(ROUTE_MONTREAL_LIBRARY)
+                            navController.navigate(ROUTE_MONTREAL_LIBRARY) {
+                                popUpTo(ROUTE_QRCODE_SCAN) { inclusive = true }
+                            }
+                        }
+
+                        "meetingroom" -> {
+                            navController.navigate(ROUTE_MONTREAL_MEETING_ROOM) {
+                                popUpTo(ROUTE_QRCODE_SCAN) { inclusive = true }
+                            }
+                        }
+
+                        "rooftop" -> {
+                            navController.navigate(ROUTE_MONTREAL_ROOFTOP) {
+                                popUpTo(ROUTE_QRCODE_SCAN) { inclusive = true }
+                            }
+                        }
+
+                        "office" -> {
+                            navController.navigate(ROUTE_MONTREAL_OFFICE) {
+                                popUpTo(ROUTE_QRCODE_SCAN) { inclusive = true }
+                            }
                         }
                     }
                 }
@@ -247,18 +276,36 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.popBackStack(ROUTE_PORTAL, inclusive = false)
                 },
                 goInsideSingaporeAgency = {
-                    navController.navigate(ROUTE_SINGAPORE_AGENCY)
+                    navController.navigate(ROUTE_SINGAPORE_AGENCY) {
+                        popUpTo(ROUTE_PORTAL) { inclusive = false }
+                    }
                 },
                 goOutsideSingaporeAgency = {
-                    navController.navigate(ROUTE_ON_OFF_GAME)
+                    navController.navigate(ROUTE_ON_OFF_GAME) {
+                        popUpTo(ROUTE_PORTAL) { inclusive = false }
+                    }
                     navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
                 },
-                goToCasablancaAgency = {
-                    navController.navigate(ROUTE_CASABLANCA_OUTSIDE)
+                goInsideCasablancaAgency = {
+                    navController.navigate(route = ROUTE_CASABLANCA_AGENCY) {
+                        popUpTo(ROUTE_PORTAL) { inclusive = false }
+                    }
+                },
+                goOutsideCasablancaAgency = {
+                    navController.navigate(ROUTE_CASABLANCA_OUTSIDE) {
+                        popUpTo(ROUTE_PORTAL) { inclusive = false }
+                    }
                     navController.navigate(ROUTE_CASABLANCA_INSTRUCTION)
                 },
-                goToMontrealAgency = {
-                    navController.navigate(ROUTE_SIMON_SAYS_GAME)
+                goInsideMontrealAgency = {
+                    navController.navigate(route = ROUTE_MONTREAL_AGENCY) {
+                        popUpTo(ROUTE_PORTAL) { inclusive = false }
+                    }
+                },
+                goOutsideMontrealAgency = {
+                    navController.navigate(ROUTE_SIMON_SAYS_GAME) {
+                        popUpTo(ROUTE_PORTAL) { inclusive = false }
+                    }
                     navController.navigate(ROUTE_MONTREAL_INSTRUCTION)
                 },
                 openAgencyTeaser = {
@@ -385,7 +432,11 @@ fun NavGraphBuilder.adventureNavigation(
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) },
                 enterInAgency = {
-                    navController.navigate(ROUTE_CASABLANCA_AGENCY)
+                    navController.navigate(ROUTE_CASABLANCA_AGENCY) {
+                        popUpTo(ROUTE_CASABLANCA_OUTSIDE) {
+                            inclusive = true
+                        }
+                    }
                     navController.navigate(ROUTE_CASABLANCA_AGENCY_DIALOG)
                 },
                 openHintValidation = { hint -> navController.navigateToHint(hint) },
@@ -426,7 +477,17 @@ fun NavGraphBuilder.adventureNavigation(
         }
         dialog(ROUTE_CASABLANCA_SAFE) {
             SafeRoute(
-                onDismissRequest = { navController.popBackStack() }
+                onDismissRequest = { navController.popBackStack() },
+                openPenalty = {
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            "code"
+                        )
+                    ) {
+                        popUpTo(ROUTE_CASABLANCA_SAFE) { inclusive = true }
+                    }
+                }
             )
         }
         composable(ROUTE_CASABLANCA_RESTROOM) {
@@ -466,23 +527,69 @@ fun NavGraphBuilder.adventureNavigation(
                 onDismissRequest = { navController.popBackStack() }
             )
         }
-        composable(ROUTE_MONTREAL_LIBRARY) {
-            LibraryRoute(
-                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
-                goToRooftop = { },
-                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
-                openInventory = { navController.navigate(ROUTE_INVENTORY) },
-                openHintValidation = { hint -> navController.navigateToHint(hint) },
-            )
-        }
         composable(ROUTE_SIMON_SAYS_GAME, deepLinks = montrealOutsideDeeplink) {
             SimonSaysRoute(
                 winGame = {
-                    navController.navigate(ROUTE_MONTREAL_AGENCY)
+                    navController.navigate(ROUTE_MONTREAL_AGENCY) {
+                        popUpTo(ROUTE_SIMON_SAYS_GAME) {
+                            inclusive = true
+                        }
+                    }
                     navController.navigate(ROUTE_MONTREAL_AGENCY_DIALOG)
                 },
                 openHintValidation = { hint -> navController.navigateToHint(hint) },
                 goToSettings = { navController.navigate(ROUTE_SETTINGS) }
+            )
+        }
+        composable(ROUTE_MONTREAL_LIBRARY) {
+            LibraryRoute(
+                goBack = { navController.popBackStack() },
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                goToRooftop = { navController.navigate(ROUTE_MONTREAL_ROOFTOP) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) }
+            )
+        }
+        composable(ROUTE_MONTREAL_ROOFTOP) {
+            RooftopRoute(
+                goBack = { navController.popBackStack() },
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) }
+            )
+        }
+        composable(ROUTE_MONTREAL_MEETING_ROOM) {
+            MontrealMeetingRoomRoute(
+                goBack = { navController.popBackStack() },
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openCode = { navController.navigate(ROUTE_MONTREAL_CODE) },
+                goToOffice = { navController.navigate(ROUTE_MONTREAL_OFFICE) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) }
+            )
+        }
+        dialog(ROUTE_MONTREAL_CODE) {
+            MontrealCodeRoute(
+                onDismissRequest = { navController.popBackStack() },
+                goToOffice = { navController.navigate(ROUTE_MONTREAL_OFFICE) },
+                openPenalty = {
+                    navController.navigate(
+                        ROUTE_PATTERN_PENALTY.replace(
+                            "{penalty}",
+                            "code"
+                        )
+                    ) {
+                        popUpTo(ROUTE_MONTREAL_CODE) { inclusive = true }
+                    }
+                }
+            )
+        }
+        composable(ROUTE_MONTREAL_OFFICE) {
+            MontrealOfficeRoute(
+                goBack = { navController.popBackStack() },
+                goToSettings = { navController.navigate(ROUTE_SETTINGS) },
+                openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
+                openInventory = { navController.navigate(ROUTE_INVENTORY) }
             )
         }
     }

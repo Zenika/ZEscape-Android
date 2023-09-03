@@ -1,4 +1,4 @@
-package com.zenika.adventure.presentation.casablanca.safe
+package com.zenika.adventure.presentation.montreal.meetingroom.code
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -7,22 +7,23 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
-fun SafeRoute(
+fun MontrealCodeRoute(
     onDismissRequest: () -> Unit,
+    goToOffice: () -> Unit,
     openPenalty: () -> Unit,
-    viewModel: SafeViewModel = hiltViewModel()
+    viewModel: MontrealCodeViewModel = hiltViewModel()
 ) {
     val code by viewModel.code.collectAsStateWithLifecycle()
     val event by viewModel.events.collectAsStateWithLifecycle(initialValue = null)
     LaunchedEffect(event) {
         when (event) {
-            SafeEvent.APPLY_PENALTY -> openPenalty()
-            SafeEvent.DISMISS -> onDismissRequest()
+            MontrealCodeEvent.APPLY_PENALTY -> openPenalty()
+            MontrealCodeEvent.GO_TO_OFFICE -> goToOffice()
             null -> Unit
         }
     }
 
-    SafeDialog(
+    MontrealCodeDialog(
         onDismissRequest,
         code,
         viewModel::addNumber,

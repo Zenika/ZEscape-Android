@@ -21,7 +21,7 @@ fun MontrealAgencyRoute(
         remainingTime = state.remainingTime,
         newItem = state.newItem,
         isRooftopDiscovered = state.isRooftopDiscovered,
-        isMeetingRoomDiscovered = state.isMeetingRoomDiscovered,
+        isOfficeDiscovered = state.isOfficeDiscovered,
         goToSettings = goToSettings,
         openWorldMap = openWorldMap,
         openInventory = openInventory,

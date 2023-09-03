@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.R
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
+import com.zenika.adventure.domain.OpenMontrealAgencyUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -29,7 +30,8 @@ private const val LONG_DELAY: Long = 1000
 
 @HiltViewModel
 class SimonsSaysViewModel @Inject constructor(
-    observeRemainingTime: ObserveRemainingTimeUseCase
+    observeRemainingTime: ObserveRemainingTimeUseCase,
+    private val openMontrealAgency: OpenMontrealAgencyUseCase
 ) : ViewModel() {
     val remainingTime: StateFlow<Int> =
         observeRemainingTime()
@@ -151,6 +153,7 @@ class SimonsSaysViewModel @Inject constructor(
     private suspend fun checkWin() {
         viewModelScope.launch {
             if (_state.value.playerSequence.size == SEQUENCE_SIZE) {
+                openMontrealAgency()
                 _events.emit(SimonsSaysGameEvent.WIN)
             } else continueGame()
         }

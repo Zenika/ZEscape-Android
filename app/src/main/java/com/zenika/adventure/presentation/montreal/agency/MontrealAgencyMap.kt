@@ -20,7 +20,7 @@ import com.zenika.utils.ZEscapeThemePreview
 @Composable
 fun MontrealAgencyMap(
     isRooftopDiscovered: Boolean,
-    isMeetingRoomDiscovered: Boolean,
+    isOfficeDiscovered: Boolean,
     goToScan: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -36,7 +36,7 @@ fun MontrealAgencyMap(
             modifier = Modifier
                 .padding(start = 23.dp, top = 88.dp)
                 .size(132.dp, 87.dp)
-                .clickable(onClick = {})
+                .clickable(isRooftopDiscovered) { goToScan("rooftop") }
         ) {
             drawRect(
                 color = if (isRooftopDiscovered) Color.Transparent else Color.Gray
@@ -46,17 +46,17 @@ fun MontrealAgencyMap(
             modifier = Modifier
                 .padding(start = 180.dp, top = 88.dp)
                 .size(98.dp, 78.dp)
-                .clickable(onClick = {})
+                .clickable(isOfficeDiscovered) { goToScan("office") }
         ) {
             drawRect(
-                color = if (isMeetingRoomDiscovered) Color.Transparent else Color.Gray
+                color = if (isOfficeDiscovered) Color.Transparent else Color.Gray
             )
         }
         Canvas(
             modifier = Modifier
                 .padding(start = 23.dp, top = 175.dp)
                 .size(132.dp, 38.dp)
-                .clickable(onClick = { goToScan("library") })
+                .clickable { goToScan("library") }
         ) {
             drawRect(
                 color = Color.Transparent
@@ -66,7 +66,7 @@ fun MontrealAgencyMap(
             modifier = Modifier
                 .padding(start = 180.dp, top = 165.dp)
                 .size(98.dp, 50.dp)
-                .clickable(onClick = {})
+                .clickable { goToScan("meetingroom") }
         ) {
             drawRect(
                 color = Color.Transparent
@@ -81,7 +81,7 @@ fun MontrealAgencyMapPreview() {
     ZEscapeThemePreview {
         MontrealAgencyMap(
             isRooftopDiscovered = true,
-            isMeetingRoomDiscovered = false,
+            isOfficeDiscovered = false,
             goToScan = {}
         )
     }
