@@ -140,7 +140,27 @@ fun NavGraphBuilder.adventureNavigation(
                         }
 
                         "library" -> {
-                            navController.navigate(ROUTE_MONTREAL_LIBRARY)
+                            navController.navigate(ROUTE_MONTREAL_LIBRARY) {
+                                popUpTo(ROUTE_QRCODE_SCAN) { inclusive = true }
+                            }
+                        }
+
+                        "meetingroom" -> {
+                            navController.navigate(ROUTE_MONTREAL_MEETING_ROOM) {
+                                popUpTo(ROUTE_QRCODE_SCAN) { inclusive = true }
+                            }
+                        }
+
+                        "rooftop" -> {
+                            navController.navigate(ROUTE_MONTREAL_ROOFTOP) {
+                                popUpTo(ROUTE_QRCODE_SCAN) { inclusive = true }
+                            }
+                        }
+
+                        "office" -> {
+                            navController.navigate(ROUTE_MONTREAL_OFFICE) {
+                                popUpTo(ROUTE_QRCODE_SCAN) { inclusive = true }
+                            }
                         }
                     }
                 }

@@ -24,7 +24,7 @@ class MontrealAgencyViewModel @Inject constructor(
             newItem = gameState.newItem,
             remainingTime = remainingTime,
             isRooftopDiscovered = gameState.isRooftopDiscovered,
-            isMeetingRoomDiscovered = gameState.isMeetingRoomDiscovered
+            isOfficeDiscovered = gameState.isOfficeDiscovered
         )
     }.stateIn(
         scope = viewModelScope,
@@ -33,7 +33,7 @@ class MontrealAgencyViewModel @Inject constructor(
             newItem = false,
             remainingTime = 0,
             isRooftopDiscovered = false,
-            isMeetingRoomDiscovered = false
+            isOfficeDiscovered = false
         )
     )
 }
@@ -42,5 +42,5 @@ class MontrealAgencyUiState(
     val newItem: Boolean,
     val remainingTime: Int,
     val isRooftopDiscovered: Boolean,
-    val isMeetingRoomDiscovered: Boolean
+    val isOfficeDiscovered: Boolean
 )

@@ -3,6 +3,7 @@ package com.zenika.adventure.presentation.montreal.office
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.adventure.domain.CollectMontrealKeyUseCase
+import com.zenika.adventure.domain.DiscoverMontrealOfficeUseCase
 import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,6 +19,7 @@ class MontrealOfficeViewModel @Inject constructor(
     observeAdventureState: ObserveAdventureStateUseCase,
     observeRemainingTime: ObserveRemainingTimeUseCase,
     private val collectMontrealKey: CollectMontrealKeyUseCase,
+    private val discoverMontrealOffice: DiscoverMontrealOfficeUseCase,
 ) : ViewModel() {
     val state: StateFlow<MontrealOfficeUiState> = combine(
         observeAdventureState(), observeRemainingTime()
@@ -36,6 +38,10 @@ class MontrealOfficeViewModel @Inject constructor(
                 remainingTime = 0
             )
         )
+
+    fun init() {
+        discoverMontrealOffice()
+    }
 
     fun collectKey() {
         viewModelScope.launch {

@@ -2,6 +2,7 @@ package com.zenika.adventure.presentation.montreal.rooftop
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zenika.adventure.domain.DiscoverMontrealRooftopUseCase
 import com.zenika.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.adventure.domain.ObserveRemainingTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class RooftopViewModel @Inject constructor(
     observeAdventureState: ObserveAdventureStateUseCase,
-    observeRemainingTime: ObserveRemainingTimeUseCase
+    observeRemainingTime: ObserveRemainingTimeUseCase,
+    private val discoverRooftop: DiscoverMontrealRooftopUseCase
 ) : ViewModel() {
     val state: StateFlow<MontrealRooftopUiState> = combine(
         observeAdventureState(), observeRemainingTime()
@@ -28,6 +30,10 @@ class RooftopViewModel @Inject constructor(
         started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
         initialValue = MontrealRooftopUiState(newItem = false, remainingTime = 0)
     )
+
+    fun init() {
+        discoverRooftop()
+    }
 }
 
 class MontrealRooftopUiState(

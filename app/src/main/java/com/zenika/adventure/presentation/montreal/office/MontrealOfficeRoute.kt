@@ -1,6 +1,7 @@
 package com.zenika.adventure.presentation.montreal.office
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -14,6 +15,10 @@ fun MontrealOfficeRoute(
     viewModel: MontrealOfficeViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+
+    LaunchedEffect(viewModel) {
+        viewModel.init()
+    }
 
     MontrealOfficeScreen(
         state,
