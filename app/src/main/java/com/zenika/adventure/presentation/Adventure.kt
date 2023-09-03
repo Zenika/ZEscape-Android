@@ -276,22 +276,36 @@ fun NavGraphBuilder.adventureNavigation(
                     navController.popBackStack(ROUTE_PORTAL, inclusive = false)
                 },
                 goInsideSingaporeAgency = {
-                    navController.navigate(ROUTE_SINGAPORE_AGENCY)
+                    navController.navigate(ROUTE_SINGAPORE_AGENCY) {
+                        popUpTo(ROUTE_PORTAL) { inclusive = false }
+                    }
                 },
                 goOutsideSingaporeAgency = {
-                    navController.navigate(ROUTE_ON_OFF_GAME)
+                    navController.navigate(ROUTE_ON_OFF_GAME) {
+                        popUpTo(ROUTE_PORTAL) { inclusive = false }
+                    }
                     navController.navigate(ROUTE_SINGAPORE_INSTRUCTION)
                 },
                 goInsideCasablancaAgency = {
-                    navController.navigate(route = ROUTE_CASABLANCA_AGENCY)
+                    navController.navigate(route = ROUTE_CASABLANCA_AGENCY) {
+                        popUpTo(ROUTE_PORTAL) { inclusive = false }
+                    }
                 },
                 goOutsideCasablancaAgency = {
-                    navController.navigate(ROUTE_CASABLANCA_OUTSIDE)
+                    navController.navigate(ROUTE_CASABLANCA_OUTSIDE) {
+                        popUpTo(ROUTE_PORTAL) { inclusive = false }
+                    }
                     navController.navigate(ROUTE_CASABLANCA_INSTRUCTION)
                 },
-                goInsideMontrealAgency = { navController.navigate(route = ROUTE_MONTREAL_AGENCY) },
+                goInsideMontrealAgency = {
+                    navController.navigate(route = ROUTE_MONTREAL_AGENCY) {
+                        popUpTo(ROUTE_PORTAL) { inclusive = false }
+                    }
+                                         },
                 goOutsideMontrealAgency = {
-                    navController.navigate(ROUTE_SIMON_SAYS_GAME)
+                    navController.navigate(ROUTE_SIMON_SAYS_GAME) {
+                        popUpTo(ROUTE_PORTAL) { inclusive = false }
+                    }
                     navController.navigate(ROUTE_MONTREAL_INSTRUCTION)
                 },
                 openAgencyTeaser = {
@@ -418,7 +432,11 @@ fun NavGraphBuilder.adventureNavigation(
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) },
                 enterInAgency = {
-                    navController.navigate(ROUTE_CASABLANCA_AGENCY)
+                    navController.navigate(ROUTE_CASABLANCA_AGENCY) {
+                        popUpTo(ROUTE_CASABLANCA_OUTSIDE) {
+                            inclusive = true
+                        }
+                    }
                     navController.navigate(ROUTE_CASABLANCA_AGENCY_DIALOG)
                 },
                 openHintValidation = { hint -> navController.navigateToHint(hint) },
@@ -512,7 +530,11 @@ fun NavGraphBuilder.adventureNavigation(
         composable(ROUTE_SIMON_SAYS_GAME, deepLinks = montrealOutsideDeeplink) {
             SimonSaysRoute(
                 winGame = {
-                    navController.navigate(ROUTE_MONTREAL_AGENCY)
+                    navController.navigate(ROUTE_MONTREAL_AGENCY) {
+                        popUpTo(ROUTE_SIMON_SAYS_GAME) {
+                            inclusive = true
+                        }
+                    }
                     navController.navigate(ROUTE_MONTREAL_AGENCY_DIALOG)
                 },
                 openHintValidation = { hint -> navController.navigateToHint(hint) },
