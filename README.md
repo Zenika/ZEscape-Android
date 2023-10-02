@@ -1,11 +1,16 @@
 # ZEscape
 
-_Sujet de stage à Lyon_
+Issu d'un sujet de stage à Lyon, ZEscape est un jeu mobile d’escape-game où vous vous trouvez
+aspiré dans un système informatique d'où il vous faudra sortir.
 
-ZEscape est un jeu mobile d’escape-game.
+En résolvant des puzzles intellectuels et en faisant appel à sa mémoire, le joueur est amené à
+parcourir virtuellement différentes agences de Zenika pour collecter des éléments qui lui
+permettront de s'évader.
 
-Il offre à un joueur une expérience entre 30 minutes et 1 heure autour d’un smartphone.
+L'expérience, pouvant durer jusqu'à 30 minutes, est prévue pour un seul joueur. Il utilisera
+son smartphone comme passerelle entre le monde réel et le monde virtuel à travers des éléments
+du décor comme des textes et des QR-Codes.
 
-Le joueur se retrouve lancé dans une salle réelle un peu vide, et va utiliser le smartphone pour accéder à un univers virtuel plus riche.
+# Contribution
 
-Durant le temps du jeu, le joueur va résoudre une enquête. En résolvant des puzzles intellectuels ou nécessitant un peu d'habileté pour ensuite accéder à des documents utiles à l’enquête.
+Pour contribuer, rendez-vous dans [CONTRIBUTING.md](CONTRIBUTING.md).
