@@ -14,3 +14,17 @@ du décor comme des textes et des QR-Codes.
 # Contribution
 
 Pour contribuer, rendez-vous dans [CONTRIBUTING.md](CONTRIBUTING.md).
+
+# Le coin tech
+
+| Clé                      | Value                           |
+|--------------------------|---------------------------------|
+| Langages                 | Kotlin, Shell                   |
+| Framework                | Android                         |
+| Interface graphique      | Jetpack Compose + Navigation    |
+| Tests unitaires          | JUnit5, MockK                   |
+| Tests UI                 | Compose Test                    |
+| Analyse statique de code | Android Lint, Detekt, Git Hooks |
+| Base de données          | Room                            |
+| Injection de dépendances | Hilt                            |
+| Autres                   | CameraX                         |
