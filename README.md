@@ -28,3 +28,5 @@ Pour contribuer, rendez-vous dans [CONTRIBUTING.md](CONTRIBUTING.md).
 | Base de données          | Room                            |
 | Injection de dépendances | Hilt                            |
 | Autres                   | CameraX                         |
+
+![Avec amour par Zenika](https://img.shields.io/badge/Avec%20%E2%9D%A4%EF%B8%8F%20par-Zenika-b51432.svg?link=https://oss.zenika.com)
