@@ -1,6 +1,6 @@
 package com.zenika.data.state
 
-import com.zenika.data.TutorialHint
+import com.zenika.story.tutorial.domain.model.TutorialHint
 
 data class TutorialGameState(
     val isChestOpened: Boolean = false,

@@ -5,11 +5,11 @@ import androidx.compose.runtime.Composable
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.zenika.adventure.presentation.adventureNavigation
-import com.zenika.presentation.credit.CreditRoute
-import com.zenika.presentation.debug.debugNavigation
-import com.zenika.presentation.home.HomeRoute
-import com.zenika.tutorial.presentation.tutorialNavigation
+import com.zenika.main.credit.CreditRoute
+import com.zenika.main.debug.debugNavigation
+import com.zenika.main.home.HomeRoute
+import com.zenika.story.adventure.presentation.adventureNavigation
+import com.zenika.story.tutorial.presentation.tutorialNavigation
 
 private const val ROUTE_HOME = "home"
 private const val ROUTE_ADVENTURE = "adventure"

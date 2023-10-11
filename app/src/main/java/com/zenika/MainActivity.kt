@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
-import com.zenika.ui.theme.ZEscapeTheme
+import com.zenika.theme.ZEscapeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,6 +1,6 @@
 package com.zenika.data.state
 
-import com.zenika.data.Agency
+import com.zenika.story.adventure.domain.model.Agency
 
 data class AdventureGameState(
     val agencies: Set<Agency> = setOf(),

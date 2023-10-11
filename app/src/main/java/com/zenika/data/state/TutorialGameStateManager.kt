@@ -1,6 +1,6 @@
 package com.zenika.data.state
 
-import com.zenika.data.TutorialHint
+import com.zenika.story.tutorial.domain.model.TutorialHint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

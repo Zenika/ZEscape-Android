@@ -2,8 +2,8 @@ package com.zenika.di
 
 import android.content.Context
 import androidx.room.Room
-import com.zenika.data.ZDatabase
-import com.zenika.data.dao.ItemDao
+import com.zenika.data.database.ZDatabase
+import com.zenika.data.database.ItemDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,6 +1,6 @@
 package com.zenika.data.state
 
-import com.zenika.data.Agency
+import com.zenika.story.adventure.domain.model.Agency
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "4865b774f4caa1ae6ccce69502bb8763",
+    "identityHash": "e9893251ae2b9d7bd2c3b2bd83c80240",
     "entities": [
       {
-        "tableName": "ItemDto",
+        "tableName": "ItemEntity",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `resource` INTEGER NOT NULL, PRIMARY KEY(`name`))",
         "fields": [
           {
@@ -34,7 +34,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4865b774f4caa1ae6ccce69502bb8763')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e9893251ae2b9d7bd2c3b2bd83c80240')"
     ]
   }
 }
