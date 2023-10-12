@@ -10,4 +10,8 @@ data class ItemEntity(
     val name: String,
     @ColumnInfo("resource")
     val resource: Int
-)
+) {
+    companion object {
+        val EMPTY = ItemEntity("", 0)
+    }
+}

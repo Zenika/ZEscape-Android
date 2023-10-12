@@ -13,7 +13,7 @@ fun AdventureInventoryRoute(
     openPenalty: (String) -> Unit,
     viewModel: AdventureInventoryViewModel = hiltViewModel()
 ) {
-    val items by viewModel.inventoryItems.collectAsStateWithLifecycle()
+    val inventory by viewModel.inventory.collectAsStateWithLifecycle()
 
     LaunchedEffect(viewModel) {
         viewModel.init()
@@ -26,7 +26,7 @@ fun AdventureInventoryRoute(
     }
 
     AdventureInventoryDialog(
-        items,
+        inventory,
         viewModel::onItemClick,
         onDismissRequest
     )

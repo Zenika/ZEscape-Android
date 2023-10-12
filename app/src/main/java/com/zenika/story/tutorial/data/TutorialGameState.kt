@@ -1,4 +1,4 @@
-package com.zenika.data.state
+package com.zenika.story.tutorial.data
 
 import com.zenika.story.tutorial.domain.model.TutorialHint
 

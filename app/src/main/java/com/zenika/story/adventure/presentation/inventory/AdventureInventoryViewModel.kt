@@ -3,9 +3,9 @@ package com.zenika.story.adventure.presentation.inventory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.R
-import com.zenika.data.state.InventoryState
+import com.zenika.common.domain.Inventory
+import com.zenika.common.domain.ObserveInventoryUseCase
 import com.zenika.story.adventure.domain.ApplyPenaltyUseCase
-import com.zenika.story.adventure.domain.ObserveInventoryUseCase
 import com.zenika.story.adventure.domain.RemoveItemFromInventoryUseCase
 import com.zenika.story.adventure.domain.RemoveNewItemBadgeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,12 +28,11 @@ class AdventureInventoryViewModel @Inject constructor(
     private val _events = MutableSharedFlow<ItemEvent>()
     val events = _events.asSharedFlow()
 
-    val inventoryItems: StateFlow<InventoryState> = observeInventory()
-        .map { items -> InventoryState(items) }
+    val inventory: StateFlow<Inventory> = observeInventory()
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = InventoryState.start()
+            initialValue = Inventory.start()
         )
 
     fun init() {

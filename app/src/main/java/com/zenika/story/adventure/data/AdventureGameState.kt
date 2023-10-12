@@ -1,4 +1,4 @@
-package com.zenika.data.state
+package com.zenika.story.adventure.data
 
 import com.zenika.story.adventure.domain.model.Agency
 

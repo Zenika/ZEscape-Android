@@ -2,7 +2,7 @@ package com.zenika.story.adventure.domain
 
 import com.zenika.R
 import com.zenika.data.repository.ItemRepository
-import com.zenika.data.state.AdventureGameStateManager
+import com.zenika.story.adventure.data.AdventureGameStateManager
 import javax.inject.Inject
 
 class CollectSwordUseCase @Inject constructor(

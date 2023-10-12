@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
+import com.zenika.common.domain.Inventory
 import com.zenika.data.entity.ItemEntity
-import com.zenika.data.state.InventoryState
 import com.zenika.story.adventure.presentation.component.AdventureDialog
 import com.zenika.story.adventure.presentation.inventory.component.AdventureInventoryBox
 import com.zenika.theme.ScreenPreview
@@ -23,7 +23,7 @@ import com.zenika.theme.ZEscapeThemePreview
 
 @Composable
 fun AdventureInventoryDialog(
-    inventory: InventoryState,
+    inventory: Inventory,
     onItemClick: (Int) -> Unit,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier
@@ -59,7 +59,7 @@ fun AdventureInventoryDialog(
 private fun AdventureInventoryDialogPreview() {
     ZEscapeThemePreview {
         AdventureInventoryDialog(
-            inventory = InventoryState(
+            inventory = Inventory(
                 listOf(
                     ItemEntity("hook", R.mipmap.hook),
                     ItemEntity("singaporeKey", R.mipmap.singapore_key),

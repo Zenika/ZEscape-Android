@@ -1,6 +1,6 @@
 package com.zenika.story.adventure.domain
 
-import com.zenika.data.state.AdventureGameStateManager
+import com.zenika.story.adventure.data.AdventureGameStateManager
 import javax.inject.Inject
 
 class DiscoverMontrealOfficeUseCase @Inject constructor(

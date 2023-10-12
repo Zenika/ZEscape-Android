@@ -1,6 +1,6 @@
 package com.zenika.story.tutorial.domain
 
-import com.zenika.data.state.TutorialGameStateManager
+import com.zenika.story.tutorial.data.TutorialGameStateManager
 import javax.inject.Inject
 
 class OpenChestUseCase @Inject constructor(

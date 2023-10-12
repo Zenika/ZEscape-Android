@@ -12,11 +12,11 @@ fun TutorialInventoryRoute(
     showItem: (Int) -> Unit,
     viewModel: TutorialInventoryViewModel = hiltViewModel()
 ) {
-    val items by viewModel.inventoryItems.collectAsStateWithLifecycle()
+    val inventory by viewModel.inventory.collectAsStateWithLifecycle()
 
     TutorialInventoryDialog(
         Modifier,
-        items,
+        inventory,
         showItem,
         onDismissRequest
     )

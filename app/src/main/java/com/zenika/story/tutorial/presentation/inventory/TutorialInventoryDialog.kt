@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
+import com.zenika.common.domain.Inventory
 import com.zenika.data.entity.ItemEntity
-import com.zenika.data.state.InventoryState
 import com.zenika.story.tutorial.presentation.component.TutorialDialog
 import com.zenika.story.tutorial.presentation.inventory.component.TutorialInventoryBox
 import com.zenika.theme.ComposablePreview
@@ -26,7 +26,7 @@ import com.zenika.theme.dialogPadding
 @Composable
 fun TutorialInventoryDialog(
     modifier: Modifier,
-    items: InventoryState,
+    inventory: Inventory,
     showItem: (Int) -> Unit,
     onDismissRequest: () -> Unit
 ) {
@@ -48,7 +48,7 @@ fun TutorialInventoryDialog(
                 columns = GridCells.Fixed(2),
             ) {
                 items(
-                    items.items
+                    inventory.items
                 ) { item ->
                     TutorialInventoryBox(item = item.resource, showItem = showItem)
                 }
@@ -63,7 +63,7 @@ private fun TutorialInventoryDialogPreview() {
     ZEscapeThemePreview {
         TutorialInventoryDialog(
             Modifier,
-            items = InventoryState(
+            inventory = Inventory(
                 listOf(
                     ItemEntity("paper", R.mipmap.paper),
                     ItemEntity("paper", R.mipmap.paper),
