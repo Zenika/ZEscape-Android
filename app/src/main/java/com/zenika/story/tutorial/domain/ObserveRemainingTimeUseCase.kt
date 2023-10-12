@@ -1,7 +1,7 @@
 package com.zenika.story.tutorial.domain
 
 import com.zenika.story.tutorial.data.TutorialGameStateManager
-import com.zenika.data.timer.TimerServiceManager
+import com.zenika.common.data.timer.TimerServiceManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject

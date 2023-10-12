@@ -1,7 +1,7 @@
 package com.zenika.story.adventure.domain
 
 import com.zenika.story.adventure.data.AdventureGameStateManager
-import com.zenika.data.timer.TimerServiceManager
+import com.zenika.common.data.timer.TimerServiceManager
 import javax.inject.Inject
 
 class GetStatisticsUseCase @Inject constructor(

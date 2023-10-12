@@ -1,6 +1,6 @@
 package com.zenika.story.tutorial.domain
 
-import com.zenika.data.timer.TimerServiceManager
+import com.zenika.common.data.timer.TimerServiceManager
 import javax.inject.Inject
 
 class FinishGameUseCase @Inject constructor(

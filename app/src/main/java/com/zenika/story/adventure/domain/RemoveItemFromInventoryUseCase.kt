@@ -1,6 +1,6 @@
 package com.zenika.story.adventure.domain
 
-import com.zenika.data.repository.ItemRepository
+import com.zenika.common.data.repository.ItemRepository
 import javax.inject.Inject
 
 class RemoveItemFromInventoryUseCase @Inject constructor(

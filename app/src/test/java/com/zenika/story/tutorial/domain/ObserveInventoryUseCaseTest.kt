@@ -1,7 +1,8 @@
 package com.zenika.story.tutorial.domain
 
-import com.zenika.data.entity.ItemEntity
-import com.zenika.data.repository.ItemRepository
+import com.zenika.common.data.entity.ItemEntity
+import com.zenika.common.data.repository.ItemRepository
+import com.zenika.common.domain.ObserveInventoryUseCase
 import io.mockk.coEvery
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -32,12 +33,12 @@ internal class ObserveInventoryUseCaseTest {
         coEvery { itemRepository.observeItems() } returns flowOf(listOf(ItemEntity("test", 0)))
 
         // When
-        val inventoryFlow = observeInventory()
+        val inventory = observeInventory()
 
         // Then
         assertEquals(
             ItemEntity("test", 0),
-            inventoryFlow.first().first(),
+            inventory.first().items.first(),
             "Item should be test"
         )
     }
@@ -69,7 +70,7 @@ internal class ObserveInventoryUseCaseTest {
                 ItemEntity("", 0),
                 ItemEntity("", 0)
             ),
-            inventoryFlow.first(),
+            inventoryFlow.first().items,
             "Inventory should have 10 items"
         )
     }

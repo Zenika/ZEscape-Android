@@ -1,9 +1,9 @@
-package com.zenika.di
+package com.zenika.common.data
 
 import android.content.Context
 import androidx.room.Room
-import com.zenika.data.database.ZDatabase
-import com.zenika.data.database.ItemDao
+import com.zenika.common.data.database.ZDatabase
+import com.zenika.common.data.database.ItemDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object ApplicationModule {
+object DataDiModule {
 
     @Provides
     @Singleton

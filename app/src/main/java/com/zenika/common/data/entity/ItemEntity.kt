@@ -1,4 +1,4 @@
-package com.zenika.data.entity
+package com.zenika.common.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

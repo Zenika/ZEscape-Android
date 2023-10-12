@@ -1,7 +1,7 @@
 package com.zenika.story.adventure.domain
 
 import com.zenika.R
-import com.zenika.data.repository.ItemRepository
+import com.zenika.common.data.repository.ItemRepository
 import com.zenika.story.adventure.data.AdventureGameStateManager
 import javax.inject.Inject
 

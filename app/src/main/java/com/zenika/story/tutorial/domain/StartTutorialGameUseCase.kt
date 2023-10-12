@@ -1,10 +1,10 @@
 package com.zenika.story.tutorial.domain
 
 import com.zenika.R
-import com.zenika.data.database.ItemDao
-import com.zenika.data.entity.ItemEntity
+import com.zenika.common.data.database.ItemDao
+import com.zenika.common.data.entity.ItemEntity
 import com.zenika.story.tutorial.data.TutorialGameStateManager
-import com.zenika.data.timer.TimerServiceManager
+import com.zenika.common.data.timer.TimerServiceManager
 import javax.inject.Inject
 
 class StartTutorialGameUseCase @Inject constructor(

@@ -1,7 +1,7 @@
 package com.zenika.common.domain
 
-import com.zenika.data.entity.ItemEntity
-import com.zenika.data.repository.ItemRepository
+import com.zenika.common.data.entity.ItemEntity
+import com.zenika.common.data.repository.ItemRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn

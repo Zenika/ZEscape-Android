@@ -1,7 +1,7 @@
-package com.zenika.data.repository
+package com.zenika.common.data.repository
 
-import com.zenika.data.database.ItemDao
-import com.zenika.data.entity.ItemEntity
+import com.zenika.common.data.database.ItemDao
+import com.zenika.common.data.entity.ItemEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

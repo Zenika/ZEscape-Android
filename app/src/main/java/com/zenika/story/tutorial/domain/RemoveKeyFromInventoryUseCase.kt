@@ -1,7 +1,7 @@
 package com.zenika.story.tutorial.domain
 
 import com.zenika.R
-import com.zenika.data.repository.ItemRepository
+import com.zenika.common.data.repository.ItemRepository
 import javax.inject.Inject
 
 class RemoveKeyFromInventoryUseCase @Inject constructor(

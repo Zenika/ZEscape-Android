@@ -1,8 +1,8 @@
-package com.zenika.data.database
+package com.zenika.common.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.zenika.data.entity.ItemEntity
+import com.zenika.common.data.entity.ItemEntity
 
 @Database(
     entities = [ItemEntity::class],

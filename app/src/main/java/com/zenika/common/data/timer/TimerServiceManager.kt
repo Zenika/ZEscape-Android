@@ -1,4 +1,4 @@
-package com.zenika.data.timer
+package com.zenika.common.data.timer
 
 import android.annotation.SuppressLint
 import android.content.BroadcastReceiver

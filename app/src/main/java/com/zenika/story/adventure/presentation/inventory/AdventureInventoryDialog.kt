@@ -15,7 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.common.domain.Inventory
-import com.zenika.data.entity.ItemEntity
+import com.zenika.common.data.entity.ItemEntity
 import com.zenika.story.adventure.presentation.component.AdventureDialog
 import com.zenika.story.adventure.presentation.inventory.component.AdventureInventoryBox
 import com.zenika.theme.ScreenPreview
