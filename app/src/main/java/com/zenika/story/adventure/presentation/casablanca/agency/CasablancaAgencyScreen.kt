@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.zenika.R
 import com.zenika.common.component.HintButton
+import com.zenika.story.adventure.domain.model.AdventureHint
 import com.zenika.story.adventure.presentation.casablanca.component.CasablancaMap
 import com.zenika.story.adventure.presentation.casablanca.component.FlashlightScaffoldScreen
 import com.zenika.story.adventure.presentation.casablanca.component.Safe
@@ -27,6 +28,7 @@ fun CasablancaAgencyScreen(
     openWorldMap: () -> Unit,
     openInventory: () -> Unit,
     openAgencyMap: () -> Unit,
+    openHintValidation: (AdventureHint) -> Unit,
     goToSafe: () -> Unit,
     collectKey: () -> Unit,
     modifier: Modifier = Modifier
@@ -39,7 +41,7 @@ fun CasablancaAgencyScreen(
         background = R.mipmap.casablanca_agency,
         openWorldMap = openWorldMap,
         openInventory = openInventory,
-        navigationIcon = { HintButton(onClick = {}) }
+        navigationIcon = { HintButton(onClick = { openHintValidation(AdventureHint.CASABLANCA_FLASHLIGHT_HINT) }) }
     ) {
         CasablancaMap(
             modifier = Modifier
@@ -75,6 +77,7 @@ private fun CasablancaAgencyScreenPreview() {
             openWorldMap = {},
             openInventory = {},
             openAgencyMap = {},
+            openHintValidation = {},
             goToSafe = {},
             collectKey = {}
         )
