@@ -3,6 +3,7 @@ package com.zenika.story.adventure.presentation.casablanca.component
 import android.content.Context
 import android.hardware.camera2.CameraManager
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
@@ -35,6 +36,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.zenika.common.component.SettingsButton
@@ -99,6 +101,14 @@ private fun FlashlightContent(
     background: Int,
     content: @Composable (BoxScope.() -> Unit)? = null
 ) {
+    if (LocalInspectionMode.current) {
+        Box(
+            Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+        )
+        return
+    }
     var pointerOffset by remember {
         mutableStateOf(Offset(0f, 0f))
     }
@@ -110,13 +120,7 @@ private fun FlashlightContent(
     val context = LocalContext.current
     val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
 
-    val torchCallback: CameraManager.TorchCallback =
-        object : CameraManager.TorchCallback() {
-            override fun onTorchModeChanged(cameraId: String, enabled: Boolean) {
-                super.onTorchModeChanged(cameraId, enabled)
-                isFlashLightOn = enabled
-            }
-        }
+    val torchCallback = TorchListener { enabled -> isFlashLightOn = enabled }
     cameraManager.registerTorchCallback(torchCallback, null)
 
     val colors = if (isFlashLightOn) {

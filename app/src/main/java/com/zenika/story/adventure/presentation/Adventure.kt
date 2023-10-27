@@ -458,6 +458,7 @@ fun NavGraphBuilder.adventureNavigation(
                 openWorldMap = { navController.navigate(ROUTE_WORLD_MAP) },
                 openInventory = { navController.navigate(ROUTE_INVENTORY) },
                 openAgencyMap = { navController.navigate(ROUTE_CASABLANCA_AGENCY_MAP) },
+                openHintValidation = { hint -> navController.navigateToHint(hint) },
                 goToSafe = { navController.navigate(ROUTE_CASABLANCA_SAFE) }
             )
         }
