@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <ManuallySuppressedIssues />
   <CurrentIssues>
     <ID>ComposableParamOrder:AdventureDialog.kt$AdventureDialog</ID>
     <ID>ComposableParamOrder:ScaffoldScreen.kt$ScaffoldScreen</ID>
@@ -69,52 +69,34 @@
     <ID>ModifierMissing:WelcomeParchmentItem.kt$WelcomeParchmentItem</ID>
     <ID>ModifierMissing:WelcomeParchmentScreen.kt$WelcomeParchmentScreen</ID>
     <ID>ModifierMissing:WorldMapDialog.kt$WorldMapDialog</ID>
+    <ID>ModifierReused:QrCodeScanScreen.kt$Box(modifier) { if (hasCamPermission) { AndroidView( factory = { context -&gt; val previewView = PreviewView(context) val preview = Preview.Builder().build() val selector = CameraSelector.Builder() .requireLensFacing(CameraSelector.LENS_FACING_BACK) .build() preview.setSurfaceProvider(previewView.surfaceProvider) val imageAnalysis = ImageAnalysis.Builder() .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST) .build() imageAnalysis.setAnalyzer( ContextCompat.getMainExecutor(context), QrCodeAnalyzer { result -&gt; code = result } ) try { cameraProviderFuture.get().bindToLifecycle( lifecycleOwner, selector, preview, imageAnalysis ) } catch (e: Exception) { e.printStackTrace() } previewView }, modifier = Modifier.fillMaxSize() ) } CheckValidationIcon( code, qrcode, modifier = Modifier.align(Alignment.Center) ) }</ID>
+    <ID>ModifierReused:QrCodeScanScreen.kt$Box(modifier.background(MaterialTheme.colorScheme.background))</ID>
     <ID>ModifierWithoutDefault:ContinentsMap.kt$modifier</ID>
     <ID>ModifierWithoutDefault:Key.kt$modifier</ID>
     <ID>ModifierWithoutDefault:MainScreen.kt$modifier</ID>
     <ID>ModifierWithoutDefault:TutorialInventoryBag.kt$modifier</ID>
     <ID>ModifierWithoutDefault:TutorialInventoryDialog.kt$modifier</ID>
     <ID>ModifierWithoutDefault:WorldMapDialog.kt$modifier</ID>
-    <ID>NewLineAtEndOfFile:AdventureHomeViewModel.kt$com.zenika.adventure.presentation.home.AdventureHomeViewModel.kt</ID>
-    <ID>NewLineAtEndOfFile:AdventureInstructionRoute.kt$com.zenika.adventure.presentation.instruction.AdventureInstructionRoute.kt</ID>
-    <ID>NewLineAtEndOfFile:AgencyValidationRoute.kt$com.zenika.adventure.presentation.agency_validation.AgencyValidationRoute.kt</ID>
-    <ID>NewLineAtEndOfFile:Color.kt$com.zenika.ui.theme.Color.kt</ID>
-    <ID>NewLineAtEndOfFile:ContinentsMap.kt$com.zenika.adventure.presentation.component.ContinentsMap.kt</ID>
-    <ID>NewLineAtEndOfFile:EndParchmentRoute.kt$com.zenika.tutorial.presentation.parchment.end_parchment.EndParchmentRoute.kt</ID>
-    <ID>NewLineAtEndOfFile:InstructionSingaporeRoute.kt$com.zenika.adventure.presentation.singapore.instruction.InstructionSingaporeRoute.kt</ID>
-    <ID>NewLineAtEndOfFile:InventoryState.kt$com.zenika.data.state.InventoryState.kt</ID>
-    <ID>NewLineAtEndOfFile:Key.kt$com.zenika.tutorial.presentation.main.component.Key.kt</ID>
-    <ID>NewLineAtEndOfFile:MainActivity.kt$com.zenika.MainActivity.kt</ID>
-    <ID>NewLineAtEndOfFile:PortalMessageRoute.kt$com.zenika.adventure.presentation.portal_message.PortalMessageRoute.kt</ID>
-    <ID>NewLineAtEndOfFile:SettingsViewModel.kt$com.zenika.presentation.settings.SettingsViewModel.kt</ID>
-    <ID>NewLineAtEndOfFile:TutorialHint.kt$com.zenika.data.TutorialHint.kt</ID>
-    <ID>NewLineAtEndOfFile:TutorialHomeViewModel.kt$com.zenika.tutorial.presentation.home.TutorialHomeViewModel.kt</ID>
-    <ID>NewLineAtEndOfFile:TutorialInstructionRoute.kt$com.zenika.tutorial.presentation.instruction.TutorialInstructionRoute.kt</ID>
-    <ID>NewLineAtEndOfFile:TutorialInventoryViewModel.kt$com.zenika.tutorial.presentation.inventory.TutorialInventoryViewModel.kt</ID>
-    <ID>NewLineAtEndOfFile:TutorialPenaltyRoute.kt$com.zenika.tutorial.presentation.penalty.TutorialPenaltyRoute.kt</ID>
-    <ID>NewLineAtEndOfFile:TutorialScoreRoute.kt$com.zenika.tutorial.presentation.score.TutorialScoreRoute.kt</ID>
-    <ID>NewLineAtEndOfFile:Type.kt$com.zenika.ui.theme.Type.kt</ID>
-    <ID>NewLineAtEndOfFile:WelcomeParchmentRoute.kt$com.zenika.tutorial.presentation.parchment.welcome_parchment.WelcomeParchmentRoute.kt</ID>
-    <ID>PackageNaming:AgencyRecognitionRoute.kt$package com.zenika.adventure.presentation.agency_recognition</ID>
-    <ID>PackageNaming:AgencyRecognitionScreen.kt$package com.zenika.adventure.presentation.agency_recognition</ID>
-    <ID>PackageNaming:AgencyValidationDialog.kt$package com.zenika.adventure.presentation.agency_validation</ID>
-    <ID>PackageNaming:AgencyValidationRoute.kt$package com.zenika.adventure.presentation.agency_validation</ID>
-    <ID>PackageNaming:AgencyValidationViewModel.kt$package com.zenika.adventure.presentation.agency_validation</ID>
-    <ID>PackageNaming:ColorButton.kt$package com.zenika.tutorial.presentation.color_buttons_order_game.component</ID>
-    <ID>PackageNaming:ColorButtonsOrderGameDialog.kt$package com.zenika.tutorial.presentation.color_buttons_order_game</ID>
-    <ID>PackageNaming:ColorButtonsOrderGameRoute.kt$package com.zenika.tutorial.presentation.color_buttons_order_game</ID>
-    <ID>PackageNaming:ColorButtonsOrderGameViewModel.kt$package com.zenika.tutorial.presentation.color_buttons_order_game</ID>
-    <ID>PackageNaming:EndParchmentRoute.kt$package com.zenika.tutorial.presentation.parchment.end_parchment</ID>
-    <ID>PackageNaming:EndParchmentScreen.kt$package com.zenika.tutorial.presentation.parchment.end_parchment</ID>
-    <ID>PackageNaming:OnOffRoute.kt$package com.zenika.adventure.presentation.singapore.on_off_game</ID>
-    <ID>PackageNaming:OnOffScreen.kt$package com.zenika.adventure.presentation.singapore.on_off_game</ID>
-    <ID>PackageNaming:OnOffViewModel.kt$package com.zenika.adventure.presentation.singapore.on_off_game</ID>
-    <ID>PackageNaming:PortalMessageDialog.kt$package com.zenika.adventure.presentation.portal_message</ID>
-    <ID>PackageNaming:PortalMessageRoute.kt$package com.zenika.adventure.presentation.portal_message</ID>
-    <ID>PackageNaming:Stage.kt$package com.zenika.tutorial.presentation.color_buttons_order_game.component</ID>
-    <ID>PackageNaming:TextRecognizer.kt$package com.zenika.adventure.presentation.agency_recognition</ID>
-    <ID>PackageNaming:WelcomeParchmentRoute.kt$package com.zenika.tutorial.presentation.parchment.welcome_parchment</ID>
-    <ID>PackageNaming:WelcomeParchmentScreen.kt$package com.zenika.tutorial.presentation.parchment.welcome_parchment</ID>
+    <ID>PackageNaming:AgencyRecognitionRoute.kt$package com.zenika.story.adventure.presentation.agency_recognition</ID>
+    <ID>PackageNaming:AgencyRecognitionScreen.kt$package com.zenika.story.adventure.presentation.agency_recognition</ID>
+    <ID>PackageNaming:AgencyValidationDialog.kt$package com.zenika.story.adventure.presentation.agency_validation</ID>
+    <ID>PackageNaming:AgencyValidationRoute.kt$package com.zenika.story.adventure.presentation.agency_validation</ID>
+    <ID>PackageNaming:AgencyValidationViewModel.kt$package com.zenika.story.adventure.presentation.agency_validation</ID>
+    <ID>PackageNaming:ColorButton.kt$package com.zenika.story.tutorial.presentation.color_buttons_order_game.component</ID>
+    <ID>PackageNaming:ColorButtonsOrderGameDialog.kt$package com.zenika.story.tutorial.presentation.color_buttons_order_game</ID>
+    <ID>PackageNaming:ColorButtonsOrderGameRoute.kt$package com.zenika.story.tutorial.presentation.color_buttons_order_game</ID>
+    <ID>PackageNaming:ColorButtonsOrderGameViewModel.kt$package com.zenika.story.tutorial.presentation.color_buttons_order_game</ID>
+    <ID>PackageNaming:EndParchmentRoute.kt$package com.zenika.story.tutorial.presentation.parchment.end_parchment</ID>
+    <ID>PackageNaming:EndParchmentScreen.kt$package com.zenika.story.tutorial.presentation.parchment.end_parchment</ID>
+    <ID>PackageNaming:OnOffRoute.kt$package com.zenika.story.adventure.presentation.singapore.on_off_game</ID>
+    <ID>PackageNaming:OnOffScreen.kt$package com.zenika.story.adventure.presentation.singapore.on_off_game</ID>
+    <ID>PackageNaming:OnOffViewModel.kt$package com.zenika.story.adventure.presentation.singapore.on_off_game</ID>
+    <ID>PackageNaming:PortalMessageDialog.kt$package com.zenika.story.adventure.presentation.portal_message</ID>
+    <ID>PackageNaming:PortalMessageRoute.kt$package com.zenika.story.adventure.presentation.portal_message</ID>
+    <ID>PackageNaming:Stage.kt$package com.zenika.story.tutorial.presentation.color_buttons_order_game.component</ID>
+    <ID>PackageNaming:TextRecognizer.kt$package com.zenika.story.adventure.presentation.agency_recognition</ID>
+    <ID>PackageNaming:WelcomeParchmentRoute.kt$package com.zenika.story.tutorial.presentation.parchment.welcome_parchment</ID>
+    <ID>PackageNaming:WelcomeParchmentScreen.kt$package com.zenika.story.tutorial.presentation.parchment.welcome_parchment</ID>
     <ID>PreviewNaming:Previews.kt$ComposablePreview$ComposablePreview</ID>
     <ID>PreviewNaming:Previews.kt$ScreenPreview$ScreenPreview</ID>
     <ID>PrintStackTrace:QrCodeAnalyzer.kt$QrCodeAnalyzer$e</ID>
