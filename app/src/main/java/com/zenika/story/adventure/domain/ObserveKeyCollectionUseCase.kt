@@ -9,13 +9,15 @@ class ObserveKeyCollectionUseCase @Inject constructor(
 ) {
     operator fun invoke() = gameStateManager.state.map {
         KeyCollection(
-            it.isSingaporeKeyCollected,
-            it.isCasablancaKeyCollected
+            isSingaporeKeyCollected = it.isSingaporeKeyCollected,
+            isCasablancaKeyCollected = it.isCasablancaKeyCollected,
+            isMontrealKeyCollected = it.isMontrealKeyCollected,
         )
     }
 }
 
 class KeyCollection(
     val isSingaporeKeyCollected: Boolean,
-    val isCasablancaKeyCollected: Boolean
+    val isCasablancaKeyCollected: Boolean,
+    val isMontrealKeyCollected: Boolean,
 )
