@@ -3,6 +3,7 @@ package com.zenika.story.adventure.presentation.casablanca.agency
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zenika.story.adventure.domain.CollectCasablancaKeyUseCase
+import com.zenika.story.adventure.domain.DisableFlashLightUseCase
 import com.zenika.story.adventure.domain.ObserveAdventureStateUseCase
 import com.zenika.story.adventure.domain.ObserveCasablancaKeyStateUseCase
 import com.zenika.story.adventure.domain.ObserveRemainingTimeUseCase
@@ -21,7 +22,8 @@ class CasablancaAgencyViewModel @Inject constructor(
     observeSafeStateUseCase: ObserveSafeStateUseCase,
     observeCasablancaKeyState: ObserveCasablancaKeyStateUseCase,
     observeAdventureState: ObserveAdventureStateUseCase,
-    private val collectCasablancaKey: CollectCasablancaKeyUseCase
+    private val collectCasablancaKey: CollectCasablancaKeyUseCase,
+    private val disableFlashLight: DisableFlashLightUseCase
 ) : ViewModel() {
 
     val state: StateFlow<CasablancaUiState> = combine(
@@ -51,6 +53,7 @@ class CasablancaAgencyViewModel @Inject constructor(
     fun collectKey() {
         viewModelScope.launch {
             collectCasablancaKey()
+            disableFlashLight()
         }
     }
 }
