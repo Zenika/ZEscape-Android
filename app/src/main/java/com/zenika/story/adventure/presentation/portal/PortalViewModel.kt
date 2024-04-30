@@ -33,7 +33,9 @@ class PortalViewModel @Inject constructor(
         observeRemainingTime()
     ) { keyCollection, gameState, remainingTime ->
         PortalUiState(
-            portalCanBeOpened = keyCollection.isSingaporeKeyCollected && keyCollection.isCasablancaKeyCollected,
+            portalCanBeOpened = keyCollection.isSingaporeKeyCollected
+                && keyCollection.isCasablancaKeyCollected
+                && keyCollection.isMontrealKeyCollected,
             newItem = gameState.newItem,
             remainingTime = remainingTime
         )
